@@ -33,14 +33,6 @@ class TitleState extends MusicBeatState
 	{
 		super.create();
 
-		PlayerSettings.init();
-
-		FlxG.save.bind('koya', 'Macohi');
-
-		Highscore.load();
-
-		Application.current.window.title = Constants.WINDOW_TITLE;
-
 		startIntro();
 	}
 
@@ -48,7 +40,7 @@ class TitleState extends MusicBeatState
 	{
 		FlxG.mouse.visible = false;
 
-		if (FlxG.sound.music == null)
+		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
 		{
 			FlxG.sound.playMusic(AssetPaths.music('title'), 0.7);
 			Conductor.changeBPM(140);
@@ -56,14 +48,6 @@ class TitleState extends MusicBeatState
 
 		if (!initialized)
 		{
-			FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), null,
-				new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
-			FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1), null,
-				new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
-
-			transIn = FlxTransitionableState.defaultTransIn;
-			transOut = FlxTransitionableState.defaultTransOut;
-
 			FlxG.sound.music.fadeIn(Conductor.crochet / 1000 * 4, 0, 0.7);
 
 			initialized = true;
@@ -101,12 +85,12 @@ class TitleState extends MusicBeatState
 		{
 			transitioning = true;
 			FlxG.sound.music.stop();
-			FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function()
+			FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function() {});
+
+			FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function()
 			{
 				FlxG.switchState(() -> new PlayState());
 			});
-
-			FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4);
 		}
 
 		super.update(elapsed);
