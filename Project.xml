@@ -45,19 +45,20 @@
 
 	<classpath name="source" />
 
-	<library name="touchhere" />
+	<assets path='dev/readme.txt' rename='do NOT readme.txt' />
 
-	<assets path="assets/touchhere" library="touchhere"/>
+	<section name="libraries">
+		<library name="touchhere" />
+		<assets path="assets/touchhere" library="touchhere" include="*.mp3" if="web"/>
+		<assets path="assets/touchhere" library="touchhere" include="*.ogg" unless="web"/>
+		
+	</section>
 
 	<assets path="assets/data" />
 	<assets path="assets/fonts"/>
-	<assets path="assets/images" />
-
-	<assets path='dev/readme.txt' rename='do NOT readme.txt' />
-
+	<assets path="assets/images"/>
 	<assets path="assets/music" include="*.mp3" if="web"/>
 	<assets path="assets/music" include="*.ogg" unless="web"/>
-	
 	<assets path="assets/sounds" include="*.mp3" if="web" />
 	<assets path="assets/sounds" include="*.ogg" unless="web" />
 
