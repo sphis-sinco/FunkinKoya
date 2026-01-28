@@ -41,10 +41,10 @@ class AssetPaths
 		return FlxAtlasFrames.fromSparrow(image(path, library), xml('images/$path', library));
 
 	public static function sound(path:String, ?library:String):String
-		return sound('sounds/$path.$soundExt', library);
+		return getPath('sounds/$path.$soundExt', library);
 
 	public static function music(path:String, ?library:String):String
-		return sound('music/$path.$soundExt', library);
+		return getPath('music/$path.$soundExt', library);
 
 	public static function font(path:String, ?library:String)
 		return getPath('fonts/$path', library);
