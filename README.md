@@ -12,4 +12,4 @@ Things that could definitely be done without source code with vslice but I'M PET
 
 ## Blogs
 
-Progress is a pleasant thing to see happen so you can find the blogs [here](./dev/blogs/README.md)
+Progress is a pleasant thing to see happen so you can find the blogs [here](./dev/blogs/)
