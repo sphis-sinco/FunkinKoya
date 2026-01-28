@@ -32,7 +32,7 @@ class AssetPaths
 		return getPath('$path.json', library);
 
 	public static function chart(song:String, chart:String, ?library:String):String
-		return json('data/songs/${song.toLowerCase()}/$chart', library);
+		return json('data/songs/${song.toLowerCase()}/$chart', library ?? 'songs');
 
 	public static function image(path:String, ?library:String):String
 		return getPath('images/$path.png', library);
@@ -45,6 +45,12 @@ class AssetPaths
 
 	public static function music(path:String, ?library:String):String
 		return getPath('music/$path.$soundExt', library);
+
+	public static function song_inst(song:String, ?library:String):String
+		return music('$song/Inst', library ?? 'songs');
+
+	public static function song_voices(song:String, ?library:String):String
+		return music('$song/Voices', library ?? 'songs');
 
 	public static function font(path:String, ?library:String)
 		return getPath('fonts/$path', library);
