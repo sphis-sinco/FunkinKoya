@@ -113,10 +113,10 @@
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 	
-	<icon path="art/icon16.png" size='16'/>
-	<icon path="art/icon32.png" size='32'/>
-	<icon path="art/icon64.png" size='64'/>
-	<icon path="art/iconOG.png"/>
+	<icon path="dev/icon16.png" size='16'/>
+	<icon path="dev/icon32.png" size='32'/>
+	<icon path="dev/icon64.png" size='64'/>
+	<icon path="dev/iconOG.png"/>
 
 	<haxeflag name="--dce full" if="release"/>
 
