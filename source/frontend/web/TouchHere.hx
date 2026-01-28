@@ -1,14 +1,38 @@
 package frontend.web;
 
+import flixel.FlxG;
+import backend.AssetPaths;
+import flixel.FlxSprite;
+
 class TouchHere extends MusicBeatState
 {
+	public var button:FlxSprite;
+
 	override function create()
 	{
 		super.create();
+
+		add(new FlxSprite(640, 0).loadGraphic(AssetPaths.image('touch_bg', 'touchhere')));
+
+		button = new FlxSprite();
+		button.frames = AssetPaths.fromSparrow('touch_button', 'touchhere');
+		button.animation.addByPrefix('idle', 'button idle');
+		button.animation.addByPrefix('overlap', 'button overlap');
+		add(button);
+
+		button.screenCenter();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (FlxG.mouse.overlaps(button))
+		{
+			if (button.animation.name != 'overlap')
+				button.animation.play('overlap');
+		}
+		else if (button.animation.name != 'idle')
+			button.animation.play('idle');
 	}
 }
