@@ -22,7 +22,7 @@ class AssetPaths
 		if (library == null)
 			return getPath(path);
 
-		return '$library:' + getPath('$library/$path');
+		return getPath('$library/$path');
 	}
 
 	public static function txt(path:String, ?library:String):String
