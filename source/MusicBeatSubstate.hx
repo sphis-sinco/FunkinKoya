@@ -1,6 +1,8 @@
 package;
 
 import Conductor.BPMChangeEvent;
+import backend.controls.Controls;
+import backend.controls.PlayerSettings;
 import flixel.FlxSubState;
 
 class MusicBeatSubstate extends FlxSubState
