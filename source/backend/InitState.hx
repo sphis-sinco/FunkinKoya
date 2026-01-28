@@ -16,7 +16,6 @@ class InitState extends FlxState
 		startingState = () -> new TouchHere();
 		#end
 
-		trace('Moving to ${Type.getClassName(cast startingState.createInstance())}');
 		FlxG.switchState(startingState);
 	}
 
