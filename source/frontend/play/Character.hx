@@ -25,15 +25,11 @@ class Character extends FlxSprite
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
-		var tex:FlxAtlasFrames;
-		antialiasing = true;
-
 		switch (curCharacter)
 		{
 			case 'gf':
 				// GIRLFRIEND CODE
-				var tex = AssetPaths.fromSparrow('GF_assets');
-				frames = tex;
+				frames = AssetPaths.fromSparrow('GF_assets');
 				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
 				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
 				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
@@ -64,8 +60,7 @@ class Character extends FlxSprite
 
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
-				var tex = AssetPaths.fromSparrow('DADDY_DEAREST');
-				frames = tex;
+				frames = AssetPaths.fromSparrow('DADDY_DEAREST');
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
 				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
@@ -81,8 +76,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 			case 'bf':
-				var tex = AssetPaths.fromSparrow('BOYFRIEND');
-				frames = tex;
+				frames = AssetPaths.fromSparrow('BOYFRIEND');
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);

@@ -1,5 +1,6 @@
 package backend;
 
+import flixel.FlxSprite;
 import flixel.util.typeLimit.NextState;
 import flixel.FlxG;
 import frontend.web.TouchHere;
@@ -10,6 +11,8 @@ class InitState extends FlxState
 	override function create()
 	{
 		super.create();
+
+		FlxSprite.defaultAntialiasing = false;
 
 		var startingState:NextState = () -> new TitleState();
 		#if web

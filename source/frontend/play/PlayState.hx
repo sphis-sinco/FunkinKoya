@@ -103,7 +103,6 @@ class PlayState extends MusicBeatState
 		defaultCamZoom = 0.9;
 		SONG_STAGE = 'stage';
 		var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(AssetPaths.image('stageback'));
-		bg.antialiasing = true;
 		bg.scrollFactor.set(0.9, 0.9);
 		bg.active = false;
 		add(bg);
@@ -111,7 +110,6 @@ class PlayState extends MusicBeatState
 		var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(AssetPaths.image('stagefront'));
 		stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
 		stageFront.updateHitbox();
-		stageFront.antialiasing = true;
 		stageFront.scrollFactor.set(0.9, 0.9);
 		stageFront.active = false;
 		add(stageFront);
@@ -119,7 +117,6 @@ class PlayState extends MusicBeatState
 		var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(AssetPaths.image('stagecurtains'));
 		stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 		stageCurtains.updateHitbox();
-		stageCurtains.antialiasing = true;
 		stageCurtains.scrollFactor.set(1.3, 1.3);
 		stageCurtains.active = false;
 
@@ -430,7 +427,6 @@ class PlayState extends MusicBeatState
 			babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
 			babyArrow.animation.addByPrefix('red', 'arrowRIGHT');
 
-			babyArrow.antialiasing = true;
 			babyArrow.setGraphicSize(Std.int(babyArrow.width * 0.7));
 
 			switch (Math.abs(i))
@@ -850,7 +846,6 @@ class PlayState extends MusicBeatState
 		rating.velocity.x -= FlxG.random.int(0, 10);
 
 		rating.setGraphicSize(Std.int(rating.width * 0.7));
-		rating.antialiasing = true;
 		rating.updateHitbox();
 
 		var seperatedScore:Array<Int> = [];
@@ -867,7 +862,6 @@ class PlayState extends MusicBeatState
 			numScore.x = coolText.x + (43 * daLoop) - 90;
 			numScore.y += 80;
 
-			numScore.antialiasing = true;
 			numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			numScore.updateHitbox();
 
