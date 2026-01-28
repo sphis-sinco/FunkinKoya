@@ -1,4 +1,4 @@
-package play;
+package frontend.play;
 
 enum abstract Difficulty(Int) from Int to Int
 {

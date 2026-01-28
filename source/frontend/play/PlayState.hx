@@ -1,6 +1,6 @@
-package play;
+package frontend.play;
 
-import play.editors.ChartingState;
+import frontend.play.editors.ChartingState;
 import backend.AssetPaths;
 import Section.SwagSection;
 import Song.SwagSong;
@@ -22,7 +22,7 @@ import flixel.ui.FlxBar;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
-import play.Difficulty;
+import frontend.play.Difficulty;
 
 using StringTools;
 

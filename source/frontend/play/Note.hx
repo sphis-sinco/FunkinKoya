@@ -1,4 +1,4 @@
-package play;
+package frontend.play;
 
 import backend.AssetPaths;
 import flixel.FlxSprite;

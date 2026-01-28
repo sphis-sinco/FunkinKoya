@@ -1,4 +1,4 @@
-package play.editors;
+package frontend.play.editors;
 
 import backend.AssetPaths;
 import Section.SwagSection;
