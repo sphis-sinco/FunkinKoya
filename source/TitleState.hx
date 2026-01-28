@@ -71,7 +71,7 @@ class TitleState extends MusicBeatState
 
 		logo = new FlxSprite();
 		logo.frames = AssetPaths.fromSparrow('logoBumpin');
-		logo.animation.addByPrefix('bump', 'logoBumpin');
+		logo.animation.addByPrefix('bump', 'logoBumpin', 24, false);
 		add(logo);
 		logo.screenCenter();
 
