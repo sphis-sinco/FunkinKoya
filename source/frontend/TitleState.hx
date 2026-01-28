@@ -1,5 +1,6 @@
 package frontend;
 
+import frontend.freeplay.FreeplayState;
 import frontend.play.PlayState;
 import backend.Highscore;
 import backend.controls.PlayerSettings;
@@ -107,7 +108,7 @@ class TitleState extends MusicBeatState
 
 			FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function()
 			{
-				FlxG.switchState(() -> new PlayState());
+				FlxG.switchState(() -> new FreeplayState());
 			});
 		}
 
