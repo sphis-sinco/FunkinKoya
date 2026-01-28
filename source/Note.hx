@@ -1,5 +1,6 @@
 package;
 
+import backend.AssetPaths;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
@@ -47,7 +48,7 @@ class Note extends FlxSprite
 
 		var daStage:String = PlayState.SONG_STAGE;
 
-		frames = FlxAtlasFrames.fromSparrow('assets/images/NOTE_assets.png', 'assets/images/NOTE_assets.xml');
+		frames = FlxAtlasFrames.fromSparrow(AssetPaths.image('NOTE_assets'), AssetPaths.xml('images/NOTE_assets'));
 
 		animation.addByPrefix('greenScroll', 'green0');
 		animation.addByPrefix('redScroll', 'red0');

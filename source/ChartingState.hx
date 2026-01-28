@@ -225,7 +225,7 @@ class ChartingState extends MusicBeatState
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
 
-		var characters:Array<String> = CoolUtil.coolTextFile('assets/data/characterList.txt');
+		var characters:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/characterList'));
 
 		var player1DropDown = new FlxUIDropDownMenu(10, 100, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
@@ -348,10 +348,10 @@ class ChartingState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		FlxG.sound.playMusic('assets/music/' + daSong + "_Inst" + AssetPaths.soundExt, 0.6);
+		FlxG.sound.playMusic(AssetPaths.music('${daSong}_Inst'), 0.6);
 
 		if (_song.needsVoices)
-			vocals = new FlxSound().loadEmbedded("assets/music/" + daSong + "_Voices" + AssetPaths.soundExt);
+			vocals = new FlxSound().loadEmbedded(AssetPaths.music('${daSong}_Voices'));
 		else
 			vocals = new FlxSound();
 		FlxG.sound.list.add(vocals);
