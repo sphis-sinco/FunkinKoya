@@ -1,5 +1,6 @@
 package;
 
+import lime.app.Application;
 import backend.Constants;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -32,6 +33,8 @@ class TitleState extends MusicBeatState
 
 		Highscore.load();
 
+		Application.current.window.title = Constants.WINDOW_TITLE;
+		
 		startIntro();
 	}
 
