@@ -1,6 +1,6 @@
-package;
+package frontend;
 
-import Conductor.BPMChangeEvent;
+import backend.Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.ui.FlxUIState;

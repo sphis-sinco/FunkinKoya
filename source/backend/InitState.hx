@@ -14,7 +14,7 @@ class InitState extends FlxState
 
 		FlxSprite.defaultAntialiasing = false;
 
-		var startingState:NextState = () -> new TitleState();
+		var startingState:NextState = () -> new frontend.TitleState();
 		#if web
 		startingState = () -> new TouchHere();
 		#end

@@ -2,8 +2,8 @@ package frontend.play;
 
 import frontend.play.editors.ChartingState;
 import backend.AssetPaths;
-import Section.SwagSection;
-import Song.SwagSong;
+import backend.Section.SwagSection;
+import backend.Song.SwagSong;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;

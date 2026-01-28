@@ -1,4 +1,4 @@
-package;
+package frontend;
 
 import lime.app.Application;
 import backend.Constants;
