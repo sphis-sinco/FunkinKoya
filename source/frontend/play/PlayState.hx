@@ -1200,8 +1200,5 @@ class PlayState extends MusicBeatState
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
 			boyfriend.playAnim('hey', true);
-
-		if (SONG.song == 'Tutorial' && dad.curCharacter == 'gf')
-			dad.playAnim('cheer', true);
 	}
 }
