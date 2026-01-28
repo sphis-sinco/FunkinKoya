@@ -47,10 +47,10 @@ class AssetPaths
 		return getPath('music/$path.$soundExt', library);
 
 	public static function song_inst(song:String, ?library:String):String
-		return music('$song/Inst', library ?? 'songs');
+		return music('songs/$song/Inst', library ?? 'songs');
 
 	public static function song_voices(song:String, ?library:String):String
-		return music('$song/Voices', library ?? 'songs');
+		return music('songs/$song/Voices', library ?? 'songs');
 
 	public static function font(path:String, ?library:String)
 		return getPath('fonts/$path', library);
