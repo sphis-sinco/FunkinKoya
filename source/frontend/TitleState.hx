@@ -67,6 +67,7 @@ class TitleState extends MusicBeatState
 		logoDRK = logo.clone();
 		logoDRK.screenCenter();
 		logoDRK.color = FlxColor.BLACK;
+		logoDRK.alpha = .5;
 		add(logoDRK);
 
 		add(logo);
@@ -83,7 +84,14 @@ class TitleState extends MusicBeatState
 		super.beatHit();
 
 		logo.animation.play('bump');
-		logoDRK.animation.play('bump');
+	}
+
+	override function stepHit()
+	{
+		super.stepHit();
+
+		if (curStep % 5 == 0)
+			logoDRK.animation.play('bump');
 	}
 
 	override function update(elapsed:Float)
