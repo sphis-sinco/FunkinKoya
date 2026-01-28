@@ -58,7 +58,7 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
 
-			FlxG.sound.music.fadeIn(4, 0, 0.7);
+			FlxG.sound.music.fadeIn(Conductor.crochet / 1000 * 4, 0, 0.7);
 
 			initialized = true;
 		}

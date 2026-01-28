@@ -49,7 +49,7 @@
 	<assets path="assets/fonts"/>
 	<assets path="assets/images" />
 
-	<assets path='art/readme.txt' rename='do NOT readme.txt' />
+	<assets path='dev/readme.txt' rename='do NOT readme.txt' />
 
 	<assets path="assets/music" include="*.mp3" if="web"/>
 	<assets path="assets/music" include="*.ogg" unless="web"/>
