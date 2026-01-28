@@ -15,6 +15,6 @@ class Constants
 
 	static function get_WINDOW_TITLE():String
 	{
-		return Application.current.meta.get('title') + #if debug '*' #else '' #end;
+		return 'Funkin\' Koya' + #if debug '*' #else '' #end;
 	}
 }
