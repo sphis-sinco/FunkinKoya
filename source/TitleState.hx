@@ -45,9 +45,7 @@ class TitleState extends MusicBeatState
 		if (FlxG.sound.music == null)
 		{
 			FlxG.sound.playMusic(AssetPaths.music('title'), 0.7);
-
-			// this is for freakyMenu...
-			Conductor.changeBPM(102);
+			Conductor.changeBPM(140);
 		}
 
 		if (!initialized)
@@ -85,8 +83,7 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		if (curBeat % 2 == 0)
-			logo.animation.play('bump');
+		logo.animation.play('bump');
 	}
 
 	override function update(elapsed:Float)
