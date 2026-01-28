@@ -1,6 +1,6 @@
 package frontend;
 
-import backend.Conductor.BPMChangeEvent;
+import backend.Conductor;
 import backend.controls.Controls;
 import backend.controls.PlayerSettings;
 import flixel.FlxSubState;

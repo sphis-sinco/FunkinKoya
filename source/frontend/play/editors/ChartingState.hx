@@ -1,9 +1,9 @@
 package frontend.play.editors;
 
-import backend.AssetPaths;
-import Section.SwagSection;
-import Song.SwagSong;
-import Conductor.BPMChangeEvent;
+import backend.Section;
+import backend.Song;
+import backend.*;
+import backend.Conductor;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;

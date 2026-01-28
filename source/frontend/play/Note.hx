@@ -1,5 +1,6 @@
 package frontend.play;
 
+import backend.Conductor;
 import backend.AssetPaths;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;

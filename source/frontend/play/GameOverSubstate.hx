@@ -1,6 +1,6 @@
 package frontend.play;
 
-import backend.AssetPaths;
+import backend.*;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;

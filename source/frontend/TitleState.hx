@@ -1,5 +1,9 @@
 package frontend;
 
+import frontend.play.PlayState;
+import backend.Highscore;
+import backend.controls.PlayerSettings;
+import backend.Conductor;
 import lime.app.Application;
 import backend.Constants;
 import flixel.text.FlxText;
@@ -23,11 +27,13 @@ class TitleState extends MusicBeatState
 	public var logo:FlxSprite;
 	public var versionText:FlxText;
 
+	public var transitioning:Bool = false;
+
 	override public function create():Void
 	{
-		PlayerSettings.init();
-
 		super.create();
+
+		PlayerSettings.init();
 
 		FlxG.save.bind('koya', 'Macohi');
 
@@ -75,7 +81,7 @@ class TitleState extends MusicBeatState
 
 		FlxTween.tween(logo, {y: logo.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		versionText = new FlxText(9, FlxG.height - (18 + 9), 0, Constants.VERSION, 16);
+		versionText = new FlxText(2, FlxG.height - (18 + 2), 0, Constants.VERSION, 16);
 		add(versionText);
 	}
 
@@ -90,6 +96,18 @@ class TitleState extends MusicBeatState
 	{
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+
+		if (controls.ACCEPT && !transitioning)
+		{
+			transitioning = true;
+			FlxG.sound.music.stop();
+			FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function()
+			{
+				FlxG.switchState(() -> new PlayState());
+			});
+
+			FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4);
+		}
 
 		super.update(elapsed);
 	}

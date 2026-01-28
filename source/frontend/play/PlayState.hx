@@ -1,9 +1,9 @@
 package frontend.play;
 
 import frontend.play.editors.ChartingState;
-import backend.AssetPaths;
+import backend.*;
 import backend.Section.SwagSection;
-import backend.Song.SwagSong;
+import backend.Song;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -95,7 +95,7 @@ class PlayState extends MusicBeatState
 		persistentDraw = true;
 
 		if (SONG == null)
-			SONG = Song.loadFromJson('tutorial');
+			SONG = Song.loadFromJson('tutorial', 'tutorial');
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
