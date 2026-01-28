@@ -1,5 +1,6 @@
 package frontend.web;
 
+import backend.InitState;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import backend.AssetPaths;
@@ -35,7 +36,7 @@ class TouchHere extends MusicBeatState
 				button.animation.play('overlap');
 
 			if (FlxG.mouse.justPressed)
-				FlxG.switchState(() -> new TitleState());
+				FlxG.switchState(InitState.getStartingState());
 		}
 		else if (button.animation.name != 'idle')
 			button.animation.play('idle');

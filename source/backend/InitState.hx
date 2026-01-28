@@ -32,12 +32,22 @@ class InitState extends FlxState
 		FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1), null,
 			new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
 
-		var startingState:NextState = () -> new frontend.TitleState();
+		var startingState:NextState = getStartingState();
+
 		#if web
 		startingState = () -> new TouchHere();
 		#end
 
 		FlxG.switchState(startingState);
+	}
+
+	public static function getStartingState():NextState
+	{
+		#if FREEPLAY
+		return () -> new frontend.freeplay.FreeplayState();
+		#end
+
+		return () -> new frontend.TitleState();
 	}
 
 	override function update(elapsed:Float)
