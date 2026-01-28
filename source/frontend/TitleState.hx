@@ -25,6 +25,8 @@ class TitleState extends MusicBeatState
 	static var initialized:Bool = false;
 
 	public var logo:FlxSprite;
+	public var logoDRK:FlxSprite;
+
 	public var versionText:FlxText;
 
 	public var transitioning:Bool = false;
@@ -62,8 +64,9 @@ class TitleState extends MusicBeatState
 		logo.animation.addByPrefix('bump', 'logoBumpin', 24, false);
 		logo.screenCenter();
 
-		var logoDRK = logo.clone();
+		logoDRK = logo.clone();
 		logoDRK.screenCenter();
+		logoDRK.color = FlxColor.BLACK;
 		add(logoDRK);
 
 		add(logo);
@@ -80,6 +83,7 @@ class TitleState extends MusicBeatState
 		super.beatHit();
 
 		logo.animation.play('bump');
+		logoDRK.animation.play('bump');
 	}
 
 	override function update(elapsed:Float)
