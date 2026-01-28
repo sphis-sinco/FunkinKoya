@@ -1,5 +1,7 @@
 package;
 
+import backend.Constants;
+import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import backend.AssetPaths;
@@ -18,6 +20,7 @@ class TitleState extends MusicBeatState
 	static var initialized:Bool = false;
 
 	public var logo:FlxSprite;
+	public var versionText:FlxText;
 
 	override public function create():Void
 	{
@@ -70,6 +73,9 @@ class TitleState extends MusicBeatState
 		logo.screenCenter();
 
 		FlxTween.tween(logo, {y: logo.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+
+		versionText = new FlxText(9, FlxG.height - 18, 0, Constants.VERSION, 16);
+		add(versionText);
 	}
 
 	override function beatHit()
