@@ -1,5 +1,6 @@
 package frontend.web;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 import backend.AssetPaths;
 import flixel.FlxSprite;
@@ -12,6 +13,7 @@ class TouchHere extends MusicBeatState
 	{
 		super.create();
 
+		add(new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#121317')));
 		add(new FlxSprite(320, -80).loadGraphic(AssetPaths.image('touch_bg', 'touchhere')));
 
 		button = new FlxSprite();
