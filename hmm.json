@@ -21,6 +21,16 @@
       "version": null
     },
     {
+      "name": "hxcpp",
+      "type": "haxelib",
+      "version": null
+    },
+    {
+      "name": "hxcpp-debug-server",
+      "type": "haxelib",
+      "version": null
+    },
+    {
       "name": "lime",
       "type": "haxelib",
       "version": null
