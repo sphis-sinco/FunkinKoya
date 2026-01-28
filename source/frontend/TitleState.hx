@@ -72,7 +72,7 @@ class TitleState extends MusicBeatState
 		add(logo);
 
 		FlxTween.tween(logo, {y: logo.y + 100}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		FlxTween.tween(logoDRK, {y: logoDRK.y + 100}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: .1});
+		FlxTween.tween(logoDRK, {y: logo.y + 100}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: .1});
 
 		versionText = new FlxText(2, FlxG.height - (18 + 2), 0, Constants.VERSION, 16);
 		add(versionText);
