@@ -42,6 +42,14 @@ class TitleState extends MusicBeatState
 	{
 		FlxG.mouse.visible = false;
 
+		if (FlxG.sound.music == null)
+		{
+			FlxG.sound.playMusic(AssetPaths.music('title'), 0.7);
+
+			// this is for freakyMenu...
+			Conductor.changeBPM(102);
+		}
+
 		if (!initialized)
 		{
 			FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 1, new FlxPoint(0, -1), null,
@@ -52,17 +60,9 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
 
-			initialized = true;
-		}
-
-		if (FlxG.sound.music == null)
-		{
-			FlxG.sound.playMusic(AssetPaths.music('title'), 0.7);
-
-			// this is for freakyMenu...
-			Conductor.changeBPM(102);
-
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
+
+			initialized = true;
 		}
 
 		var bg = new FlxSprite().loadGraphic(AssetPaths.image('stageback'));
