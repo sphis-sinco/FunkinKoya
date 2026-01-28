@@ -12,7 +12,7 @@ class TouchHere extends MusicBeatState
 	{
 		super.create();
 
-		add(new FlxSprite(640, 0).loadGraphic(AssetPaths.image('touch_bg', 'touchhere')));
+		add(new FlxSprite(320, -80).loadGraphic(AssetPaths.image('touch_bg', 'touchhere')));
 
 		button = new FlxSprite();
 		button.frames = AssetPaths.fromSparrow('touch_button', 'touchhere');
@@ -31,6 +31,9 @@ class TouchHere extends MusicBeatState
 		{
 			if (button.animation.name != 'overlap')
 				button.animation.play('overlap');
+
+			if (FlxG.mouse.justPressed)
+				FlxG.switchState(() -> new TitleState());
 		}
 		else if (button.animation.name != 'idle')
 			button.animation.play('idle');
