@@ -5,6 +5,8 @@ using haxe.io.Path;
 
 class AssetPaths
 {
+	public static var pixelZoom:Float = 6;
+
 	public static var soundExt:String = #if web 'mp3' #else 'ogg' #end;
 
 	public static function getPath(path:String, ?library:String):String

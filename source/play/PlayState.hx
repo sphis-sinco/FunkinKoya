@@ -1,5 +1,6 @@
-package;
+package play;
 
+import play.editors.ChartingState;
 import backend.AssetPaths;
 import Section.SwagSection;
 import Song.SwagSong;
@@ -74,9 +75,6 @@ class PlayState extends MusicBeatState
 	public static var campaignScore:Int = 0;
 
 	var defaultCamZoom:Float = 1.05;
-
-	// how big to stretch the pixel art assets
-	public static var daPixelZoom:Float = 6;
 
 	var inCutscene:Bool = false;
 
