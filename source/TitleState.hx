@@ -77,7 +77,7 @@ class TitleState extends MusicBeatState
 
 		FlxTween.tween(logo, {y: logo.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 
-		versionText = new FlxText(9, FlxG.height - 18, 0, Constants.VERSION, 16);
+		versionText = new FlxText(9, FlxG.height - (18 + 9), 0, Constants.VERSION, 16);
 		add(versionText);
 	}
 
