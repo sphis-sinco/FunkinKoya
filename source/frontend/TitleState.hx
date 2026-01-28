@@ -60,10 +60,16 @@ class TitleState extends MusicBeatState
 		logo = new FlxSprite();
 		logo.frames = AssetPaths.fromSparrow('logoBumpin');
 		logo.animation.addByPrefix('bump', 'logoBumpin', 24, false);
-		add(logo);
 		logo.screenCenter();
 
-		FlxTween.tween(logo, {y: logo.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		var logoDRK = logo.clone();
+		logoDRK.screenCenter();
+		add(logoDRK);
+
+		add(logo);
+
+		FlxTween.tween(logo, {y: logo.y + 100}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+		FlxTween.tween(logoDRK, {y: logoDRK.y + 100}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: .1});
 
 		versionText = new FlxText(2, FlxG.height - (18 + 2), 0, Constants.VERSION, 16);
 		add(versionText);
