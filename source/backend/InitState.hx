@@ -12,7 +12,7 @@ class InitState extends FlxState
 	{
 		super.create();
 
-		FlxSprite.defaultAntialiasing = false;
+		FlxSprite.defaultAntialiasing = true;
 
 		var startingState:NextState = () -> new frontend.TitleState();
 		#if web
