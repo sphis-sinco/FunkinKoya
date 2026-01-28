@@ -34,7 +34,7 @@ class TitleState extends MusicBeatState
 		Highscore.load();
 
 		Application.current.window.title = Constants.WINDOW_TITLE;
-		
+
 		startIntro();
 	}
 
@@ -60,7 +60,7 @@ class TitleState extends MusicBeatState
 			FlxG.sound.playMusic(AssetPaths.music('title'), 0.7);
 
 			// this is for freakyMenu...
-			// Conductor.changeBPM(102);
+			Conductor.changeBPM(102);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
@@ -85,7 +85,8 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		logo.animation.play('bump');
+		if (curBeat % 2 == 0)
+			logo.animation.play('bump');
 	}
 
 	override function update(elapsed:Float)
