@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import backend.AssetPaths;
@@ -9,8 +10,6 @@ import backend.CoolUtil;
 class FreeplayState extends MusicBeatState
 {
 	public var songList:Array<String> = [];
-
-	public var songText:FlxTypedGroup<Alphabet>;
 
 	override function create()
 	{
@@ -24,18 +23,7 @@ class FreeplayState extends MusicBeatState
 			GRID_SIZE * Std.int(FlxG.height / GRID_SIZE) + 2);
 		add(gridBG);
 
-		songText = new FlxTypedGroup<Alphabet>();
-		add(songText);
-
-		var i = 0;
-		for (song in songList)
-		{
-			var songAlphabet:Alphabet = new Alphabet(24, 24 + (i * 64), song.toLowerCase(), true);
-			songAlphabet.ID = i;
-			songText.add(songAlphabet);
-
-			i++;
-		}
+		add(new FlxSprite().makeGraphic(120, FlxG.height));
 	}
 
 	override function update(elapsed:Float)
