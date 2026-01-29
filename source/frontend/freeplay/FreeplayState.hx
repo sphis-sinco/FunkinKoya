@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import backend.Conductor;
 import frontend.ui.ArrowUI;
 import backend.Constants;
 import flixel.util.FlxColor;
@@ -34,7 +35,8 @@ class FreeplayState extends MusicBeatState
 		add(upBorder);
 		upBorder.innerSprite.y -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, FlxG.height - 160);
+		var downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths,
+			FlxG.height - 160);
 		add(downBorder);
 		downBorder.innerSprite.y += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
@@ -43,8 +45,8 @@ class FreeplayState extends MusicBeatState
 		add(leftBorder);
 		leftBorder.innerSprite.x -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), FlxG.width - sideBorderWidths,
-			-Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
+		var rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING),
+			FlxG.width - sideBorderWidths, -Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(rightBorder);
 		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
@@ -72,5 +74,14 @@ class FreeplayState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
+		{
+			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
+			Conductor.changeBPM(102);
+		}
+
+		if (controls.BACK)
+			FlxG.switchState(() -> new TitleState());
 	}
 }

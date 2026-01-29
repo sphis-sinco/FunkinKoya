@@ -43,14 +43,14 @@ class TitleState extends MusicBeatState
 	{
 		FlxG.mouse.visible = false;
 
-		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
-		{
-			FlxG.sound.playMusic(AssetPaths.music('title'), 0.7);
-			Conductor.changeBPM(140);
-		}
-
 		if (!initialized)
 		{
+			if (FlxG.sound.music == null || !FlxG.sound.music.playing)
+			{
+				FlxG.sound.playMusic(AssetPaths.music('title'), 0.7, false);
+				Conductor.changeBPM(140);
+			}
+
 			FlxG.sound.music.fadeIn(Conductor.crochet / 1000 * 4, 0, 0.7);
 
 			initialized = true;
