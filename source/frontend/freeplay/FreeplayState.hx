@@ -62,14 +62,11 @@ class FreeplayState extends MusicBeatState
 		arrow_DOWN.x = leftBorder.outerSprite.getGraphicMidpoint().x - arrow_DOWN.width;
 		arrow_UP.x = leftBorder.outerSprite.getGraphicMidpoint().x - arrow_UP.width;
 
-		arrow_LEFT.x = rightBorder.outerSprite.getGraphicMidpoint().x - arrow_LEFT.width * 2;
-		arrow_RIGHT.x = rightBorder.outerSprite.getGraphicMidpoint().x - arrow_RIGHT.width * 2;
+		arrow_LEFT.x = rightBorder.outerSprite.getGraphicMidpoint().x - arrow_LEFT.width * 4;
+		arrow_RIGHT.x = rightBorder.outerSprite.getGraphicMidpoint().x + arrow_RIGHT.width * 4;
 
 		arrow_UP.y -= arrow_UP.height * 2;
 		arrow_DOWN.y += arrow_DOWN.height * 2;
-
-		arrow_LEFT.x -= arrow_LEFT.width;
-		arrow_RIGHT.x += arrow_RIGHT.width;
 	}
 
 	override function update(elapsed:Float)
