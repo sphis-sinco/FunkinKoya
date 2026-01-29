@@ -3,5 +3,7 @@
 	<!-- Created with Adobe Animate version 21.0.6.41649 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="down arrow0000" x="4" y="4" width="26" height="83"/>
-	<SubTexture name="up arrow0000" x="38" y="4" width="23" height="77"/>
+	<SubTexture name="left arrow0000" x="38" y="4" width="79" height="33"/>
+	<SubTexture name="right arrow0000" x="125" y="4" width="87" height="33"/>
+	<SubTexture name="up arrow0000" x="220" y="4" width="23" height="77"/>
 </TextureAtlas>

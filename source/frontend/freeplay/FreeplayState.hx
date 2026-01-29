@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import frontend.ui.ArrowUI;
 import backend.Constants;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
@@ -44,6 +45,25 @@ class FreeplayState extends MusicBeatState
 			-Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(rightBorder);
 		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
+
+		var arrow_UP:ArrowUI = new ArrowUI(UP);
+		var arrow_DOWN:ArrowUI = new ArrowUI(DOWN);
+		var arrow_LEFT:ArrowUI = new ArrowUI(LEFT);
+		var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT);
+
+		for (arrow in [arrow_DOWN, arrow_LEFT, arrow_RIGHT, arrow_UP])
+		{
+			arrow.screenCenter();
+			add(arrow);
+		}
+
+		arrow_UP.x = arrow_DOWN.x = 160;
+		arrow_UP.y -= arrow_UP.height / 2;
+		arrow_DOWN.y += arrow_DOWN.height / 2;
+
+		arrow_LEFT.x = arrow_RIGHT.x = FlxG.width - 160;
+		arrow_LEFT.x -= arrow_LEFT.width / 2;
+		arrow_RIGHT.x += arrow_RIGHT.width / 2;
 	}
 
 	override function update(elapsed:Float)
