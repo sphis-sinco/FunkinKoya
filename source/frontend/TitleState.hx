@@ -111,16 +111,26 @@ class TitleState extends MusicBeatState
 		if (controls.ACCEPT && !transitioning)
 		{
 			transitioning = true;
-			FlxG.sound.music.stop();
 			if (playingTitle)
+			{
+				FlxG.sound.music.stop();
+
 				FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function() {});
+
+				FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function()
+				{
+					FlxG.switchState(() -> new FreeplayState());
+				});
+			}
 			else
+			{
 				FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'), 1.0, false, null, true, function() {});
 
-			FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function()
-			{
-				FlxG.switchState(() -> new FreeplayState());
-			});
+				FlxG.camera.flash(FlxColor.WHITE, 1, function()
+				{
+					FlxG.switchState(() -> new FreeplayState());
+				});
+			}
 		}
 
 		super.update(elapsed);
