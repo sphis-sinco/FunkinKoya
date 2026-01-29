@@ -1,5 +1,8 @@
 package frontend.freeplay;
 
+import backend.Highscore;
+import backend.Song;
+import frontend.play.PlayState;
 import flixel.text.FlxText;
 import backend.Conductor;
 import frontend.ui.ArrowUI;
@@ -16,7 +19,9 @@ class FreeplayState extends MusicBeatState
 {
 	public var songList:Array<String> = [];
 	public var songText:FlxText = new FlxText();
+
 	public var songSelect:Int = 0;
+	public var songDifficulty:Int = 1;
 
 	override function create()
 	{
@@ -83,6 +88,16 @@ class FreeplayState extends MusicBeatState
 		{
 			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
 			FlxG.switchState(() -> new TitleState());
+		}
+
+		if (controls.ACCEPT)
+		{
+			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
+
+			PlayState.SONG = Song.loadFromJson(songList[songSelect], Highscore.formatSong(songList[songSelect], songDifficulty));
+			PlayState.SONG_DIFFICULTY = songDifficulty;
+
+			FlxG.switchState(() -> new PlayState());
 		}
 	}
 
