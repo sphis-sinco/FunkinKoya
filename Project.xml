@@ -58,6 +58,9 @@
 
 	<assets path="assets/songs" exclude="*.ogg" if="web"/>
 	<assets path="assets/songs" exclude="*.mp3" unless="web"/>
+	
+	<assets path="assets/characters" exclude="*.ogg" if="web"/>
+	<assets path="assets/characters" exclude="*.mp3" unless="web"/>
 
 	<assets path="CHANGELOG.md" rename='changelog.txt'/>
 
