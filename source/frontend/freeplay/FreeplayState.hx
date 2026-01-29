@@ -67,7 +67,7 @@ class FreeplayState extends MusicBeatState
 		songText.text = songList[songSelect].toLowerCase();
 		songText.screenCenter(Y);
 
-		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
+		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
 			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
 			Conductor.changeBPM(102);
@@ -76,6 +76,8 @@ class FreeplayState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 	}
+
+	public var transitioning:Bool = false;
 
 	public function performControls()
 	{
@@ -86,12 +88,14 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.BACK)
 		{
+			transitioning = true;
 			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
 			FlxG.switchState(() -> new TitleState());
 		}
 
 		if (controls.ACCEPT)
 		{
+			transitioning = true;
 			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
 
