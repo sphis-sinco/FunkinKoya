@@ -47,8 +47,17 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		var prevSel:Int = songSelect;
+
+		performControls();
+
+		if (songSelect < 0)
+			songSelect = 0;
 		if (songSelect >= songList.length)
 			songSelect = songList.length - 1;
+
+		if (songSelect != prevSel)
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 		songText.text = songList[songSelect].toLowerCase();
 		songText.screenCenter(Y);
@@ -61,9 +70,20 @@ class FreeplayState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+	}
+
+	public function performControls()
+	{
+		if (controls.UI_UP_R)
+			songSelect--;
+		if (controls.UI_DOWN_R)
+			songSelect++;
 
 		if (controls.BACK)
+		{
+			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
 			FlxG.switchState(() -> new TitleState());
+		}
 	}
 
 	public var sideBorderWidths = 320 + 64;

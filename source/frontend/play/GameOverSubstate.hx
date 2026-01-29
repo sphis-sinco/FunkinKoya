@@ -1,5 +1,6 @@
 package frontend.play;
 
+import frontend.freeplay.FreeplayState;
 import backend.*;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -51,7 +52,8 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			FlxG.sound.music.stop();
 
-			FlxG.switchState(() -> new TitleState());
+			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
+			FlxG.switchState(() -> new FreeplayState());
 		}
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)

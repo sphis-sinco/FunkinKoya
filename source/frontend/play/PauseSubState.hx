@@ -1,5 +1,6 @@
 package frontend.play;
 
+import frontend.freeplay.FreeplayState;
 import backend.AssetPaths;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -67,6 +68,10 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			var daSelected:String = menuItems[curSelected];
 
+			var confirmMenu = ['resume', 'restart song'];
+			if (confirmMenu.contains(daSelected.toLowerCase()))
+				FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
+
 			switch (daSelected)
 			{
 				case "Resume":
@@ -74,7 +79,7 @@ class PauseSubState extends MusicBeatSubstate
 				case "Restart Song":
 					FlxG.resetState();
 				case "Exit to menu":
-					FlxG.switchState(() -> new TitleState());
+					FlxG.switchState(() -> new FreeplayState());
 			}
 		}
 	}
@@ -88,12 +93,17 @@ class PauseSubState extends MusicBeatSubstate
 
 	function changeSelection(change:Int = 0):Void
 	{
+		var prevSel = curSelected;
+
 		curSelected += change;
 
 		if (curSelected < 0)
 			curSelected = menuItems.length - 1;
 		if (curSelected >= menuItems.length)
 			curSelected = 0;
+
+		if (curSelected != prevSel)
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 		var bullShit:Int = 0;
 
