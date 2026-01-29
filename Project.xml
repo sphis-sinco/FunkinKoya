@@ -119,6 +119,6 @@
 
 	<haxeflag name="--dce full" if="release"/>
 
-	<define name="FREEPLAY_GRID" if="debug" />
+	<define name="FREEPLAY_BG_GRID" if="debug" />
 
 </project>

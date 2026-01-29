@@ -20,7 +20,7 @@ class FreeplayState extends MusicBeatState
 		songList = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
 		trace(songList);
 
-		#if FREEPLAY_GRID
+		#if FREEPLAY_BG_GRID
 		var GRID_SIZE = 32;
 		var gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, (GRID_SIZE * Std.int(FlxG.width / GRID_SIZE)) + 10,
 			(GRID_SIZE * Std.int(FlxG.height / GRID_SIZE)) + 10);
