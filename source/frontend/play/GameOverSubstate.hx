@@ -1,5 +1,7 @@
 package frontend.play;
 
+import frontend.play.characters.CharacterGetter;
+import frontend.play.characters.Character;
 import frontend.freeplay.FreeplayState;
 import backend.*;
 import flixel.FlxG;
@@ -11,7 +13,7 @@ import flixel.util.FlxTimer;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
-	var bf:Boyfriend;
+	var bf:Character;
 	var camFollow:FlxObject;
 
 	var stageSuffix:String = "";
@@ -26,7 +28,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 
-		bf = new Boyfriend(x, y, daBf);
+		bf = CharacterGetter.getCharacter(daBf, true, x, y);
 		add(bf);
 
 		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
