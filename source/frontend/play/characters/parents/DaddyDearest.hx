@@ -14,12 +14,12 @@ class DaddyDearest extends Character
 
 	override function initChar()
 	{
-		frames = AssetPaths.fromSparrow('DADDY_DEAREST');
-		animation.addByPrefix('idle', 'Dad idle dance', 24);
-		animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
-		animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24);
-		animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
-		animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
+		frames = AssetPaths.fromSparrow('characters/DADDY_DEAREST', 'characters');
+		addPrefixAnim('idle', 'Dad idle dance', 24);
+		addPrefixAnim('singUP', 'Dad Sing Note UP', 24);
+		addPrefixAnim('singRIGHT', 'Dad Sing Note RIGHT', 24);
+		addPrefixAnim('singDOWN', 'Dad Sing Note DOWN', 24);
+		addPrefixAnim('singLEFT', 'Dad Sing Note LEFT', 24);
 
 		playAnim('idle');
 	}

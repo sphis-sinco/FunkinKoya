@@ -150,4 +150,7 @@ class Character extends FlxSprite
 				addOffset(anim, Std.parseFloat(x), Std.parseFloat(y));
 		}
 	}
+
+	public function addPrefixAnim(name:String, prefix:String, ?fps:Float = 24, ?looped:Bool = false)
+		animation.addByPrefix(name, prefix, fps, looped);
 }
