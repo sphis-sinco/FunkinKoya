@@ -92,6 +92,7 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
+			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
 
 			PlayState.SONG = Song.loadFromJson(songList[songSelect], Highscore.formatSong(songList[songSelect], songDifficulty));
