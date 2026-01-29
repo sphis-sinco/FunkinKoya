@@ -29,6 +29,28 @@ class FreeplayState extends MusicBeatState
 		add(gridBG);
 		#end
 
+		initUI();
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
+		{
+			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
+			Conductor.changeBPM(102);
+		}
+
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
+
+		if (controls.BACK)
+			FlxG.switchState(() -> new TitleState());
+	}
+
+	public function initUI()
+	{
 		var sideBorderWidths = 320 + 64;
 
 		var upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
@@ -69,22 +91,5 @@ class FreeplayState extends MusicBeatState
 
 		arrow_UP.y -= arrow_UP.height * 2;
 		arrow_DOWN.y += arrow_DOWN.height * 2;
-	}
-
-	override function update(elapsed:Float)
-	{
-		super.update(elapsed);
-
-		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
-		{
-			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
-			Conductor.changeBPM(102);
-		}
-		
-		if (FlxG.sound.music != null)
-			Conductor.songPosition = FlxG.sound.music.time;
-
-		if (controls.BACK)
-			FlxG.switchState(() -> new TitleState());
 	}
 }
