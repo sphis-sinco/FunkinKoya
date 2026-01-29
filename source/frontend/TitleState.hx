@@ -39,6 +39,8 @@ class TitleState extends MusicBeatState
 		startIntro();
 	}
 
+	var playingTitle:Bool = false;
+
 	function startIntro()
 	{
 		FlxG.mouse.visible = false;
@@ -48,10 +50,10 @@ class TitleState extends MusicBeatState
 			if (FlxG.sound.music == null || !FlxG.sound.music.playing)
 			{
 				FlxG.sound.playMusic(AssetPaths.music('title'), 0.7, false);
+				playingTitle = true;
 				Conductor.changeBPM(140);
+				FlxG.sound.music.fadeIn(Conductor.crochet / 1000 * 4, 0, 0.7);
 			}
-
-			FlxG.sound.music.fadeIn(Conductor.crochet / 1000 * 4, 0, 0.7);
 
 			initialized = true;
 		}
@@ -110,7 +112,10 @@ class TitleState extends MusicBeatState
 		{
 			transitioning = true;
 			FlxG.sound.music.stop();
-			FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function() {});
+			if (playingTitle)
+				FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function() {});
+			else
+				FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'), 1.0, false, null, true, function() {});
 
 			FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function()
 			{
