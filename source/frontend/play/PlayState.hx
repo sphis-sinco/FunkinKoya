@@ -144,7 +144,7 @@ class PlayState extends MusicBeatState
 				camPos.x += 400;
 		}
 
-		boyfriend = new Boyfriend(770, 450, SONG.player1);
+		boyfriend = new Character(770, 450, SONG.player1);
 
 		add(gf);
 
