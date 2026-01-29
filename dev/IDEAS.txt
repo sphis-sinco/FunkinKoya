@@ -1,1 +1,3 @@
-vs whitty Koya
+- vs whitty Koya
+
+- what if you go back from freeplay (or the main menu) and the title just completely changes.
