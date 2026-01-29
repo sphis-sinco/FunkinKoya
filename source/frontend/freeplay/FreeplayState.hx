@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import flixel.text.FlxText;
 import backend.Conductor;
 import frontend.ui.ArrowUI;
 import backend.Constants;
@@ -14,6 +15,8 @@ import backend.CoolUtil;
 class FreeplayState extends MusicBeatState
 {
 	public var songList:Array<String> = [];
+	public var songText:FlxText = new FlxText();
+	public var songSelect:Int = 0;
 
 	override function create()
 	{
@@ -29,12 +32,23 @@ class FreeplayState extends MusicBeatState
 		add(gridBG);
 		#end
 
-		initUI();
+		initUIThatsNotAPermentantVar();
+
+		songText.fieldWidth = sideBorderWidths;
+		songText.alignment = CENTER;
+		songText.size = 48;
+
+		songText.setBorderStyle(OUTLINE, FlxColor.BLACK, 8);
+
+		add(songText);
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		songText.text = songList[songSelect].toLowerCase();
+		songText.screenCenter(Y);
 
 		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
 		{
@@ -49,10 +63,10 @@ class FreeplayState extends MusicBeatState
 			FlxG.switchState(() -> new TitleState());
 	}
 
-	public function initUI()
-	{
-		var sideBorderWidths = 320 + 64;
+	public var sideBorderWidths = 320 + 64;
 
+	public function initUIThatsNotAPermentantVar()
+	{
 		var upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
 		add(upBorder);
 		upBorder.innerSprite.y -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
