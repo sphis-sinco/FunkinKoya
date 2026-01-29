@@ -50,6 +50,9 @@
 	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
 	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
 
+	<assets path="assets/freeplay" rename="assets" exclude="*.ogg" if="web"/>
+	<assets path="assets/freeplay" rename="assets" exclude="*.mp3" unless="web"/>
+
 	<assets path="assets/touchhere" exclude="*.ogg" if="web"/>
 	<assets path="assets/touchhere" exclude="*.mp3" unless="web"/>
 
