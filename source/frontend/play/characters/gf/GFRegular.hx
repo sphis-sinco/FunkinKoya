@@ -39,28 +39,11 @@ class GFRegular extends Character
 		animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
 		animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
 		animation.addByPrefix('scared', 'GF FEAR', 24);
-
-		addOffset('cheer');
-		addOffset('sad', -2, -2);
-		addOffset('danceLeft', 0, -9);
-		addOffset('danceRight', 0, -9);
-
-		addOffset("singUP", 0, 4);
-		addOffset("singRIGHT", 0, -20);
-		addOffset("singLEFT", 0, -19);
-		addOffset("singDOWN", 0, -20);
-		addOffset('hairBlow', 45, -8);
-		addOffset('hairFall', 0, -9);
-
-		addOffset('scared', -2, -17);
-
-		playAnim('danceRight');
 	}
 
 	override function dance()
 	{
 		if (!debugMode)
-		{
 			if (!animation.curAnim.name.startsWith('hair'))
 			{
 				danced = !danced;
@@ -70,7 +53,6 @@ class GFRegular extends Character
 				else
 					playAnim('danceLeft');
 			}
-		}
 	}
 
 	override function update(elapsed:Float)
@@ -80,4 +62,7 @@ class GFRegular extends Character
 		if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 			playAnim('danceRight');
 	}
+
+	override function getOffsetsPath():String
+		return AssetPaths.txt('data/characters/gf/${curCharacter}-offsets', 'characters');
 }

@@ -27,8 +27,8 @@ class Character extends FlxSprite
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
-		initChar();
 		getOffsets();
+		initChar();
 
 		dance();
 
@@ -118,20 +118,22 @@ class Character extends FlxSprite
 	}
 
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
-	{
 		animOffsets[name] = [x, y];
-	}
 
 	public function initChar()
 	{
 		switch (curCharacter) {}
 	}
 
+	public function getOffsetsPath():String
+		return AssetPaths.txt('data/characters/$curCharacter/offsets', 'characters');
+
 	public function getOffsets()
 	{
-		var offsetPath = AssetPaths.txt('data/characters/$curCharacter/offsets', 'characters');
-		
-		if (!Assets.exists(offsetPath)) return;
+		var offsetPath = getOffsetsPath();
+
+		if (!Assets.exists(offsetPath))
+			return;
 
 		trace('found offset: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');

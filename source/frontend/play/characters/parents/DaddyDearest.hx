@@ -10,13 +10,10 @@ class DaddyDearest extends Character
 	}
 
 	override function get_dadVar():Float
-	{
 		return 6.1;
-	}
 
 	override function initChar()
 	{
-		// DAD ANIMATION LOADING CODE
 		frames = AssetPaths.fromSparrow('DADDY_DEAREST');
 		animation.addByPrefix('idle', 'Dad idle dance', 24);
 		animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
@@ -24,12 +21,9 @@ class DaddyDearest extends Character
 		animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24);
 		animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24);
 
-		addOffset('idle');
-		addOffset("singUP", -6, 50);
-		addOffset("singRIGHT", 0, 27);
-		addOffset("singLEFT", -10, 10);
-		addOffset("singDOWN", 0, -30);
-
 		playAnim('idle');
 	}
+
+	override function getOffsetsPath():String
+		return AssetPaths.txt('data/characters/parents/${curCharacter}-offsets', 'characters');
 }
