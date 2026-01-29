@@ -97,6 +97,12 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if (FlxG.sound.music == null || !FlxG.sound.music.playing)
+		{
+			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
+			Conductor.changeBPM(102);
+		}
+
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 

@@ -80,6 +80,9 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
 			Conductor.changeBPM(102);
 		}
+		
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
 
 		if (controls.BACK)
 			FlxG.switchState(() -> new TitleState());
