@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ui_arrows-difficulty-select.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="left arrow difficulty select0000" x="4" y="4" width="36" height="60"/>
+	<SubTexture name="right arrow difficulty select0000" x="48" y="4" width="34" height="63"/>
+</TextureAtlas>

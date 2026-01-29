@@ -28,28 +28,30 @@ class FreeplayState extends MusicBeatState
 		add(gridBG);
 		#end
 
-		var upBorder = new FreeplayBorderSprite(FlxG.width - (640 - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, 320, 0);
+		var sideBorderWidths = 320 + 64;
+
+		var upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
 		add(upBorder);
 		upBorder.innerSprite.y -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var downBorder = new FreeplayBorderSprite(FlxG.width - (640 - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, 320, FlxG.height - 160);
+		var downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, FlxG.height - 160);
 		add(downBorder);
 		downBorder.innerSprite.y += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var leftBorder = new FreeplayBorderSprite(320, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), 0,
+		var leftBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), 0,
 			-Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(leftBorder);
 		leftBorder.innerSprite.x -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var rightBorder = new FreeplayBorderSprite(320, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), FlxG.width - 320,
+		var rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), FlxG.width - sideBorderWidths,
 			-Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(rightBorder);
 		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
 		var arrow_UP:ArrowUI = new ArrowUI(UP);
 		var arrow_DOWN:ArrowUI = new ArrowUI(DOWN);
-		var arrow_LEFT:ArrowUI = new ArrowUI(LEFT);
-		var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT);
+		var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
+		var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 
 		for (arrow in [arrow_DOWN, arrow_LEFT, arrow_RIGHT, arrow_UP])
 		{
@@ -57,13 +59,17 @@ class FreeplayState extends MusicBeatState
 			add(arrow);
 		}
 
-		arrow_UP.x = arrow_DOWN.x = 160;
-		arrow_UP.y -= arrow_UP.height / 2;
-		arrow_DOWN.y += arrow_DOWN.height / 2;
+		arrow_DOWN.x = leftBorder.outerSprite.getGraphicMidpoint().x - arrow_DOWN.width;
+		arrow_UP.x = leftBorder.outerSprite.getGraphicMidpoint().x - arrow_UP.width;
 
-		arrow_LEFT.x = arrow_RIGHT.x = FlxG.width - 160;
-		arrow_LEFT.x -= arrow_LEFT.width / 2;
-		arrow_RIGHT.x += arrow_RIGHT.width / 2;
+		arrow_LEFT.x = rightBorder.outerSprite.getGraphicMidpoint().x - arrow_LEFT.width * 2;
+		arrow_RIGHT.x = rightBorder.outerSprite.getGraphicMidpoint().x - arrow_RIGHT.width * 2;
+
+		arrow_UP.y -= arrow_UP.height * 2;
+		arrow_DOWN.y += arrow_DOWN.height * 2;
+
+		arrow_LEFT.x -= arrow_LEFT.width;
+		arrow_RIGHT.x += arrow_RIGHT.width;
 	}
 
 	override function update(elapsed:Float)

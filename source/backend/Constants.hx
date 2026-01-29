@@ -1,5 +1,6 @@
 package backend;
 
+import frontend.ui.ArrowUI;
 import frontend.freeplay.FreeplayBorderSprite;
 import flixel.util.FlxColor;
 import lime.app.Application;
@@ -28,21 +29,27 @@ class Constants
 	}
 
 	public static var FREEPLAY_BORDER_COLOR_INNER(get, never):Null<FlxColor>;
-	public static var FREEPLAY_BORDER_COLOR_OUTER(get, never):Null<FlxColor>;
-	public static var FREEPLAY_BORDER_INNER_PADDING(get, never):Int;
 
 	static function get_FREEPLAY_BORDER_COLOR_INNER():Null<FlxColor>
-	{
 		return FreeplayBorderSprite.COLOR_INNER;
-	}
-
+	
+	public static var FREEPLAY_BORDER_COLOR_OUTER(get, never):Null<FlxColor>;
+	
 	static function get_FREEPLAY_BORDER_COLOR_OUTER():Null<FlxColor>
-	{
 		return FreeplayBorderSprite.COLOR_OUTER;
-	}
 
+	public static var FREEPLAY_BORDER_INNER_PADDING(get, never):Int;
+	
 	static function get_FREEPLAY_BORDER_INNER_PADDING():Int
-	{
 		return FreeplayBorderSprite.INNER_PADDING;
-	}
+
+	public static var UI_ARROW_SKIN_DEFAULT(get, never):ArrowUISkinData;
+	
+	static function get_UI_ARROW_SKIN_DEFAULT():ArrowUISkinData
+		return ArrowUI.SKIN_DEFAULT;
+
+	public static var UI_ARROW_SKIN_DIFFICULTY_SELECT(get, never):ArrowUISkinData;
+	
+	static function get_UI_ARROW_SKIN_DIFFICULTY_SELECT():ArrowUISkinData
+		return ArrowUI.SKIN_DIFFICULTY_SELECT;
 }
