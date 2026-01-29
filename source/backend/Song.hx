@@ -19,6 +19,10 @@ typedef SwagSong =
 	var player1:String;
 	var player2:String;
 	var validScore:Bool;
+
+	var ?gfVersion:String;
+
+	var ?version:Null<Int>;
 }
 
 class Song
@@ -53,6 +57,19 @@ class Song
 	{
 		var swagShit:SwagSong = cast Json.parse(rawJson).song;
 		swagShit.validScore = true;
+
+		swagShit.version ??= 0;
+
+		switch (swagShit.version)
+		{
+			case 0:
+				swagShit.gfVersion = 'gf';
+		}
+
+		swagShit.version = SWAGVERSION;
+
 		return swagShit;
 	}
+
+	public static var SWAGVERSION:Int = 1;
 }

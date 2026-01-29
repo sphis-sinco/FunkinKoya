@@ -123,20 +123,18 @@ class PlayState extends MusicBeatState
 
 		add(stageCurtains);
 
-		var gfVersion:String = 'gf';
-
-		gf = new Character(400, 130, gfVersion);
+		gf = CharacterGetter.getCharacter(SONG.gfVersion ?? 'gf', false, 400, 130);
 		gf.scrollFactor.set(0.95, 0.95);
 
-		dad = new Character(100, 100, SONG.player2);
+		dad = CharacterGetter.getCharacter(SONG.player2, false, 100, 100);
 
-		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
-
-		if (SONG.player2 == gfVersion)
+		if (dad.curCharacter == gf.curCharacter)
 		{
 			dad.setPosition(gf.x, gf.y);
 			gf.visible = false;
 		}
+		
+		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 
 		switch (SONG.player2)
 		{
@@ -144,7 +142,7 @@ class PlayState extends MusicBeatState
 				camPos.x += 400;
 		}
 
-		boyfriend = new Character(770, 450, SONG.player1);
+		boyfriend = CharacterGetter.getCharacter(SONG.player1, true, 770, 450);
 
 		add(gf);
 
