@@ -47,6 +47,9 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
+		if (songSelect >= songList.length)
+			songSelect = songList.length - 1;
+
 		songText.text = songList[songSelect].toLowerCase();
 		songText.screenCenter(Y);
 
