@@ -1,4 +1,4 @@
-package frontend.play;
+package frontend.play.characters;
 
 import backend.Conductor;
 import backend.AssetPaths;
@@ -10,6 +10,8 @@ using StringTools;
 
 class Character extends FlxSprite
 {
+	public var stunned:Bool = false;
+	
 	public var animOffsets:Map<String, Array<Dynamic>>;
 	public var debugMode:Bool = false;
 
@@ -142,12 +144,26 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		if (!curCharacter.startsWith('bf'))
+		if (isPlayer)
+		{
+			if (!debugMode)
+			{
+				if (animation.curAnim.name.startsWith('sing'))
+					holdTimer += elapsed;
+				else
+					holdTimer = 0;
+
+				if (animation.curAnim.name.endsWith('miss') && animation.curAnim.finished && !debugMode)
+					playAnim('idle', true, false, 10);
+
+				if (animation.curAnim.name == 'firstDeath' && animation.curAnim.finished)
+					playAnim('deathLoop');
+			}
+		}
+		else
 		{
 			if (animation.curAnim.name.startsWith('sing'))
-			{
 				holdTimer += elapsed;
-			}
 
 			var dadVar:Float = 4;
 

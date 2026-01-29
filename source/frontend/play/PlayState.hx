@@ -1,5 +1,6 @@
 package frontend.play;
 
+import frontend.play.characters.*;
 import frontend.play.editors.ChartingState;
 import backend.*;
 import backend.Section.SwagSection;
@@ -36,7 +37,7 @@ class PlayState extends MusicBeatState
 
 	public var dad:Character;
 	public var gf:Character;
-	public var boyfriend:Boyfriend;
+	public var boyfriend:Character;
 
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
