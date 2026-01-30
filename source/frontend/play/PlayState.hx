@@ -153,7 +153,7 @@ class PlayState extends MusicBeatState
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
-		
+
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
 		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
 		scoreTxt.scrollFactor.set();
@@ -177,7 +177,7 @@ class PlayState extends MusicBeatState
 	}
 
 	var startTimer:FlxTimer;
-	var perfectMode:Bool = false;
+	var perfectMode:Bool = #if BOTPLAY true #else false #end;
 
 	function startCountdown():Void
 	{
@@ -272,7 +272,7 @@ class PlayState extends MusicBeatState
 		lastReportedPlayheadPosition = 0;
 
 		if (!paused)
-			FlxG.sound.playMusic(AssetPaths.song_inst(SONG.song.toLowerCase()), 1, false);
+			FlxG.sound.playMusic(AssetPaths.song_inst(curSong), 1, false);
 
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
@@ -285,7 +285,7 @@ class PlayState extends MusicBeatState
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
 
-		curSong = songData.song;
+		curSong = songData.song.toLowerCase();
 
 		if (SONG.needsVoices)
 			vocals = new FlxSound().loadEmbedded(AssetPaths.song_voices(curSong.toLowerCase()));
@@ -526,7 +526,7 @@ class PlayState extends MusicBeatState
 			{
 				camFollow.setPosition(currentStage.dad?.getMidpoint().x + 150, currentStage.dad?.getMidpoint().y - 100);
 
-				if (SONG.song.toLowerCase() == 'tutorial')
+				if (curSong == 'tutorial')
 					tweenCamIn();
 			}
 
@@ -534,7 +534,7 @@ class PlayState extends MusicBeatState
 			{
 				camFollow.setPosition(currentStage.boyfriend?.getMidpoint().x - 100, currentStage.boyfriend?.getMidpoint().y - 100);
 
-				if (SONG.song.toLowerCase() == 'tutorial')
+				if (curSong == 'tutorial')
 					FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
 			}
 		}
@@ -547,31 +547,6 @@ class PlayState extends MusicBeatState
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
-
-		if (curSong == 'Fresh')
-		{
-			switch (curBeat)
-			{
-				case 16:
-					camZooming = true;
-					gfSpeed = 2;
-				case 48:
-					gfSpeed = 1;
-				case 80:
-					gfSpeed = 2;
-				case 112:
-					gfSpeed = 1;
-			}
-		}
-
-		if (curSong == 'Bopeebo')
-		{
-			switch (curBeat)
-			{
-				case 128, 129, 130:
-					vocals.volume = 0;
-			}
-		}
 
 		// RESET = Quick Game Over Screen
 		if (controls.RESET)
@@ -632,7 +607,7 @@ class PlayState extends MusicBeatState
 
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
-					if (SONG.song != 'Tutorial')
+					if (curSong != 'tutorial')
 						camZooming = true;
 
 					var altAnim:String = "";
@@ -702,9 +677,11 @@ class PlayState extends MusicBeatState
 	function endSong():Void
 	{
 		canPause = false;
+
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
-		Highscore.saveScore(SONG.song, songScore, SONG_DIFFICULTY);
+
+		Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 
 		FlxG.switchState(() -> new FreeplayState());
 	}
@@ -791,6 +768,7 @@ class PlayState extends MusicBeatState
 			daLoop++;
 		}
 
+		add(rating);
 		FlxTween.tween(rating, {alpha: 0}, 0.2, {
 			startDelay: Conductor.crochet * 0.001
 		});
@@ -851,7 +829,7 @@ class PlayState extends MusicBeatState
 					if (possibleNotes[0].strumTime == possibleNotes[1].strumTime)
 					{
 						for (coolNote in possibleNotes)
-							if (controlArray[coolNote.noteData])
+							if (controlArray[coolNote.noteData] || perfectMode)
 								goodNoteHit(coolNote);
 							else
 							{
@@ -1086,7 +1064,25 @@ class PlayState extends MusicBeatState
 		if (!currentStage.boyfriend?.anim.name?.startsWith("sing"))
 			currentStage.boyfriend?.playAnim('idle');
 
-		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
-			currentStage.boyfriend?.playAnim('hey', true);
+		if (curSong == 'fresh')
+			switch (curBeat)
+			{
+				case 16:
+					camZooming = true;
+					gfSpeed = 2;
+				case 48, 112:
+					gfSpeed = 1;
+				case 80:
+					gfSpeed = 2;
+			}
+
+		if (curSong == 'bopeebo')
+		{
+			if (curBeat >= 128 && curBeat < 131)
+				vocals.volume = 0;
+
+			if (curBeat % 8 == 7)
+				currentStage.boyfriend?.playAnim('hey', true);
+		}
 	}
 }

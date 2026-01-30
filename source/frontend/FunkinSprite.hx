@@ -64,7 +64,7 @@ class FunkinSprite extends FlxAnimate
 				if (fallback == name)
 				{
 					FlxG.log.error('Sprite tried to play animation "$name" that does not exist! This is bad!');
-					return null;
+					return name;
 				}
 				else
 				{

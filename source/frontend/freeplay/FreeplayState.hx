@@ -24,13 +24,36 @@ using StringTools;
 class FreeplayState extends MusicBeatState
 {
 	public var songList:Array<String> = [];
+
 	public var songText:FlxText = new FlxText();
 	public var songScoreText:FlxText = new FlxText();
 
-	public var songSelect:Int = 0;
-
-	public var songDifficulty:Int = Difficulty.NORMAL;
 	public var songDifficultySprite:DifficultySprite;
+
+	public var currentSong(get, never):String;
+
+	function get_currentSong():String
+		return songList[currentSelection];
+
+	public var currentSongChart(get, never):String;
+
+	function get_currentSongChart():String
+		return Highscore.formatSong(currentSong, currentDifficulty);
+
+	public var currentScore(get, never):Int;
+
+	function get_currentScore():Int
+	{
+		if (Save.songScores.get() == null)
+			return 0;
+		if (!Save.songScores.get().exists(currentSongChart))
+			return 0;
+
+		return Save.songScores.get().get(currentSongChart);
+	}
+
+	public var currentDifficulty:Int = Difficulty.NORMAL;
+	public var currentSelection:Int = 0;
 
 	override function create()
 	{
@@ -62,10 +85,10 @@ class FreeplayState extends MusicBeatState
 
 		songScoreText.x = upBorder.innerSprite.x;
 		songScoreText.y = upBorder.innerSprite.getGraphicMidpoint().y;
-		
+
 		add(songScoreText);
 
-		songDifficultySprite = new DifficultySprite(songDifficulty);
+		songDifficultySprite = new DifficultySprite(currentDifficulty);
 		add(songDifficultySprite);
 	}
 
@@ -75,25 +98,32 @@ class FreeplayState extends MusicBeatState
 
 		performControls();
 
-		if (songDifficulty < Difficulty.EASY.toInt()) songDifficulty = Difficulty.EASY;
-		if (songDifficulty > Difficulty.HARD.toInt()) songDifficulty = Difficulty.HARD;
+		if (currentDifficulty < Difficulty.EASY.toInt())
+			currentDifficulty = Difficulty.EASY;
+		if (currentDifficulty > Difficulty.HARD.toInt())
+			currentDifficulty = Difficulty.HARD;
 
-				if (songSelect < 0)
-			songSelect = 0;
-		if (songSelect >= songList.length)
-			songSelect = songList.length - 1;
+		if (currentSelection < 0)
+			currentSelection = 0;
+		if (currentSelection >= songList.length)
+			currentSelection = songList.length - 1;
 
-		songDifficultySprite.difficulty = songDifficulty;
+		FlxG.watch.addQuick('currentScore', currentScore);
+
+		songDifficultySprite.difficulty = currentDifficulty;
 		songDifficultySprite.screenCenter(Y);
 		songDifficultySprite.x = rightBorder.innerSprite.getGraphicMidpoint().x - (songDifficultySprite.width / 2);
 
-		arrow_UP.alpha = (songSelect == 0) ? 0.5 : 1;
-		arrow_DOWN.alpha = (songSelect == songList.length - 1) ? 0.5 : 1;
+		arrow_UP.alpha = (currentSelection == 0) ? 0.5 : 1;
+		arrow_DOWN.alpha = (currentSelection == songList.length - 1) ? 0.5 : 1;
 
-		songText.text = songList[songSelect].toLowerCase();
+		songText.text = currentSong;
 		songText.screenCenter(Y);
-		
-		songScoreText.text = '${Save.songScores.get().get(songList[songSelect])}'.lpad('0', 8);
+
+		songScoreText.text = '${Math.abs(currentScore)}'.lpad('0', 8);
+
+		if (currentScore < 0)
+			songScoreText.text = '-${songScoreText.text}';
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -111,7 +141,7 @@ class FreeplayState extends MusicBeatState
 	{
 		if (controls.UI_UP_R)
 		{
-			songSelect--;
+			currentSelection--;
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 			arrow_UP.y -= 10;
@@ -120,7 +150,7 @@ class FreeplayState extends MusicBeatState
 		}
 		if (controls.UI_DOWN_R)
 		{
-			songSelect++;
+			currentSelection++;
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 			arrow_DOWN.y += 10;
@@ -132,7 +162,7 @@ class FreeplayState extends MusicBeatState
 		if (controls.UI_LEFT_R)
 		{
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
-			songDifficulty -= 1;
+			currentDifficulty -= 1;
 
 			arrow_LEFT.x -= 10;
 			FlxTween.cancelTweensOf(arrow_LEFT);
@@ -141,7 +171,7 @@ class FreeplayState extends MusicBeatState
 		if (controls.UI_RIGHT_R)
 		{
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
-			songDifficulty += 1;
+			currentDifficulty += 1;
 
 			arrow_RIGHT.x += 10;
 			FlxTween.cancelTweensOf(arrow_RIGHT);
@@ -161,8 +191,8 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
 
-			PlayState.SONG = Song.loadFromJson(Highscore.formatSong(songList[songSelect], songDifficulty), songList[songSelect]);
-			PlayState.SONG_DIFFICULTY = songDifficulty;
+			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSong);
+			PlayState.SONG_DIFFICULTY = currentDifficulty;
 
 			FlxG.switchState(() -> new PlayState());
 		}

@@ -26,6 +26,8 @@ class Save
 		{
 			default: trace('unimplemented switch to version: ${version.get()}');
 		}
+
+		version.set(SAVE_VERSION);
 	}
 
 	public static function flush()
