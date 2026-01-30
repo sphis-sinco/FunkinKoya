@@ -13,7 +13,7 @@ class Character extends FlxAnimate
 {
 	public var stunned:Bool = false;
 
-	public var animOffsets:Map<String, Array<Dynamic>>;
+	public var animOffsets:Map<String, Array<Float>> = [];
 	public var debugMode:Bool = false;
 
 	public var isPlayer:Bool = false;
@@ -21,9 +21,10 @@ class Character extends FlxAnimate
 
 	public var holdTimer:Float = 0;
 
+	public var characterOffsets:Array<Float> = [0, 0];
+
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
-		animOffsets = new Map<String, Array<Dynamic>>();
 		super(x, y);
 
 		curCharacter = character;
@@ -114,9 +115,9 @@ class Character extends FlxAnimate
 
 		var daOffset = animOffsets.get(anim.name);
 		if (animOffsets.exists(anim.name))
-			offset.set(daOffset[0], daOffset[1]);
+			offset.set(daOffset[0] + (characterOffsets[0] ?? 0), daOffset[1] + (characterOffsets[1] ?? 0));
 		else
-			offset.set(0, 0);
+			offset.set(0 + (characterOffsets[0] ?? 0), 0 + (characterOffsets[1] ?? 0));
 	}
 
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
