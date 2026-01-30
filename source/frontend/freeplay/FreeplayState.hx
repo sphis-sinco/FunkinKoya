@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import flixel.tweens.FlxTween;
 import backend.Highscore;
 import backend.Song;
 import frontend.play.PlayState;
@@ -52,8 +53,6 @@ class FreeplayState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		var prevSel:Int = songSelect;
-
 		performControls();
 
 		if (songSelect < 0)
@@ -63,9 +62,6 @@ class FreeplayState extends MusicBeatState
 
 		arrow_UP.alpha = (songSelect == 0) ? 0.5 : 1;
 		arrow_DOWN.alpha = (songSelect == songList.length - 1) ? 0.5 : 1;
-
-		if (songSelect != prevSel)
-			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 		songText.text = songList[songSelect].toLowerCase();
 		songText.screenCenter(Y);
@@ -85,9 +81,24 @@ class FreeplayState extends MusicBeatState
 	public function performControls()
 	{
 		if (controls.UI_UP_R)
+		{
 			songSelect--;
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+
+			arrow_UP.y -= 10;
+			FlxTween.cancelTweensOf(arrow_UP);
+			FlxTween.tween(arrow_UP, {y: aU_y}, .1);
+		}
 		if (controls.UI_DOWN_R)
+		{
 			songSelect++;
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+
+			arrow_DOWN.y += 10;
+
+			FlxTween.cancelTweensOf(arrow_DOWN);
+			FlxTween.tween(arrow_DOWN, {y: aD_y}, .1);
+		}
 
 		if (controls.BACK)
 		{
@@ -149,8 +160,14 @@ class FreeplayState extends MusicBeatState
 
 		arrow_UP.y -= arrow_UP.height * 2;
 		arrow_DOWN.y += arrow_DOWN.height * 2;
+
+		aU_y = arrow_UP.y;
+		aD_y = arrow_DOWN.y;
 	}
 
 	var arrow_UP:ArrowUI = new ArrowUI(UP);
 	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN);
+
+	var aU_y:Float = 0.0; 
+	var aD_y:Float = 0.0; 
 }
