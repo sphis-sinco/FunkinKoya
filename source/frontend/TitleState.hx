@@ -44,8 +44,6 @@ class TitleState extends MusicBeatState
 
 	function startIntro()
 	{
-		FlxG.mouse.visible = false;
-
 		if (!initialized)
 		{
 			if (FlxG.sound.music == null || !FlxG.sound.music.playing)

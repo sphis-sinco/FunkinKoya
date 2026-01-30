@@ -126,9 +126,6 @@ class ChartingState extends MusicBeatState
 				validScore: false
 			};
 		}
-
-		FlxG.mouse.visible = true;
-
 		tempBpm = _song.bpm;
 
 		addSection();
@@ -172,6 +169,8 @@ class ChartingState extends MusicBeatState
 		add(curRenderedSustains);
 
 		super.create();
+		
+		FlxG.mouse.visible = true;
 	}
 
 	function addSongUI():Void

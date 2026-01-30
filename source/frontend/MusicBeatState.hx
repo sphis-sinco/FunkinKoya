@@ -27,6 +27,8 @@ class MusicBeatState extends FlxUIState
 			trace('reg ' + transIn.region);
 
 		super.create();
+		
+		FlxG.mouse.visible = false;
 	}
 
 	override function update(elapsed:Float)

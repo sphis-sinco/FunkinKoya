@@ -24,6 +24,8 @@ class TouchHere extends MusicBeatState
 		add(button);
 
 		button.screenCenter();
+
+		FlxG.mouse.visible = true;
 	}
 
 	override function update(elapsed:Float)
