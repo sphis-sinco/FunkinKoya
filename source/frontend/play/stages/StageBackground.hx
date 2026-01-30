@@ -12,29 +12,30 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 class StageBackground extends FlxTypedGroup<FlxBasic>
 {
 	public function getBGImg(path:String):String
-		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}path', 'background');
+		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
 	public function getBGSparrowImg(path:String):FlxAtlasFrames
-		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}path', 'background');
+		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
 	private var songData:SwagSong;
 
 	public function getThing(thing:String):FlxBasic
 		return Reflect.field(this, thing);
 
-	public static function getStage(song:SwagSong, ?stage:String = 'mainStage'):StageBackground
-		return StageBackgroundGetter.getStage(song, stage);
+	public static function getStage(song:SwagSong):StageBackground
+		return StageBackgroundGetter.getStage(song, song.stage ?? 'mainStage');
 
 	public var BG_NAME:String = null;
 
-	override public function new(song:SwagSong, ?BG_NAME:String = 'Unknown')
+	override public function new(song:SwagSong, ?BG_NAME:String = 'Unknown', ?performInit:Bool = true)
 	{
 		super();
 
 		this.songData = song;
 		this.BG_NAME = BG_NAME;
 
-		init();
+		if (performInit)
+			init();
 	}
 
 	var startingCamPos:FlxPoint;
@@ -117,7 +118,8 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	public function makeCharacterSing(note:Note, character:Character, ?miss:Bool = false)
 	{
 		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
-		if (miss) animationName += 'miss';
+		if (miss)
+			animationName += 'miss';
 
 		character.playAnim(animationName, true);
 	}

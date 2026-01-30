@@ -107,7 +107,7 @@ class PlayState extends MusicBeatState
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 
-		currentStage = new StageBackground(SONG);
+		currentStage = StageBackground.getStage(SONG);
 		add(currentStage);
 
 		opponentStrums = new FlxTypedGroup<FunkinSprite>();
@@ -161,6 +161,7 @@ class PlayState extends MusicBeatState
 		add(iconP2);
 
 		opponentStrums.cameras = [camHUD];
+		playerStrums.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];

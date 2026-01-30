@@ -33,7 +33,8 @@ class Note extends FunkinSprite
 
 	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
 	{
-		super(50, -2000);
+		this.noteData = noteData;
+		super(50 + (swagWidth * this.noteData), -2000);
 
 		if (prevNote == null)
 			prevNote = this;
@@ -43,17 +44,18 @@ class Note extends FunkinSprite
 
 		this.strumTime = strumTime;
 
-		this.noteData = noteData;
-				x += swagWidth * this.noteData;
-
 		initAsset();
 
 		switch (noteData)
 		{
-			case 0: playAnim('purpleScroll');
-			case 1: playAnim('blueScroll');
-			case 2: playAnim('greenScroll');
-			case 3: playAnim('redScroll');
+			case 0:
+				playAnim('purpleScroll');
+			case 1:
+				playAnim('blueScroll');
+			case 2:
+				playAnim('greenScroll');
+			case 3:
+				playAnim('redScroll');
 		}
 
 		if (isSustainNote && prevNote != null)
@@ -65,10 +67,14 @@ class Note extends FunkinSprite
 
 			switch (noteData)
 			{
-				case 2: playAnim('greenholdend');
-				case 3: playAnim('redholdend');
-				case 1: playAnim('blueholdend');
-				case 0: playAnim('purpleholdend');
+				case 2:
+					playAnim('greenholdend');
+				case 3:
+					playAnim('redholdend');
+				case 1:
+					playAnim('blueholdend');
+				case 0:
+					playAnim('purpleholdend');
 			}
 
 			updateHitbox();
@@ -78,10 +84,14 @@ class Note extends FunkinSprite
 			{
 				switch (prevNote.noteData)
 				{
-					case 0: prevNote.playAnim('purplehold');
-					case 1: prevNote.playAnim('bluehold');
-					case 2: prevNote.playAnim('greenhold');
-					case 3: prevNote.playAnim('redhold');
+					case 0:
+						prevNote.playAnim('purplehold');
+					case 1:
+						prevNote.playAnim('bluehold');
+					case 2:
+						prevNote.playAnim('greenhold');
+					case 3:
+						prevNote.playAnim('redhold');
 				}
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;

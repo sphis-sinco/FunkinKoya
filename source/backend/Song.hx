@@ -1,5 +1,6 @@
 package backend;
 
+import frontend.play.stages.storymode.MainStage;
 import backend.AssetPaths;
 import backend.Section.SwagSection;
 import haxe.Json;
@@ -71,7 +72,7 @@ class Song
 		switch (swagShit.version)
 		{
 			case 0: swagShit.gfVersion = 'gf';
-			case 1: swagShit.stage = 'mainStage';
+			case 1: swagShit.stage = new MainStage(null, false).BG_NAME;
 		}
 
 		if (swagShit.version < SWAGVERSION)

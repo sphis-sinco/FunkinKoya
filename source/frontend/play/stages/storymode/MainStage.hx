@@ -4,9 +4,9 @@ import backend.Song.SwagSong;
 
 class MainStage extends StageBackground
 {
-	override public function new(song:SwagSong)
+	override public function new(song:SwagSong, ?performInit:Bool = true)
 	{
-		super(song, 'MainStage');
+		super(song, 'mainStage', performInit);
 	}
 
 	public var stageBack:FunkinSprite = new FunkinSprite();
