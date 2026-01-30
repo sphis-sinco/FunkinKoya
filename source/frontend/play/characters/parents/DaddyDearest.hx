@@ -14,7 +14,7 @@ class DaddyDearest extends Character
 
 	override function initChar()
 	{
-		frames = AssetPaths.getAnimateAtlas('characters/DADDY_DEAREST', 'characters');
+		frames = AssetPaths.getAnimateAtlas('characters/daddy_dearest', 'characters');
 
 		addFrameLabelAnim('idle', 'idle');
 		addSingingAnimations(false, (name, prefix) -> addFrameLabelAnim(name, prefix));

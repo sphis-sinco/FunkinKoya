@@ -36,6 +36,12 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 		for (prop in Reflect.fields(offsetfile))
 		{
+			if (getThing(prop) == null)
+			{
+				trace('skipped $prop : null');
+				continue;
+			}
+
 			var propNam:String = prop;
 			var propData:Dynamic = Reflect.field(offsetfile, prop);
 			var propChangedFields = Reflect.fields(propData);
@@ -97,7 +103,8 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		trace('Loading stage: $BG_NAME');
 
 		initBG();
-		initChars();
+		if (songData != null)
+			initChars();
 		initFG();
 
 		getPropOffsets();
@@ -114,6 +121,9 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function setCamera()
 	{
+		if (PlayState.instance == null)
+			return;
+
 		if (startingCamPos != null)
 			PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);
 		else
@@ -123,7 +133,8 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	public function initInfo()
 	{
 		PlayState.SONG_STAGE = BG_NAME;
-		PlayState.instance.defaultCamZoom = 1.05;
+		if (PlayState.instance != null)
+			PlayState.instance.defaultCamZoom = 1.05;
 	}
 
 	public function initBG() {}
@@ -136,12 +147,17 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function initChars()
 	{
-		gf = Character.getCharacter(songData.gfVersion, false, 0, 0);
-		gf.scrollFactor.set(0.95, 0.95);
+		if (songData?.gfVersion != null)
+		{
+			gf = Character.getCharacter(songData?.gfVersion, false, 0, 0);
+			gf.scrollFactor.set(0.95, 0.95);
+		}
 
-		dad = Character.getCharacter(songData.player2, false, 0, 0);
+		if (songData?.player2 != null)
+			dad = Character.getCharacter(songData?.player2, false, 0, 0);
 
-		boyfriend = Character.getCharacter(songData.player1, true, 0, 0);
+		if (songData?.player1 != null)
+			boyfriend = Character.getCharacter(songData?.player1, true, 0, 0);
 
 		for (char in [gf, dad, boyfriend])
 		{
@@ -182,6 +198,6 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		if (miss)
 			animationName += 'miss';
 
-		character.playAnim(animationName + addition ?? '', true);
+		character.playAnim(animationName + ((addition != null) ? addition : ''), true);
 	}
 }

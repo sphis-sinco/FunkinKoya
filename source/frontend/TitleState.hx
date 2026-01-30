@@ -1,5 +1,6 @@
 package frontend;
 
+import frontend.play.stages.storymode.MainStage;
 import frontend.freeplay.FreeplayState;
 import frontend.play.PlayState;
 import backend.Highscore;
@@ -58,9 +59,8 @@ class TitleState extends MusicBeatState
 			initialized = true;
 		}
 
-		var bg = new FlxSprite().loadGraphic(AssetPaths.image('stageback'));
-		bg.screenCenter();
-		add(bg);
+		var mainStage = new MainStage(null, true);
+		add(mainStage.stageBack);
 
 		logo = new FlxSprite();
 		logo.frames = AssetPaths.fromSparrow('logoBumpin');

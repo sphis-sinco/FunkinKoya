@@ -20,7 +20,7 @@ class MainStage extends StageBackground
 		stageBack.loadGraphic(getBGImg('stageBack'));
 		stageFloor.loadGraphic(getBGImg('stageFloor'));
 
-		stageBack.scrollFactor.set(0.1, 0.1);
+		stageBack.scrollFactor.set(0.9, 0.9);
 		stageFloor.scrollFactor.set(0.9, 0.9);
 
 		// stageBack.scale.set(2, 2);
@@ -52,6 +52,7 @@ class MainStage extends StageBackground
 		if (tick == 2)
 			stageCurtains.playAnim('open');
 
+		if (PlayState.instance != null)
 		if (startingCamPos != null)
 			PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.x);
 	}

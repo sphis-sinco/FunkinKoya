@@ -20,14 +20,19 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	public function new(x:Float, y:Float)
 	{
-		var stageSuffix = PlayState.instance.currentStage.getGameoverStageSuffix();
+		if (PlayState.instance != null)
+			stageSuffix = PlayState.instance.currentStage.getGameoverStageSuffix();
 		super();
 
 		Conductor.songPosition = 0;
-
-		character = PlayState.instance.currentStage.getGameoverCharacter();
-		if (character == null)
-			character = PlayState.instance.currentStage.boyfriend;
+		if (PlayState.instance != null)
+		{
+			character = PlayState.instance.currentStage.getGameoverCharacter();
+			if (character == null)
+				character = PlayState.instance.currentStage.boyfriend;
+		}
+		else
+			character = CharacterGetter.getCharacter('bf', true, x, y);
 		character.updateHitbox();
 
 		character.setPosition(x, y);
