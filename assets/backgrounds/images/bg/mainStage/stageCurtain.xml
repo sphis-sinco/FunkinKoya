@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="stageCurtain.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="curtain closed0000" x="4" y="4" width="1521" height="926"/>
+	<SubTexture name="curtain open0000" x="4" y="4" width="1521" height="926" frameX="-31" frameY="-22" frameWidth="1521" frameHeight="926"/>
+	<SubTexture name="curtain open0001" x="4" y="4" width="1521" height="926" frameX="-31" frameY="-22" frameWidth="1521" frameHeight="926"/>
+	<SubTexture name="curtain open0002" x="4" y="4" width="1521" height="926" frameX="-31" frameY="-22" frameWidth="1521" frameHeight="926"/>
+	<SubTexture name="curtain open0003" x="4" y="4" width="1521" height="926" frameX="-31" frameY="-22" frameWidth="1521" frameHeight="926"/>
+	<SubTexture name="curtain open0004" x="4" y="4" width="1521" height="926" frameX="-31" frameY="-22" frameWidth="1521" frameHeight="926"/>
+	<SubTexture name="curtain open0005" x="4" y="4" width="1521" height="926" frameX="-31" frameY="-22" frameWidth="1521" frameHeight="926"/>
+	<SubTexture name="curtain open0006" x="1533" y="4" width="1460" height="876" frameX="-104" frameY="0" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0007" x="1533" y="4" width="1460" height="876" frameX="-104" frameY="0" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0008" x="1533" y="4" width="1460" height="876" frameX="-104" frameY="0" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0009" x="4" y="938" width="1423" height="866" frameX="-104" frameY="-24" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0010" x="4" y="938" width="1423" height="866" frameX="-104" frameY="-24" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0011" x="1435" y="938" width="1530" height="849" frameX="0" frameY="-60" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0012" x="1435" y="938" width="1530" height="849" frameX="0" frameY="-60" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0013" x="1435" y="938" width="1530" height="849" frameX="0" frameY="-60" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0014" x="4" y="1812" width="1438" height="882" frameX="-104" frameY="-17" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0015" x="4" y="1812" width="1438" height="882" frameX="-104" frameY="-17" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0016" x="4" y="1812" width="1438" height="882" frameX="-104" frameY="-17" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0017" x="1450" y="1812" width="0" height="0" frameX="-31" frameY="-22" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0018" x="1450" y="1812" width="0" height="0" frameX="-31" frameY="-22" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0019" x="1450" y="1812" width="0" height="0" frameX="-31" frameY="-22" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0020" x="1450" y="1812" width="0" height="0" frameX="-31" frameY="-22" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0021" x="1450" y="1812" width="0" height="0" frameX="-31" frameY="-22" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0022" x="1450" y="1812" width="0" height="0" frameX="-31" frameY="-22" frameWidth="1564" frameHeight="948"/>
+	<SubTexture name="curtain open0023" x="1450" y="1812" width="0" height="0" frameX="-31" frameY="-22" frameWidth="1564" frameHeight="948"/>
+</TextureAtlas>
