@@ -1,5 +1,6 @@
 package frontend.play;
 
+import frontend.freeplay.FreeplayState;
 import backend.play.Difficulty;
 import frontend.play.stages.StageBackground;
 import frontend.play.characters.*;
@@ -705,7 +706,7 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 		Highscore.saveScore(SONG.song, songScore, SONG_DIFFICULTY);
 
-		FlxG.switchState(() -> new TitleState());
+		FlxG.switchState(() -> new FreeplayState());
 	}
 
 	var endingSong:Bool = false;
