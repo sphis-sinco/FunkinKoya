@@ -1,5 +1,6 @@
 package frontend.play.characters;
 
+import animate.FlxAnimate;
 import lime.utils.Assets;
 import backend.Conductor;
 import backend.AssetPaths;
@@ -7,7 +8,7 @@ import flixel.FlxSprite;
 
 using StringTools;
 
-class Character extends FlxSprite
+class Character extends FlxAnimate
 {
 	public var stunned:Bool = false;
 
@@ -153,4 +154,13 @@ class Character extends FlxSprite
 
 	public function addPrefixAnim(name:String, prefix:String, ?fps:Float = 24, ?looped:Bool = false)
 		animation.addByPrefix(name, prefix, fps, looped);
+
+	public function addFrameLabelAnim(name:String, label:String, ?fps:Float = 24, ?looped:Bool = false)
+		anim.addByFrameLabel(name, label, fps, looped);
+
+	public function addIndicesPrefixAnim(name:String, prefix:String, indices:Array<Int>, ?fps:Float = 24, ?looped:Bool = false)
+		animation.addByIndices(name, prefix, indices, '', fps, looped);
+
+	public function addIndicesFrameLabelAnim(name:String, label:String, indices:Array<Int>, ?fps:Float = 24, ?looped:Bool = false)
+		anim.addByFrameLabelIndices(name, label, indices, fps, looped);
 }

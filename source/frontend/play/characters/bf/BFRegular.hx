@@ -11,17 +11,21 @@ class BFRegular extends Character
 
 	override function initChar()
 	{
-		frames = AssetPaths.fromSparrow('characters/boyfriend', 'characters');
+		frames = AssetPaths.getAnimateAtlas('characters/boyfriend', 'characters');
 
-		addPrefixAnim('idle', 'BF anim idle');
+		addFrameLabelAnim('idle', 'idle');
 
 		var directions = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 
 		for (dir in directions)
 		{
-			addPrefixAnim('sing${dir.toUpperCase()}', 'BF anim ${dir.toLowerCase()}');
-			addPrefixAnim('sing${dir.toUpperCase()}miss', 'BF anim miss ${dir.toLowerCase()}');
+			addFrameLabelAnim('sing${dir.toUpperCase()}', 'sing${dir.toUpperCase()}');
+			addFrameLabelAnim('sing${dir.toUpperCase()}miss', 'sing${dir.toUpperCase()}miss');
 		}
+
+		addFrameLabelAnim('firstDeath', 'firstDeath');
+		addFrameLabelAnim('deathLoop', 'deathLoop', 24, true);
+		addFrameLabelAnim('deathConfirm', 'deathConfirm');
 
 		flipX = true;
 	}

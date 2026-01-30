@@ -1,6 +1,9 @@
 package backend;
 
+import lime.utils.Assets;
+import animate.FlxAnimateFrames;
 import flixel.graphics.frames.FlxAtlasFrames;
+
 using haxe.io.Path;
 
 class AssetPaths
@@ -57,4 +60,17 @@ class AssetPaths
 
 	public static function xml(path:String, ?library:String):String
 		return getPath('$path.xml', library);
+
+	public static function animateAtlas(path:String, ?library:String):String
+		return getPath('images/$path', library);
+
+	public static function getAnimateAtlas(key:String, ?library:String):FlxAnimateFrames
+	{
+		var graphicKey:String = animateAtlas(key, library);
+
+		if (!Assets.exists('${graphicKey}/Animation.json'))
+			throw 'No Animation.json file exists at the specified path (${graphicKey})';
+
+		return FlxAnimateFrames.fromAnimate(graphicKey);
+	}
 }

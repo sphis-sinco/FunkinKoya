@@ -15,6 +15,7 @@ class DaddyDearest extends Character
 	override function initChar()
 	{
 		frames = AssetPaths.fromSparrow('characters/DADDY_DEAREST', 'characters');
+		
 		addPrefixAnim('idle', 'Dad idle dance', 24);
 		addPrefixAnim('singUP', 'Dad Sing Note UP', 24);
 		addPrefixAnim('singRIGHT', 'Dad Sing Note RIGHT', 24);
