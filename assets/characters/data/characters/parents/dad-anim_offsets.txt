@@ -1,4 +1,4 @@
-singUP -6 50
-singRIGHT 0 27
-singLEFT -10 10
-singDOWN 0 -30
+singLEFT 0 0
+singDOWN 0 0
+singUP 0 0
+singRIGHT 0 0

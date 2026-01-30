@@ -14,13 +14,10 @@ class DaddyDearest extends Character
 
 	override function initChar()
 	{
-		frames = AssetPaths.fromSparrow('characters/DADDY_DEAREST', 'characters');
+		frames = AssetPaths.getAnimateAtlas('characters/DADDY_DEAREST', 'characters');
 
-		addPrefixAnim('idle', 'Dad idle dance', 24);
-		addPrefixAnim('singUP', 'Dad Sing Note UP', 24);
-		addPrefixAnim('singRIGHT', 'Dad Sing Note RIGHT', 24);
-		addPrefixAnim('singDOWN', 'Dad Sing Note DOWN', 24);
-		addPrefixAnim('singLEFT', 'Dad Sing Note LEFT', 24);
+		addFrameLabelAnim('idle', 'idle');
+		addSingingAnimations(false, (name, prefix) -> addFrameLabelAnim(name, prefix));
 	}
 
 	override function getDataPathPrefix():String
