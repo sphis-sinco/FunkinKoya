@@ -30,6 +30,7 @@ class Character extends FlxAnimate
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
+		trace('Loading character: $curCharacter');
 		getCharacterOffsets();
 		getAnimationOffsets();
 		initChar();
@@ -146,7 +147,7 @@ class Character extends FlxAnimate
 		if (!Assets.exists(offsetPath))
 			return;
 
-		trace('found character offset file: $offsetPath');
+		trace(' * found character offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
 		characterOffsets = [];
@@ -161,7 +162,7 @@ class Character extends FlxAnimate
 		if (!Assets.exists(offsetPath))
 			return;
 
-		trace('found animation offset file: $offsetPath');
+		trace(' * found animation offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
 		for (line in offsetfile)
