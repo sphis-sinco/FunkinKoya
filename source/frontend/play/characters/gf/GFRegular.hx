@@ -38,14 +38,15 @@ class GFRegular extends Character
 	{
 		if (!debugMode)
 		{
-			if (anim.name?.startsWith('hair')) return;
+			if (anim.name?.startsWith('hair'))
+				return;
 
-				danced = !danced;
+			danced = !danced;
 
-				if (danced)
-					playAnim('danceRight');
-				else
-					playAnim('danceLeft');
+			if (danced)
+				playAnim('danceRight');
+			else
+				playAnim('danceLeft');
 		}
 	}
 
@@ -57,6 +58,6 @@ class GFRegular extends Character
 			playAnim('danceRight');
 	}
 
-	override function getAnimationOffsetsPath():String
-		return AssetPaths.txt('data/characters/gf/${curCharacter}-anim_offsets', 'characters');
+	override function getDataPathPrefix():String
+		return 'data/characters/gf/${curCharacter}-';
 }

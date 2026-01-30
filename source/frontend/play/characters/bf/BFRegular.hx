@@ -30,6 +30,6 @@ class BFRegular extends Character
 		flipX = true;
 	}
 
-	override function getAnimationOffsetsPath():String
-		return AssetPaths.txt('data/characters/bf/${curCharacter}-anim_offsets', 'characters');
+	override function getDataPathPrefix():String
+		return 'data/characters/bf/${curCharacter}-';
 }

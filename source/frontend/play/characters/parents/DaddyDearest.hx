@@ -15,7 +15,7 @@ class DaddyDearest extends Character
 	override function initChar()
 	{
 		frames = AssetPaths.fromSparrow('characters/DADDY_DEAREST', 'characters');
-		
+
 		addPrefixAnim('idle', 'Dad idle dance', 24);
 		addPrefixAnim('singUP', 'Dad Sing Note UP', 24);
 		addPrefixAnim('singRIGHT', 'Dad Sing Note RIGHT', 24);
@@ -25,6 +25,6 @@ class DaddyDearest extends Character
 		playAnim('idle');
 	}
 
-	override function getAnimationOffsetsPath():String
-		return AssetPaths.txt('data/characters/parents/${curCharacter}-anim_offsets', 'characters');
+	override function getDataPathPrefix():String
+		return 'data/characters/parents/${curCharacter}-';
 }

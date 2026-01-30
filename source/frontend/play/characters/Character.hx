@@ -127,11 +127,17 @@ class Character extends FlxAnimate
 		switch (curCharacter) {}
 	}
 
+	public function getDataPathPrefix():String
+		return 'data/characters/$curCharacter/';
+
+	public function getDataPathLibrary():String
+		return 'characters';
+
 	public function getAnimationOffsetsPath():String
-		return AssetPaths.txt('data/characters/$curCharacter/anim_offsets', 'characters');
+		return AssetPaths.txt('${getDataPathPrefix()}anim_offsets', getDataPathLibrary());
 
 	public function getCharacterOffsetsPath():String
-		return AssetPaths.txt('data/characters/$curCharacter/character_offsets', 'characters');
+		return AssetPaths.txt('${getDataPathPrefix()}character_offsets', getDataPathLibrary());
 
 	public function getCharacterOffsets()
 	{
