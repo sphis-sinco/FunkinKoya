@@ -1001,7 +1001,7 @@ class PlayState extends MusicBeatState
 			});
 		}
 
-		if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
+		if (boyfriend.holdTimer > Conductor.stepCrochet * boyfriend.dadVar * 0.001 && !up && !down && !right && !left)
 			if (boyfriend.anim.name.startsWith('sing') && !boyfriend.anim.name.endsWith('miss'))
 				boyfriend.playAnim('idle');
 
