@@ -21,7 +21,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		if (!Assets.exists(offsetPath))
 			return;
 
-		trace('found stage prop offset file: $offsetPath');
+		trace('found stage prop value file: $offsetPath');
 
 		var offsetfile:Dynamic = {};
 		try
@@ -47,7 +47,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 					field,
 					Reflect.field(propData, field)
 				);
-				trace('set $field of $propNam to ${Reflect.field(field, propData)}');
+				trace('set $field of $propNam to ${Reflect.field(propData, field)}');
 			}
 		};
 	}
