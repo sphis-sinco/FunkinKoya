@@ -11,7 +11,7 @@ class BFRegular extends Character
 
 	override function initChar()
 	{
-		frames = AssetPaths.getAnimateAtlas('characters/boyfriend', 'characters');
+		frames = AssetPaths.getAnimateAtlas('characters/boyfriend-regular', 'characters');
 
 		addFrameLabelAnim('idle', 'idle');
 

@@ -70,14 +70,14 @@ class Character extends FlxAnimate
 		{
 			if (!debugMode)
 			{
-				if (anim.name.startsWith('sing'))
+				if (anim.name?.startsWith('sing'))
 					holdTimer += elapsed;
 				else
 					holdTimer = 0;
 
 				if (anim.finished)
 				{
-					if (anim.name.endsWith('miss'))
+					if (anim.name?.endsWith('miss'))
 						playAnim('idle', true, false, 10);
 
 					if (anim.name == 'firstDeath')
@@ -87,7 +87,7 @@ class Character extends FlxAnimate
 		}
 		else
 		{
-			if (anim.name.startsWith('sing'))
+			if (anim.name?.startsWith('sing'))
 				holdTimer += elapsed;
 
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)

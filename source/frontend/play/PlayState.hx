@@ -1002,7 +1002,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (boyfriend.holdTimer > Conductor.stepCrochet * boyfriend.dadVar * 0.001 && !up && !down && !right && !left)
-			if (boyfriend.anim.name.startsWith('sing') && !boyfriend.anim.name.endsWith('miss'))
+			if (boyfriend.anim.name?.startsWith('sing') && !boyfriend.anim.name?.endsWith('miss'))
 				boyfriend.playAnim('idle');
 
 		playerStrums.forEach(function(spr:FlxSprite)
@@ -1192,7 +1192,7 @@ class PlayState extends MusicBeatState
 		if (curBeat % gfSpeed == 0)
 			gf.dance();
 
-		if (!boyfriend.anim.name.startsWith("sing"))
+		if (!boyfriend.anim.name?.startsWith("sing"))
 			boyfriend.playAnim('idle');
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
