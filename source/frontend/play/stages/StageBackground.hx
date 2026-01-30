@@ -161,7 +161,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	}
 
 	public function getGameoverCharacter():Character
-		return Character.getCharacter(songData.player1, true, boyfriend?.x ?? 0, boyfriend?.y ?? 0);
+		return null;
 
 	public function getGameoverStageSuffix():String
 		return '';
