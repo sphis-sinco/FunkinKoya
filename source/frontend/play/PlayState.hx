@@ -145,13 +145,6 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
-		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
-		scoreTxt.scrollFactor.set();
-		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 1);
-		scoreTxt.antialiasing = false;
-		add(scoreTxt);
-
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		add(iconP1);
@@ -159,6 +152,12 @@ class PlayState extends MusicBeatState
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
+		
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
+		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
+		scoreTxt.scrollFactor.set();
+		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+		add(scoreTxt);
 
 		opponentStrums.cameras = [camHUD];
 		playerStrums.cameras = [camHUD];
