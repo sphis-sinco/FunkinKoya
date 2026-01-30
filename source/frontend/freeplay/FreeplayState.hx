@@ -53,6 +53,7 @@ class FreeplayState extends MusicBeatState
 	}
 
 	public var currentDifficulty:Int = Difficulty.NORMAL;
+	public var currentDifficultyEnum:Difficulty;
 	public var currentSelection:Int = 0;
 
 	override function create()
@@ -81,10 +82,10 @@ class FreeplayState extends MusicBeatState
 
 		songScoreText.fieldWidth = upBorder.innerSprite.width;
 		songScoreText.alignment = CENTER;
-		songScoreText.size = 48;
+		songScoreText.size = 32;
 
 		songScoreText.x = upBorder.innerSprite.x;
-		songScoreText.y = upBorder.innerSprite.getGraphicMidpoint().y;
+		songScoreText.y -= 8;
 
 		add(songScoreText);
 
@@ -103,6 +104,8 @@ class FreeplayState extends MusicBeatState
 		if (currentDifficulty > Difficulty.HARD.toInt())
 			currentDifficulty = Difficulty.HARD;
 
+		currentDifficultyEnum = currentDifficulty;
+
 		if (currentSelection < 0)
 			currentSelection = 0;
 		if (currentSelection >= songList.length)
@@ -120,10 +123,10 @@ class FreeplayState extends MusicBeatState
 		songText.text = currentSong;
 		songText.screenCenter(Y);
 
-		songScoreText.text = '${Math.abs(currentScore)}'.lpad('0', 8);
-
+		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}):\n';
 		if (currentScore < 0)
-			songScoreText.text = '-${songScoreText.text}';
+			songScoreText.text += '-';
+		songScoreText.text += '${Math.abs(currentScore)}'.lpad('0', 8);
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{

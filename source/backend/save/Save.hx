@@ -1,5 +1,6 @@
 package backend.save;
 
+import lime.app.Application;
 import backend.controls.PlayerSettings;
 import flixel.FlxG;
 import backend.Song.ChartSwagSong;
@@ -20,16 +21,26 @@ class Save
 		FlxG.save.bind('koya', 'Macohi');
 		Highscore.load();
 
-		if (version.get() == SAVE_VERSION) return;
+		if (version.get() == SAVE_VERSION)
+			return;
 
-		switch(version.get())
+		switch (version.get())
 		{
-			default: trace('unimplemented switch to version: ${version.get()}');
+			default:
+				trace('unimplemented switch to version: ${version.get()}');
 		}
 
-		version.set(SAVE_VERSION);
+		flush();
+
+		Application.current.onExit.add(function(l)
+		{
+			flush();
+		});
 	}
 
 	public static function flush()
+	{
+		version.set(SAVE_VERSION);
 		FlxG.save.flush();
+	}
 }
