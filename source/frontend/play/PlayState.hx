@@ -1,5 +1,6 @@
 package frontend.play;
 
+import backend.play.Difficulty;
 import frontend.play.stages.StageBackground;
 import frontend.play.characters.*;
 import frontend.play.editors.ChartingState;
@@ -24,7 +25,6 @@ import flixel.ui.FlxBar;
 import flixel.util.FlxColor;
 import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
-import frontend.play.Difficulty;
 
 using StringTools;
 
