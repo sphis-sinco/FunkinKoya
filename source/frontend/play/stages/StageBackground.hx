@@ -10,6 +10,9 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 {
 	private var songData:SwagSong;
 
+	public static function getStage(song:SwagSong, ?stage:String = 'mainStage'):StageBackground
+		return StageBackgroundGetter.getStage(song, stage);
+
 	override public function new(song:SwagSong)
 	{
 		super();
