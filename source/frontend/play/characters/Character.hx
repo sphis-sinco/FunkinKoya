@@ -1,5 +1,6 @@
 package frontend.play.characters;
 
+import flixel.util.typeLimit.OneOfTwo;
 import animate.FlxAnimate;
 import lime.utils.Assets;
 import backend.Conductor;
@@ -41,16 +42,16 @@ class Character extends FlxAnimate
 			if (!curCharacter.startsWith('bf'))
 			{
 				// var animArray
-				var oldRight = animation.getByName('singRIGHT').frames;
-				animation.getByName('singRIGHT').frames = animation.getByName('singLEFT').frames;
-				animation.getByName('singLEFT').frames = oldRight;
+				var oldRight = anim.getByName('singRIGHT').frames;
+				anim.getByName('singRIGHT').frames = anim.getByName('singLEFT').frames;
+				anim.getByName('singLEFT').frames = oldRight;
 
 				// IF THEY HAVE MISS ANIMATIONS??
-				if (animation.getByName('singRIGHTmiss') != null)
+				if (anim.getByName('singRIGHTmiss') != null)
 				{
-					var oldMiss = animation.getByName('singRIGHTmiss').frames;
-					animation.getByName('singRIGHTmiss').frames = animation.getByName('singLEFTmiss').frames;
-					animation.getByName('singLEFTmiss').frames = oldMiss;
+					var oldMiss = anim.getByName('singRIGHTmiss').frames;
+					anim.getByName('singRIGHTmiss').frames = anim.getByName('singLEFTmiss').frames;
+					anim.getByName('singLEFTmiss').frames = oldMiss;
 				}
 			}
 		}
@@ -69,24 +70,24 @@ class Character extends FlxAnimate
 		{
 			if (!debugMode)
 			{
-				if (animation.name.startsWith('sing'))
+				if (anim.name.startsWith('sing'))
 					holdTimer += elapsed;
 				else
 					holdTimer = 0;
 
-				if (animation.finished)
+				if (anim.finished)
 				{
-					if (animation.name.endsWith('miss'))
+					if (anim.name.endsWith('miss'))
 						playAnim('idle', true, false, 10);
 
-					if (animation.name == 'firstDeath')
+					if (anim.name == 'firstDeath')
 						playAnim('deathLoop');
 				}
 			}
 		}
 		else
 		{
-			if (animation.name.startsWith('sing'))
+			if (anim.name.startsWith('sing'))
 				holdTimer += elapsed;
 
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
@@ -109,10 +110,10 @@ class Character extends FlxAnimate
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		animation.play(AnimName, Force, Reversed, Frame);
+		anim.play(AnimName, Force, Reversed, Frame);
 
-		var daOffset = animOffsets.get(animation.name);
-		if (animOffsets.exists(animation.name))
+		var daOffset = animOffsets.get(anim.name);
+		if (animOffsets.exists(anim.name))
 			offset.set(daOffset[0], daOffset[1]);
 		else
 			offset.set(0, 0);
@@ -153,13 +154,13 @@ class Character extends FlxAnimate
 	}
 
 	public function addPrefixAnim(name:String, prefix:String, ?fps:Float = 24, ?looped:Bool = false)
-		animation.addByPrefix(name, prefix, fps, looped);
+		anim.addByPrefix(name, prefix, fps, looped);
 
 	public function addFrameLabelAnim(name:String, label:String, ?fps:Float = 24, ?looped:Bool = false)
 		anim.addByFrameLabel(name, label, fps, looped);
 
 	public function addIndicesPrefixAnim(name:String, prefix:String, indices:Array<Int>, ?fps:Float = 24, ?looped:Bool = false)
-		animation.addByIndices(name, prefix, indices, '', fps, looped);
+		anim.addByIndices(name, prefix, indices, '', fps, looped);
 
 	public function addIndicesFrameLabelAnim(name:String, label:String, indices:Array<Int>, ?fps:Float = 24, ?looped:Bool = false)
 		anim.addByFrameLabelIndices(name, label, indices, fps, looped);

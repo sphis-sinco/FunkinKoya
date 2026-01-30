@@ -37,7 +37,7 @@ class GFRegular extends Character
 	override function dance()
 	{
 		if (!debugMode)
-			if (!animation.curAnim.name.startsWith('hair'))
+			if (!anim.name.startsWith('hair'))
 			{
 				danced = !danced;
 
@@ -52,7 +52,7 @@ class GFRegular extends Character
 	{
 		super.update(elapsed);
 
-		if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
+		if (anim.name == 'hairFall' && anim.finished)
 			playAnim('danceRight');
 	}
 
