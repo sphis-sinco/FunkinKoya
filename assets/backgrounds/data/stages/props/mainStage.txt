@@ -1,0 +1,3 @@
+stageBack 0 0
+stageFloor 0 0
+stageCurtains 0 0

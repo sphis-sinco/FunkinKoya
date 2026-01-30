@@ -151,17 +151,7 @@ class Character extends FunkinSprite
 		trace(' * found animation offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
-		for (line in offsetfile)
-		{
-			var splitLine = line.split(' ; ');
-
-			var anim = splitLine[0] ?? null;
-			var x = splitLine[1] ?? '0';
-			var y = splitLine[2] ?? '0';
-
-			if (anim != null)
-				addOffset(anim, Std.parseFloat(x), Std.parseFloat(y));
-		}
+		parseAnimationOffsetFile(offsetfile);
 	}
 
 	public function addSingingAnimations(includeMiss:Bool = false, addAnimationFunction:(name:String, prefix:String)->Void)

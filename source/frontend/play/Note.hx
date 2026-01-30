@@ -78,7 +78,7 @@ class Note extends FunkinSprite
 			}
 
 			updateHitbox();
-			x -= width / 2;
+			// x -= width / 2;
 
 			if (prevNote.isSustainNote)
 			{

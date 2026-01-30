@@ -1,5 +1,6 @@
 package frontend.play.stages;
 
+import lime.utils.Assets;
 import flixel.graphics.frames.FlxAtlasFrames;
 import backend.AssetPaths;
 import frontend.play.characters.CharacterGetter;
@@ -11,6 +12,36 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 
 class StageBackground extends FlxTypedGroup<FlxBasic>
 {
+	public function getPropOffsetss()
+	{
+		var offsetPath = getStagePropOffsetPath();
+
+		if (!Assets.exists(offsetPath))
+			return;
+
+		trace(' * found stage prop offset file: $offsetPath');
+		var offsetfile = Assets.getText(offsetPath).split('\n');
+
+		for (line in offsetfile)
+		{
+			var splitLine = line.split(' ');
+
+			var prop = splitLine[0] ?? null;
+			var x = splitLine[1] ?? '0';
+			var y = splitLine[2] ?? '0';
+
+			var funkinSprProp:FunkinSprite = cast getThing(prop);
+			if (funkinSprProp != null)
+			{
+				funkinSprProp.x += Std.parseFloat(x);
+				funkinSprProp.y += Std.parseFloat(y);
+			}
+		}
+	}
+
+	public function getStagePropOffsetPath():String
+		return AssetPaths.txt('data/stages/props/${BG_NAME != null ? '$BG_NAME/' : ''}', 'backgrounds');
+
 	public function getBGImg(path:String):String
 		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
@@ -43,6 +74,9 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	public function init()
 	{
 		initInfo();
+
+		trace('Loading stage: $BG_NAME');
+
 		initBG();
 		initChars();
 		initFG();

@@ -5,6 +5,21 @@ import animate.FlxAnimate;
 
 class FunkinSprite extends FlxAnimate
 {
+	public function parseAnimationOffsetFile(offsetFile:Array<String>)
+	{
+		for (line in offsetFile)
+		{
+			var splitLine = line.split(' ');
+
+			var anim = splitLine[0] ?? null;
+			var x = splitLine[1] ?? '0';
+			var y = splitLine[2] ?? '0';
+
+			if (anim != null)
+				addOffset(anim, Std.parseFloat(x), Std.parseFloat(y));
+		}
+	}
+
 	public var animOffsets:Map<String, Array<Float>> = [];
 	public var generalOffsets:Array<Float> = [0, 0];
 
