@@ -1,5 +1,7 @@
 package frontend.freeplay;
 
+import frontend.ui.DifficultySprite;
+import backend.play.Difficulty;
 import flixel.tweens.FlxTween;
 import backend.Highscore;
 import backend.Song;
@@ -22,7 +24,9 @@ class FreeplayState extends MusicBeatState
 	public var songText:FlxText = new FlxText();
 
 	public var songSelect:Int = 0;
-	public var songDifficulty:Int = 1;
+
+	public var songDifficulty:Int = Difficulty.NORMAL;
+	public var songDifficultySprite:DifficultySprite;
 
 	override function create()
 	{
@@ -47,6 +51,9 @@ class FreeplayState extends MusicBeatState
 		songText.setBorderStyle(OUTLINE, FlxColor.BLACK, 8);
 
 		add(songText);
+
+		songDifficultySprite = new DifficultySprite(songDifficulty);
+		add(songDifficultySprite);
 	}
 
 	override function update(elapsed:Float)
@@ -54,6 +61,13 @@ class FreeplayState extends MusicBeatState
 		super.update(elapsed);
 
 		performControls();
+
+		if (songDifficulty < Difficulty.EASY.toInt()) songDifficulty = Difficulty.EASY;
+		if (songDifficulty > Difficulty.HARD.toInt()) songDifficulty = Difficulty.HARD;
+
+		songDifficultySprite.difficulty = songDifficulty;
+		songDifficultySprite.screenCenter(Y);
+		songDifficultySprite.x = rightBorder.outerSprite.getGraphicMidpoint().x - (songDifficultySprite.width / 2);
 
 		if (songSelect < 0)
 			songSelect = 0;
@@ -100,6 +114,25 @@ class FreeplayState extends MusicBeatState
 			FlxTween.tween(arrow_DOWN, {y: aD_y}, .1);
 		}
 
+		if (controls.UI_LEFT_R)
+		{
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+			songDifficulty -= 1;
+
+			arrow_LEFT.x -= 10;
+			FlxTween.cancelTweensOf(arrow_LEFT);
+			FlxTween.tween(arrow_LEFT, {x: aL_x}, .1);
+		}
+		if (controls.UI_RIGHT_R)
+		{
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+			songDifficulty += 1;
+
+			arrow_RIGHT.x += 10;
+			FlxTween.cancelTweensOf(arrow_RIGHT);
+			FlxTween.tween(arrow_RIGHT, {x: aR_x}, .1);
+		}
+
 		if (controls.BACK)
 		{
 			transitioning = true;
@@ -113,7 +146,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
 
-			PlayState.SONG = Song.loadFromJson(songList[songSelect], Highscore.formatSong(songList[songSelect], songDifficulty));
+			PlayState.SONG = Song.loadFromJson(Highscore.formatSong(songList[songSelect], songDifficulty), songList[songSelect]);
 			PlayState.SONG_DIFFICULTY = songDifficulty;
 
 			FlxG.switchState(() -> new PlayState());
@@ -138,13 +171,10 @@ class FreeplayState extends MusicBeatState
 		add(leftBorder);
 		leftBorder.innerSprite.x -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING),
+		rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING),
 			FlxG.width - sideBorderWidths, -Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(rightBorder);
 		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
-
-		var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
-		var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 
 		for (arrow in [arrow_DOWN, arrow_LEFT, arrow_RIGHT, arrow_UP])
 		{
@@ -163,11 +193,22 @@ class FreeplayState extends MusicBeatState
 
 		aU_y = arrow_UP.y;
 		aD_y = arrow_DOWN.y;
+
+		aL_x = arrow_LEFT.x;
+		aR_x = arrow_RIGHT.x;
 	}
+
+	var rightBorder:FreeplayBorderSprite;
 
 	var arrow_UP:ArrowUI = new ArrowUI(UP);
 	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN);
 
-	var aU_y:Float = 0.0; 
-	var aD_y:Float = 0.0; 
+	var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
+	var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
+
+	var aU_y:Float = 0.0;
+	var aD_y:Float = 0.0;
+
+	var aL_x:Float = 0.0;
+	var aR_x:Float = 0.0;
 }

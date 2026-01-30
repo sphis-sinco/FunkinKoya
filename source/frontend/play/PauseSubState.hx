@@ -1,5 +1,6 @@
 package frontend.play;
 
+import frontend.ui.Alphabet;
 import frontend.freeplay.FreeplayState;
 import backend.AssetPaths;
 import flixel.FlxG;

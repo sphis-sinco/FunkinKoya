@@ -34,9 +34,9 @@ class InitState extends FlxState
 
 		var startingState:NextState = getStartingState();
 
-		// #if web
+		#if web
 		startingState = () -> new TouchHere();
-		// #end
+		#end
 
 		FlxG.switchState(startingState);
 	}
