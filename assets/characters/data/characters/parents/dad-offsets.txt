@@ -1,4 +1,3 @@
-
 singUP -6 50
 singRIGHT 0 27
 singLEFT -10 10
