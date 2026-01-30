@@ -28,12 +28,9 @@ class GameOverSubstate extends MusicBeatSubstate
 		character = PlayState.instance.currentStage.getGameoverCharacter();
 		if (character == null)
 			character = PlayState.instance.currentStage.boyfriend;
-		
-		if (PlayState.instance.currentStage.boyfriend != null)
-			character.setPosition(PlayState.instance.currentStage.boyfriend.x, PlayState.instance.currentStage.boyfriend.y);
-		else
-			character.screenCenter();
+		character.updateHitbox();
 
+		character.setPosition(x, y);
 		add(character);
 
 		camFollow = new FlxObject(character.getGraphicMidpoint().x, character.getGraphicMidpoint().y, 1, 1);
