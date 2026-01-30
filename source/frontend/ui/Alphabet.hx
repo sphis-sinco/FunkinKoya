@@ -1,4 +1,4 @@
-package frontend;
+package frontend.ui;
 
 import backend.AssetPaths;
 import flixel.FlxG;
