@@ -189,4 +189,16 @@ class Character extends FlxAnimate
 
 	public function addIndicesFrameLabelAnim(name:String, label:String, indices:Array<Int>, ?fps:Float = 24, ?looped:Bool = false)
 		anim.addByFrameLabelIndices(name, label, indices, fps, looped);
+
+	public function addSingingAnimations(includeMiss:Bool = false, addAnimationFunction:(name:String, prefix:String)->Void)
+	{
+		var directions = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
+
+		for (dir in directions)
+		{
+			addAnimationFunction('sing${dir.toUpperCase()}', 'sing${dir.toUpperCase()}');
+			if (includeMiss)
+				addAnimationFunction('sing${dir.toUpperCase()}miss', 'sing${dir.toUpperCase()}miss');
+		}
+	}
 }

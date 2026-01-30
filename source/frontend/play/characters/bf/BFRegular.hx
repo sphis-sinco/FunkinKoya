@@ -15,13 +15,7 @@ class BFRegular extends Character
 
 		addFrameLabelAnim('idle', 'idle');
 
-		var directions = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
-
-		for (dir in directions)
-		{
-			addFrameLabelAnim('sing${dir.toUpperCase()}', 'sing${dir.toUpperCase()}');
-			addFrameLabelAnim('sing${dir.toUpperCase()}miss', 'sing${dir.toUpperCase()}miss');
-		}
+		addSingingAnimations(true, (name, prefix) -> addFrameLabelAnim(name, prefix));
 
 		addFrameLabelAnim('firstDeath', 'firstDeath');
 		addFrameLabelAnim('deathLoop', 'deathLoop', 24, true);
