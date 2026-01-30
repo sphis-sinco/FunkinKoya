@@ -192,10 +192,11 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
 		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
 		scoreTxt.scrollFactor.set();
-		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 1);
+		scoreTxt.antialiasing = false;
 		add(scoreTxt);
 
 		iconP1 = new HealthIcon(SONG.player1, true);

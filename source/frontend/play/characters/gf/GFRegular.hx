@@ -28,10 +28,9 @@ class GFRegular extends Character
 	{
 		frames = AssetPaths.getAnimateAtlas('characters/girlfriend-regular', 'characters');
 
-		addIndicesPrefixAnim('danceLeft', 'danceBeat', [0, 1, 2, 3, 4]);
-		addIndicesPrefixAnim('danceRight', 'danceBeat', [5, 6, 7, 8, 9]);
-
-		addPrefixAnim('sad', 'sad');
+		addIndicesFrameLabelAnim('danceLeft', 'danceBeat', [0, 1, 2, 3, 4]);
+		addIndicesFrameLabelAnim('danceRight', 'danceBeat', [5, 6, 7, 8, 9]);
+		addFrameLabelAnim('sad', 'sad');
 	}
 
 	override function dance()
