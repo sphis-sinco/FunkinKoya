@@ -9,22 +9,19 @@ import flixel.FlxSprite;
 
 using StringTools;
 
-class Character extends FlxAnimate
+class Character extends FunkinSprite
 {
 	public static function getCharacter(char:String, ?isPlayer:Bool, ?x:Float, ?y:Float):Character
 		return CharacterGetter.getCharacter(char, isPlayer, x, y);
 
 	public var stunned:Bool = false;
 
-	public var animOffsets:Map<String, Array<Float>> = [];
 	public var debugMode:Bool = false;
 
 	public var isPlayer:Bool = false;
 	public var curCharacter:String = 'bf';
 
 	public var holdTimer:Float = 0;
-
-	public var characterOffsets:Array<Float> = [0, 0];
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -112,20 +109,6 @@ class Character extends FlxAnimate
 			playAnim('idle');
 	}
 
-	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
-	{
-		anim.play(AnimName, Force, Reversed, Frame);
-
-		var daOffset = animOffsets.get(anim.name);
-		if (animOffsets.exists(anim.name))
-			offset.set(daOffset[0] + (characterOffsets[0] ?? 0), daOffset[1] + (characterOffsets[1] ?? 0));
-		else
-			offset.set(0 + (characterOffsets[0] ?? 0), 0 + (characterOffsets[1] ?? 0));
-	}
-
-	public function addOffset(name:String, x:Float = 0, y:Float = 0)
-		animOffsets[name] = [x, y];
-
 	public function initChar()
 	{
 		switch (curCharacter) {}
@@ -153,9 +136,9 @@ class Character extends FlxAnimate
 		trace(' * found character offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
-		characterOffsets = [];
+		generalOffsets = [];
 		for (line in offsetfile)
-			characterOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
+			generalOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
 	}
 
 	public function getAnimationOffsets()
@@ -180,18 +163,6 @@ class Character extends FlxAnimate
 				addOffset(anim, Std.parseFloat(x), Std.parseFloat(y));
 		}
 	}
-
-	public function addPrefixAnim(name:String, prefix:String, ?fps:Float = 24, ?looped:Bool = false)
-		anim.addByPrefix(name, prefix, fps, looped);
-
-	public function addFrameLabelAnim(name:String, label:String, ?fps:Float = 24, ?looped:Bool = false)
-		anim.addByFrameLabel(name, label, fps, looped);
-
-	public function addIndicesPrefixAnim(name:String, prefix:String, indices:Array<Int>, ?fps:Float = 24, ?looped:Bool = false)
-		anim.addByIndices(name, prefix, indices, '', fps, looped);
-
-	public function addIndicesFrameLabelAnim(name:String, label:String, indices:Array<Int>, ?fps:Float = 24, ?looped:Bool = false)
-		anim.addByFrameLabelIndices(name, label, indices, fps, looped);
 
 	public function addSingingAnimations(includeMiss:Bool = false, addAnimationFunction:(name:String, prefix:String)->Void)
 	{

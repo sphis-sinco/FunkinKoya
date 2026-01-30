@@ -196,9 +196,7 @@ class PlayState extends MusicBeatState
 
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
-			// currentStage.dad?.dance();
-			// gf.dance();
-			// currentStage.boyfriend?.dance();
+			currentStage.countdownTick(swagCounter);
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			introAssets.set('default', ['ready', "set", "go"]);
@@ -684,17 +682,7 @@ class PlayState extends MusicBeatState
 							altAnim = '-alt';
 					}
 
-					switch (Math.abs(daNote.noteData))
-					{
-						case 0:
-							currentStage.dad?.playAnim('singLEFT' + altAnim, true);
-						case 1:
-							currentStage.dad?.playAnim('singDOWN' + altAnim, true);
-						case 2:
-							currentStage.dad?.playAnim('singUP' + altAnim, true);
-						case 3:
-							currentStage.dad?.playAnim('singRIGHT' + altAnim, true);
-					}
+					currentStage.makeCharacterSing(daNote, currentStage.dad, false);
 
 					if (currentStage.dad != null)
 						currentStage.dad.holdTimer = 0;
@@ -1028,17 +1016,7 @@ class PlayState extends MusicBeatState
 					currentStage.boyfriend.stunned = false;
 			});
 
-			switch (direction)
-			{
-				case 0:
-					currentStage.boyfriend?.playAnim('singLEFTmiss', true);
-				case 1:
-					currentStage.boyfriend?.playAnim('singDOWNmiss', true);
-				case 2:
-					currentStage.boyfriend?.playAnim('singUPmiss', true);
-				case 3:
-					currentStage.boyfriend?.playAnim('singRIGHTmiss', true);
-			}
+			currentStage.makeCharacterSing(new Note(0, direction, null, false), currentStage.boyfriend, true);
 		}
 	}
 
@@ -1084,17 +1062,7 @@ class PlayState extends MusicBeatState
 			else
 				health += 0.004;
 
-			switch (note.noteData)
-			{
-				case 0:
-					currentStage.boyfriend?.playAnim('singLEFT', true);
-				case 1:
-					currentStage.boyfriend?.playAnim('singDOWN', true);
-				case 2:
-					currentStage.boyfriend?.playAnim('singUP', true);
-				case 3:
-					currentStage.boyfriend?.playAnim('singRIGHT', true);
-			}
+			currentStage.makeCharacterSing(note, currentStage.boyfriend, false);
 
 			playerStrums.forEach(function(spr:FlxSprite)
 			{

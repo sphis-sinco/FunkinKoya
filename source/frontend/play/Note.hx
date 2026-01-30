@@ -166,4 +166,19 @@ class Note extends FlxSprite
 				alpha = 0.3;
 		}
 	}
+
+	public function getDirectionName():String
+	{
+		return switch (Math.abs(noteData % 4))
+		{
+			case 0: 'LEFT';
+			case 1: 'DOWN';
+			case 2: 'UP';
+			case 3: 'RIGHT';
+
+			case _:
+				trace('UNKNOWN_DIR=$noteData');
+				'UNKNOWN_DIR=$noteData';
+		}
+	}
 }

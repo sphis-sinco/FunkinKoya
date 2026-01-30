@@ -1,5 +1,7 @@
 package frontend.play.stages;
 
+import flixel.graphics.frames.FlxAtlasFrames;
+import backend.AssetPaths;
 import frontend.play.characters.CharacterGetter;
 import backend.Song.SwagSong;
 import flixel.math.FlxPoint;
@@ -9,16 +11,28 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 
 class StageBackground extends FlxTypedGroup<FlxBasic>
 {
+	public function getBGImg(path:String):String
+		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}path', 'background');
+
+	public function getBGSparrowImg(path:String):FlxAtlasFrames
+		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}path', 'background');
+
 	private var songData:SwagSong;
+
+	public function getThing(thing:String):FlxBasic
+		return Reflect.field(this, thing);
 
 	public static function getStage(song:SwagSong, ?stage:String = 'mainStage'):StageBackground
 		return StageBackgroundGetter.getStage(song, stage);
 
-	override public function new(song:SwagSong)
+	public var BG_NAME:String = null;
+
+	override public function new(song:SwagSong, ?BG_NAME:String = 'Unknown')
 	{
 		super();
 
 		this.songData = song;
+		this.BG_NAME = BG_NAME;
 
 		init();
 	}
@@ -32,12 +46,15 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		initChars();
 		initFG();
 
-		PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);
+		if (startingCamPos != null)
+			PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);
+		else
+			PlayState.instance.camFollow.screenCenter();
 	}
 
 	public function initInfo()
 	{
-		PlayState.SONG_STAGE = 'Unknown';
+		PlayState.SONG_STAGE = BG_NAME;
 		PlayState.instance.defaultCamZoom = 1.05;
 	}
 
@@ -51,7 +68,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function initChars()
 	{
-		gf = Character.getCharacter(songData.gfVersion ?? 'gf', false, 0, 0);
+		gf = Character.getCharacter(songData.gfVersion, false, 0, 0);
 		gf.scrollFactor.set(0.95, 0.95);
 
 		dad = Character.getCharacter(songData.player2, false, 0, 0);
@@ -64,13 +81,21 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 		boyfriend = Character.getCharacter(songData.player1, true, 0, 0);
 
-		add(gf);
-		add(dad);
-		add(boyfriend);
+		for (char in [gf, dad, boyfriend])
+		{
+			if (char != null)
+				add(char);
+		}
 
-		startingCamPos = FlxPoint.get(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
+		for (char in [dad, gf, boyfriend])
+		{
+			if (char == null)
+				continue;
 
-		CharacterGetter.getCharacterStartingCamPos(startingCamPos, dad.curCharacter);
+			if (startingCamPos == null)
+				startingCamPos = FlxPoint.get(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y);
+			CharacterGetter.getCharacterStartingCamPos(startingCamPos, char.curCharacter);
+		}
 	}
 
 	public function getGameoverCharacter():Character
@@ -78,4 +103,22 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function getGameoverStageSuffix():String
 		return '';
+
+	public function countdownTick(tick:Int = 0)
+	{
+		if (dad != null)
+			dad.dance();
+		if (gf != null)
+			gf.dance();
+		if (boyfriend != null)
+			boyfriend.dance();
+	}
+
+	public function makeCharacterSing(note:Note, character:Character, ?miss:Bool = false)
+	{
+		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
+		if (miss) animationName += 'miss';
+
+		character.playAnim(animationName, true);
+	}
 }
