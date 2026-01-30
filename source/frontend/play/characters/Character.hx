@@ -30,7 +30,8 @@ class Character extends FlxAnimate
 		curCharacter = character;
 		this.isPlayer = isPlayer;
 
-		getOffsets();
+		getCharacterOffsets();
+		getAnimationOffsets();
 		initChar();
 
 		dance();
@@ -61,9 +62,7 @@ class Character extends FlxAnimate
 	public var dadVar(get, never):Float;
 
 	function get_dadVar():Float
-	{
 		return 4;
-	}
 
 	override function update(elapsed:Float)
 	{
@@ -128,17 +127,35 @@ class Character extends FlxAnimate
 		switch (curCharacter) {}
 	}
 
-	public function getOffsetsPath():String
-		return AssetPaths.txt('data/characters/$curCharacter/offsets', 'characters');
+	public function getAnimationOffsetsPath():String
+		return AssetPaths.txt('data/characters/$curCharacter/anim_offsets', 'characters');
 
-	public function getOffsets()
+	public function getCharacterOffsetsPath():String
+		return AssetPaths.txt('data/characters/$curCharacter/character_offsets', 'characters');
+
+	public function getCharacterOffsets()
 	{
-		var offsetPath = getOffsetsPath();
+		var offsetPath = getCharacterOffsetsPath();
 
 		if (!Assets.exists(offsetPath))
 			return;
 
-		trace('found offset: $offsetPath');
+		trace('found character offset file: $offsetPath');
+		var offsetfile = Assets.getText(offsetPath).split('\n');
+
+		characterOffsets = [];
+		for (line in offsetfile)
+			characterOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
+	}
+
+	public function getAnimationOffsets()
+	{
+		var offsetPath = getAnimationOffsetsPath();
+
+		if (!Assets.exists(offsetPath))
+			return;
+
+		trace('found animation offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
 		for (line in offsetfile)

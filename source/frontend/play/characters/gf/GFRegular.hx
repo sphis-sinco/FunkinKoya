@@ -57,6 +57,6 @@ class GFRegular extends Character
 			playAnim('danceRight');
 	}
 
-	override function getOffsetsPath():String
-		return AssetPaths.txt('data/characters/gf/${curCharacter}-offsets', 'characters');
+	override function getAnimationOffsetsPath():String
+		return AssetPaths.txt('data/characters/gf/${curCharacter}-anim_offsets', 'characters');
 }

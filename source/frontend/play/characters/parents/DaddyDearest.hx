@@ -25,6 +25,6 @@ class DaddyDearest extends Character
 		playAnim('idle');
 	}
 
-	override function getOffsetsPath():String
-		return AssetPaths.txt('data/characters/parents/${curCharacter}-offsets', 'characters');
+	override function getAnimationOffsetsPath():String
+		return AssetPaths.txt('data/characters/parents/${curCharacter}-anim_offsets', 'characters');
 }
