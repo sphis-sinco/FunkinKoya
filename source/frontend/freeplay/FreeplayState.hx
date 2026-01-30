@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import backend.save.Save;
 import frontend.ui.DifficultySprite;
 import backend.play.Difficulty;
 import flixel.tweens.FlxTween;
@@ -18,10 +19,13 @@ import backend.AssetPaths;
 import flixel.addons.display.FlxGridOverlay;
 import backend.CoolUtil;
 
+using StringTools;
+
 class FreeplayState extends MusicBeatState
 {
 	public var songList:Array<String> = [];
 	public var songText:FlxText = new FlxText();
+	public var songScoreText:FlxText = new FlxText();
 
 	public var songSelect:Int = 0;
 
@@ -52,6 +56,15 @@ class FreeplayState extends MusicBeatState
 
 		add(songText);
 
+		songScoreText.fieldWidth = upBorder.innerSprite.width;
+		songScoreText.alignment = CENTER;
+		songScoreText.size = 48;
+
+		songScoreText.x = upBorder.innerSprite.x;
+		songScoreText.y = upBorder.innerSprite.getGraphicMidpoint().y;
+		
+		add(songScoreText);
+
 		songDifficultySprite = new DifficultySprite(songDifficulty);
 		add(songDifficultySprite);
 	}
@@ -65,20 +78,22 @@ class FreeplayState extends MusicBeatState
 		if (songDifficulty < Difficulty.EASY.toInt()) songDifficulty = Difficulty.EASY;
 		if (songDifficulty > Difficulty.HARD.toInt()) songDifficulty = Difficulty.HARD;
 
-		songDifficultySprite.difficulty = songDifficulty;
-		songDifficultySprite.screenCenter(Y);
-		songDifficultySprite.x = rightBorder.outerSprite.getGraphicMidpoint().x - (songDifficultySprite.width / 2);
-
-		if (songSelect < 0)
+				if (songSelect < 0)
 			songSelect = 0;
 		if (songSelect >= songList.length)
 			songSelect = songList.length - 1;
+
+		songDifficultySprite.difficulty = songDifficulty;
+		songDifficultySprite.screenCenter(Y);
+		songDifficultySprite.x = rightBorder.innerSprite.getGraphicMidpoint().x - (songDifficultySprite.width / 2);
 
 		arrow_UP.alpha = (songSelect == 0) ? 0.5 : 1;
 		arrow_DOWN.alpha = (songSelect == songList.length - 1) ? 0.5 : 1;
 
 		songText.text = songList[songSelect].toLowerCase();
 		songText.screenCenter(Y);
+		
+		songScoreText.text = '${Save.songScores.get().get(songList[songSelect])}'.lpad('0', 8);
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -157,16 +172,16 @@ class FreeplayState extends MusicBeatState
 
 	public function initBordersAndArrows()
 	{
-		var upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
+		upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
 		add(upBorder);
 		upBorder.innerSprite.y -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths,
+		downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths,
 			FlxG.height - 160);
 		add(downBorder);
 		downBorder.innerSprite.y += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var leftBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), 0,
+		leftBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), 0,
 			-Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(leftBorder);
 		leftBorder.innerSprite.x -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
@@ -198,6 +213,9 @@ class FreeplayState extends MusicBeatState
 		aR_x = arrow_RIGHT.x;
 	}
 
+	var leftBorder:FreeplayBorderSprite;
+	var downBorder:FreeplayBorderSprite;
+	var upBorder:FreeplayBorderSprite;
 	var rightBorder:FreeplayBorderSprite;
 
 	var arrow_UP:ArrowUI = new ArrowUI(UP);
