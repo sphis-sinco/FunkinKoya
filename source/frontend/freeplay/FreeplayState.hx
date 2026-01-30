@@ -37,7 +37,7 @@ class FreeplayState extends MusicBeatState
 		add(gridBG);
 		#end
 
-		initUIThatsNotAPermentantVar();
+		initBordersAndArrows();
 
 		songText.fieldWidth = sideBorderWidths;
 		songText.alignment = CENTER;
@@ -60,6 +60,9 @@ class FreeplayState extends MusicBeatState
 			songSelect = 0;
 		if (songSelect >= songList.length)
 			songSelect = songList.length - 1;
+
+		arrow_UP.alpha = (songSelect == 0) ? 0.5 : 1;
+		arrow_DOWN.alpha = (songSelect == songList.length - 1) ? 0.5 : 1;
 
 		if (songSelect != prevSel)
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
@@ -108,7 +111,7 @@ class FreeplayState extends MusicBeatState
 
 	public var sideBorderWidths = 320 + 64;
 
-	public function initUIThatsNotAPermentantVar()
+	public function initBordersAndArrows()
 	{
 		var upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
 		add(upBorder);
@@ -129,8 +132,6 @@ class FreeplayState extends MusicBeatState
 		add(rightBorder);
 		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		var arrow_UP:ArrowUI = new ArrowUI(UP);
-		var arrow_DOWN:ArrowUI = new ArrowUI(DOWN);
 		var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 		var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 
@@ -149,4 +150,7 @@ class FreeplayState extends MusicBeatState
 		arrow_UP.y -= arrow_UP.height * 2;
 		arrow_DOWN.y += arrow_DOWN.height * 2;
 	}
+
+	var arrow_UP:ArrowUI = new ArrowUI(UP);
+	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN);
 }
