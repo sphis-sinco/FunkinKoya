@@ -42,12 +42,15 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 			for (field in propChangedFields)
 			{
-				Reflect.setField(
-					getThing(propNam),
-					field,
-					Reflect.field(propData, field)
-				);
-				trace('set $field of $propNam to ${Reflect.field(propData, field)}');
+				try
+				{
+					Reflect.setField(getThing(propNam), field, Reflect.field(propData, field));
+					trace('set $field of $propNam to ${Reflect.field(propData, field)} (og value: ${Reflect.field(getThing(propNam), field)})');
+				}
+				catch (e)
+				{
+					trace('error setting $field of $propNam to ${Reflect.field(propData, field)} : ${e.message}');
+				}
 			}
 		};
 	}
@@ -66,7 +69,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	private var songData:SwagSong;
 
-	public function getThing(thing:String):FlxBasic
+	public function getThing(thing:String)
 		return Reflect.field(this, thing);
 
 	public static function getStage(song:SwagSong):StageBackground
@@ -99,6 +102,18 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 		getPropOffsets();
 
+		setCamera();
+
+		if (dad != null && gf != null)
+			if (dad.curCharacter == gf.curCharacter)
+			{
+				dad.setPosition(gf.x, gf.y);
+				gf.visible = false;
+			}
+	}
+
+	public function setCamera()
+	{
 		if (startingCamPos != null)
 			PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);
 		else
@@ -125,12 +140,6 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		gf.scrollFactor.set(0.95, 0.95);
 
 		dad = Character.getCharacter(songData.player2, false, 0, 0);
-
-		if (dad.curCharacter == gf.curCharacter)
-		{
-			dad.setPosition(gf.x, gf.y);
-			gf.visible = false;
-		}
 
 		boyfriend = Character.getCharacter(songData.player1, true, 0, 0);
 

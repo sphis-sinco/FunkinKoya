@@ -1,8 +1,14 @@
 {
-	"stageBack": { "x": 0, "y": 0 },
-	"stageFloor": { "x": 0, "y": 480 },
-	"stageCurtains": { "x": 0, "y": 0 },
-	"boyfriend": { "x": 700, "y": 400 },
-	"gf": { "x": 0, "y": 0 },
-	"dad": { "x": 100, "y": 100 }
+	"stageBack": { "x": -100, "y": -100 },
+	"stageFloor": { "x": 0, "y": 720 },
+	"stageCurtains": { "x": -150, "y": -100 },
+
+	"boyfriend": { "x": 480, "y": 360 },
+	"gf": { "x": 640, "y": 280 },
+	"dad": { "x": 100, "y": 100 },
+
+	"startingCamPos": {
+		"x": 800,
+		"y": 450
+	}
 }

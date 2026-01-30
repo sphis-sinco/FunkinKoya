@@ -20,6 +20,12 @@ class MainStage extends StageBackground
 		stageBack.loadGraphic(getBGImg('stageBack'));
 		stageFloor.loadGraphic(getBGImg('stageFloor'));
 
+		stageBack.scrollFactor.set(0.1, 0.1);
+		stageFloor.scrollFactor.set(0.9, 0.9);
+
+		// stageBack.scale.set(2, 2);
+		stageFloor.scale.set(1.25, 1.25);
+
 		add(stageBack);
 		add(stageFloor);
 	}
@@ -33,6 +39,9 @@ class MainStage extends StageBackground
 		stageCurtains.addPrefixAnim('closed', 'curtain closed');
 		stageCurtains.addPrefixAnim('open', 'curtain open');
 		stageCurtains.playAnim('closed');
+
+		stageCurtains.scrollFactor.set();
+
 		add(stageCurtains);
 	}
 
@@ -40,7 +49,16 @@ class MainStage extends StageBackground
 	{
 		super.countdownTick(tick);
 
-		if (tick == 4)
+		if (tick == 2)
 			stageCurtains.playAnim('open');
+
+		if (startingCamPos != null)
+			PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.x);
+	}
+
+	override function setCamera()
+	{
+		if (startingCamPos == null)
+			super.setCamera();
 	}
 }
