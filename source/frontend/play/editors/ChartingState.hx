@@ -1,5 +1,6 @@
 package frontend.play.editors;
 
+import backend.save.Save;
 import backend.Section;
 import backend.Song;
 import backend.*;
@@ -169,7 +170,7 @@ class ChartingState extends MusicBeatState
 		add(curRenderedSustains);
 
 		super.create();
-		
+
 		FlxG.mouse.visible = true;
 	}
 
@@ -897,16 +898,16 @@ class ChartingState extends MusicBeatState
 
 	function loadAutosave():Void
 	{
-		PlayState.SONG = Song.parseJSONshit(FlxG.save.data.autosave);
+		PlayState.SONG = Song.parseJSONshit(Save.autosave.get());
 		FlxG.resetState();
 	}
 
 	function autosaveSong():Void
 	{
-		FlxG.save.data.autosave = Json.stringify({
-			"song": _song
+		Save.autosave.set({
+			song: _song
 		});
-		FlxG.save.flush();
+		Save.flush();
 	}
 
 	private function saveLevel()

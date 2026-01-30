@@ -9,6 +9,10 @@ import lime.utils.Assets;
 
 using StringTools;
 
+typedef ChartSwagSong = {
+	var song:SwagSong;
+}
+
 typedef SwagSong =
 {
 	var song:String;
@@ -52,12 +56,12 @@ class Song
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);
 
-		return parseJSONshit(rawJson);
+		return parseJSONshit(Json.parse(rawJson));
 	}
 
-	public static function parseJSONshit(rawJson:String):SwagSong
+	public static function parseJSONshit(rawJson:ChartSwagSong):SwagSong
 	{
-		var swagShit:SwagSong = cast Json.parse(rawJson).song;
+		var swagShit:SwagSong = rawJson.song;
 		swagShit.validScore = true;
 
 		swagShit.version ??= 0;

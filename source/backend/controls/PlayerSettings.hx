@@ -1,5 +1,6 @@
 package backend.controls;
 
+import backend.save.Save;
 import backend.controls.Controls;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -32,12 +33,12 @@ class PlayerSettings
 		this.controls = new Controls('player$id', None);
 
 		#if CLEAR_INPUT_SAVE
-		FlxG.save.data.controls = null;
-		FlxG.save.flush();
+		Save.controls.set(null);
+		Save.flush();
 		#end
 
 		var useDefault = true;
-		var controlData = FlxG.save.data.controls;
+		var controlData = Save.controls.get();
 		if (controlData != null)
 		{
 			var keyData:Dynamic = null;
@@ -61,7 +62,7 @@ class PlayerSettings
 	function addGamepad(gamepad:FlxGamepad)
 	{
 		var useDefault = true;
-		var controlData = FlxG.save.data.controls;
+		var controlData = Save.controls.get();
 		if (controlData != null)
 		{
 			var padData:Dynamic = null;
@@ -84,21 +85,21 @@ class PlayerSettings
 
 	public function saveControls()
 	{
-		if (FlxG.save.data.controls == null)
-			FlxG.save.data.controls = {};
+		if (Save.controls.get() == null)
+			Save.controls.set({});
 
 		var playerData:{?keys:Dynamic, ?pad:Dynamic}
 		if (id == 0)
 		{
-			if (FlxG.save.data.controls.p1 == null)
-				FlxG.save.data.controls.p1 = {};
-			playerData = FlxG.save.data.controls.p1;
+			if (Save.controls.get().p1 == null)
+				Save.controls.get().p1 = {};
+			playerData = Save.controls.get().p1;
 		}
 		else
 		{
-			if (FlxG.save.data.controls.p2 == null)
-				FlxG.save.data.controls.p2 = {};
-			playerData = FlxG.save.data.controls.p2;
+			if (Save.controls.get().p2 == null)
+				Save.controls.get().p2 = {};
+			playerData = Save.controls.get().p2;
 		}
 
 		var keyData = controls.createSaveData(Keys);
@@ -118,7 +119,7 @@ class PlayerSettings
 			}
 		}
 
-		FlxG.save.flush();
+		Save.flush();
 	}
 
 	static public function init():Void

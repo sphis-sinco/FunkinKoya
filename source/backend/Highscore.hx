@@ -1,5 +1,6 @@
 package backend;
 
+import backend.save.Save;
 import flixel.FlxG;
 import backend.play.Difficulty;
 
@@ -40,8 +41,8 @@ class Highscore
 	{
 		// Reminder that I don't need to format this song, it should come formatted!
 		songScores.set(song, score);
-		FlxG.save.data.songScores = songScores;
-		FlxG.save.flush();
+		Save.songScores.set(songScores);
+		Save.flush();
 	}
 
 	public static function formatSong(song:String, diff:Difficulty):String
@@ -69,7 +70,7 @@ class Highscore
 
 	public static function load():Void
 	{
-		if (FlxG.save.data.songScores != null)
-			songScores = FlxG.save.data.songScores;
+		if (Save.songScores.get() != null)
+			songScores = Save.songScores.get();
 	}
 }

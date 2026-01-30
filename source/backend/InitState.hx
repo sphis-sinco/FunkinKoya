@@ -1,5 +1,6 @@
 package backend;
 
+import backend.save.Save;
 import flixel.math.FlxRect;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
@@ -21,9 +22,7 @@ class InitState extends FlxState
 
 		FlxSprite.defaultAntialiasing = true;
 
-		PlayerSettings.init();
-		FlxG.save.bind('koya', 'Macohi');
-		Highscore.load();
+		Save.init();
 
 		Application.current.window.title = Constants.WINDOW_TITLE;
 
