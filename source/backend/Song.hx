@@ -21,6 +21,7 @@ typedef SwagSong =
 	var validScore:Bool;
 
 	var ?gfVersion:String;
+	var ?stage:String;
 
 	var ?version:Null<Int>;
 }
@@ -60,16 +61,25 @@ class Song
 
 		swagShit.version ??= 0;
 
-		switch (swagShit.version)
-		{
-			case 0:
-				swagShit.gfVersion = 'gf';
-		}
-
-		swagShit.version = SWAGVERSION;
+		fixSwagVersion(swagShit);
 
 		return swagShit;
 	}
 
-	public static var SWAGVERSION:Int = 1;
+	public static function fixSwagVersion(swagShit:SwagSong)
+	{
+		switch (swagShit.version)
+		{
+			case 0: swagShit.gfVersion = 'gf';
+			case 1: swagShit.stage = 'mainStage';
+		}
+
+		if (swagShit.version < SWAGVERSION)
+		{
+			swagShit.version += 1;
+			fixSwagVersion(swagShit);
+		}
+	}
+
+	public static var SWAGVERSION:Int = 2;
 }
