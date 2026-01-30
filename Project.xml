@@ -47,8 +47,8 @@
 
 	<assets path='dev/readme.txt' rename='do NOT readme.txt' />
 
-	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
-	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
+	<assets path="assets/main" rename="assets" exclude="*.ogg" if="web"/>
+	<assets path="assets/main" rename="assets" exclude="*.mp3" unless="web"/>
 
 	<assets path="assets/ui" exclude="*.ogg" if="web"/>
 	<assets path="assets/ui" exclude="*.mp3" unless="web"/>
