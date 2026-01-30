@@ -1,5 +1,6 @@
 package frontend.play.characters;
 
+import flixel.math.FlxPoint;
 import frontend.play.characters.bf.*;
 import frontend.play.characters.gf.*;
 import frontend.play.characters.parents.*;
@@ -16,5 +17,13 @@ class CharacterGetter
 		}
 
 		return new Character(x, y, char, isPlayer);
+	}
+
+	public static function getCharacterStartingCamPos(startingCamPos:FlxPoint, char:String)
+	{
+		if (startingCamPos == null) return;
+
+		switch(char)
+		{}
 	}
 }

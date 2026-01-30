@@ -1,5 +1,6 @@
 package frontend.play.stages;
 
+import frontend.play.characters.CharacterGetter;
 import backend.Song.SwagSong;
 import flixel.math.FlxPoint;
 import frontend.play.characters.Character;
@@ -26,14 +27,18 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function init()
 	{
-		PlayState.SONG_STAGE = 'Unknown';
-		PlayState.instance.defaultCamZoom = 1.05;
-
+		initInfo();
 		initBG();
 		initChars();
 		initFG();
 
 		PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);
+	}
+
+	public function initInfo()
+	{
+		PlayState.SONG_STAGE = 'Unknown';
+		PlayState.instance.defaultCamZoom = 1.05;
 	}
 
 	public function initBG() {}
@@ -64,6 +69,8 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		add(boyfriend);
 
 		startingCamPos = FlxPoint.get(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
+
+		CharacterGetter.getCharacterStartingCamPos(startingCamPos, dad.curCharacter);
 	}
 
 	public function getGameoverCharacter():Character
