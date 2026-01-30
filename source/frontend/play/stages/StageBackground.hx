@@ -176,12 +176,12 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 			boyfriend.dance();
 	}
 
-	public function makeCharacterSing(note:Note, character:Character, ?miss:Bool = false)
+	public function makeCharacterSing(note:Note, character:Character, ?miss:Bool = false, ?addition:String)
 	{
 		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
 		if (miss)
 			animationName += 'miss';
 
-		character.playAnim(animationName, true);
+		character.playAnim(animationName + addition ?? '', true);
 	}
 }

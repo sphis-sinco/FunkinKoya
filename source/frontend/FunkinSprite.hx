@@ -1,5 +1,6 @@
 package frontend;
 
+import flixel.FlxG;
 import backend.AssetPaths;
 import animate.FlxAnimate;
 
@@ -23,9 +24,65 @@ class FunkinSprite extends FlxAnimate
 	public var animOffsets:Map<String, Array<Float>> = [];
 	public var generalOffsets:Array<Float> = [0, 0];
 
+	/**
+	 * Whether or not this sprite has an animation with the given ID.
+	 * @param id The ID of the animation to check.
+	 */
+	public function hasAnimation(id:String):Bool
+	{
+		var animationList:Array<String> = this.anim?.getNameList() ?? [];
+		
+		if (animationList.contains(id))
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * Ensure that a given animation exists before playing it.
+	 * Will gracefully check for name, then name with stripped suffixes, then fail to play.
+	 * @param name The animation name to attempt to correct.
+	 * @param fallback Instead of failing to play, try to play this animation instead.
+	 */
+	function correctAnimationName(name:String, ?fallback:String):String
+	{
+		// If the animation exists, we're good.
+		if (hasAnimation(name))
+			return name;
+
+		// Attempt to strip a `-alt` suffix, if it exists.
+		if (name.lastIndexOf('-') != -1)
+		{
+			var correctName = name.substring(0, name.lastIndexOf('-'));
+			FlxG.log.notice('Sprite tried to play animation "$name" that does not exist, stripping suffixes ($correctName)...');
+			return correctAnimationName(correctName);
+		}
+		else
+		{
+			if (fallback != null)
+			{
+				if (fallback == name)
+				{
+					FlxG.log.error('Sprite tried to play animation "$name" that does not exist! This is bad!');
+					return null;
+				}
+				else
+				{
+					FlxG.log.warn('Sprite tried to play animation "$name" that does not exist, fallback to idle...');
+					return correctAnimationName('idle');
+				}
+			}
+			else
+			{
+				FlxG.log.error('Sprite tried to play animation "$name" that does not exist! This is bad!');
+				return correctAnimationName(fallback);
+			}
+		}
+	}
+
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		anim.play(AnimName, Force, Reversed, Frame);
+		anim.play(correctAnimationName(AnimName), Force, Reversed, Frame);
 
 		var daOffset = animOffsets.get(anim.name);
 		if (animOffsets.exists(anim.name))

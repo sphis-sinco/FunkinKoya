@@ -612,9 +612,9 @@ class PlayState extends MusicBeatState
 			notes.forEachAlive(function(daNote:Note)
 			{
 				if (daNote.y > FlxG.height)
-					daNote.active =  daNote.visible = false;
+					daNote.active = daNote.visible = false;
 				else
-					daNote.visible =  daNote.active = true;
+					daNote.visible = daNote.active = true;
 
 				daNote.y = (STRUMLINE_Y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
 
@@ -641,7 +641,7 @@ class PlayState extends MusicBeatState
 						if (SONG.notes[Math.floor(curStep / 16)].altAnim)
 							altAnim = '-alt';
 
-					currentStage.makeCharacterSing(daNote, currentStage.dad, false);
+					currentStage.makeCharacterSing(daNote, currentStage.dad, false, altAnim);
 
 					if (currentStage.dad != null)
 						currentStage.dad.holdTimer = 0;
@@ -1013,7 +1013,13 @@ class PlayState extends MusicBeatState
 			else
 				health += 0.004;
 
-			currentStage.makeCharacterSing(note, currentStage.boyfriend, false);
+			var altAnim:String = "";
+
+			if (SONG.notes[Math.floor(curStep / 16)] != null)
+				if (SONG.notes[Math.floor(curStep / 16)].altAnim)
+					altAnim = '-alt';
+
+			currentStage.makeCharacterSing(note, currentStage.boyfriend, false, altAnim);
 
 			playerStrums.forEach(function(spr:FunkinSprite)
 			{
