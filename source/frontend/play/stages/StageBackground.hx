@@ -1,5 +1,7 @@
 package frontend.play.stages;
 
+import lime.app.Application;
+import haxe.Json;
 import lime.utils.Assets;
 import flixel.graphics.frames.FlxAtlasFrames;
 import backend.AssetPaths;
@@ -12,35 +14,49 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 
 class StageBackground extends FlxTypedGroup<FlxBasic>
 {
-	public function getPropOffsetss()
+	public function getPropOffsets()
 	{
 		var offsetPath = getStagePropOffsetPath();
 
 		if (!Assets.exists(offsetPath))
 			return;
 
-		trace(' * found stage prop offset file: $offsetPath');
-		var offsetfile = Assets.getText(offsetPath).split('\n');
+		trace('found stage prop offset file: $offsetPath');
 
-		for (line in offsetfile)
+		var offsetfile:Dynamic = {};
+		try
 		{
-			var splitLine = line.split(' ');
-
-			var prop = splitLine[0] ?? null;
-			var x = splitLine[1] ?? '0';
-			var y = splitLine[2] ?? '0';
-
-			var funkinSprProp:FunkinSprite = cast getThing(prop);
-			if (funkinSprProp != null)
-			{
-				funkinSprProp.x += Std.parseFloat(x);
-				funkinSprProp.y += Std.parseFloat(y);
-			}
+			offsetfile = Json.parse(Assets.getText(offsetPath));
 		}
+		catch (e)
+		{
+			Application.current.window.alert('Error while reading Stage Prop Offsets file: $offsetPath:\n\n${e.message}', 'Invalid Stage Prop Offsets File!');
+			return;
+		}
+
+		for (prop in Reflect.fields(offsetfile))
+		{
+			var propNam:String = prop;
+			var propData:Dynamic = Reflect.field(offsetfile, prop);
+			var propChangedFields = Reflect.fields(propData);
+
+			for (field in propChangedFields)
+			{
+				Reflect.setField(
+					getThing(propNam),
+					field,
+					Reflect.field(field, propData)
+				);
+				trace('set $field of $propNam to ${Reflect.field(field, propData)}');
+			}
+		};
 	}
 
+	public function getJSONPathBase():String
+		return 'data/stages/$BG_NAME';
+
 	public function getStagePropOffsetPath():String
-		return AssetPaths.txt('data/stages/props/${BG_NAME != null ? '$BG_NAME/' : ''}', 'backgrounds');
+		return AssetPaths.json(getJSONPathBase() + '-propvalues', 'backgrounds');
 
 	public function getBGImg(path:String):String
 		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
@@ -80,6 +96,8 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		initBG();
 		initChars();
 		initFG();
+
+		getPropOffsets();
 
 		if (startingCamPos != null)
 			PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);

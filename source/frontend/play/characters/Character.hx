@@ -148,7 +148,7 @@ class Character extends FunkinSprite
 		if (!Assets.exists(offsetPath))
 			return;
 
-		trace(' * found animation offset file: $offsetPath');
+		trace('found animation offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
 		parseAnimationOffsetFile(offsetfile);
