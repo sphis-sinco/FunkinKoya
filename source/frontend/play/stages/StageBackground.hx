@@ -45,7 +45,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 				Reflect.setField(
 					getThing(propNam),
 					field,
-					Reflect.field(field, propData)
+					Reflect.field(propData, field)
 				);
 				trace('set $field of $propNam to ${Reflect.field(field, propData)}');
 			}
