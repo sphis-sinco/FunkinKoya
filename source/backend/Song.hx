@@ -28,6 +28,8 @@ typedef SwagSong =
 	var ?gfVersion:String;
 	var ?stage:String;
 
+	var ?authors:String;
+
 	var ?version:Null<Int>;
 }
 
@@ -77,6 +79,7 @@ class Song
 		{
 			case 0: swagShit.gfVersion = 'gf';
 			case 1: swagShit.stage = new MainStage(null, false).BG_NAME;
+			case 2: swagShit.authors = 'Unknown';
 		}
 
 		if (swagShit.version < SWAGVERSION)
@@ -86,5 +89,5 @@ class Song
 		}
 	}
 
-	public static var SWAGVERSION:Int = 2;
+	public static var SWAGVERSION:Int = 3;
 }

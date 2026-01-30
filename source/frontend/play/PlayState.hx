@@ -158,6 +158,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+		scoreTxt.antialiasing = false;
 		add(scoreTxt);
 
 		opponentStrums.cameras = [camHUD];
