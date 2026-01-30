@@ -13,25 +13,22 @@ import flixel.util.FlxTimer;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
-	var bf:Character;
+	var character:Character;
 	var camFollow:FlxObject;
 
 	var stageSuffix:String = "";
 
 	public function new(x:Float, y:Float)
 	{
-		var daStage = PlayState.SONG_STAGE;
-		var daBf:String = '';
-		daBf = 'bf';
-
+		var stageSuffix = PlayState.instance.currentStage.getGameoverStageSuffix();
 		super();
 
 		Conductor.songPosition = 0;
 
-		bf = CharacterGetter.getCharacter(daBf, true, x, y);
-		add(bf);
+		character = PlayState.instance.currentStage.getGameoverCharacter();
+		add(character);
 
-		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
+		camFollow = new FlxObject(character.getGraphicMidpoint().x, character.getGraphicMidpoint().y, 1, 1);
 		add(camFollow);
 
 		FlxG.sound.play(AssetPaths.sound('fnf_loss_sfx$stageSuffix'));
@@ -40,7 +37,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.scroll.set();
 		FlxG.camera.target = null;
 
-		bf.playAnim('firstDeath');
+		character.playAnim('firstDeath');
 	}
 
 	override function update(elapsed:Float)
@@ -58,10 +55,10 @@ class GameOverSubstate extends MusicBeatSubstate
 			FlxG.switchState(() -> new FreeplayState());
 		}
 
-		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
+		if (character.animation.curAnim.name == 'firstDeath' && character.animation.curAnim.curFrame == 12)
 			FlxG.camera.follow(camFollow, LOCKON, 0.01);
 
-		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
+		if (character.animation.curAnim.name == 'firstDeath' && character.animation.curAnim.finished)
 			FlxG.sound.playMusic(AssetPaths.music('gameOver$stageSuffix'));
 
 		if (FlxG.sound.music.playing)
@@ -75,7 +72,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (!isEnding)
 		{
 			isEnding = true;
-			bf.playAnim('deathConfirm', true);
+			character.playAnim('deathConfirm', true);
 			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.music('gameOverEnd$stageSuffix'));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)

@@ -11,6 +11,9 @@ using StringTools;
 
 class Character extends FlxAnimate
 {
+	public static function getCharacter(char:String, ?isPlayer:Bool, ?x:Float, ?y:Float):Character
+		return CharacterGetter.getCharacter(char, isPlayer, x, y);
+
 	public var stunned:Bool = false;
 
 	public var animOffsets:Map<String, Array<Float>> = [];
