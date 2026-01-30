@@ -120,6 +120,9 @@ class FreeplayState extends MusicBeatState
 		arrow_UP.alpha = (currentSelection == 0) ? 0.5 : 1;
 		arrow_DOWN.alpha = (currentSelection == songList.length - 1) ? 0.5 : 1;
 
+		arrow_LEFT.alpha = (currentDifficulty == Difficulty.EASY.toInt()) ? 0.5 : 1;
+		arrow_RIGHT.alpha = (currentDifficulty == Difficulty.HARD.toInt()) ? 0.5 : 1;
+
 		songText.text = currentSong;
 		songText.screenCenter(Y);
 
