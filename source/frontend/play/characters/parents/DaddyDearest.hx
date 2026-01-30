@@ -21,8 +21,6 @@ class DaddyDearest extends Character
 		addPrefixAnim('singRIGHT', 'Dad Sing Note RIGHT', 24);
 		addPrefixAnim('singDOWN', 'Dad Sing Note DOWN', 24);
 		addPrefixAnim('singLEFT', 'Dad Sing Note LEFT', 24);
-
-		playAnim('idle');
 	}
 
 	override function getDataPathPrefix():String
