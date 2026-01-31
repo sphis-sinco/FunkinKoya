@@ -14,8 +14,10 @@ class SongClass
 		if (!traces.exists(song))
 			traces.set(song, []);
 
-		log(Reflect.fields(this));
+		log(functions);
 	}
+
+	public static var functions:Array<String> = [];
 
 	public static var traces:Map<String, Array<String>> = [];
 
@@ -29,6 +31,9 @@ class SongClass
 		var field:Dynamic = Reflect.field(this, name);
 
 		var preventSpamTraces:Array<String> = ['update', 'keyShit'];
+
+		if (!functions.contains(name))
+			functions.push(name);
 
 		try
 		{
