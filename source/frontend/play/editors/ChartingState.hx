@@ -243,9 +243,9 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(reloadSongJson);
 		tab_group_song.add(loadAutosaveBtn);
 
-		tab_group_song.add(new FlxText(stepperBPM.x + stepperBPM.width + 16, stepperBPM.y, 0, "Song BPM", 8));
+		tab_group_song.add(new FlxText(stepperBPM.x + stepperBPM.width + 4, stepperBPM.y, 0, "Song BPM", 8));
 		tab_group_song.add(stepperBPM);
-		tab_group_song.add(new FlxText(stepperSpeed.x + stepperSpeed.width + 16, stepperSpeed.y, 0, "Song Speed", 8));
+		tab_group_song.add(new FlxText(stepperSpeed.x + stepperSpeed.width + 4, stepperSpeed.y, 0, "Song Speed", 8));
 		tab_group_song.add(stepperSpeed);
 
 		tab_group_song.add(new FlxText(player1DropDown.x, player1DropDown.y - 16, 0, "Player Character", 8));
