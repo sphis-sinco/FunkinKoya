@@ -67,9 +67,9 @@
 - Results screen
 - New Window Icons
 - Medals
+- Outdated State
 - Code cleanup (this is an overall thing but whatev)
 - Redraw Mr.Dearest with A 6 SIZED BRUSH (u idiot).
-- Outdated State
 
 ## Softcode stuff:
 
