@@ -1,5 +1,8 @@
 package frontend.play.stages.basegame;
 
+import flixel.tweens.FlxEase;
+import backend.Conductor;
+import flixel.tweens.FlxTween;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import backend.Song.SwagSong;
