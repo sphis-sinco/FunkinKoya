@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.frontend.mainmenu.MainMenuState;
 import koya.frontend.TitleState;
 import koya.frontend.play.editors.ChartingState;
 import koya.frontend.freeplay.FreeplayState;
@@ -63,6 +64,10 @@ class InitState extends FlxState
 
 		#if CHARTING
 		return () -> new ChartingState();
+		#end
+
+		#if MAINMENU
+		return () -> new MainMenuState();
 		#end
 
 		return () -> new TitleState();

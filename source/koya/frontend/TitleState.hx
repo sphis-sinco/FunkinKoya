@@ -1,5 +1,6 @@
 package koya.frontend;
 
+import koya.frontend.mainmenu.MainMenuState;
 import koya.frontend.play.stages.basegame.MainStage;
 import koya.frontend.freeplay.FreeplayState;
 import koya.frontend.play.PlayState;
@@ -146,6 +147,6 @@ class TitleState extends MusicBeatState
 		FlxTween.tween(logo, {y: -(logo.height * 4)}, 1.2, {ease: (playingTitle) ? FlxEase.quadOut : FlxEase.quadInOut});
 		FlxTween.tween(logoDRK, {y: -(logo.height * 4)}, 1.2, {ease: (playingTitle) ? FlxEase.quadOut : FlxEase.quadInOut, startDelay: .1});
 
-		FlxG.switchState(() -> new FreeplayState());
+		FlxG.switchState(() -> new MainMenuState());
 	}
 }
