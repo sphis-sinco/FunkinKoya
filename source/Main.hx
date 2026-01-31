@@ -54,6 +54,8 @@ class Main extends Sprite
 
 		path += '/KoyaCrash_$dateNow.txt';
 
+		errMsg += "Uncaught Error: " + e.error + "\n\n";
+
 		for (stackItem in callStack)
 		{
 			switch (stackItem)
@@ -65,7 +67,6 @@ class Main extends Sprite
 			}
 		}
 
-		errMsg += "\nUncaught Error: " + e.error;
 		errMsg += "\nPlease report this error to the GitHub page: https://github.com/sphis-sinco/FunkinKoya/issues";
 		errMsg += "\n\n> Crash Handler written by: sqirra-rng, used by Psych Engine, and modified for Koya";
 
@@ -74,7 +75,7 @@ class Main extends Sprite
 
 		File.saveContent(path, errMsg + "\n");
 
-		Sys.println('\n\nCRASH:');
+		Sys.println('\n\nCRASH:\n');
 		Sys.println(errMsg);
 		Sys.println("Crash dump saved in " + Path.normalize(path));
 
