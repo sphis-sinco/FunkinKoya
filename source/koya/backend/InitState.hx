@@ -1,5 +1,8 @@
 package koya.backend;
 
+import koya.frontend.TitleState;
+import koya.frontend.play.editors.ChartingState;
+import koya.frontend.freeplay.FreeplayState;
 import koya.backend.tasks.ResaveAllSongs;
 import koya.backend.save.Save;
 import flixel.math.FlxRect;
@@ -55,14 +58,14 @@ class InitState extends FlxState
 	public static function getStartingState():NextState
 	{
 		#if FREEPLAY
-		return () -> new frontend.freeplay.FreeplayState();
+		return () -> new FreeplayState();
 		#end
 
 		#if CHARTING
-		return () -> new frontend.play.editors.ChartingState();
+		return () -> new ChartingState();
 		#end
 
-		return () -> new frontend.TitleState();
+		return () -> new TitleState();
 	}
 
 	override function update(elapsed:Float)
