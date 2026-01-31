@@ -1,5 +1,6 @@
 package koya.frontend.mainmenu;
 
+import flixel.math.FlxMath;
 import flixel.FlxObject;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
@@ -11,12 +12,21 @@ class MainMenuState extends MusicBeatState
 	public var pinkBG:MenuBG = new MenuBG(true);
 	public var flashBG:MenuBG = new MenuBG(false);
 
-	public var menuItemsList:Array<String> = ['story mode', 'freeplay'];
+	public var menuItemsList:Array<String> = [
+		'story mode',
+		'freeplay',
+		// 'support',
+		// 'options',
+		'story mode',
+		'freeplay',
+		'story mode',
+		'freeplay',
+		'story mode',
+		'freeplay',
+	];
 	public var menuItemsGroup:FlxTypedGroup<MenuItem>;
 
 	public var currentSelection:Int = 0;
-
-	public var camFollow:FlxObject;
 
 	override function create()
 	{
@@ -26,14 +36,11 @@ class MainMenuState extends MusicBeatState
 		add(flashBG);
 		add(pinkBG);
 
-		flashBG.screenCenter();
-		pinkBG.screenCenter();
-
 		flashBG.scale.set(.75, .75);
 		pinkBG.scale.set(.75, .75);
 
-		flashBG.scrollFactor.set(0, .1);
-		pinkBG.scrollFactor.set(0, .1);
+		flashBG.updateHitbox();
+		pinkBG.updateHitbox();
 
 		menuItemsGroup = new FlxTypedGroup<MenuItem>();
 		add(menuItemsGroup);
@@ -41,7 +48,11 @@ class MainMenuState extends MusicBeatState
 		var i = 0;
 		for (item in menuItemsList)
 		{
-			var menuItem = new MenuItem(item, 0, 40 + (480 * i));
+			var menuItem = new MenuItem(item, 0, -640);
+
+			menuItem.scale.set(.5, .5);
+			menuItem.updateHitbox();
+			menuItem.makeOffsets();
 
 			menuItem.playAnim('idle');
 
@@ -53,10 +64,6 @@ class MainMenuState extends MusicBeatState
 			i++;
 		}
 
-		camFollow = new FlxObject(0, 0, 1280, 720);
-		add(camFollow);
-		FlxG.camera.follow(camFollow, LOCKON, 0.1);
-
 		select();
 	}
 
@@ -65,6 +72,13 @@ class MainMenuState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		pinkBG.screenCenter(X);
+		pinkBG.y = FlxMath.lerp((FlxG.height - pinkBG.height) / 2 - (currentSelection * 2), pinkBG.y, 0.9);
+		flashBG.setPosition(pinkBG.x, pinkBG.y);
+
+		for (menuItem in menuItemsGroup.members)
+			menuItem.y = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.y, 0.9);
 
 		if (controls.UI_UP_R) select(-1);
 		if (controls.UI_DOWN_R) select(1);
@@ -81,7 +95,7 @@ class MainMenuState extends MusicBeatState
 	public function select(change:Int = 0)
 	{
 		currentSelection += change;
-		if (change > 0) FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+		if (change != 0) FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 		if (currentSelection < 0) currentSelection = 0;
 		if (currentSelection >= menuItemsList.length) currentSelection = menuItemsList.length - 1;
@@ -91,11 +105,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.screenCenter(X);
 			menuItem.playAnim('idle');
 
-			if (menuItem.ID == currentSelection)
-			{
-				menuItem.playAnim('selected');
-				camFollow.y = (menuItem.getGraphicMidpoint().y);
-			}
+			if (menuItem.ID == currentSelection) menuItem.playAnim('selected');
 		}
 	}
 }
