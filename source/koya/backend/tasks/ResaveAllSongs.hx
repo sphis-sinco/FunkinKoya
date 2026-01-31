@@ -51,7 +51,10 @@ class ResaveAllSongs
 				myJSON.authors = 'Kawai Sprite';
 				switch (curSong)
 				{
+					case 'south', 'spookeez':
+						myJSON.stage = 'halloween';
 					case 'monster':
+						myJSON.stage = 'halloween';
 						myJSON.authors = 'Bassetfilms';
 				}
 
