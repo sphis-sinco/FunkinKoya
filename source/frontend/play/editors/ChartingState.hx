@@ -232,6 +232,20 @@ class ChartingState extends MusicBeatState
 
 		player2DropDown.selectedLabel = _song.player2;
 
+		var gfVersionDropDown = new FlxUIDropDownMenu(player2DropDown.x + player2DropDown.width + 16, player2DropDown.y, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		{
+			_song.gfVersion = characters[Std.parseInt(character)];
+		});
+
+		gfVersionDropDown.selectedLabel = _song?.gfVersion ?? Song.dummySong.gfVersion;
+
+		var stageDropDown = new FlxUIDropDownMenu(gfVersionDropDown.x + gfVersionDropDown.width + 16, gfVersionDropDown.y, FlxUIDropDownMenu.makeStrIdLabelArray(stages, true), function(stage:String)
+		{
+			_song.stage = stages[Std.parseInt(stage)];
+		});
+
+		stageDropDown.selectedLabel = _song?.stage ?? Song.dummySong.stage;
+
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
 		tab_group_song.add(new FlxText(UI_songTitle.x, UI_songTitle.y - UI_songTitle.height - 4, 0, "Song Name", 8));
@@ -253,6 +267,10 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 16, 0, "Opponent Character", 8));
 		tab_group_song.add(player2DropDown);
+		tab_group_song.add(new FlxText(gfVersionDropDown.x, gfVersionDropDown.y - 16, 0, "Damsel (GF) Character", 8));
+		tab_group_song.add(gfVersionDropDown);
+		tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 16, 0, "Stage", 8));
+		tab_group_song.add(stageDropDown);
 
 		UI_box.addGroup(tab_group_song);
 		UI_box.scrollFactor.set();
