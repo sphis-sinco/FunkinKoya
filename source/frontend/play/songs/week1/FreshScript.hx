@@ -1,14 +1,79 @@
 package frontend.play.songs.week1;
 
+import flixel.util.FlxColor;
+import flixel.FlxG;
+import flixel.tweens.FlxEase;
+import backend.Conductor;
+import flixel.tweens.FlxTween;
+import frontend.play.characters.Character;
+
 class FreshScript extends SongClass
 {
+	public var dad(get, never):Character;
+	public var boyfriend(get, never):Character;
+	public var gf(get, never):Character;
+
+	public var stageBack(get, never):FunkinSprite;
+	public var stageFloor(get, never):FunkinSprite;
+
+	function get_dad():Character
+		return PlayState.instance.currentStage.dad;
+
+	function get_boyfriend():Character
+		return PlayState.instance.currentStage.boyfriend;
+
+	function get_gf():Character
+		return PlayState.instance.currentStage.gf;
+
+	function get_stageBack():FunkinSprite
+		return cast PlayState.instance.currentStage?.getThing('stageBack');
+
+	function get_stageFloor():FunkinSprite
+		return cast PlayState.instance.currentStage?.getThing('stageFloor');
+
+	public function countdownTick(args:Map<String, Dynamic>)
+	{
+		var swagCounter:Int = args.get('swagCounter');
+
+		if (swagCounter == 0)
+		{
+			stageBack.alpha = 0;
+			stageFloor.alpha = 0;
+			gf.alpha = 0;
+
+			dad.alpha = 0;
+			boyfriend.alpha = 0;
+		}
+
+		if (swagCounter == 4)
+		{
+			trace('DAD FADE');
+			FlxTween.tween(dad, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
+				ease: FlxEase.sineInOut
+			});
+		}
+	}
+
 	public function beatHit(args:Map<String, Dynamic>)
 	{
 		var beat:Int = args.get('beat');
 
 		switch (beat)
 		{
+			case 4:
+				trace('BOYFRIEND FADE');
+				FlxTween.tween(boyfriend, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
+					ease: FlxEase.sineInOut
+				});
 			case 16:
+				stageBack.alpha = 1;
+				stageFloor.alpha = 1;
+				gf.alpha = 1;
+				boyfriend.alpha = 1;
+				dad.alpha = 1;
+
+				FlxG.camera.flash(FlxColor.WHITE, (Conductor.crochet / 1000) * 1);
+
 				PlayState.instance.camZooming = true;
 				PlayState.instance.gfSpeed = 2;
 			case 48, 112:
