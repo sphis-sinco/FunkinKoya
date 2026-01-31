@@ -22,7 +22,7 @@ class Constants
 		return '';
 		#end
 
-		return ' : Week 1 Update';
+		return '';
 	}
 
 	public static var WINDOW_TITLE(get, never):String;
