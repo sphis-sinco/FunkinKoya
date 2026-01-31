@@ -185,7 +185,7 @@ class ChartingState extends MusicBeatState
 		check_voices.callback = function()
 		{
 			_song.needsVoices = check_voices.checked;
-			trace('CHECKED!');
+			modifMade('Has voice track');
 		};
 
 		var check_mute_inst = new FlxUICheckBox(check_voices.x, check_voices.y + 20, null, null, "Mute Instrumental (in editor)", 100);
@@ -229,6 +229,7 @@ class ChartingState extends MusicBeatState
 			function(character:String)
 			{
 				_song.player1 = characters[Std.parseInt(character)];
+				modifMade('Player Character');
 			});
 		player1DropDown.selectedLabel = _song.player1;
 
@@ -236,6 +237,7 @@ class ChartingState extends MusicBeatState
 			FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player2 = characters[Std.parseInt(character)];
+			modifMade('Opponent Character');
 		});
 
 		player2DropDown.selectedLabel = _song.player2;
@@ -244,6 +246,7 @@ class ChartingState extends MusicBeatState
 			FlxUIDropDownMenu.makeStrIdLabelArray(Difficulty.stringList, true), function(difficulty:String)
 		{
 			_song.difficulty = Difficulty.list[Std.parseInt(difficulty)];
+			modifMade('Song Difficulty');
 		});
 
 		difficultyDropDown.selectedLabel = (_song?.difficulty ?? Song.dummySong.difficulty).toString();
@@ -292,6 +295,7 @@ class ChartingState extends MusicBeatState
 			FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.gfVersion = characters[Std.parseInt(character)];
+			modifMade('Damsel Version');
 		});
 
 		gfVersionDropDown.selectedLabel = _song?.gfVersion ?? Song.dummySong.gfVersion;
@@ -300,6 +304,7 @@ class ChartingState extends MusicBeatState
 			FlxUIDropDownMenu.makeStrIdLabelArray(stages, true), function(stage:String)
 		{
 			_song.stage = stages[Std.parseInt(stage)];
+			modifMade('Song Stage');
 		});
 
 		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
@@ -353,7 +358,7 @@ class ChartingState extends MusicBeatState
 		var tab_group_section = new FlxUI(null, UI_box);
 		tab_group_section.name = 'Section';
 
-		stepperLength = new FlxUINumericStepper(10, 10, 4, 0, 0, 999, 0);
+		stepperLength = new FlxUINumericStepper(10, 24, 4, 0, 0, 999, 0);
 		stepperLength.value = _song.notes[curSection].lengthInSteps;
 		stepperLength.name = "section_length";
 
@@ -379,19 +384,30 @@ class ChartingState extends MusicBeatState
 				_song.notes[curSection].sectionNotes[i] = note;
 				updateGrid();
 			}
+			modifMade('Swap Section');
 		});
 
-		check_mustHitSection = new FlxUICheckBox(10, 30, null, null, "Must hit section", 100);
+		check_mustHitSection = new FlxUICheckBox(10, 30, null, null, "Must hit section", 100, [], function()
+		{
+			modifMade('Must Hit Section');
+		});
 		check_mustHitSection.name = 'check_mustHit';
 		check_mustHitSection.checked = true;
 		// _song.needsVoices = check_mustHit.checked;
 
-		check_altAnim = new FlxUICheckBox(10, 400, null, null, "Alt Animation", 100);
+		check_altAnim = new FlxUICheckBox(10, 400, null, null, "Alt Animation", 100, [], function()
+		{
+			modifMade('Alt Anim');
+		});
 		check_altAnim.name = 'check_altAnim';
 
-		check_changeBPM = new FlxUICheckBox(10, 60, null, null, 'Change BPM', 100);
+		check_changeBPM = new FlxUICheckBox(10, 60, null, null, 'Change BPM', 100, [], function()
+		{
+			modifMade('Change BPM');
+		});
 		check_changeBPM.name = 'check_changeBPM';
 
+		tab_group_section.add(new FlxText(stepperLength.x, stepperLength.y - 16, 0, 'Section Length', 8));
 		tab_group_section.add(stepperLength);
 		tab_group_section.add(stepperSectionBPM);
 		tab_group_section.add(stepperCopy);
@@ -412,14 +428,15 @@ class ChartingState extends MusicBeatState
 		var tab_group_note = new FlxUI(null, UI_box);
 		tab_group_note.name = 'Note';
 
-		stepperSusLength = new FlxUINumericStepper(10, 10, Conductor.stepCrochet / 2, 0, 0, Conductor.stepCrochet * 16);
+		stepperSusLength = new FlxUINumericStepper(10, 24, Conductor.stepCrochet / 2, 0, 0, Conductor.stepCrochet * 16);
 		stepperSusLength.value = 0;
 		stepperSusLength.name = 'note_susLength';
 
 		var applyLength:FlxButton = new FlxButton(100, 10, 'Apply');
 
+		tab_group_note.add(new FlxText(stepperSusLength.x, stepperSusLength.y - 16, 0, 'Note Sustain Length', 8));
 		tab_group_note.add(stepperSusLength);
-		tab_group_note.add(applyLength);
+		// tab_group_note.add(applyLength);
 
 		UI_box.addGroup(tab_group_note);
 	}
@@ -486,11 +503,17 @@ class ChartingState extends MusicBeatState
 			FlxG.log.add(wname);
 			if (wname == 'section_length')
 			{
+					modifMade('Section Length');
 				_song.notes[curSection].lengthInSteps = Std.int(nums.value);
 				updateGrid();
 			}
 			else if (wname == 'song_speed')
+			{
+				if (nums.value != _song.speed)
+					modifMade('Song Speed');
+
 				_song.speed = nums.value;
+			}
 			else if (wname == 'song_bpm')
 			{
 				tempBpm = Std.int(nums.value);
@@ -499,7 +522,15 @@ class ChartingState extends MusicBeatState
 			}
 			else if (wname == 'note_susLength')
 			{
+				if (curSelectedNote == null)
+					return;
+				if (curSelectedNote.length < 3)
+					return;
+				if (curSelectedNote[2] == null)
+					return;
+
 				curSelectedNote[2] = nums.value;
+				modifMade('Note sus length');
 				updateGrid();
 			}
 			else if (wname == 'section_bpm')
@@ -601,6 +632,14 @@ class ChartingState extends MusicBeatState
 
 		if (!typingShit.hasFocus)
 		{
+			var shiftThing:Int = 1;
+			if (FlxG.keys.pressed.SHIFT)
+				shiftThing = 4;
+			if (FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.D)
+				changeSection(curSection + shiftThing);
+			if (FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A)
+				changeSection(curSection - shiftThing);
+
 			if (FlxG.keys.justPressed.ENTER)
 			{
 				lastSection = curSection;
@@ -612,21 +651,27 @@ class ChartingState extends MusicBeatState
 			}
 
 			if (FlxG.keys.justPressed.E)
+			{
+				modifMade('Note sus length (keybind)');
 				changeNoteSustain(Conductor.stepCrochet);
+			}
 			if (FlxG.keys.justPressed.Q)
+			{
+				modifMade('Note sus length (keybind)');
 				changeNoteSustain(-Conductor.stepCrochet);
+			}
 
 			if (FlxG.keys.justPressed.TAB)
 				if (FlxG.keys.pressed.SHIFT)
 				{
 					UI_box.selected_tab -= 1;
 					if (UI_box.selected_tab < 0)
-						UI_box.selected_tab = 2;
+						UI_box.selected_tab = UI_box.numTabs - 1;
 				}
 				else
 				{
 					UI_box.selected_tab += 1;
-					if (UI_box.selected_tab >= 3)
+					if (UI_box.selected_tab >= UI_box.numTabs - 1)
 						UI_box.selected_tab = 0;
 				}
 
@@ -671,16 +716,13 @@ class ChartingState extends MusicBeatState
 				vocals.time = FlxG.sound.music.time;
 			}
 		}
+		else
+		{
+			if (FlxG.keys.justReleased.ANY)
+				modifMade('Typing(${typingShit.text})');
+		}
 
 		_song.bpm = tempBpm;
-
-		var shiftThing:Int = 1;
-		if (FlxG.keys.pressed.SHIFT)
-			shiftThing = 4;
-		if (FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.D)
-			changeSection(curSection + shiftThing);
-		if (FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A)
-			changeSection(curSection - shiftThing);
 
 		bpmTxt.text = bpmTxt.text = Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2))
 			+ " / "
@@ -900,6 +942,8 @@ class ChartingState extends MusicBeatState
 
 	function deleteNote(note:Note):Void
 	{
+		modifMade('Delete Note');
+
 		for (i in _song.notes[curSection].sectionNotes)
 		{
 			if (i[0] == note.strumTime && i[1] % 4 == note.noteData)
@@ -915,6 +959,7 @@ class ChartingState extends MusicBeatState
 	function clearSection():Void
 	{
 		_song.notes[curSection].sectionNotes = [];
+		modifMade('Clear Section');
 
 		updateGrid();
 	}
@@ -929,6 +974,8 @@ class ChartingState extends MusicBeatState
 
 	private function addNote():Void
 	{
+		modifMade('Add Note');
+
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
 		var noteData = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
@@ -996,6 +1043,12 @@ class ChartingState extends MusicBeatState
 			song: _song
 		});
 		Save.flush();
+	}
+
+	public function modifMade(?modif:String)
+	{
+		trace('chart modif : ${modif ?? 'Unknown'}');
+		_song.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}Chart Editor';
 	}
 
 	private function saveLevel()

@@ -28,13 +28,11 @@ typedef SwagSong =
 
 	// @:deprecated("Unused and unrequired")
 	// var validScore:Bool;
-
 	var ?gfVersion:String;
 	var ?stage:String;
-
 	var ?authors:String;
-
 	var ?difficulty:Difficulty;
+	var ?generatedBy:String;
 
 	var ?version:Null<Int>;
 }
@@ -114,6 +112,9 @@ class Song
 			case 3:
 				swagShit.difficulty = NORMAL;
 				songMissingStuff.push('difficulty');
+			case 4:
+				swagShit.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}fixSwagVersion';
+				songMissingStuff.push('generatedBy');
 		}
 
 		if (swagShit.version < SWAGVERSION)
@@ -123,14 +124,18 @@ class Song
 		}
 		else
 		{
-			trace('Upgraded ${swagShit.song} to v.${swagShit.version}');
+			// koya chart format
+			// koyachartformat
+			// koyta
+
+			trace('Upgraded ${swagShit.song} to koyta_${swagShit.version}');
 			for (thing in songMissingStuff)
 				trace(' * Added $thing');
 			songMissingStuff = [];
 		}
 	}
 
-	public static var SWAGVERSION:Int = 4;
+	public static var SWAGVERSION:Int = 5;
 
 	public static var dummySong:SwagSong = {
 		song: 'Test',
@@ -144,6 +149,7 @@ class Song
 		stage: new MainStage(null, false).BG_NAME,
 		authors: 'Kawai Sprite (ft. MtH)',
 		difficulty: NORMAL,
+		generatedBy: 'Macohi (hand)',
 		version: SWAGVERSION
 	}
 }
