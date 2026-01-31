@@ -29,6 +29,8 @@ class MusicBeatState extends FlxUIState
 		super.create();
 		
 		FlxG.mouse.visible = false;
+
+		sectionHit();
 	}
 
 	override function update(elapsed:Float)

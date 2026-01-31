@@ -36,6 +36,7 @@ class Character extends FunkinSprite
 		trace('Loading character: $curCharacter');
 		getCharacterOffsets();
 		getAnimationOffsets();
+		getCameraOffsets();
 		initChar();
 
 		dance();
@@ -159,9 +160,9 @@ class Character extends FunkinSprite
 		trace(' * found camera offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
-		generalOffsets = [];
+		cameraOffsets = [];
 		for (line in offsetfile)
-			generalOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
+			cameraOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
 	}
 
 	public function getAnimationOffsets()

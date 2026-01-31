@@ -25,6 +25,8 @@ class MusicBeatSubstate extends FlxSubState
 	override function create()
 	{
 		super.create();
+		
+		sectionHit();
 	}
 
 	override function update(elapsed:Float)
