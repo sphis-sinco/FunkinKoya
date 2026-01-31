@@ -135,7 +135,7 @@
 	<haxedef name="message.reporting" value="pretty" />
 
 	<section if="TASK_RESAVE_ALL_SONGS">
-		<define name="DIABLE_FIXSWAGVERSION_TRACES" />
+		<!-- <define name="DIABLE_FIXSWAGVERSION_TRACES" /> -->
 		<define name="EMPTY_VERSION_SUFFIX" />
 		<!-- <define name="DISABLE_DEBUG_ASTERISK" /> -->
 	</section>

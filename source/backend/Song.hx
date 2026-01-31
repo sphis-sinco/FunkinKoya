@@ -136,6 +136,7 @@ class Song
 			for (thing in songMissingStuff)
 				trace(' * Added $thing');
 			#end
+
 			songMissingStuff = [];
 		}
 	}
@@ -150,11 +151,13 @@ class Song
 		player1: 'bf',
 		player2: 'dad',
 		speed: 1,
+		
 		gfVersion: 'gf',
 		stage: new MainStage(null, false).BG_NAME,
 		authors: 'Kawai Sprite (ft. MtH)',
 		difficulty: NORMAL,
 		generatedBy: 'Macohi (hand)',
+
 		version: SWAGVERSION
 	}
 }

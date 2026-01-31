@@ -23,6 +23,12 @@ class ResaveAllSongs
 					var curSong = myJSON.song.toLowerCase();
 					var path = '../../../../' + AssetPaths.chart(curSong, '$curSong${difficulty.chartSuffix()}');
 
+					switch (curSong)
+					{
+						case 'tutorial', 'bopeebo', 'fresh', 'dadbattle':
+							myJSON.authors = 'Kawai Sprite';
+					}
+
 					myJSON.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}Task: Resave All Songs';
 
 					trace('saving $path');
