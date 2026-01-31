@@ -25,6 +25,7 @@ class Halloween extends StageBackground
 
 		halloweenBack.loadGraphic(getBGImg('halloweenBack'));
 		add(halloweenBack);
+		halloweenBack.scale.set(halloweenBack.width / 2462.3, halloweenBack.height / 1589.95);
 	}
 
 	override function initFG()
