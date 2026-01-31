@@ -1,5 +1,9 @@
 # [0.1.1] - 1/31/2026
 
+## Changed
+
+- Crash Handler File Path's now can be control-clicked by VSC or VSCodium (The format was changed so now it'll work and idfk if any other editors will work with that)
+
 ## Fixed
 
 - titleShoot playing when freakyMenu is playing
