@@ -18,12 +18,6 @@ class MainMenuState extends MusicBeatState
 		'freeplay',
 		// 'support',
 		// 'options',
-		'story mode',
-		'freeplay',
-		'story mode',
-		'freeplay',
-		'story mode',
-		'freeplay',
 	];
 	public var menuItemsGroup:FlxTypedGroup<MenuItem>;
 
