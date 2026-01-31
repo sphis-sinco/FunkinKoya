@@ -43,6 +43,13 @@ class InitState extends FlxState
 		ResaveAllSongs.run();
 		#end
 
+		FlxG.signals.postUpdate.add(function() {
+			if (FlxG.keys.pressed.F3 && FlxG.keys.pressed.C)
+			{
+				throw 'F3 + C';
+			}
+		});
+
 		FlxG.switchState(startingState);
 	}
 
