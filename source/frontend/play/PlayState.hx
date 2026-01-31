@@ -453,7 +453,7 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
-	public static var ICON_OFFSET:Int = 26;
+	public static var ICON_OFFSET:Int = 13;
 
 	override public function update(elapsed:Float)
 	{
@@ -473,8 +473,9 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.SEVEN)
 			FlxG.switchState(() -> new ChartingState());
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
+		var targIconWidth = Std.int(100);
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(targIconWidth, iconP1.width, 0.50)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(targIconWidth, iconP2.width, 0.50)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
