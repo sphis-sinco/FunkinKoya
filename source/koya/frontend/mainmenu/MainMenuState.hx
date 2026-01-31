@@ -1,5 +1,6 @@
 package koya.frontend.mainmenu;
 
+import koya.frontend.freeplay.FreeplayState;
 import flixel.math.FlxMath;
 import flixel.FlxObject;
 import koya.backend.Conductor;
@@ -83,6 +84,9 @@ class MainMenuState extends MusicBeatState
 		if (controls.UI_UP_R) select(-1);
 		if (controls.UI_DOWN_R) select(1);
 
+		if (controls.ACCEPT) accepted(menuItemsGroup.members[currentSelection].item);
+		if (controls.BACK) FlxG.switchState(() -> new TitleState());
+
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
 			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
@@ -106,6 +110,25 @@ class MainMenuState extends MusicBeatState
 			menuItem.playAnim('idle');
 
 			if (menuItem.ID == currentSelection) menuItem.playAnim('selected');
+		}
+	}
+
+	public function accepted(item:String)
+	{
+		trace('selected: $item');
+
+		switch (item)
+		{
+			case 'story mode':
+				trace('the tale you play');
+			case 'freeplay':
+				trace('FREE');
+				FlxG.switchState(() -> new FreeplayState());
+			case 'support':
+				trace('mone?');
+				FlxG.openURL('https://ko-fi.com/sphis');
+			case 'options':
+				trace('change is supported');
 		}
 	}
 }

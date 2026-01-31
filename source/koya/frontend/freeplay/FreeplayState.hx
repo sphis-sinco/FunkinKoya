@@ -1,5 +1,6 @@
 package koya.frontend.freeplay;
 
+import koya.frontend.mainmenu.MainMenuState;
 import koya.backend.songs.SongList;
 import koya.frontend.play.HealthIcon;
 import lime.utils.Assets;
@@ -222,7 +223,7 @@ class FreeplayState extends MusicBeatState
 		{
 			transitioning = true;
 			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
-			FlxG.switchState(() -> new TitleState());
+			FlxG.switchState(() -> new MainMenuState());
 		}
 
 		if (controls.ACCEPT)
