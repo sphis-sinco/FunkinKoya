@@ -9,6 +9,7 @@
 
 ## Added
 
+- WEEK 2 KOYA
 - MAIN MENU!
 - `weekList` text file
 - Face health icon for when a health Icon cannot be found
