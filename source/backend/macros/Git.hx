@@ -1,6 +1,5 @@
 package backend.macros;
 
-
 #if !display
 /**
 	Yoinked from Funkin (0.8.1)
@@ -32,6 +31,7 @@ class Git
 		process.close();
 
 		// Generates a string expression
+		haxe.macro.Context.info('[INFO] Git hash: ${commitHashSplice}', pos);
 		return macro $v{commitHashSplice};
 		#else
 		// `#if display` is used for code completion. In this case returning an
@@ -61,6 +61,7 @@ class Git
 		branchProcess.close();
 
 		// Generates a string expression
+		haxe.macro.Context.info('[INFO] Git Branch: ${branchName}', pos);
 		return macro $v{branchName};
 		#else
 		// `#if display` is used for code completion. In this case returning an
