@@ -340,7 +340,7 @@ class ChartingState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		FlxG.sound.playMusic(AssetPaths.song_inst(curSong), 0.6, false);
+		FlxG.sound.playMusic(AssetPaths.song_inst(curSong.toLowerCase()), 0.6, false);
 		if (_song.needsVoices)
 			vocals = new FlxSound().loadEmbedded(AssetPaths.song_voices(curSong.toLowerCase()));
 		else
@@ -767,6 +767,8 @@ class ChartingState extends MusicBeatState
 				curRenderedSustains.add(sustainVis);
 			}
 		}
+
+		updateHeads();
 	}
 
 	private function addSection(lengthInSteps:Int = 16):Void
