@@ -39,6 +39,8 @@ class PlayState extends MusicBeatState
 	public static var SONG_DIFFICULTY:Int = Difficulty.NORMAL;
 	public static var SONG_STAGE:String = '';
 
+	public static var chartingMode:Bool = false;
+
 	public var vocals:FlxSound;
 
 	public var notes:FlxTypedGroup<Note>;
@@ -683,6 +685,9 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 
 		Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
+
+		if (chartingMode)
+			FlxG.switchState(() -> new ChartingState());
 
 		FlxG.switchState(() -> new FreeplayState());
 	}

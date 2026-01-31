@@ -235,6 +235,7 @@ class FreeplayState extends MusicBeatState
 
 			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSongName);
 			PlayState.SONG_DIFFICULTY = currentDifficulty;
+			PlayState.chartingMode = false;
 
 			FlxG.switchState(() -> new PlayState());
 		}
