@@ -143,4 +143,5 @@
 	<define name="FIXSWAGVERSION_TRACES" unless="DIABLE_FIXSWAGVERSION_TRACES"/>
 	<define name="DEBUG_ASTERISK" if="debug" unless="DISABLE_DEBUG_ASTERISK"/>
 	
+	<define name="CRASH_HANDLER" if="desktop" />
 </project>
