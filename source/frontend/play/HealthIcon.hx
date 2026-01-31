@@ -45,6 +45,8 @@ class HealthIcon extends FunkinSprite
 
 		flipX = isPlayer;
 		this.char = char;
+		this.state = NORMAL;
+
 		scrollFactor.set();
 	}
 }

@@ -123,7 +123,7 @@ class FreeplayState extends MusicBeatState
 		add(songDifficultySprite);
 
 		opponentIcon = new HealthIcon('dad');
-		playerIcon = new HealthIcon('bf');
+		playerIcon = new HealthIcon('bf', true);
 		add(opponentIcon);
 		add(playerIcon);
 	}
@@ -175,12 +175,15 @@ class FreeplayState extends MusicBeatState
 
 		opponentIcon.char = currentSong.player2;
 		playerIcon.char = currentSong.player1;
-		
+
 		opponentIcon.screenCenter();
 		playerIcon.screenCenter();
 
 		opponentIcon.x -= opponentIcon.width;
-		playerIcon.x == playerIcon.width;
+		playerIcon.x += playerIcon.width;
+
+		opponentIcon.visible = opponentIcon.frames != null;
+		playerIcon.visible = playerIcon.frames != null;
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
