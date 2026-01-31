@@ -68,7 +68,7 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			if (field != null)
 			{
-				var newTopText = new FlxText(20, fieldY - 5, FlxG.width - 20, field, 32);
+				var newTopText = new FlxText(10, fieldY - 5, FlxG.width - 20, field, 32);
 				newTopText.scrollFactor.set();
 				newTopText.setFormat(AssetPaths.font('vcr.ttf'), 32);
 				newTopText.updateHitbox();
@@ -89,6 +89,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
+		PlayState.instance.tweenManager.active = false;
 		PlayState.instance.songScript.pause();
 	}
 
@@ -115,9 +116,11 @@ class PauseSubState extends MusicBeatSubstate
 			switch (daSelected)
 			{
 				case "Resume":
+					PlayState.instance.tweenManager.active = true;
 					close();
 				case "Restart Song":
-					FlxG.resetState();
+					PlayState.instance.tweenManager.active = true;
+					FlxG.switchState(() -> new PlayState());
 				case "Exit to menu":
 					FlxG.switchState(() -> new FreeplayState());
 			}

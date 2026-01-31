@@ -84,6 +84,8 @@ class PlayState extends MusicBeatState
 	public var currentStage:StageBackground;
 	public var songScript:SongClass;
 
+	public var tweenManager:FlxTweenManager = new FlxTweenManager();
+
 	override public function create()
 	{
 		if (instance != null)
@@ -233,7 +235,7 @@ class PlayState extends MusicBeatState
 						onComplete: function(twn:FlxTween)
 						{
 							ready.destroy();
-						}
+						},
 					});
 					FlxG.sound.play(AssetPaths.sound('intro2$altSuffix'), 0.6);
 				case 2:

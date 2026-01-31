@@ -46,11 +46,15 @@ class FreshScript extends SongClass
 		if (swagCounter == 4)
 		{
 			trace('DAD FADE');
-			FlxTween.tween(dad, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
+			dadFade = FlxTween.tween(dad, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
 				ease: FlxEase.sineInOut
 			});
+			dadFade.manager = PlayState.instance.tweenManager;
 		}
 	}
+
+	public var dadFade:FlxTween;
+	public var bfFade:FlxTween;
 
 	override public function beatHit(beat:Int)
 	{
@@ -58,15 +62,19 @@ class FreshScript extends SongClass
 		{
 			case 4:
 				trace('BOYFRIEND FADE');
-				FlxTween.tween(boyfriend, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
+				bfFade = FlxTween.tween(boyfriend, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
 					ease: FlxEase.sineInOut
 				});
+				bfFade.manager = PlayState.instance.tweenManager;
 			case 16:
 				stageBack.alpha = 1;
 				stageFloor.alpha = 1;
 				gf.alpha = 1;
 				boyfriend.alpha = 1;
 				dad.alpha = 1;
+
+				dadFade.destroy();
+				bfFade.destroy();
 
 				FlxG.camera.flash(FlxColor.WHITE, (Conductor.crochet / 1000) * 1);
 
@@ -85,5 +93,10 @@ class FreshScript extends SongClass
 			return false;
 
 		return true;
+	}
+
+	override function pause()
+	{
+		super.pause();
 	}
 }
