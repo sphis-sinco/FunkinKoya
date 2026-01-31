@@ -1,5 +1,6 @@
 package backend;
 
+import backend.play.Difficulty;
 import frontend.play.stages.storymode.MainStage;
 import backend.AssetPaths;
 import backend.Section.SwagSection;
@@ -25,13 +26,15 @@ typedef SwagSong =
 	var player1:String;
 	var player2:String;
 
-	@:deprecated("Unused and unrequired")
-	var validScore:Bool;
+	// @:deprecated("Unused and unrequired")
+	// var validScore:Bool;
 
 	var ?gfVersion:String;
 	var ?stage:String;
 
 	var ?authors:String;
+
+	var ?difficulty:Difficulty;
 
 	var ?version:Null<Int>;
 }
@@ -108,6 +111,9 @@ class Song
 			case 2:
 				swagShit.authors = 'Unknown';
 				songMissingStuff.push('authors');
+			case 3:
+				swagShit.difficulty = NORMAL;
+				songMissingStuff.push('difficulty');
 		}
 
 		if (swagShit.version < SWAGVERSION)
@@ -124,7 +130,7 @@ class Song
 		}
 	}
 
-	public static var SWAGVERSION:Int = 3;
+	public static var SWAGVERSION:Int = 4;
 
 	public static var dummySong:SwagSong = {
 		song: 'Test',
@@ -134,10 +140,10 @@ class Song
 		player1: 'bf',
 		player2: 'dad',
 		speed: 1,
-		validScore: false,
 		gfVersion: 'gf',
 		stage: new MainStage(null, false).BG_NAME,
 		authors: 'Kawai Sprite (ft. MtH)',
+		difficulty: NORMAL,
 		version: SWAGVERSION
 	}
 }

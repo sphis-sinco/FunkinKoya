@@ -1,5 +1,6 @@
 package frontend.play.editors;
 
+import backend.play.Difficulty;
 import backend.save.Save;
 import backend.Section;
 import backend.Song;
@@ -239,21 +240,13 @@ class ChartingState extends MusicBeatState
 
 		player2DropDown.selectedLabel = _song.player2;
 
-		var gfVersionDropDown = new FlxUIDropDownMenu(player2DropDown.x + player2DropDown.width + 16, player2DropDown.y,
-			FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		var difficultyDropDown = new FlxUIDropDownMenu(player2DropDown.x + player2DropDown.width + 16, player2DropDown.y,
+			FlxUIDropDownMenu.makeStrIdLabelArray(Difficulty.stringList, true), function(difficulty:String)
 		{
-			_song.gfVersion = characters[Std.parseInt(character)];
+			_song.difficulty = Difficulty.list[Std.parseInt(difficulty)];
 		});
 
-		gfVersionDropDown.selectedLabel = _song?.gfVersion ?? Song.dummySong.gfVersion;
-
-		var stageDropDown = new FlxUIDropDownMenu(gfVersionDropDown.x + gfVersionDropDown.width + 16, gfVersionDropDown.y,
-			FlxUIDropDownMenu.makeStrIdLabelArray(stages, true), function(stage:String)
-		{
-			_song.stage = stages[Std.parseInt(stage)];
-		});
-
-		stageDropDown.selectedLabel = _song?.stage ?? Song.dummySong.stage;
+		difficultyDropDown.selectedLabel = (_song?.difficulty ?? Song.dummySong.difficulty).toString();
 
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
@@ -276,6 +269,8 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(player1DropDown);
 		tab_group_song.add(new FlxText(player2DropDown.x, player2DropDown.y - 16, 0, "Opponent Character", 8));
 		tab_group_song.add(player2DropDown);
+		tab_group_song.add(new FlxText(difficultyDropDown.x, difficultyDropDown.y - 16, 0, "Song Difficulty", 8));
+		tab_group_song.add(difficultyDropDown);
 
 		UI_box.addGroup(tab_group_song);
 		UI_box.scrollFactor.set();
@@ -1017,7 +1012,7 @@ class ChartingState extends MusicBeatState
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data.trim(), _song.song.toLowerCase() + ".json");
+			_file.save(data.trim(), '${curSong.toLowerCase()}${_song.difficulty.chartSuffix()}.json');
 		}
 	}
 

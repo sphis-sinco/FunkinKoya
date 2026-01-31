@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import lime.utils.Assets;
 import backend.save.Save;
 import frontend.ui.DifficultySprite;
 import backend.play.Difficulty;
@@ -124,10 +125,10 @@ class FreeplayState extends MusicBeatState
 
 		performControls();
 
-		if (currentDifficulty < Difficulty.EASY.toInt())
-			currentDifficulty = Difficulty.EASY;
-		if (currentDifficulty > Difficulty.HARD.toInt())
-			currentDifficulty = Difficulty.HARD;
+		if (currentDifficulty < 0)
+			currentDifficulty = 0;
+		if (currentDifficulty > Difficulty.list.length - 1)
+			currentDifficulty = Difficulty.list.length - 1;
 
 		currentDifficultyEnum = currentDifficulty;
 
@@ -158,6 +159,10 @@ class FreeplayState extends MusicBeatState
 
 		songAuthorText.text = 'Composers:\n${currentSong.authors}';
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
+
+		songText.alpha = 1;
+		if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart)))
+			songText.alpha = .5;
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -221,6 +226,9 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
+			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart)))
+				return;
+
 			transitioning = true;
 			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));

@@ -6,6 +6,18 @@ enum abstract Difficulty(Int) from Int to Int
 	var NORMAL = 1;
 	var HARD = 2;
 
+	public static var list:Array<Difficulty> = [
+		EASY,
+		NORMAL,
+		HARD
+	];
+	
+	public static var stringList:Array<String> = [
+		EASY.toString(),
+		NORMAL.toString(),
+		HARD.toString()
+	];
+
 	public function change(amount:Int):Difficulty
 	{
 		var diffInt = toInt();

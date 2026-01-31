@@ -26,7 +26,8 @@ class PauseSubState extends MusicBeatSubstate
 		'PAUSED',
 		null,
 		'Song: ${PlayState.SONG.song}',
-		'Composer(s): ${PlayState.SONG.authors}'
+		'Song Composer(s): ${PlayState.SONG?.authors ?? 'Unknown'}',
+		'Song Difficulty: ${PlayState.SONG?.difficulty}'
 	];
 
 	public function new(x:Float, y:Float)
