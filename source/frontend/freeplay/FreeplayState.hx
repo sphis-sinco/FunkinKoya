@@ -1,5 +1,6 @@
 package frontend.freeplay;
 
+import frontend.play.HealthIcon;
 import lime.utils.Assets;
 import backend.save.Save;
 import frontend.ui.DifficultySprite;
@@ -63,6 +64,9 @@ class FreeplayState extends MusicBeatState
 	public var currentDifficultyEnum:Difficulty;
 	public var currentSelection:Int = 0;
 
+	public var opponentIcon:HealthIcon;
+	public var playerIcon:HealthIcon;
+
 	override function create()
 	{
 		super.create();
@@ -117,6 +121,11 @@ class FreeplayState extends MusicBeatState
 
 		songDifficultySprite = new DifficultySprite(currentDifficulty);
 		add(songDifficultySprite);
+
+		opponentIcon = new HealthIcon('dad');
+		playerIcon = new HealthIcon('bf');
+		add(opponentIcon);
+		add(playerIcon);
 	}
 
 	override function update(elapsed:Float)
@@ -163,6 +172,15 @@ class FreeplayState extends MusicBeatState
 		songText.alpha = 1;
 		if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart)))
 			songText.alpha = .5;
+
+		opponentIcon.char = currentSong.player2;
+		playerIcon.char = currentSong.player1;
+		
+		opponentIcon.screenCenter();
+		playerIcon.screenCenter();
+
+		opponentIcon.x -= opponentIcon.width;
+		playerIcon.x == playerIcon.width;
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{

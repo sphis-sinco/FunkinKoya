@@ -12,29 +12,39 @@ class HealthIcon extends FunkinSprite
 		switch (state)
 		{
 			// case WINNING: playAnim('');
-			case LOSING: playAnim('losing');
-			case _: playAnim('normal');
+			case LOSING:
+				playAnim('losing');
+			case _:
+				playAnim('normal');
 		}
 
 		return state;
 	}
 
-	public var char:String = '';
+	public var char(default, set):String = '';
 
-	public function new(char:String = 'bf', isPlayer:Bool = false)
+	function set_char(char:String):String
 	{
-		super();
-
-		this.char = char;
-
 		frames = AssetPaths.fromSparrow('healthIcons/$char', 'characters');
-		
+
 		addPrefixAnim('normal', '$char normal');
 		addPrefixAnim('losing', '$char lose');
 
 		updateHitbox();
 
 		flipX = isPlayer;
+
+		return char;
+	}
+
+	public var isPlayer:Bool = false;
+
+	public function new(char:String = 'bf', isPlayer:Bool = false)
+	{
+		super();
+
+		flipX = isPlayer;
+		this.char = char;
 		scrollFactor.set();
 	}
 }
