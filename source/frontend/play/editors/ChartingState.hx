@@ -364,7 +364,7 @@ class ChartingState extends MusicBeatState
 
 		
 		
-		check_mustHitSection = new FlxUICheckBox(stepperLength.x, stepperLength.y + 20, null, null, "Must hit section", 100, [], function()
+		check_mustHitSection = new FlxUICheckBox(stepperLength.x, stepperLength.y + 30, null, null, "Must hit section", 100, [], function()
 		{
 			modifMade('Must Hit Section');
 		});
@@ -389,13 +389,13 @@ class ChartingState extends MusicBeatState
 
 		var stepperCopy:FlxUINumericStepper = null;
 
-		var copyButton:FlxButton = new FlxButton(check_altAnim.x, check_altAnim.y + 30, "Copy last", function()
+		var copyButton:FlxButton = new FlxButton(check_changeBPM.x, check_changeBPM.y + 30, "Copy last", function()
 		{
 			if (stepperCopy != null)
 				copySection(Std.int(stepperCopy.value));
 		});
 
-		stepperCopy = new FlxUINumericStepper(copyButton.x + copyButton.width + 24, copyButton.y, 1, 1, -999, 999, 0);
+		stepperCopy = new FlxUINumericStepper(stepperSectionBPM.x , copyButton.y, 1, 1, -999, 999, 0);
 
 		var clearSectionButton:FlxButton = new FlxButton(copyButton.x, copyButton.y + 20, "Clear", clearSection);
 
