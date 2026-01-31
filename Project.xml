@@ -131,4 +131,7 @@
 
 	<!-- <define name="FREEPLAY_BG_GRID" if="debug" unless="DISABLE_FREEPLAY_BG_GRID"/> -->
 
+	<!-- Haxe 4.3.0+: Enable pretty syntax errors and stuff. -->
+	<haxedef name="message.reporting" value="pretty" />
+
 </project>

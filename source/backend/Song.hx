@@ -24,6 +24,8 @@ typedef SwagSong =
 
 	var player1:String;
 	var player2:String;
+
+	@:deprecated("Unused and unrequired")
 	var validScore:Bool;
 
 	var ?gfVersion:String;
@@ -52,7 +54,7 @@ class Song
 		this.bpm = bpm;
 	}
 
-	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
+	public static function loadFromJson(jsonInput:String, ?folder:String, fix:Bool = true):SwagSong
 	{
 		var rawJson:String = '';
 		try
@@ -69,20 +71,21 @@ class Song
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);
 
-		return parseJSONshit(Json.parse(rawJson));
+		return parseJSONshit(Json.parse(rawJson), fix);
 	}
 
-	public static function parseJSONshit(rawJson:ChartSwagSong):SwagSong
+	public static function parseJSONshit(rawJson:ChartSwagSong, fix:Bool = true):SwagSong
 	{
 		if (rawJson == null)
 			return null;
 
 		var swagShit:SwagSong = rawJson.song;
-		swagShit.validScore = true;
 
-		swagShit.version ??= 0;
-
-		fixSwagVersion(swagShit);
+		if (fix)
+		{
+			swagShit.version ??= 0;
+			fixSwagVersion(swagShit);
+		}
 
 		return swagShit;
 	}
@@ -102,6 +105,7 @@ class Song
 		if (swagShit.version < SWAGVERSION)
 		{
 			swagShit.version += 1;
+			trace('Upgraded ${swagShit.song} to v.${swagShit.version}');
 			fixSwagVersion(swagShit);
 		}
 	}

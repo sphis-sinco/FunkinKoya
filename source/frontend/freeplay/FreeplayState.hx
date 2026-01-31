@@ -71,7 +71,7 @@ class FreeplayState extends MusicBeatState
 		var stringsongList:Array<String> = [];
 		for (song in freeplaySonglist)
 		{
-			var myJSON = Song.loadFromJson(song, song);
+			var myJSON = Song.loadFromJson(song, song, false);
 			if (myJSON != null)
 			{
 				stringsongList.push(myJSON.song);
