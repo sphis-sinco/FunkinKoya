@@ -1,10 +1,5 @@
 package koya.frontend.play.stages.basegame;
 
-import flixel.tweens.FlxEase;
-import koya.backend.Conductor;
-import flixel.tweens.FlxTween;
-import flixel.FlxG;
-import flixel.math.FlxPoint;
 import koya.backend.songs.Song.SwagSong;
 
 class MainStage extends StageBackground

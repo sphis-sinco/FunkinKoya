@@ -1,5 +1,9 @@
 # [0.2.0] - 2/2026
 
+## Fixed
+
+- Freeplay now says "Composer(s)" and not "Composers"
+
 ## Changed
 
 - The FPS text now has the version text

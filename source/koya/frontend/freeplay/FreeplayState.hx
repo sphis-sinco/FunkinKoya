@@ -149,7 +149,7 @@ class FreeplayState extends MusicBeatState
 		if (currentScore < 0) songScoreText.text += '-';
 		songScoreText.text += '${Math.abs(currentScore)}'.lpad('0', 8);
 
-		songAuthorText.text = 'Composers:\n${currentSong.authors}';
+		songAuthorText.text = 'Composer(s):\n${currentSong.authors}';
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
 
 		songText.alpha = 1;

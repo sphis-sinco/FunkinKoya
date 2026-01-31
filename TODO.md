@@ -1,9 +1,6 @@
 # 0.2.0 (Week 2):
 
-- Week 2 Songs
-- Spooky Kids
 - Monster
-- Halloween BG
 - GF Halloween
 - BF Halloween
 - Story Mode
