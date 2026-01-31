@@ -362,20 +362,44 @@ class ChartingState extends MusicBeatState
 		stepperLength.value = _song.notes[curSection].lengthInSteps;
 		stepperLength.name = "section_length";
 
-		stepperSectionBPM = new FlxUINumericStepper(10, 80, 1, Conductor.bpm, 0, 999, 0);
+		
+		
+		check_mustHitSection = new FlxUICheckBox(stepperLength.x, stepperLength.y + 20, null, null, "Must hit section", 100, [], function()
+		{
+			modifMade('Must Hit Section');
+		});
+		check_mustHitSection.name = 'check_mustHit';
+		check_mustHitSection.checked = true;
+		
+		check_changeBPM = new FlxUICheckBox(check_mustHitSection.x, check_mustHitSection.y + 30, null, null, 'Change BPM', 100, [], function()
+		{
+			modifMade('Change BPM');
+		});
+		check_changeBPM.name = 'check_changeBPM';
+		
+		check_altAnim = new FlxUICheckBox(stepperLength.x, 400, null, null, "Alt Animation", 100, [], function()
+		{
+			modifMade('Alt Anim');
+		});
+		check_altAnim.name = 'check_altAnim';
+
+		stepperSectionBPM = new FlxUINumericStepper(check_changeBPM.x + check_changeBPM.width + 20, check_changeBPM.y, 1, Conductor.bpm, 0, 999, 0);
 		stepperSectionBPM.value = Conductor.bpm;
 		stepperSectionBPM.name = 'section_bpm';
 
-		var stepperCopy:FlxUINumericStepper = new FlxUINumericStepper(110, 130, 1, 1, -999, 999, 0);
+		var stepperCopy:FlxUINumericStepper = null;
 
-		var copyButton:FlxButton = new FlxButton(10, 130, "Copy last section", function()
+		var copyButton:FlxButton = new FlxButton(check_altAnim.x, check_altAnim.y + 30, "Copy last", function()
 		{
-			copySection(Std.int(stepperCopy.value));
+			if (stepperCopy != null)
+				copySection(Std.int(stepperCopy.value));
 		});
 
-		var clearSectionButton:FlxButton = new FlxButton(10, 150, "Clear", clearSection);
+		stepperCopy = new FlxUINumericStepper(copyButton.x + copyButton.width + 24, copyButton.y, 1, 1, -999, 999, 0);
 
-		var swapSection:FlxButton = new FlxButton(10, 170, "Swap section", function()
+		var clearSectionButton:FlxButton = new FlxButton(copyButton.x, copyButton.y + 20, "Clear", clearSection);
+
+		var swapSection:FlxButton = new FlxButton(clearSectionButton.x, clearSectionButton.y + 20, "Swap section", function()
 		{
 			for (i in 0..._song.notes[curSection].sectionNotes.length)
 			{
@@ -386,26 +410,6 @@ class ChartingState extends MusicBeatState
 			}
 			modifMade('Swap Section');
 		});
-
-		check_mustHitSection = new FlxUICheckBox(10, 30, null, null, "Must hit section", 100, [], function()
-		{
-			modifMade('Must Hit Section');
-		});
-		check_mustHitSection.name = 'check_mustHit';
-		check_mustHitSection.checked = true;
-		// _song.needsVoices = check_mustHit.checked;
-
-		check_altAnim = new FlxUICheckBox(10, 400, null, null, "Alt Animation", 100, [], function()
-		{
-			modifMade('Alt Anim');
-		});
-		check_altAnim.name = 'check_altAnim';
-
-		check_changeBPM = new FlxUICheckBox(10, 60, null, null, 'Change BPM', 100, [], function()
-		{
-			modifMade('Change BPM');
-		});
-		check_changeBPM.name = 'check_changeBPM';
 
 		tab_group_section.add(new FlxText(stepperLength.x, stepperLength.y - 16, 0, 'Section Length', 8));
 		tab_group_section.add(stepperLength);
@@ -503,7 +507,7 @@ class ChartingState extends MusicBeatState
 			FlxG.log.add(wname);
 			if (wname == 'section_length')
 			{
-					modifMade('Section Length');
+				modifMade('Section Length');
 				_song.notes[curSection].lengthInSteps = Std.int(nums.value);
 				updateGrid();
 			}
