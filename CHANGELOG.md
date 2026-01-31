@@ -2,6 +2,7 @@
 
 ## Changed
 
+- The logo now flys up after pressing enter on the title screen
 - Weeks now control the song list
 
 ## Added

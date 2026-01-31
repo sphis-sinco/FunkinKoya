@@ -114,22 +114,38 @@ class TitleState extends MusicBeatState
 			{
 				FlxG.sound.music.stop();
 
-				FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function() {});
+				FlxTween.cancelTweensOf(logo);
+				FlxTween.cancelTweensOf(logoDRK);
 
-				FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function() {
-					FlxG.switchState(() -> new FreeplayState());
-				});
+				var prevLogoY = logo.y;
+				logo.screenCenter(Y);
+				var centerLogoY = logo.y;
+				logo.y = prevLogoY;
+
+				FlxTween.tween(logo, {y: centerLogoY}, Conductor.crochet / 1000 * 2, {ease: FlxEase.quadIn});
+				FlxTween.tween(logoDRK, {y: centerLogoY}, Conductor.crochet / 1000 * 2, {ease: FlxEase.quadIn, startDelay: .1});
+
+				FlxG.sound.play(AssetPaths.music('titleShoot'));
+				FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, finish);
 			}
 			else
 			{
-				FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'), 1.0, false, null, true, function() {});
-
-				FlxG.camera.flash(FlxColor.WHITE, 1, function() {
-					FlxG.switchState(() -> new FreeplayState());
-				});
+				FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
+				FlxG.camera.flash(FlxColor.WHITE, 1, finish);
 			}
 		}
 
 		super.update(elapsed);
+	}
+
+	public function finish()
+	{
+		FlxTween.cancelTweensOf(logo);
+		FlxTween.cancelTweensOf(logoDRK);
+
+		FlxTween.tween(logo, {y: -(logo.height * 4)}, 1.2, {ease: (playingTitle) ? FlxEase.quadOut : FlxEase.quadInOut});
+		FlxTween.tween(logoDRK, {y: -(logo.height * 4)}, 1.2, {ease: (playingTitle) ? FlxEase.quadOut : FlxEase.quadInOut, startDelay: .1});
+
+		FlxG.switchState(() -> new FreeplayState());
 	}
 }
