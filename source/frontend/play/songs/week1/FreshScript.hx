@@ -98,5 +98,20 @@ class FreshScript extends SongClass
 	override function pause()
 	{
 		super.pause();
+
+		if (bfFade != null)
+			bfFade.active = false;
+		if (dadFade != null)
+			dadFade.active = false;
+	}
+
+	override function unpause()
+	{
+		super.unpause();
+
+		if (bfFade != null)
+			bfFade.active = true;
+		if (dadFade != null)
+			dadFade.active = true;
 	}
 }
