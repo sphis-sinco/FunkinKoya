@@ -868,7 +868,7 @@ class ChartingState extends MusicBeatState
 
 		for (i in _song.notes[curChartEditorSection].sectionNotes)
 		{
-			if (i.strumTime == note.strumTime && i.noteData % 4 == note.noteData) curSelectedNote = _song.notes[curChartEditorSection].sectionNotes[swagNum];
+			if (i.strumTime == note.strumTime && i.noteID % 4 == note.noteID) curSelectedNote = _song.notes[curChartEditorSection].sectionNotes[swagNum];
 
 			swagNum += 1;
 		}
@@ -883,7 +883,7 @@ class ChartingState extends MusicBeatState
 
 		for (i in _song.notes[curChartEditorSection].sectionNotes)
 		{
-			if (i[0] == note.strumTime && i[1] % 4 == note.noteData)
+			if (i[0] == note.strumTime && i[1] % 4 == note.noteID)
 			{
 				FlxG.log.add('FOUND EVIL NUMBER');
 				_song.notes[curChartEditorSection].sectionNotes.remove(i);
@@ -914,14 +914,14 @@ class ChartingState extends MusicBeatState
 		modifMade('Add Note');
 
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
-		var noteData = Math.floor(FlxG.mouse.x / GRID_SIZE);
+		var noteID = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
 
-		_song.notes[curChartEditorSection].sectionNotes.push([noteStrum, noteData, noteSus]);
+		_song.notes[curChartEditorSection].sectionNotes.push([noteStrum, noteID, noteSus]);
 
 		curSelectedNote = _song.notes[curChartEditorSection].sectionNotes[_song.notes[curChartEditorSection].sectionNotes.length - 1];
 
-		if (FlxG.keys.pressed.CONTROL) _song.notes[curChartEditorSection].sectionNotes.push([noteStrum, (noteData + 4) % 8, noteSus]);
+		if (FlxG.keys.pressed.CONTROL) _song.notes[curChartEditorSection].sectionNotes.push([noteStrum, (noteID + 4) % 8, noteSus]);
 
 		trace(noteStrum);
 		trace(curChartEditorSection);
@@ -951,12 +951,12 @@ class ChartingState extends MusicBeatState
 
 	function getNotes():Array<Dynamic>
 	{
-		var noteData:Array<Dynamic> = [];
+		var noteID:Array<Dynamic> = [];
 
 		for (i in _song.notes)
-			noteData.push(i.sectionNotes);
+			noteID.push(i.sectionNotes);
 
-		return noteData;
+		return noteID;
 	}
 
 	function loadJson(song:String, chart:String):Void

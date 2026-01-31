@@ -291,20 +291,20 @@ class PlayState extends MusicBeatState
 		notes = new FlxTypedGroup<Note>();
 		add(notes);
 
-		var noteData:Array<SwagSection>;
+		var noteID:Array<SwagSection>;
 
 		// NEW SHIT
-		noteData = songData.notes;
+		noteID = songData.notes;
 
 		var playerCounter:Int = 0;
 
 		var daBeats:Int = 0; // Not exactly representative of 'daBeats' lol, just how much it has looped
-		for (section in noteData)
+		for (section in noteID)
 		{
 			for (songNotes in section.sectionNotes)
 			{
 				var daStrumTime:Float = songNotes[0];
-				var daNoteData:Int = Std.int(songNotes[1] % 4);
+				var danoteID:Int = Std.int(songNotes[1] % 4);
 
 				var gottaHitNote:Bool = section.mustHitSection;
 
@@ -315,7 +315,7 @@ class PlayState extends MusicBeatState
 				else
 					oldNote = null;
 
-				var swagNote:Note = new Note(daStrumTime, daNoteData, oldNote);
+				var swagNote:Note = new Note(daStrumTime, danoteID, oldNote);
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 
@@ -328,7 +328,7 @@ class PlayState extends MusicBeatState
 				{
 					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, daNoteData, oldNote, true);
+					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, danoteID, oldNote, true);
 					sustainNote.scrollFactor.set();
 					unspawnNotes.push(sustainNote);
 
@@ -578,7 +578,7 @@ class PlayState extends MusicBeatState
 					if (currentStage.dad != null) currentStage.dad.holdTimer = 0;
 
 					opponentStrums.forEach(function(spr:FunkinSprite) {
-						if (Math.abs(daNote.noteData) == spr.ID) spr.playAnim('confirm');
+						if (Math.abs(daNote.noteID) == spr.ID) spr.playAnim('confirm');
 					});
 
 					if (SONG.needsVoices) vocals.volume = 1;
@@ -770,7 +770,7 @@ class PlayState extends MusicBeatState
 					possibleNotes.push(daNote);
 					possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 
-					ignoreList.push(daNote.noteData);
+					ignoreList.push(daNote.noteID);
 				}
 			});
 
@@ -786,7 +786,7 @@ class PlayState extends MusicBeatState
 					if (possibleNotes[0].strumTime == possibleNotes[1].strumTime)
 					{
 						for (coolNote in possibleNotes)
-							if (controlArray[coolNote.noteData] || perfectMode) goodNoteHit(coolNote);
+							if (controlArray[coolNote.noteID] || perfectMode) goodNoteHit(coolNote);
 							else
 							{
 								var inIgnoreList:Bool = false;
@@ -796,13 +796,13 @@ class PlayState extends MusicBeatState
 								if (!inIgnoreList) badNoteCheck();
 							}
 					}
-					else if (possibleNotes[0].noteData == possibleNotes[1].noteData) noteCheck(controlArray[daNote.noteData], daNote);
+					else if (possibleNotes[0].noteID == possibleNotes[1].noteID) noteCheck(controlArray[daNote.noteID], daNote);
 					else
 						for (coolNote in possibleNotes)
-							noteCheck(controlArray[coolNote.noteData], coolNote);
+							noteCheck(controlArray[coolNote.noteID], coolNote);
 				}
 				else // regular notes?
-					noteCheck(controlArray[daNote.noteData], daNote);
+					noteCheck(controlArray[daNote.noteID], daNote);
 
 				if (daNote.wasGoodHit)
 				{
@@ -818,7 +818,7 @@ class PlayState extends MusicBeatState
 		if ((up || right || down || left) && !currentStage.boyfriend?.stunned && generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note) {
-				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote) switch (daNote.noteData)
+				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote) switch (daNote.noteID)
 				{
 					case 0:
 						if (left) goodNoteHit(daNote);
@@ -922,7 +922,7 @@ class PlayState extends MusicBeatState
 				combo += 1;
 			}
 
-			if (note.noteData >= 0) health += 0.023;
+			if (note.noteID >= 0) health += 0.023;
 			else
 				health += 0.004;
 
@@ -933,7 +933,7 @@ class PlayState extends MusicBeatState
 			currentStage.makeCharacterSing(note, currentStage.boyfriend, false, altAnim);
 
 			playerStrums.forEach(function(spr:FunkinSprite) {
-				if (Math.abs(note.noteData) == spr.ID) spr.playAnim('confirm', true);
+				if (Math.abs(note.noteID) == spr.ID) spr.playAnim('confirm', true);
 			});
 
 			note.wasGoodHit = true;

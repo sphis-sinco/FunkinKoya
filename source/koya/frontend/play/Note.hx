@@ -14,7 +14,7 @@ class Note extends FunkinSprite
 	public var strumTime:Float = 0;
 
 	public var mustPress:Bool = false;
-	public var noteData:Int = 0;
+	public var noteID:Int = 0;
 	public var canBeHit:Bool = false;
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
@@ -31,10 +31,10 @@ class Note extends FunkinSprite
 	public static var BLUE_NOTE:Int = 1;
 	public static var RED_NOTE:Int = 3;
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
+	public function new(strumTime:Float, noteID:Int, ?prevNote:Note, ?sustainNote:Bool = false)
 	{
-		this.noteData = noteData;
-		super(50 + (swagWidth * this.noteData), -2000);
+		this.noteID = noteID;
+		super(50 + (swagWidth * this.noteID), -2000);
 
 		if (prevNote == null) prevNote = this;
 
@@ -45,7 +45,7 @@ class Note extends FunkinSprite
 
 		initAsset();
 
-		switch (noteData)
+		switch (noteID)
 		{
 			case 0:
 				playAnim('purpleScroll');
@@ -64,7 +64,7 @@ class Note extends FunkinSprite
 
 			x += width / 2;
 
-			switch (noteData)
+			switch (noteID)
 			{
 				case 2:
 					playAnim('greenholdend');
@@ -81,7 +81,7 @@ class Note extends FunkinSprite
 
 			if (prevNote.isSustainNote)
 			{
-				switch (prevNote.noteData)
+				switch (prevNote.noteID)
 				{
 					case 0:
 						prevNote.playAnim('purplehold');
@@ -125,7 +125,7 @@ class Note extends FunkinSprite
 
 	public function getDirectionName():String
 	{
-		return switch (Math.abs(noteData % 4))
+		return switch (Math.abs(noteID % 4))
 		{
 			case 0: 'LEFT';
 			case 1: 'DOWN';
@@ -133,8 +133,8 @@ class Note extends FunkinSprite
 			case 3: 'RIGHT';
 
 			case _:
-				trace('UNKNOWN_DIR=$noteData');
-				'UNKNOWN_DIR=$noteData';
+				trace('UNKNOWN_DIR=$noteID');
+				'UNKNOWN_DIR=$noteID';
 		}
 	}
 
