@@ -18,6 +18,10 @@ class Constants
 
 	static function get_VERSION_SUFFIX():String
 	{
+		#if EMPTY_VERSION_SUFFIX
+		return '';
+		#end
+
 		return ' : Week 1 Update';
 	}
 
@@ -25,7 +29,7 @@ class Constants
 
 	static function get_WINDOW_TITLE():String
 	{
-		return 'Funkin\' Koya' + #if debug '*' #else '' #end;
+		return 'Funkin\' Koya' + #if (DEBUG_ASTERISK) '*' #else '' #end;
 	}
 
 	public static var FREEPLAY_BORDER_COLOR_INNER(get, never):Null<FlxColor>;

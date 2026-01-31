@@ -1070,7 +1070,7 @@ class ChartingState extends MusicBeatState
 			#if INSTA_SAVE
 			try
 			{
-				sys.io.File.saveContent(path, data.trim());
+				sys.io.File.saveContent(path, data);
 				return;
 			}
 			catch (e)
@@ -1083,7 +1083,7 @@ class ChartingState extends MusicBeatState
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data.trim(), path);
+			_file.save(data, path);
 		}
 	}
 

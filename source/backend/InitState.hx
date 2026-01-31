@@ -1,5 +1,6 @@
 package backend;
 
+import backend.tasks.ResaveAllSongs;
 import backend.save.Save;
 import flixel.math.FlxRect;
 import flixel.math.FlxPoint;
@@ -35,6 +36,11 @@ class InitState extends FlxState
 
 		#if web
 		startingState = () -> new TouchHere();
+		#end
+
+
+		#if TASK_RESAVE_ALL_SONGS
+		ResaveAllSongs.run();
 		#end
 
 		FlxG.switchState(startingState);

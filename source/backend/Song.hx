@@ -131,9 +131,11 @@ class Song
 			// koyachartformat
 			// koyta
 
+			#if FIXSWAGVERSION_TRACES
 			trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
 			for (thing in songMissingStuff)
 				trace(' * Added $thing');
+			#end
 			songMissingStuff = [];
 		}
 	}

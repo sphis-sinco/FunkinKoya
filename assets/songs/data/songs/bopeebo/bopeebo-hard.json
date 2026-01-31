@@ -835,12 +835,12 @@
 			}
 		],
 		"sections": 0,
-		"bpm": 100,
 		"gfVersion": "gf",
-		"version": 5,
 		"stage": "mainStage",
 		"authors": "Unknown",
+		"generatedBy": "Funkin' Koya* 0.1.0 | ResaveAllSongs",
+		"bpm": 100,
 		"difficulty": 2,
-		"generatedBy": "Funkin' Koya* 0.1.0 : Week 1 Update | Chart Editor (koyta_5)"
+		"version": 5
 	}
 }
