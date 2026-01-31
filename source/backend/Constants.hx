@@ -22,7 +22,13 @@ class Constants
 		return '';
 		#end
 
-		return '';
+		var suffix:String = '';
+
+		#if INCLUDE_GIT
+		suffix += ' (${backend.macros.Git.branch()}:${backend.macros.Git.hash()})';
+		#end
+
+		return suffix;
 	}
 
 	public static var WINDOW_TITLE(get, never):String;
