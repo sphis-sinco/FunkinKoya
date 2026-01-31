@@ -6,7 +6,8 @@
 
 ## Fixed
 
-- titleShoot playing when freakyMenu is playing
+- The gameplay camera no longer moves in the pause screen
+- titleShoot no longer plays when pressing enter when freakyMenu is playing
 - Pause screen text going out of bounds.
 - Fresh fade intro not being functional on release builds
 

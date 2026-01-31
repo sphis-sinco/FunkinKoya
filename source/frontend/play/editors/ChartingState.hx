@@ -339,9 +339,6 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(songDropDown);
 
 		UI_box.addGroup(tab_group_song);
-		UI_box.scrollFactor.set();
-
-		FlxG.camera.follow(strumLine);
 	}
 
 	var stepperLength:FlxUINumericStepper;
