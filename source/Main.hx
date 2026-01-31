@@ -1,7 +1,7 @@
 package;
 
 import lime.app.Application;
-import backend.InitState;
+import koya.backend.InitState;
 import flixel.FlxGame;
 import openfl.display.FPS;
 import openfl.display.Sprite;
