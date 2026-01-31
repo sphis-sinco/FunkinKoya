@@ -250,6 +250,7 @@ class PlayState extends MusicBeatState
 			ease: FlxEase.cubeInOut,
 			onComplete: function(twn:FlxTween)
 			{
+				remove(spr);
 				spr.destroy();
 			}
 		});
