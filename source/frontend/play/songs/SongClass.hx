@@ -13,6 +13,8 @@ class SongClass
 
 		if (!traces.exists(song))
 			traces.set(song, []);
+
+		log(Reflect.fields(this));
 	}
 
 	public static var traces:Map<String, Array<String>> = [];
@@ -45,10 +47,10 @@ class SongClass
 
 				var tracesA:Array<String> = traces.get(song);
 
-				if (!tracesA.contains(e.message))
+				if (!tracesA.contains(err))
 				{
-					tracesA.push(e.message);
-					log(e.message);
+					tracesA.push(err);
+					log(err);
 				}
 
 				traces.set(song, tracesA);
