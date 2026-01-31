@@ -224,55 +224,35 @@ class PlayState extends MusicBeatState
 				case 0:
 					FlxG.sound.play(AssetPaths.sound('intro3$altSuffix'), 0.6);
 				case 1:
-					var ready:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.image(introAlts[0]));
-					ready.scrollFactor.set();
-					ready.updateHitbox();
-
-					ready.screenCenter();
-					add(ready);
-					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							ready.destroy();
-						},
-					});
+					countdownSprite(introAlts[0]);
 					FlxG.sound.play(AssetPaths.sound('intro2$altSuffix'), 0.6);
 				case 2:
-					var set:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.image(introAlts[1]));
-					set.scrollFactor.set();
-
-					set.screenCenter();
-					add(set);
-					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							set.destroy();
-						}
-					});
+					countdownSprite(introAlts[1]);
 					FlxG.sound.play(AssetPaths.sound('intro1$altSuffix'), 0.6);
 				case 3:
-					var go:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.image(introAlts[2]));
-					go.scrollFactor.set();
-
-					go.updateHitbox();
-
-					go.screenCenter();
-					add(go);
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							go.destroy();
-						}
-					});
+					countdownSprite(introAlts[2]);
 					FlxG.sound.play(AssetPaths.sound('introGo$altSuffix'), 0.6);
 				case 4:
 			}
 
 			swagCounter += 1;
 		}, 5);
+	}
+
+	public function countdownSprite(path:String)
+	{
+		var spr:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.image(path));
+		spr.scrollFactor.set();
+
+		spr.screenCenter();
+		add(spr);
+		FlxTween.tween(spr, {y: spr.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+			ease: FlxEase.cubeInOut,
+			onComplete: function(twn:FlxTween)
+			{
+				spr.destroy();
+			}
+		});
 	}
 
 	public var previousFrameTime:Int = 0;
