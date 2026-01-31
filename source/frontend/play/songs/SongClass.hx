@@ -32,9 +32,9 @@ class SongClass
 
 		try
 		{
-				if (!preventSpamTraces.contains(name))
-					log('Running $name with args: $args');
-				return field(args ?? []);
+			if (!preventSpamTraces.contains(name))
+				log('Running $name with args: $args');
+			return field(args ?? []);
 		}
 		catch (e)
 		{
