@@ -69,7 +69,7 @@ class FreeplayState extends MusicBeatState
 	{
 		super.create();
 
-		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
+		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist', 'songs'));
 		songList = [];
 		var stringsongList:Array<String> = [];
 		for (song in freeplaySonglist)

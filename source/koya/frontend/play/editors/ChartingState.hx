@@ -291,7 +291,7 @@ class ChartingState extends MusicBeatState
 				modifMade('Song Stage');
 		});
 
-		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
+		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist', 'songs'));
 		var stringsongList:Array<String> = [];
 		for (song in freeplaySonglist)
 		{

@@ -8,7 +8,7 @@ class ResaveAllSongs
 	public static function run()
 	{
 		#if sys
-		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
+		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist', 'songs'));
 		var songList = [];
 		for (song in freeplaySonglist)
 		{
@@ -23,10 +23,11 @@ class ResaveAllSongs
 					var curSong = myJSON.song.toLowerCase();
 					var path = '../../../../' + AssetPaths.chart(curSong, '$curSong${difficulty.chartSuffix()}');
 
+					myJSON.authors = 'Kawai Sprite';
 					switch (curSong)
 					{
-						case 'tutorial', 'bopeebo', 'fresh', 'dadbattle':
-							myJSON.authors = 'Kawai Sprite';
+						case 'monster':
+							myJSON.authors = 'Bassetfilms';
 					}
 
 					myJSON.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}Task: Resave All Songs';
@@ -36,7 +37,9 @@ class ResaveAllSongs
 				}
 			}
 		}
-		trace('Task Completed : Reexported ${songList.length} songs');
+		if (songList.length < 0) trace('Task Uncompleted : No Songs');
+		else
+			trace('Task Completed : Reexported ${songList.length} songs');
 		Sys.exit(0);
 		#else
 		trace('Task Uncompleted : Not Sys');
