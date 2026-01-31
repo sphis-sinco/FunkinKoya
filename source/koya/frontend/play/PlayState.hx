@@ -318,23 +318,28 @@ class PlayState extends MusicBeatState
 				var swagNote:Note = new Note(daStrumTime, danoteID, oldNote);
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
+				swagNote.noteData = songNotes[4] ?? null;
+				swagNote.inactive = swagNote.noteData != null;
 
 				var susLength:Float = swagNote.sustainLength;
 
 				susLength = susLength / Conductor.stepCrochet;
 				unspawnNotes.push(swagNote);
 
-				for (susNote in 0...Math.floor(susLength))
+				if (!swagNote.inactive)
 				{
-					oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
+					for (susNote in 0...Math.floor(susLength))
+					{
+						oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-					var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, danoteID, oldNote, true);
-					sustainNote.scrollFactor.set();
-					unspawnNotes.push(sustainNote);
+						var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, danoteID, oldNote, true);
+						sustainNote.scrollFactor.set();
+						unspawnNotes.push(sustainNote);
 
-					sustainNote.mustPress = gottaHitNote;
+						sustainNote.mustPress = gottaHitNote;
 
-					if (sustainNote.mustPress) sustainNote.x += FlxG.width / 2; // general offset
+						if (sustainNote.mustPress) sustainNote.x += FlxG.width / 2; // general offset
+					}
 				}
 
 				swagNote.mustPress = gottaHitNote;
@@ -793,7 +798,7 @@ class PlayState extends MusicBeatState
 								for (shit in 0...ignoreList.length)
 									if (controlArray[ignoreList[shit]]) inIgnoreList = true;
 
-								if (!inIgnoreList) badNoteCheck();
+								if (!inIgnoreList && !daNote.inactive) badNoteCheck();
 							}
 					}
 					else if (possibleNotes[0].noteID == possibleNotes[1].noteID) noteCheck(controlArray[daNote.noteID], daNote);

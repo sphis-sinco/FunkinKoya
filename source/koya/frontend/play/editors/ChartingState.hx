@@ -295,7 +295,8 @@ class ChartingState extends MusicBeatState
 		var songDropDown = new FlxUIDropDownMenu(stageDropDown.x + stageDropDown.width + 16, stageDropDown.y,
 			FlxUIDropDownMenu.makeStrIdLabelArray(SongList.stringSongList, true), function(song:String) {
 				loadSong(songList[Std.parseInt(song)].song);
-				loadJson(SongList.stringSongList[Std.parseInt(song)], Highscore.formatSong(SongList.stringSongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
+				loadJson(SongList.stringSongList[Std.parseInt(song)],
+					Highscore.formatSong(SongList.stringSongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
 		});
 
 		stageDropDown.selectedLabel = _song?.stage ?? Song.dummySong.stage;
@@ -386,6 +387,7 @@ class ChartingState extends MusicBeatState
 	}
 
 	var stepperSusLength:FlxUINumericStepper;
+	var UI_note:FlxUIInputText;
 
 	function addNoteUI():Void
 	{
@@ -396,7 +398,8 @@ class ChartingState extends MusicBeatState
 		stepperSusLength.value = 0;
 		stepperSusLength.name = 'note_susLength';
 
-		var applyLength:FlxButton = new FlxButton(100, 10, 'Apply');
+		UI_note = new FlxUIInputText(stepperSusLength.x, stepperSusLength.y + stepperSusLength.height + 32, Std.int(UI_box.width - 20), '', 8);
+		typingShit = UI_note;
 
 		tab_group_note.add(new FlxText(stepperSusLength.x, stepperSusLength.y - 16, 0, 'Note Sustain Length', 8));
 		tab_group_note.add(stepperSusLength);
@@ -757,7 +760,7 @@ class ChartingState extends MusicBeatState
 		{
 			var strum = note[0] + Conductor.stepCrochet * (_song.notes[daSec].lengthInSteps * sectionNum);
 
-			var copiedNote:Array<Dynamic> = [strum, note[1], note[2]];
+			var copiedNote:Array<Dynamic> = [strum, note[1], note[2], note[3] ?? null];
 			_song.notes[daSec].sectionNotes.push(copiedNote);
 		}
 
@@ -916,12 +919,13 @@ class ChartingState extends MusicBeatState
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
 		var noteID = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
+		var noteEventShit = null;
 
-		_song.notes[curChartEditorSection].sectionNotes.push([noteStrum, noteID, noteSus]);
+		_song.notes[curChartEditorSection].sectionNotes.push([noteStrum, noteID, noteSus, noteEventShit]);
 
 		curSelectedNote = _song.notes[curChartEditorSection].sectionNotes[_song.notes[curChartEditorSection].sectionNotes.length - 1];
 
-		if (FlxG.keys.pressed.CONTROL) _song.notes[curChartEditorSection].sectionNotes.push([noteStrum, (noteID + 4) % 8, noteSus]);
+		if (FlxG.keys.pressed.CONTROL) _song.notes[curChartEditorSection].sectionNotes.push([noteStrum, (noteID + 4) % 8, noteSus, noteEventShit]);
 
 		trace(noteStrum);
 		trace(curChartEditorSection);

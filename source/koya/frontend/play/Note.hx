@@ -31,6 +31,9 @@ class Note extends FunkinSprite
 	public static var BLUE_NOTE:Int = 1;
 	public static var RED_NOTE:Int = 3;
 
+	public var noteData:String = '';
+	public var inactive:Bool = false;
+
 	public function new(strumTime:Float, noteID:Int, ?prevNote:Note, ?sustainNote:Bool = false)
 	{
 		this.noteID = noteID;
@@ -102,6 +105,8 @@ class Note extends FunkinSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		this.visible = !inactive;
 
 		if (mustPress)
 		{
