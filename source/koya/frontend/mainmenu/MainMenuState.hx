@@ -1,5 +1,8 @@
 package koya.frontend.mainmenu;
 
+import flixel.util.FlxTimer;
+import flixel.sound.FlxSound;
+import flixel.effects.FlxFlicker;
 import koya.frontend.freeplay.FreeplayState;
 import flixel.math.FlxMath;
 import flixel.FlxObject;
@@ -111,18 +114,29 @@ class MainMenuState extends MusicBeatState
 	{
 		trace('selected: $item');
 
-		switch (item)
-		{
-			case 'story mode':
-				trace('the tale you play');
-			case 'freeplay':
-				trace('FREE');
-				FlxG.switchState(() -> new FreeplayState());
-			case 'support':
-				trace('mone?');
-				FlxG.openURL('https://ko-fi.com/sphis');
-			case 'options':
-				trace('change is supported');
-		}
+		transitioning = true;
+
+		var confirmMenu = new FlxSound().loadEmbedded(AssetPaths.sound('confirmMenu', 'ui'));
+		confirmMenu.play();
+
+		FlxFlicker.flicker(pinkBG, (confirmMenu.length / 2) / 1000, .1);
+		FlxFlicker.flicker(menuItemsGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
+
+		FlxTimer.wait((confirmMenu.length / 2) / 1000, function() {
+			switch (item)
+			{
+				case 'story mode':
+					trace('the tale you play');
+				case 'freeplay':
+					trace('FREE');
+					FlxG.switchState(() -> new FreeplayState());
+				case 'support':
+					trace('mone?');
+					FlxG.openURL('https://ko-fi.com/sphis');
+				case 'options':
+					trace('change is supported');
+			}
+			transitioning = false;
+		});
 	}
 }
