@@ -86,6 +86,8 @@ class PlayState extends MusicBeatState
 
 	public var tweenManager:FlxTweenManager = new FlxTweenManager();
 
+	public static var CAMFOLLOWLERP:Float = 0.04;
+
 	override public function create()
 	{
 		if (instance != null)
@@ -135,7 +137,7 @@ class PlayState extends MusicBeatState
 
 		add(camFollow);
 
-		FlxG.camera.follow(camFollow, LOCKON, 0.04);
+		FlxG.camera.follow(camFollow, LOCKON, CAMFOLLOWLERP);
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow.getPosition());
 

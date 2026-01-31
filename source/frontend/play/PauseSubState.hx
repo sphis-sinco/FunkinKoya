@@ -89,6 +89,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
+		FlxG.camera.followLerp = 0;
 		PlayState.instance.tweenManager.active = false;
 		PlayState.instance.songScript.pause();
 	}
@@ -113,13 +114,13 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			var daSelected:String = menuItems[curSelected];
 
+			FlxG.camera.followLerp = PlayState.CAMFOLLOWLERP;
+			PlayState.instance.tweenManager.active = true;
 			switch (daSelected)
 			{
 				case "Resume":
-					PlayState.instance.tweenManager.active = true;
 					close();
 				case "Restart Song":
-					PlayState.instance.tweenManager.active = true;
 					FlxG.switchState(() -> new PlayState());
 				case "Exit to menu":
 					FlxG.switchState(() -> new FreeplayState());
