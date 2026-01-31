@@ -117,18 +117,21 @@ class Song
 				songMissingStuff.push('generatedBy');
 		}
 
-		if (swagShit.version < SWAGVERSION)
+		if (swagShit.version != SWAGVERSION)
 		{
-			swagShit.version += 1;
+			if (swagShit.version < SWAGVERSION)
+				swagShit.version += 1;
+			if (swagShit.version > SWAGVERSION)
+				swagShit.version -= 1;
 			fixSwagVersion(swagShit);
 		}
-		else
+		else if (swagShit.version == SWAGVERSION)
 		{
 			// koya chart format
 			// koyachartformat
 			// koyta
 
-			trace('Upgraded ${swagShit.song} to koyta_${swagShit.version}');
+			trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
 			for (thing in songMissingStuff)
 				trace(' * Added $thing');
 			songMissingStuff = [];

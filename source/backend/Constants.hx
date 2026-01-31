@@ -59,4 +59,16 @@ class Constants
 	{
 		return '${Constants.WINDOW_TITLE} ${Constants.VERSION} | ';
 	}
+
+	public static var SONG_FORMAT(get, never):String;
+
+	static function get_SONG_FORMAT():String
+	{
+		return getSongFormatFromVersion(Song.SWAGVERSION);
+	}
+
+	public static function getSongFormatFromVersion(version:Int)
+	{
+		return 'koyta_$version';
+	}
 }

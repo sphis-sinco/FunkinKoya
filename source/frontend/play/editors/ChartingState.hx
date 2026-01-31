@@ -1026,7 +1026,7 @@ class ChartingState extends MusicBeatState
 	function loadJson(song:String):Void
 	{
 		trace(song);
-		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
+		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase(), false);
 		FlxG.resetState();
 	}
 
@@ -1048,7 +1048,7 @@ class ChartingState extends MusicBeatState
 	public function modifMade(?modif:String)
 	{
 		trace('chart modif : ${modif ?? 'Unknown'}');
-		_song.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}Chart Editor';
+		_song.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}Chart Editor (${Constants.SONG_FORMAT})';
 	}
 
 	private function saveLevel()
