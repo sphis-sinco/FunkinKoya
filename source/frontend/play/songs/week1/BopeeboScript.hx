@@ -2,10 +2,8 @@ package frontend.play.songs.week1;
 
 class BopeeboScript extends SongClass
 {
-	public function beatHit(args:Map<String, Dynamic>)
+	override public function beatHit(beat:Int)
 	{
-		var beat:Int = args.get('beat');
-
 		if (beat >= 128 && beat < 131)
 			PlayState.instance.vocals.volume = 0;
 

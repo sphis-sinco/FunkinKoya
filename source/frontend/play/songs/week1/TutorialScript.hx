@@ -7,12 +7,13 @@ import flixel.tweens.FlxTween;
 
 class TutorialScript extends SongClass
 {
-	public function moveCamera(args:Map<String, Dynamic>)
+	override public function moveCamera(bf:Bool):Bool
 	{
-		var bf:Bool = args.get('bf');
 		if (!bf)
 			FlxTween.tween(FlxG.camera, {zoom: 1.3}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
 		else
 			FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
+
+		return super.moveCamera(bf);
 	}
 }

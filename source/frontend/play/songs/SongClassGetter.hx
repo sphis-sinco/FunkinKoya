@@ -11,13 +11,13 @@ class SongClassGetter
 		switch (song.toLowerCase())
 		{
 			case 'tutorial':
-				return new TutorialScript(song);
+				return new TutorialScript();
 			case 'bopeebo':
-				return new BopeeboScript(song);
+				return new BopeeboScript();
 			case 'fresh':
-				return new FreshScript(song);
+				return new FreshScript();
 		}
 
-		return new SongClass(song);
+		return new SongClass();
 	}
 }

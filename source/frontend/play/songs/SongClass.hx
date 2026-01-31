@@ -5,63 +5,33 @@ class SongClass
 	public static function getSongClass(song:String):SongClass
 		return SongClassGetter.getSongClass(song);
 
-	public var song:String = '';
+	public function new() {}
 
-	public function new(song:String)
-	{
-		this.song = song;
+	public function preCountdown():Bool { return true; }
+	public function postCreate() {}
+	public function countdownTick(tick:Int) {}
 
-		if (!traces.exists(song))
-			traces.set(song, []);
+	public function startSong() {}
+	public function generateSong(dataPath:String) {}
+	public function generateStaticArrows(player:Bool, index:Int, arrow:StaticNote) {}
 
-		log(functions);
-	}
+	public function pause() {}
+	public function unpause() {}
+	public function resyncVocals() {}
+	public function keyShit() {}
 
-	public static var functions:Array<String> = [];
+	public function update(elapsed:Float) {}
 
-	public static var traces:Map<String, Array<String>> = [];
+	public function endSong():Bool { return true; }
 
-	public function log(log:Dynamic)
-	{
-		trace('> $song : $log');
-	}
+	public function popUpScore(strumtime:Float) {}
 
-	public function runFunction(name:String, ?args:Map<String, Dynamic>)
-	{
-		var field:Dynamic = Reflect.field(this, name);
+	public function noteMiss(direction:Int) {}
+	public function goodNoteHit(note:Note) {}
 
-		var preventSpamTraces:Array<String> = ['update', 'keyShit'];
+	public function stepHit(step:Int) {}
+	public function beatHit(beat:Int) {}
+	public function sectionHit(section:Int) {}
 
-		if (!functions.contains(name))
-			functions.push(name);
-
-		try
-		{
-			if (!preventSpamTraces.contains(name))
-				log('Running $name with args: $args');
-			return field(args ?? []);
-		}
-		catch (e)
-		{
-			if (!preventSpamTraces.contains(name))
-			{
-				var err:String = e.message;
-
-				if (err.toLowerCase() == 'null function pointer')
-					err = 'Missing function: $name';
-
-				var tracesA:Array<String> = traces.get(song);
-
-				if (!tracesA.contains(err))
-				{
-					tracesA.push(err);
-					log(err);
-				}
-
-				traces.set(song, tracesA);
-			}
-		}
-
-		return null;
-	}
+	public function moveCamera(bf:Bool):Bool { return true; }
 }

@@ -82,6 +82,7 @@ class PlayState extends MusicBeatState
 	public var inCutscene:Bool = false;
 
 	public var currentStage:StageBackground;
+	public var songScript:SongClass;
 
 	override public function create()
 	{
@@ -113,6 +114,8 @@ class PlayState extends MusicBeatState
 
 		currentStage = StageBackground.getStage(SONG);
 		add(currentStage);
+
+		songScript = SongClass.getSongClass(SONG.song.toLowerCase());
 
 		opponentStrums = new FlxTypedGroup<FunkinSprite>();
 		add(opponentStrums);
@@ -177,12 +180,12 @@ class PlayState extends MusicBeatState
 
 		startingSong = true;
 
-		var ret:Bool = SongClass.getSongClass(curSong)?.runFunction('preCountdown', []) ?? true;
+		var ret:Bool = songScript.preCountdown();
 		if (ret)
 			startCountdown();
 
 		super.create();
-		SongClass.getSongClass(curSong)?.runFunction('postCreate', []);
+		songScript.postCreate();
 	}
 
 	public var startTimer:FlxTimer;
@@ -205,7 +208,7 @@ class PlayState extends MusicBeatState
 		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 		{
 			currentStage.countdownTick(swagCounter);
-			SongClass.getSongClass(curSong)?.runFunction('countdownTick', ['swagCounter' => swagCounter]);
+			songScript.countdownTick(swagCounter);
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
 			introAssets.set('default', ['ready', "set", "go"]);
@@ -284,7 +287,7 @@ class PlayState extends MusicBeatState
 
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
-		SongClass.getSongClass(curSong)?.runFunction('startSong', []);
+		songScript.startSong();
 	}
 
 	var debugNum:Int = 0;
@@ -366,7 +369,7 @@ class PlayState extends MusicBeatState
 		unspawnNotes.sort(sortByShit);
 
 		generatedMusic = true;
-		SongClass.getSongClass(curSong)?.runFunction('generateSong', ['dataPath' => dataPath]);
+		songScript.generateSong(dataPath);
 	}
 
 	function sortByShit(Obj1:Note, Obj2:Note):Int
@@ -404,7 +407,7 @@ class PlayState extends MusicBeatState
 
 			babyArrow.playAnim('static');
 
-			SongClass.getSongClass(curSong)?.runFunction('generateStaticArrows', ['player' => player, 'i' => i, 'babyArrow' => babyArrow]);
+			songScript.generateStaticArrows(player, i, babyArrow);
 		}
 	}
 
@@ -435,7 +438,7 @@ class PlayState extends MusicBeatState
 			if (!startTimer.finished)
 				startTimer.active = true;
 			paused = false;
-			SongClass.getSongClass(curSong)?.runFunction('unpause', []);
+			songScript.unpause();
 		}
 
 		super.closeSubState();
@@ -450,7 +453,7 @@ class PlayState extends MusicBeatState
 		vocals.time = Conductor.songPosition;
 		vocals.play();
 
-		SongClass.getSongClass(curSong)?.runFunction('resyncVocals', []);
+		songScript.resyncVocals();
 	}
 
 	public var paused:Bool = false;
@@ -665,12 +668,12 @@ class PlayState extends MusicBeatState
 			endSong();
 		#end
 
-		SongClass.getSongClass(curSong)?.runFunction('update', ['elapsed' => elapsed]);
+		songScript.update(elapsed);
 	}
 
 	function endSong():Void
 	{
-		var ret:Bool = SongClass.getSongClass(curSong)?.runFunction('endSong', []) ?? true;
+		var ret:Bool = songScript.endSong();
 
 		if (!ret)
 			return;
@@ -775,7 +778,7 @@ class PlayState extends MusicBeatState
 			startDelay: Conductor.crochet * 0.001
 		});
 
-		SongClass.getSongClass(curSong)?.runFunction('popUpScore', ['strumtime' => strumtime]);
+		songScript.popUpScore(strumtime);
 	}
 
 	public function keyShit():Void
@@ -798,8 +801,7 @@ class PlayState extends MusicBeatState
 
 		var controlArray:Array<Bool> = [leftP, downP, upP, rightP];
 
-		// FlxG.watch.addQuick('asdfa', upP);
-		if ((upP || rightP || downP || leftP) && !currentStage.boyfriend?.stunned && generatedMusic)
+		if (controlArray.contains(true) && !currentStage.boyfriend?.stunned && generatedMusic)
 		{
 			if (currentStage.boyfriend != null)
 				currentStage.boyfriend.holdTimer = 0;
@@ -924,7 +926,7 @@ class PlayState extends MusicBeatState
 				spr.playAnim('static');
 		});
 
-		SongClass.getSongClass(curSong)?.runFunction('keyShit', []);
+		songScript.keyShit();
 	}
 
 	function noteMiss(direction:Int = 1):Void
@@ -952,7 +954,7 @@ class PlayState extends MusicBeatState
 			});
 
 			currentStage.makeCharacterSing(new Note(0, direction, null, false), currentStage.boyfriend, true);
-			SongClass.getSongClass(curSong)?.runFunction('noteMiss', ['direction' => direction]);
+			songScript.noteMiss(direction);
 		}
 	}
 
@@ -1022,7 +1024,7 @@ class PlayState extends MusicBeatState
 				note.destroy();
 			}
 
-			SongClass.getSongClass(curSong)?.runFunction('goodNoteHit', ['note' => note]);
+			songScript.goodNoteHit(note);
 		}
 	}
 
@@ -1033,7 +1035,7 @@ class PlayState extends MusicBeatState
 			if (vocals.time > Conductor.songPosition + 20 || vocals.time < Conductor.songPosition - 20)
 				resyncVocals();
 		currentStage.stepHit(curStep);
-		SongClass.getSongClass(curSong)?.runFunction('stepHit', ['step' => curStep]);
+		songScript.stepHit(curStep);
 	}
 
 	override function beatHit()
@@ -1076,7 +1078,7 @@ class PlayState extends MusicBeatState
 			currentStage.boyfriend?.playAnim('idle');
 
 		currentStage.beatHit(curBeat);
-		SongClass.getSongClass(curSong)?.runFunction('beatHit', ['beat' => curBeat]);
+		songScript.beatHit(curBeat);
 	}
 
 	override function sectionHit()
@@ -1084,12 +1086,12 @@ class PlayState extends MusicBeatState
 		if (PlayState.SONG.notes[curSection] != null)
 		{
 			currentStage.sectionHit(curSection);
-			SongClass.getSongClass(curSong)?.runFunction('sectionHit', ['section' => curSection]);
+			songScript.sectionHit(curSection);
 		}
 
 		if (generatedMusic && PlayState.SONG.notes[curSection] != null)
 		{
-			var ret:Bool = SongClass.getSongClass(curSong)?.runFunction('moveCamera', ['bf' => PlayState.SONG.notes[curSection].mustHitSection]) ?? true;
+			var ret:Bool = songScript.moveCamera(PlayState.SONG.notes[curSection].mustHitSection);
 
 			if (ret)
 			{

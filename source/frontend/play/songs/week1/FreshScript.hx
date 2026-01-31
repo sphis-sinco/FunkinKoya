@@ -31,10 +31,8 @@ class FreshScript extends SongClass
 	function get_stageFloor():FunkinSprite
 		return cast PlayState.instance.currentStage?.getThing('stageFloor');
 
-	public function countdownTick(args:Map<String, Dynamic>)
+	override public function countdownTick(swagCounter:Int)
 	{
-		var swagCounter:Int = args.get('swagCounter');
-
 		if (swagCounter == 0)
 		{
 			stageBack.alpha = 0;
@@ -54,10 +52,8 @@ class FreshScript extends SongClass
 		}
 	}
 
-	public function beatHit(args:Map<String, Dynamic>)
+	override public function beatHit(beat:Int)
 	{
-		var beat:Int = args.get('beat');
-
 		switch (beat)
 		{
 			case 4:
@@ -83,7 +79,7 @@ class FreshScript extends SongClass
 		}
 	}
 
-	public function moveCamera(args:Map<String, Dynamic>):Bool
+	override public function moveCamera(bf:Bool):Bool
 	{
 		if (PlayState.instance.curBeat < 16)
 			return false;
