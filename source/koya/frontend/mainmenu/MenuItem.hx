@@ -10,7 +10,7 @@ class MenuItem extends FunkinSprite
 	{
 		super(x, y);
 
-		frames = AssetPaths.fromSparrow('mainmenu/$item', 'mainmenu');
+		frames = AssetPaths.fromSparrow('mainmenu/$item', 'ui');
 
 		addPrefixAnim('idle', '$item idle');
 		addPrefixAnim('selected', '$item selected');
