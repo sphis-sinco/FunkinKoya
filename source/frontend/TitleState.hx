@@ -1,6 +1,6 @@
 package frontend;
 
-import frontend.play.stages.storymode.MainStage;
+import frontend.play.stages.basegame.MainStage;
 import frontend.freeplay.FreeplayState;
 import frontend.play.PlayState;
 import backend.Highscore;

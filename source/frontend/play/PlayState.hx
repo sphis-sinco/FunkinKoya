@@ -1089,14 +1089,17 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic && PlayState.SONG.notes[curSection] != null)
 		{
-			if (!PlayState.SONG.notes[curSection].mustHitSection)
-				camFollow.setPosition(currentStage.dad?.getMidpoint().x + 150, currentStage.dad?.getMidpoint().y - 100);
+			var ret:Bool = SongClass.getSongClass(curSong)?.runFunction('moveCamera', ['bf' => PlayState.SONG.notes[curSection].mustHitSection]) ?? true;
 
-			if (PlayState.SONG.notes[curSection].mustHitSection)
-				camFollow.setPosition(currentStage.boyfriend?.getMidpoint().x - 100, currentStage.boyfriend?.getMidpoint().y - 100);
+			if (ret)
+			{
+				if (!PlayState.SONG.notes[curSection].mustHitSection)
+					camFollow.setPosition(currentStage.dad?.getMidpoint().x + 150, currentStage.dad?.getMidpoint().y - 100);
 
-			currentStage.moveCamera(PlayState.SONG.notes[curSection].mustHitSection);
-			SongClass.getSongClass(curSong)?.runFunction('moveCamera', ['bf' => PlayState.SONG.notes[curSection].mustHitSection]);
+				if (PlayState.SONG.notes[curSection].mustHitSection)
+					camFollow.setPosition(currentStage.boyfriend?.getMidpoint().x - 100, currentStage.boyfriend?.getMidpoint().y - 100);
+				currentStage.moveCamera(PlayState.SONG.notes[curSection].mustHitSection);
+			}
 		}
 	}
 }

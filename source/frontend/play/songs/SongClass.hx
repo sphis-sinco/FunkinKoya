@@ -9,22 +9,20 @@ class SongClass
 
 	public function runFunction(name:String, ?args:Map<String, Dynamic>)
 	{
-		if (Reflect.hasField(this, name))
-		{
-			var field:Dynamic = Reflect.field(this, name);
+		var field:Dynamic = Reflect.field(this, name);
 
-			if (Reflect.isFunction(field))
+		if (field != null)
+			try
 			{
-				try
-				{
-					field(args ?? []);
-				}
-				catch (e)
-				{
-					trace(e.message);
-				}
+				if (!['update'].contains(name))
+					trace('Running $name with args: $args');
+				return field(args ?? []);
 			}
-		}
+			catch (e)
+			{
+				if (!['update'].contains(name))
+					trace(e.message);
+			}
 
 		return null;
 	}

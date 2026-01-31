@@ -1,7 +1,7 @@
 package backend;
 
 import backend.play.Difficulty;
-import frontend.play.stages.storymode.MainStage;
+import frontend.play.stages.basegame.MainStage;
 import backend.AssetPaths;
 import backend.Section.SwagSection;
 import haxe.Json;

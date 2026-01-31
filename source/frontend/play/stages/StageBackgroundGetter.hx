@@ -1,6 +1,6 @@
 package frontend.play.stages;
 
-import frontend.play.stages.storymode.MainStage;
+import frontend.play.stages.basegame.MainStage;
 import backend.Song.SwagSong;
 
 class StageBackgroundGetter

@@ -1,5 +1,7 @@
-package frontend.play.stages.storymode;
+package frontend.play.stages.basegame;
 
+import flixel.FlxG;
+import flixel.math.FlxPoint;
 import backend.Song.SwagSong;
 
 class MainStage extends StageBackground
@@ -51,15 +53,5 @@ class MainStage extends StageBackground
 
 		if (tick == 2)
 			stageCurtains.playAnim('open');
-
-		if (PlayState.instance != null)
-			if (startingCamPos != null)
-				PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.x);
-	}
-
-	override function setCamera()
-	{
-		if (startingCamPos == null)
-			super.setCamera();
 	}
 }
