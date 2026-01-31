@@ -148,13 +148,15 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		add(healthBar);
 
-		iconP1 = new HealthIcon(SONG.player1, true);
+		iconP1 = new HealthIcon(currentStage?.boyfriend?.iconChar, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
-		add(iconP1);
+		if (currentStage.boyfriend != null)
+			add(iconP1);
 
-		iconP2 = new HealthIcon(SONG.player2, false);
+		iconP2 = new HealthIcon(currentStage?.dad?.iconChar, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
-		add(iconP2);
+		if (currentStage.dad != null)
+			add(iconP2);
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
 		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
@@ -451,6 +453,8 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
+	public static var ICON_OFFSET:Int = 26;
+
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -475,23 +479,21 @@ class PlayState extends MusicBeatState
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
-		var iconOffset:Int = 26;
-
-		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01) - iconOffset);
-		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
+		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.value, 0, 2, 100, 0) * 0.01) - ICON_OFFSET);
+		iconP2.x = iconP1.x - iconP2.width;
 
 		if (health > 2)
 			health = 2;
 
 		if (healthBar.percent < 20)
-			iconP1.animation.curAnim.curFrame = 1;
+			iconP1.state = LOSING;
 		else
-			iconP1.animation.curAnim.curFrame = 0;
+			iconP1.state = NORMAL;
 
 		if (healthBar.percent > 80)
-			iconP2.animation.curAnim.curFrame = 1;
+			iconP2.state = LOSING;
 		else
-			iconP2.animation.curAnim.curFrame = 0;
+			iconP2.state = NORMAL;
 
 		if (startingSong)
 		{

@@ -19,9 +19,13 @@ class HealthIcon extends FunkinSprite
 		return state;
 	}
 
+	public var char:String = '';
+
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
+
+		this.char = char;
 
 		frames = AssetPaths.fromSparrow('healthIcons/$char', 'characters');
 		

@@ -23,11 +23,14 @@ class Character extends FunkinSprite
 
 	public var holdTimer:Float = 0;
 
+	public var iconChar:String = 'bf';
+
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
 		super(x, y);
 
 		curCharacter = character;
+		this.iconChar = character;
 		this.isPlayer = isPlayer;
 
 		trace('Loading character: $curCharacter');
