@@ -6,9 +6,12 @@ Just new art n animations, dialogue and cutscenes 👍
 
 Things that could definitely be done without source code with vslice but I'M PETTY >>>>>>:DDDDDDDD
 
-## GO PLAY!
+## LINKS
 
 The mod is availible to play on [gamejolt](https://gamejolt.com/games/funkinkoya/1047425)! Go check it out!
+
+SUGGEST MODS TO GET KOYA'ED HERE
+https://forms.gle/mtppAAy6DdrZSjBH9
 
 ## Credits
 
