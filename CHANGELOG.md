@@ -1,5 +1,9 @@
 # [0.2.0] - 2/2026
 
+## Added
+
+- Face health icon for when a health Icon cannot be found
+
 ## Removed
 
 - Unused `iconGrid` image
