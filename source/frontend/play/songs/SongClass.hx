@@ -30,19 +30,19 @@ class SongClass
 
 		try
 		{
-			if (field != null)
-			{
 				if (!preventSpamTraces.contains(name))
 					log('Running $name with args: $args');
 				return field(args ?? []);
-			} else {
-				throw 'Missing function: $name';
-			}
 		}
 		catch (e)
 		{
 			if (!preventSpamTraces.contains(name))
 			{
+				var err:String = e.message;
+
+				if (err.toLowerCase() == 'null function pointer')
+					err = 'Missing function: $name';
+
 				var tracesA:Array<String> = traces.get(song);
 
 				if (!tracesA.contains(e.message))
