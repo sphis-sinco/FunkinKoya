@@ -61,6 +61,7 @@ class Song
 		}
 		catch (e)
 		{
+			trace(e);
 			// rawJson = Json.stringify({song: dummySong});
 			return null;
 		}

@@ -55,7 +55,7 @@ class ChartingState extends MusicBeatState
 	var bpmTxt:FlxText;
 
 	var strumLine:FlxSprite;
-	var curSong:String = 'Dadbattle';
+	var curSong:String = '';
 	var amountSteps:Int = 0;
 	var bullshitUI:FlxGroup;
 
@@ -115,18 +115,15 @@ class ChartingState extends MusicBeatState
 		if (PlayState.SONG != null)
 			_song = PlayState.SONG;
 		else
-		{
 			_song = Song.dummySong;
-		}
+
+		trace(_song.song);
+		curSong = _song.song.toLowerCase();
 		tempBpm = _song.bpm;
 
 		addSection();
 
 		// sections = _song.notes;
-
-		loadSong(_song.song);
-		Conductor.changeBPM(_song.bpm);
-		Conductor.mapBPMChanges(_song);
 
 		bpmTxt = new FlxText(1000, 50, 0, "", 16);
 		bpmTxt.scrollFactor.set();
@@ -151,6 +148,10 @@ class ChartingState extends MusicBeatState
 		UI_box.x = FlxG.width / 2;
 		UI_box.y = 20;
 		add(UI_box);
+
+		loadSong(_song.song);
+		Conductor.changeBPM(_song.bpm);
+		Conductor.mapBPMChanges(_song);
 
 		addSongUI();
 		addSongPart2UI();
@@ -283,6 +284,8 @@ class ChartingState extends MusicBeatState
 	var UI_songTitle:FlxUIInputText;
 	var UI_songAuthors:FlxUIInputText;
 
+	var songList:Array<SwagSong> = [];
+
 	function addSongPart2UI():Void
 	{
 		UI_songAuthors = new FlxUIInputText(10, 24, Std.int(UI_box.width - 20), _song.authors ?? 'Unknown', 8);
@@ -302,6 +305,26 @@ class ChartingState extends MusicBeatState
 			_song.stage = stages[Std.parseInt(stage)];
 		});
 
+		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
+		var stringsongList:Array<String> = [];
+		for (song in freeplaySonglist)
+		{
+			var myJSON = Song.loadFromJson(song, song);
+			if (myJSON != null)
+			{
+				stringsongList.push(myJSON.song);
+				songList.push(myJSON);
+			}
+		}
+		trace(stringsongList);
+
+		var songDropDown = new FlxUIDropDownMenu(stageDropDown.x + stageDropDown.width + 16, stageDropDown.y,
+			FlxUIDropDownMenu.makeStrIdLabelArray(stringsongList, true), function(song:String)
+		{
+			loadSong(songList[Std.parseInt(song)].song);
+			loadJson(stringsongList[Std.parseInt(song)]);
+		});
+
 		stageDropDown.selectedLabel = _song?.stage ?? Song.dummySong.stage;
 
 		var tab_group_song = new FlxUI(null, UI_box);
@@ -313,6 +336,8 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(gfVersionDropDown);
 		tab_group_song.add(new FlxText(stageDropDown.x, stageDropDown.y - 16, 0, "Stage", 8));
 		tab_group_song.add(stageDropDown);
+		tab_group_song.add(new FlxText(songDropDown.x, songDropDown.y - 16, 0, "Song List", 8));
+		tab_group_song.add(songDropDown);
 
 		UI_box.addGroup(tab_group_song);
 		UI_box.scrollFactor.set();
@@ -949,15 +974,14 @@ class ChartingState extends MusicBeatState
 		var noteData:Array<Dynamic> = [];
 
 		for (i in _song.notes)
-		{
 			noteData.push(i.sectionNotes);
-		}
 
 		return noteData;
 	}
 
 	function loadJson(song:String):Void
 	{
+		trace(song);
 		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase());
 		FlxG.resetState();
 	}
@@ -965,6 +989,7 @@ class ChartingState extends MusicBeatState
 	function loadAutosave():Void
 	{
 		PlayState.SONG = Song.parseJSONshit(Save.autosave.get());
+
 		FlxG.resetState();
 	}
 
