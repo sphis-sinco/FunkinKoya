@@ -1,5 +1,6 @@
 package;
 
+import koya.frontend.ui.Watermark;
 import lime.app.Application;
 import koya.backend.InitState;
 import flixel.FlxGame;
@@ -31,7 +32,7 @@ class Main extends Sprite
 		addChild(new FlxGame(0, 0, InitState, FPS, FPS));
 
 		#if !mobile
-		addChild(new FPS(10, 3, 0xFFFFFF));
+		addChild(new Watermark(2));
 		#end
 
 		#if CRASH_HANDLER

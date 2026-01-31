@@ -13,7 +13,7 @@ before submitting an issue.
 
 # Info
 Platform: <!-- ex: HTML5 (Opera GX) -->
-Version: <!-- ex: 0.1.0 (Check the Title Screen) -->
+Version: <!-- ex: 0.2.0 (Top left corner) -->
 
 # Issue Description
 <!-- Describe the main -->

@@ -2,6 +2,8 @@
 
 ## Changed
 
+- The FPS text now has the version text
+- The FPS text now has the VCR font
 - The logo now flys up after pressing enter on the title screen
 - Weeks now control the song list
 
@@ -13,6 +15,7 @@
 
 ## Removed
 
+- Version text from Title screen
 - `freeplaySongList` text file
 - Unused `iconGrid` image
 
