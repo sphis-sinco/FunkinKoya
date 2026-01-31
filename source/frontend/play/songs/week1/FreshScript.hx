@@ -105,9 +105,9 @@ class FreshScript extends SongClass
 	{
 		super.pause();
 
-		if (bfFade?.active ?? false)
+		if (bfFade != null)
 			bfFade.active = false;
-		if (dadFade?.active ?? false)
+		if (dadFade != null)
 			dadFade.active = false;
 	}
 
@@ -115,9 +115,9 @@ class FreshScript extends SongClass
 	{
 		super.unpause();
 
-		if (!bfFade?.active ?? false)
+		if (bfFade != null)
 			bfFade.active = true;
-		if (!dadFade?.active ?? false)
+		if (dadFade != null)
 			dadFade.active = true;
 	}
 }
