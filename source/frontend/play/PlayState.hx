@@ -86,7 +86,12 @@ class PlayState extends MusicBeatState
 
 	public var tweenManager:FlxTweenManager = new FlxTweenManager();
 
-	public static var CAMFOLLOWLERP:Float = 0.04;
+	public static var CAMFOLLOWLERP(get, never):Float;
+
+	static function get_CAMFOLLOWLERP():Float
+	{
+		return 0.04;
+	}
 
 	override public function create()
 	{
