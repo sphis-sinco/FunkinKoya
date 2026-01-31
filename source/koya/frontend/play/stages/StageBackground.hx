@@ -160,7 +160,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 			if (char == null) continue;
 
 			if (startingCamPos == null) startingCamPos = FlxPoint.get(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y);
-			CharacterGetter.getCharacterStartingCamPos(startingCamPos, char.curCharacter);
+			char.getStartingCamPos(startingCamPos);
 		}
 	}
 

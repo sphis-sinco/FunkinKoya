@@ -1,5 +1,6 @@
 package koya.frontend.play.characters;
 
+import flixel.math.FlxPoint;
 import flixel.util.typeLimit.OneOfTwo;
 import animate.FlxAnimate;
 import lime.utils.Assets;
@@ -179,5 +180,10 @@ class Character extends FunkinSprite
 			addAnimationFunction('sing${dir.toUpperCase()}', 'sing${dir.toUpperCase()}');
 			if (includeMiss) addAnimationFunction('sing${dir.toUpperCase()}miss', 'sing${dir.toUpperCase()}miss');
 		}
+	}
+
+	public function getStartingCamPos(startingCamPos:FlxPoint)
+	{
+		if (startingCamPos == null) return;
 	}
 }

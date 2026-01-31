@@ -1,6 +1,7 @@
 package koya.frontend.play.characters;
 
-import flixel.math.FlxPoint;
+import koya.frontend.play.characters.ogchars.*;
+import koya.frontend.play.characters.unogchars.*;
 import koya.frontend.play.characters.bf.*;
 import koya.frontend.play.characters.gf.*;
 import koya.frontend.play.characters.parents.*;
@@ -17,15 +18,12 @@ class CharacterGetter
 				return new GFRegular(x, y, isPlayer);
 			case 'dad':
 				return new DaddyDearest(x, y, isPlayer);
+			case 'spooky':
+				return new Spooky(x, y, isPlayer);
+			case 'monster':
+				return new Monster(x, y, isPlayer);
 		}
 
 		return new Character(x, y, char, isPlayer);
-	}
-
-	public static function getCharacterStartingCamPos(startingCamPos:FlxPoint, char:String)
-	{
-		if (startingCamPos == null) return;
-
-		switch (char) {}
 	}
 }

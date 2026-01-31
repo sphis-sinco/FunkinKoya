@@ -26,12 +26,8 @@ class ResaveAllSongs
 					myJSON.authors = 'Kawai Sprite';
 					switch (curSong)
 					{
-						case 'south', 'spookeez':
-							myJSON.player2 = 'dad';
-
 						case 'monster':
 							myJSON.authors = 'Bassetfilms';
-							myJSON.player2 = 'dad';
 					}
 
 					myJSON.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}Task: Resave All Songs';

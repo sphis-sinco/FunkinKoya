@@ -3,7 +3,7 @@
 		"song": "Monster",
 		"needsVoices": true,
 		"player1": "bf",
-		"player2": "dad",
+		"player2": "monster",
 		"speed": 1.3,
 		"notes": [
 			{
