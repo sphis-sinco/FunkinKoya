@@ -91,9 +91,6 @@ class InitState extends FlxState
 
 			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return () -> new TitleState();
 
-			FlxG.sound.music.stop();
-			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
-
 			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSongName);
 			PlayState.SONG_DIFFICULTY = currentDifficulty;
 			PlayState.chartingMode = false;
