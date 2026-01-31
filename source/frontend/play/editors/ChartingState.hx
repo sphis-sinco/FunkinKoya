@@ -167,7 +167,7 @@ class ChartingState extends MusicBeatState
 
 	function addSongUI():Void
 	{
-		var UI_songTitle = new FlxUIInputText(10, 10, 70, _song.song, 8);
+		var UI_songTitle = new FlxUIInputText(10, 24, 70, _song.song, 8);
 		typingShit = UI_songTitle;
 
 		var check_voices = new FlxUICheckBox(UI_songTitle.x, UI_songTitle.y + 20, null, null, "Has voice track", 100);
@@ -234,6 +234,7 @@ class ChartingState extends MusicBeatState
 
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
+		tab_group_song.add(new FlxText(UI_songTitle.x, UI_songTitle.y - UI_songTitle.height - 4, 0, "Song Name", 8));
 		tab_group_song.add(UI_songTitle);
 
 		tab_group_song.add(check_voices);
