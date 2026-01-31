@@ -3,7 +3,7 @@ package koya.backend.save;
 import lime.app.Application;
 import koya.backend.controls.PlayerSettings;
 import flixel.FlxG;
-import koya.backend.Song.ChartSwagSong;
+import koya.backend.songs.Song.ChartSwagSong;
 
 class Save
 {

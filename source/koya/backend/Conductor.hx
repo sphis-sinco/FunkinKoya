@@ -1,6 +1,6 @@
 package koya.backend;
 
-import koya.backend.Song.SwagSong;
+import koya.backend.songs.Song.SwagSong;
 
 /**
  * ...

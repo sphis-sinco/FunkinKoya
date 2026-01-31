@@ -8,7 +8,7 @@ import koya.frontend.play.characters.*;
 import koya.frontend.play.editors.ChartingState;
 import koya.backend.*;
 import koya.backend.Section.SwagSection;
-import koya.backend.Song;
+import koya.backend.songs.Song;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;

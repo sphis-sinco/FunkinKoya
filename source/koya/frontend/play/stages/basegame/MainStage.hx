@@ -5,7 +5,7 @@ import koya.backend.Conductor;
 import flixel.tweens.FlxTween;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
-import koya.backend.Song.SwagSong;
+import koya.backend.songs.Song.SwagSong;
 
 class MainStage extends StageBackground
 {

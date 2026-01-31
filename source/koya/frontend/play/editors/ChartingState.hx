@@ -1,9 +1,10 @@
 package koya.frontend.play.editors;
 
+import koya.backend.songs.SongList;
 import koya.backend.play.Difficulty;
 import koya.backend.save.Save;
 import koya.backend.Section;
-import koya.backend.Song;
+import koya.backend.songs.Song;
 import koya.backend.*;
 import koya.backend.Conductor;
 import flixel.FlxG;
@@ -291,23 +292,10 @@ class ChartingState extends MusicBeatState
 				modifMade('Song Stage');
 		});
 
-		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist', 'songs'));
-		var stringsongList:Array<String> = [];
-		for (song in freeplaySonglist)
-		{
-			var myJSON = Song.loadFromJson(song, song, false);
-			if (myJSON != null)
-			{
-				stringsongList.push(myJSON.song);
-				songList.push(myJSON);
-			}
-		}
-		trace(stringsongList);
-
 		var songDropDown = new FlxUIDropDownMenu(stageDropDown.x + stageDropDown.width + 16, stageDropDown.y,
-			FlxUIDropDownMenu.makeStrIdLabelArray(stringsongList, true), function(song:String) {
+			FlxUIDropDownMenu.makeStrIdLabelArray(SongList.stringSongList, true), function(song:String) {
 				loadSong(songList[Std.parseInt(song)].song);
-				loadJson(stringsongList[Std.parseInt(song)], Highscore.formatSong(stringsongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
+				loadJson(SongList.stringSongList[Std.parseInt(song)], Highscore.formatSong(SongList.stringSongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
 		});
 
 		stageDropDown.selectedLabel = _song?.stage ?? Song.dummySong.stage;

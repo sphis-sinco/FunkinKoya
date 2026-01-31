@@ -1,16 +1,19 @@
 # [0.2.0] - 2/2026
 
+## Changed
+
+- Weeks now control the song list
+
 ## Added
 
+- `weekList` text file
 - Face health icon for when a health Icon cannot be found
 
 ## Removed
 
+- `freeplaySongList` text file
 - Unused `iconGrid` image
 
-## Changed
-
-- Moved `freeplaySonglist` to songs library folder
 
 # [0.1.1] - 1/31/2026
 

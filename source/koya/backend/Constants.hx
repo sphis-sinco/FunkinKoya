@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.backend.songs.Song;
 #if INCLUDE_GIT
 import koya.backend.macros.Git;
 #end

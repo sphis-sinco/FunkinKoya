@@ -1,5 +1,6 @@
 package koya.frontend.freeplay;
 
+import koya.backend.songs.SongList;
 import koya.frontend.play.HealthIcon;
 import lime.utils.Assets;
 import koya.backend.save.Save;
@@ -7,7 +8,7 @@ import koya.frontend.ui.DifficultySprite;
 import koya.backend.play.Difficulty;
 import flixel.tweens.FlxTween;
 import koya.backend.Highscore;
-import koya.backend.Song;
+import koya.backend.songs.Song;
 import koya.frontend.play.PlayState;
 import flixel.text.FlxText;
 import koya.backend.Conductor;
@@ -69,19 +70,7 @@ class FreeplayState extends MusicBeatState
 	{
 		super.create();
 
-		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist', 'songs'));
-		songList = [];
-		var stringsongList:Array<String> = [];
-		for (song in freeplaySonglist)
-		{
-			var myJSON = Song.loadFromJson(song, song, false);
-			if (myJSON != null)
-			{
-				stringsongList.push(myJSON.song);
-				songList.push(myJSON);
-			}
-		}
-		trace(stringsongList);
+		songList = SongList.songList;
 
 		#if FREEPLAY_BG_GRID
 		var GRID_SIZE = 32;

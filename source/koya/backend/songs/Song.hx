@@ -1,4 +1,4 @@
-package koya.backend;
+package koya.backend.songs;
 
 import koya.backend.play.Difficulty;
 import koya.frontend.play.stages.basegame.MainStage;
@@ -86,7 +86,7 @@ class Song
 			songMissingStuff = [];
 
 			swagShit.version ??= 0;
-			if (swagShit.version < SWAGVERSION) fixSwagVersion(swagShit);
+			fixSwagVersion(swagShit);
 		}
 
 		return swagShit;
@@ -128,9 +128,12 @@ class Song
 			// koyta
 
 			#if FIXSWAGVERSION_TRACES
-			trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
-			for (thing in songMissingStuff)
-				trace(' * Added $thing');
+			if (songMissingStuff.length > 0)
+			{
+				trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
+				for (thing in songMissingStuff)
+					trace(' * Added $thing');
+			}
 			#end
 
 			songMissingStuff = [];

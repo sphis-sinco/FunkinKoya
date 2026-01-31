@@ -6,7 +6,7 @@ import lime.utils.Assets;
 import flixel.graphics.frames.FlxAtlasFrames;
 import koya.backend.AssetPaths;
 import koya.frontend.play.characters.CharacterGetter;
-import koya.backend.Song.SwagSong;
+import koya.backend.songs.Song.SwagSong;
 import flixel.math.FlxPoint;
 import koya.frontend.play.characters.Character;
 import flixel.FlxBasic;

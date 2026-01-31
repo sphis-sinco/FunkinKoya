@@ -1,7 +1,7 @@
 package koya.frontend.play.stages;
 
 import koya.frontend.play.stages.basegame.MainStage;
-import koya.backend.Song.SwagSong;
+import koya.backend.songs.Song.SwagSong;
 
 class StageBackgroundGetter
 {
