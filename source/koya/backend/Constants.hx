@@ -1,5 +1,8 @@
 package koya.backend;
 
+#if INCLUDE_GIT
+import koya.backend.macros.Git;
+#end
 import koya.frontend.ui.ArrowUI;
 import koya.frontend.freeplay.FreeplayBorderSprite;
 import flixel.util.FlxColor;
@@ -22,10 +25,10 @@ class Constants
 		return '';
 		#end
 
-		var suffix:String = '';
+		var suffix:String = ' : Week 2 Update';
 
 		#if INCLUDE_GIT
-		suffix += ' (${backend.macros.Git.branch()}:${backend.macros.Git.hash()})';
+		suffix += ' (${Git.branch()}:${Git.hash()})';
 		#end
 
 		return suffix;
