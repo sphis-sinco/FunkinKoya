@@ -38,6 +38,7 @@ class MusicBeatState extends FlxUIState
 
 		updateCurStep();
 		updateBeat();
+		updateSection();
 
 		if (oldStep != curStep && curStep > 0)
 			stepHit();
@@ -48,6 +49,13 @@ class MusicBeatState extends FlxUIState
 	private function updateBeat():Void
 	{
 		curBeat = Math.floor(curStep / 4);
+	}
+	
+	public var curSection:Int = 0;
+
+	private function updateSection()
+	{
+		curSection = Math.floor(curStep / 16);
 	}
 
 	private function updateCurStep():Void

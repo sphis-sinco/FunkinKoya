@@ -1,5 +1,6 @@
 package frontend.play;
 
+import frontend.play.songs.SongClass;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.text.FlxText;
@@ -87,6 +88,8 @@ class PauseSubState extends MusicBeatSubstate
 		changeSelection();
 
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
+		SongClass.getSongClass(PlayState.instance.curSong)?.runFunction('pause', []);
 	}
 
 	override function update(elapsed:Float)

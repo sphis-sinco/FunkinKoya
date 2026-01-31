@@ -1,9 +1,5 @@
 package frontend.play.stages.storymode;
 
-import flixel.tweens.FlxEase;
-import backend.Conductor;
-import flixel.FlxG;
-import flixel.tweens.FlxTween;
 import backend.Song.SwagSong;
 
 class MainStage extends StageBackground
@@ -65,21 +61,5 @@ class MainStage extends StageBackground
 	{
 		if (startingCamPos == null)
 			super.setCamera();
-	}
-
-	override function moveCamera(bf:Bool)
-	{
-		super.moveCamera(bf);
-
-		if (!bf)
-		{
-			if (PlayState.instance.curSong == 'tutorial')
-				FlxTween.tween(FlxG.camera, {zoom: 1.3}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
-		}
-		else
-		{
-			if (PlayState.instance.curSong == 'tutorial')
-				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
-		}
 	}
 }
