@@ -2,6 +2,7 @@
 
 ## Fixed
 
+- titleShoot playing when freakyMenu is playing
 - Pause screen text going out of bounds.
 - Fresh fade intro not being functional on release builds
 

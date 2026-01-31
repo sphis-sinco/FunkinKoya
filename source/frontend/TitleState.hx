@@ -48,7 +48,8 @@ class TitleState extends MusicBeatState
 		{
 			if (FlxG.sound.music == null || !FlxG.sound.music.playing)
 			{
-				FlxG.sound.playMusic(AssetPaths.music('title'), 0.7, false);
+				// no onComplete function? wtf
+				FlxG.sound.playMusic(AssetPaths.music('title'), 0.7, false, null);
 				playingTitle = true;
 				Conductor.changeBPM(140);
 				FlxG.sound.music.fadeIn(Conductor.crochet / 1000 * 4, 0, 0.7);
@@ -102,6 +103,7 @@ class TitleState extends MusicBeatState
 		{
 			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
 			Conductor.changeBPM(102);
+			playingTitle = false;
 		}
 
 		if (FlxG.sound.music != null)
