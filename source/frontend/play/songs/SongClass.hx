@@ -17,26 +17,38 @@ class SongClass
 
 	public static var traces:Map<String, Array<String>> = [];
 
+	public function log(log:Dynamic)
+	{
+		trace('> $song : $log');
+	}
+
 	public function runFunction(name:String, ?args:Map<String, Dynamic>)
 	{
 		var field:Dynamic = Reflect.field(this, name);
 
+		var preventSpamTraces:Array<String> = ['update', 'keyShit'];
+
 		try
 		{
-			if (!['update'].contains(name))
-				trace('Running $name with args: $args');
-			return field(args ?? []);
+			if (field != null)
+			{
+				if (!preventSpamTraces.contains(name))
+					log('Running $name with args: $args');
+				return field(args ?? []);
+			} else {
+				throw 'Missing function: $name';
+			}
 		}
 		catch (e)
 		{
-			if (!['update'].contains(name))
+			if (!preventSpamTraces.contains(name))
 			{
 				var tracesA:Array<String> = traces.get(song);
 
 				if (!tracesA.contains(e.message))
 				{
 					tracesA.push(e.message);
-					trace(e.message);
+					log(e.message);
 				}
 
 				traces.set(song, tracesA);
