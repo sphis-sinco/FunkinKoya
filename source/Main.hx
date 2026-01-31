@@ -5,9 +5,7 @@ import backend.InitState;
 import flixel.FlxGame;
 import openfl.display.FPS;
 import openfl.display.Sprite;
-
-
-//crash handler stuff
+// crash handler stuff
 #if CRASH_HANDLER
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
@@ -21,15 +19,21 @@ using StringTools;
 
 class Main extends Sprite
 {
+	#if web
+	public static var FPS:Int = 60;
+	#else
+	public static var FPS:Int = 144;
+	#end
+
 	public function new()
 	{
 		super();
-		addChild(new FlxGame(0, 0, InitState));
+		addChild(new FlxGame(0, 0, InitState, FPS, FPS));
 
 		#if !mobile
 		addChild(new FPS(10, 3, 0xFFFFFF));
 		#end
-		
+
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
