@@ -58,14 +58,20 @@ class MusicBeatSubstate extends FlxSubState
 		curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
 	}
 
+
 	public function stepHit():Void
 	{
 		if (curStep % 4 == 0)
 			beatHit();
+		if (curStep % 16 == 0)
+			sectionHit();
 	}
 
 	public function beatHit():Void
 	{
-		//do literally nothing dumbass
+	}
+
+	public function sectionHit():Void
+	{
 	}
 }

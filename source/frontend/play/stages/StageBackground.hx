@@ -200,4 +200,22 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 		character.playAnim(animationName + ((addition != null) ? addition : ''), true);
 	}
+
+	public function stepHit(step:Int) {};
+	public function beatHit(beat:Int) {};
+	public function sectionHit(section:Int) {};
+
+	public function moveCamera(bf:Bool)
+	{
+		for (char in [(bf) ? boyfriend : dad])
+		{
+			if (char == null)
+				continue;
+
+			PlayState.instance.camFollow.x += char.cameraOffsets[0];
+			PlayState.instance.camFollow.y += char.cameraOffsets[1];
+
+			char.cameraMoveToMe();
+		}
+	};
 }

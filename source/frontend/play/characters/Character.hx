@@ -129,6 +129,9 @@ class Character extends FunkinSprite
 	public function getCharacterOffsetsPath():String
 		return AssetPaths.txt('${getDataPathPrefix()}character_offsets', getDataPathLibrary());
 
+	public function getCameraOffsetsPath():String
+		return AssetPaths.txt('${getDataPathPrefix()}camera_offsets', getDataPathLibrary());
+
 	public function getCharacterOffsets()
 	{
 		var offsetPath = getCharacterOffsetsPath();
@@ -137,6 +140,23 @@ class Character extends FunkinSprite
 			return;
 
 		trace(' * found character offset file: $offsetPath');
+		var offsetfile = Assets.getText(offsetPath).split('\n');
+
+		cameraOffsets = [];
+		for (line in offsetfile)
+			cameraOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
+	}
+
+	public function cameraMoveToMe() {}
+
+	public function getCameraOffsets()
+	{
+		var offsetPath = getCameraOffsetsPath();
+
+		if (!Assets.exists(offsetPath))
+			return;
+
+		trace(' * found camera offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
 		generalOffsets = [];

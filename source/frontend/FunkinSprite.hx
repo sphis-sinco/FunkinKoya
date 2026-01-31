@@ -23,6 +23,7 @@ class FunkinSprite extends FlxAnimate
 
 	public var animOffsets:Map<String, Array<Float>> = [];
 	public var generalOffsets:Array<Float> = [0, 0];
+	public var cameraOffsets:Array<Float> = [0, 0];
 
 	/**
 	 * Whether or not this sprite has an animation with the given ID.

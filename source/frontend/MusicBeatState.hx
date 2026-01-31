@@ -70,9 +70,15 @@ class MusicBeatState extends FlxUIState
 	{
 		if (curStep % 4 == 0)
 			beatHit();
+		if (curStep % 16 == 0)
+			sectionHit();
 	}
 
 	public function beatHit():Void
+	{
+	}
+
+	public function sectionHit():Void
 	{
 	}
 }

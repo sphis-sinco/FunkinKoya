@@ -401,11 +401,6 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function tweenCamIn():Void
-	{
-		FlxTween.tween(FlxG.camera, {zoom: 1.3}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
-	}
-
 	override function openSubState(SubState:FlxSubState)
 	{
 		if (paused)
@@ -524,25 +519,6 @@ class PlayState extends MusicBeatState
 			}
 
 			// Conductor.lastSongPos = FlxG.sound.music.time;
-		}
-
-		if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
-		{
-			if (camFollow.x != currentStage.dad?.getMidpoint().x + 150 && !PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
-			{
-				camFollow.setPosition(currentStage.dad?.getMidpoint().x + 150, currentStage.dad?.getMidpoint().y - 100);
-
-				if (curSong == 'tutorial')
-					tweenCamIn();
-			}
-
-			if (PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection && camFollow.x != currentStage.boyfriend?.getMidpoint().x - 100)
-			{
-				camFollow.setPosition(currentStage.boyfriend?.getMidpoint().x - 100, currentStage.boyfriend?.getMidpoint().y - 100);
-
-				if (curSong == 'tutorial')
-					FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
-			}
 		}
 
 		if (camZooming)
@@ -1032,6 +1008,7 @@ class PlayState extends MusicBeatState
 		if (SONG.needsVoices)
 			if (vocals.time > Conductor.songPosition + 20 || vocals.time < Conductor.songPosition - 20)
 				resyncVocals();
+		currentStage.stepHit(curStep);
 	}
 
 	override function beatHit()
@@ -1092,6 +1069,25 @@ class PlayState extends MusicBeatState
 
 			if (curBeat % 8 == 7)
 				currentStage.boyfriend?.playAnim('hey', true);
+		}
+
+		currentStage.beatHit(curBeat);
+	}
+
+	override function sectionHit()
+	{
+		if (PlayState.SONG.notes[Std.int(curStep / 16)] != null)
+			currentStage.sectionHit(Std.int(curStep / 16));
+
+		if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
+		{
+			if (!PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
+				camFollow.setPosition(currentStage.dad?.getMidpoint().x + 150, currentStage.dad?.getMidpoint().y - 100);
+
+			if (PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
+				camFollow.setPosition(currentStage.boyfriend?.getMidpoint().x - 100, currentStage.boyfriend?.getMidpoint().y - 100);
+			
+			currentStage.moveCamera(PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection);
 		}
 	}
 }
