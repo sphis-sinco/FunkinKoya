@@ -212,7 +212,7 @@ class ChartingState extends MusicBeatState
 
 		var reloadSongJson:FlxButton = new FlxButton(reloadSong.x, saveButton.y + 30, "Reload JSON", function()
 		{
-			loadJson(_song.song.toLowerCase());
+			loadJson(curSong.toLowerCase(), curSong.toLowerCase());
 		});
 
 		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, 'load autosave', loadAutosave);
@@ -249,7 +249,7 @@ class ChartingState extends MusicBeatState
 			modifMade('Song Difficulty');
 		});
 
-		difficultyDropDown.selectedLabel = (_song?.difficulty ?? Song.dummySong.difficulty).toString();
+		difficultyDropDown.selectedLabel = Difficulty.stringList[(_song?.difficulty ?? Song.dummySong.difficulty).toInt()];
 
 		var tab_group_song = new FlxUI(null, UI_box);
 		tab_group_song.name = "Song";
@@ -324,7 +324,7 @@ class ChartingState extends MusicBeatState
 			FlxUIDropDownMenu.makeStrIdLabelArray(stringsongList, true), function(song:String)
 		{
 			loadSong(songList[Std.parseInt(song)].song);
-			loadJson(stringsongList[Std.parseInt(song)]);
+			loadJson(stringsongList[Std.parseInt(song)], Highscore.formatSong(stringsongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
 		});
 
 		stageDropDown.selectedLabel = _song?.stage ?? Song.dummySong.stage;
@@ -362,21 +362,19 @@ class ChartingState extends MusicBeatState
 		stepperLength.value = _song.notes[curSection].lengthInSteps;
 		stepperLength.name = "section_length";
 
-		
-		
 		check_mustHitSection = new FlxUICheckBox(stepperLength.x, stepperLength.y + 30, null, null, "Must hit section", 100, [], function()
 		{
 			modifMade('Must Hit Section');
 		});
 		check_mustHitSection.name = 'check_mustHit';
 		check_mustHitSection.checked = true;
-		
+
 		check_changeBPM = new FlxUICheckBox(check_mustHitSection.x, check_mustHitSection.y + 30, null, null, 'Change BPM', 100, [], function()
 		{
 			modifMade('Change BPM');
 		});
 		check_changeBPM.name = 'check_changeBPM';
-		
+
 		check_altAnim = new FlxUICheckBox(stepperLength.x, 400, null, null, "Alt Animation", 100, [], function()
 		{
 			modifMade('Alt Anim');
@@ -395,7 +393,7 @@ class ChartingState extends MusicBeatState
 				copySection(Std.int(stepperCopy.value));
 		});
 
-		stepperCopy = new FlxUINumericStepper(stepperSectionBPM.x , copyButton.y, 1, 1, -999, 999, 0);
+		stepperCopy = new FlxUINumericStepper(stepperSectionBPM.x, copyButton.y, 1, 1, -999, 999, 0);
 
 		var clearSectionButton:FlxButton = new FlxButton(copyButton.x, copyButton.y + 20, "Clear", clearSection);
 
@@ -1028,10 +1026,10 @@ class ChartingState extends MusicBeatState
 		return noteData;
 	}
 
-	function loadJson(song:String):Void
+	function loadJson(song:String, chart:String):Void
 	{
-		trace(song);
-		PlayState.SONG = Song.loadFromJson(song.toLowerCase(), song.toLowerCase(), false);
+		trace(AssetPaths.chart(song.toLowerCase(), chart));
+		PlayState.SONG = Song.loadFromJson(chart ?? song.toLowerCase(), song.toLowerCase(), false);
 		FlxG.resetState();
 	}
 
@@ -1058,19 +1056,34 @@ class ChartingState extends MusicBeatState
 
 	private function saveLevel()
 	{
-		var json = {
-			"song": _song
+		var json:ChartSwagSong = {
+			song: _song
 		};
 
-		var data:String = Json.stringify(json);
+		var data:String = Json.stringify(json, '\t');
 
 		if ((data != null) && (data.length > 0))
 		{
+			var path = AssetPaths.chart(curSong.toLowerCase(), '${curSong.toLowerCase()}${_song.difficulty.chartSuffix()}');
+			trace(path);
+
+			#if INSTA_SAVE
+			try
+			{
+				sys.io.File.saveContent(path, data.trim());
+				return;
+			}
+			catch (e)
+			{
+				trace(e);
+			}
+			#end
+
 			_file = new FileReference();
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data.trim(), '${curSong.toLowerCase()}${_song.difficulty.chartSuffix()}.json');
+			_file.save(data.trim(), path);
 		}
 	}
 
