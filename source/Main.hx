@@ -74,6 +74,7 @@ class Main extends Sprite
 
 		File.saveContent(path, errMsg + "\n");
 
+		Sys.println('\n\nCRASH:');
 		Sys.println(errMsg);
 		Sys.println("Crash dump saved in " + Path.normalize(path));
 
