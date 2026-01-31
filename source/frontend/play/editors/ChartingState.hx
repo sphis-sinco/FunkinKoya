@@ -117,6 +117,8 @@ class ChartingState extends MusicBeatState
 		else
 			_song = Song.dummySong;
 
+		Song.fixSwagVersion(_song);
+
 		trace(_song.song);
 		curSong = _song.song.toLowerCase();
 		tempBpm = _song.bpm;
