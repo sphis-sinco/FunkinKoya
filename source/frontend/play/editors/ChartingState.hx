@@ -208,24 +208,24 @@ class ChartingState extends MusicBeatState
 
 		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, 'load autosave', loadAutosave);
 
-		var stepperSpeed:FlxUINumericStepper = new FlxUINumericStepper(10, 80, 0.1, 1, 0.1, 10, 1);
-		stepperSpeed.value = _song.speed;
-		stepperSpeed.name = 'song_speed';
-
-		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(10, 65, 1, 1, 1, 339, 0);
+		var stepperBPM:FlxUINumericStepper = new FlxUINumericStepper(check_mute_inst.x, check_mute_inst.y + 30, 1, 1, 1, 339, 0);
 		stepperBPM.value = Conductor.bpm;
 		stepperBPM.name = 'song_bpm';
+
+		var stepperSpeed:FlxUINumericStepper = new FlxUINumericStepper(stepperBPM.x, stepperBPM.y + 30, 0.1, 1, 0.1, 10, 1);
+		stepperSpeed.value = _song.speed;
+		stepperSpeed.name = 'song_speed';
 
 		var characters:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/characterList', 'characters'));
 		var stages:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/stageList', 'backgrounds'));
 
-		var player1DropDown = new FlxUIDropDownMenu(10, 132, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		var player1DropDown = new FlxUIDropDownMenu(stepperSpeed.x, stepperSpeed.y + 48, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player1 = characters[Std.parseInt(character)];
 		});
 		player1DropDown.selectedLabel = _song.player1;
 
-		var player2DropDown = new FlxUIDropDownMenu(140, 132, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
+		var player2DropDown = new FlxUIDropDownMenu(player1DropDown.x + player1DropDown.width + 16, player1DropDown.x, FlxUIDropDownMenu.makeStrIdLabelArray(characters, true), function(character:String)
 		{
 			_song.player2 = characters[Std.parseInt(character)];
 		});
