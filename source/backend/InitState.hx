@@ -46,6 +46,10 @@ class InitState extends FlxState
 		return () -> new frontend.freeplay.FreeplayState();
 		#end
 
+		#if CHARTING
+		return () -> new frontend.play.editors.ChartingState();
+		#end
+
 		return () -> new frontend.TitleState();
 	}
 

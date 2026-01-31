@@ -23,22 +23,28 @@ using StringTools;
 
 class FreeplayState extends MusicBeatState
 {
-	public var songList:Array<String> = [];
+	public var songList:Array<SwagSong> = [];
 
 	public var songText:FlxText = new FlxText();
 	public var songScoreText:FlxText = new FlxText();
+	public var songAuthorText:FlxText = new FlxText();
 
 	public var songDifficultySprite:DifficultySprite;
 
-	public var currentSong(get, never):String;
+	public var currentSong(get, never):SwagSong;
 
-	function get_currentSong():String
+	function get_currentSong():SwagSong
 		return songList[currentSelection];
+
+	public var currentSongName(get, never):String;
+
+	function get_currentSongName():String
+		return currentSong.song;
 
 	public var currentSongChart(get, never):String;
 
 	function get_currentSongChart():String
-		return Highscore.formatSong(currentSong, currentDifficulty);
+		return Highscore.formatSong(currentSongName, currentDifficulty);
 
 	public var currentScore(get, never):Int;
 
@@ -60,8 +66,19 @@ class FreeplayState extends MusicBeatState
 	{
 		super.create();
 
-		songList = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
-		trace(songList);
+		var freeplaySonglist = CoolUtil.coolTextFile(AssetPaths.txt('data/freeplaySonglist'));
+		songList = [];
+		var stringsongList:Array<String> = [];
+		for (song in freeplaySonglist)
+		{
+			var myJSON = Song.loadFromJson(song, song);
+			if (myJSON != null)
+			{
+				stringsongList.push(myJSON.song);
+				songList.push(myJSON);
+			}
+		}
+		trace(stringsongList);
 
 		#if FREEPLAY_BG_GRID
 		var GRID_SIZE = 32;
@@ -88,6 +105,14 @@ class FreeplayState extends MusicBeatState
 		songScoreText.y -= 8;
 
 		add(songScoreText);
+
+		songAuthorText.fieldWidth = downBorder.innerSprite.width;
+		songAuthorText.alignment = CENTER;
+		songAuthorText.size = 32;
+
+		songAuthorText.x = downBorder.innerSprite.x;
+
+		add(songAuthorText);
 
 		songDifficultySprite = new DifficultySprite(currentDifficulty);
 		add(songDifficultySprite);
@@ -123,13 +148,16 @@ class FreeplayState extends MusicBeatState
 		arrow_LEFT.alpha = (currentDifficulty == Difficulty.EASY.toInt()) ? 0.5 : 1;
 		arrow_RIGHT.alpha = (currentDifficulty == Difficulty.HARD.toInt()) ? 0.5 : 1;
 
-		songText.text = currentSong;
+		songText.text = currentSongName;
 		songText.screenCenter(Y);
 
 		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}):\n';
 		if (currentScore < 0)
 			songScoreText.text += '-';
 		songScoreText.text += '${Math.abs(currentScore)}'.lpad('0', 8);
+
+		songAuthorText.text = 'Composers:\n${currentSong.authors}';
+		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -197,7 +225,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
 
-			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSong);
+			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSongName);
 			PlayState.SONG_DIFFICULTY = currentDifficulty;
 
 			FlxG.switchState(() -> new PlayState());

@@ -9,7 +9,8 @@ import lime.utils.Assets;
 
 using StringTools;
 
-typedef ChartSwagSong = {
+typedef ChartSwagSong =
+{
 	var song:SwagSong;
 }
 
@@ -53,7 +54,16 @@ class Song
 
 	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
 	{
-		var rawJson = Assets.getText(AssetPaths.chart(folder, jsonInput)).trim();
+		var rawJson:String = '';
+		try
+		{
+			rawJson = Assets.getText(AssetPaths.chart(folder, jsonInput)).trim();
+		}
+		catch (e)
+		{
+			// rawJson = Json.stringify({song: dummySong});
+			rawJson = null;
+		}
 
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);
@@ -63,6 +73,9 @@ class Song
 
 	public static function parseJSONshit(rawJson:ChartSwagSong):SwagSong
 	{
+		if (rawJson == null)
+			return null;
+
 		var swagShit:SwagSong = rawJson.song;
 		swagShit.validScore = true;
 
@@ -77,9 +90,12 @@ class Song
 	{
 		switch (swagShit.version)
 		{
-			case 0: swagShit.gfVersion = 'gf';
-			case 1: swagShit.stage = new MainStage(null, false).BG_NAME;
-			case 2: swagShit.authors = 'Unknown';
+			case 0:
+				swagShit.gfVersion = dummySong.gfVersion;
+			case 1:
+				swagShit.stage = dummySong.stage;
+			case 2:
+				swagShit.authors = 'Unknown';
 		}
 
 		if (swagShit.version < SWAGVERSION)
@@ -90,4 +106,19 @@ class Song
 	}
 
 	public static var SWAGVERSION:Int = 3;
+
+	public static var dummySong:SwagSong = {
+		song: 'Test',
+		notes: [],
+		bpm: 150,
+		needsVoices: true,
+		player1: 'bf',
+		player2: 'dad',
+		speed: 1,
+		validScore: false,
+		gfVersion: 'gf',
+		stage: new MainStage(null, false).BG_NAME,
+		authors: 'Kawai Sprite (ft. MtH)',
+		version: SWAGVERSION
+	}
 }

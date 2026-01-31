@@ -116,16 +116,7 @@ class ChartingState extends MusicBeatState
 			_song = PlayState.SONG;
 		else
 		{
-			_song = {
-				song: 'Test',
-				notes: [],
-				bpm: 150,
-				needsVoices: true,
-				player1: 'bf',
-				player2: 'dad',
-				speed: 1,
-				validScore: false
-			};
+			_song = Song.dummySong;
 		}
 		tempBpm = _song.bpm;
 
@@ -349,10 +340,9 @@ class ChartingState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		FlxG.sound.playMusic(AssetPaths.music('${daSong}_Inst'), 0.6);
-
+		FlxG.sound.playMusic(AssetPaths.song_inst(curSong), 0.6, false);
 		if (_song.needsVoices)
-			vocals = new FlxSound().loadEmbedded(AssetPaths.music('${daSong}_Voices'));
+			vocals = new FlxSound().loadEmbedded(AssetPaths.song_voices(curSong.toLowerCase()));
 		else
 			vocals = new FlxSound();
 		FlxG.sound.list.add(vocals);
