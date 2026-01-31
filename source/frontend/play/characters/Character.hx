@@ -75,25 +75,21 @@ class Character extends FunkinSprite
 		{
 			if (!debugMode)
 			{
-				if (anim.name?.startsWith('sing'))
-					holdTimer += elapsed;
+				if (anim.name?.startsWith('sing')) holdTimer += elapsed;
 				else
 					holdTimer = 0;
 
 				if (anim.finished)
 				{
-					if (anim.name?.endsWith('miss'))
-						playAnim('idle', true, false, 10);
+					if (anim.name?.endsWith('miss')) playAnim('idle', true, false, 10);
 
-					if (anim.name == 'firstDeath')
-						playAnim('deathLoop');
+					if (anim.name == 'firstDeath') playAnim('deathLoop');
 				}
 			}
 		}
 		else
 		{
-			if (anim.name?.startsWith('sing'))
-				holdTimer += elapsed;
+			if (anim.name?.startsWith('sing')) holdTimer += elapsed;
 
 			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
 			{
@@ -109,8 +105,7 @@ class Character extends FunkinSprite
 
 	public function dance()
 	{
-		if (!debugMode)
-			playAnim('idle');
+		if (!debugMode) playAnim('idle');
 	}
 
 	public function initChar()
@@ -137,8 +132,7 @@ class Character extends FunkinSprite
 	{
 		var offsetPath = getCharacterOffsetsPath();
 
-		if (!Assets.exists(offsetPath))
-			return;
+		if (!Assets.exists(offsetPath)) return;
 
 		trace(' * found character offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
@@ -154,8 +148,7 @@ class Character extends FunkinSprite
 	{
 		var offsetPath = getCameraOffsetsPath();
 
-		if (!Assets.exists(offsetPath))
-			return;
+		if (!Assets.exists(offsetPath)) return;
 
 		trace(' * found camera offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
@@ -169,8 +162,7 @@ class Character extends FunkinSprite
 	{
 		var offsetPath = getAnimationOffsetsPath();
 
-		if (!Assets.exists(offsetPath))
-			return;
+		if (!Assets.exists(offsetPath)) return;
 
 		trace('found animation offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
@@ -178,15 +170,14 @@ class Character extends FunkinSprite
 		parseAnimationOffsetFile(offsetfile);
 	}
 
-	public function addSingingAnimations(includeMiss:Bool = false, addAnimationFunction:(name:String, prefix:String)->Void)
+	public function addSingingAnimations(includeMiss:Bool = false, addAnimationFunction:(name:String, prefix:String) -> Void)
 	{
 		var directions = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 
 		for (dir in directions)
 		{
 			addAnimationFunction('sing${dir.toUpperCase()}', 'sing${dir.toUpperCase()}');
-			if (includeMiss)
-				addAnimationFunction('sing${dir.toUpperCase()}miss', 'sing${dir.toUpperCase()}miss');
+			if (includeMiss) addAnimationFunction('sing${dir.toUpperCase()}miss', 'sing${dir.toUpperCase()}miss');
 		}
 	}
 }

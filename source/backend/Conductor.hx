@@ -6,7 +6,6 @@ import backend.Song.SwagSong;
  * ...
  * @author
  */
-
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;
@@ -28,9 +27,7 @@ class Conductor
 
 	public static var bpmChangeMap:Array<BPMChangeEvent> = [];
 
-	public function new()
-	{
-	}
+	public function new() {}
 
 	public static function mapBPMChanges(song:SwagSong)
 	{
@@ -41,14 +38,15 @@ class Conductor
 		var totalPos:Float = 0;
 		for (i in 0...song.notes.length)
 		{
-			if(song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
+			if (song.notes[i].changeBPM && song.notes[i].bpm != curBPM)
 			{
 				curBPM = song.notes[i].bpm;
-				var event:BPMChangeEvent = {
-					stepTime: totalSteps,
-					songTime: totalPos,
-					bpm: curBPM
-				};
+				var event:BPMChangeEvent =
+					{
+						stepTime: totalSteps,
+						songTime: totalPos,
+						bpm: curBPM
+					};
 				bpmChangeMap.push(event);
 			}
 

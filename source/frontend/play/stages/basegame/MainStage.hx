@@ -54,7 +54,6 @@ class MainStage extends StageBackground
 	{
 		super.countdownTick(tick);
 
-		if (tick == 2)
-			stageCurtains.playAnim('open');
+		if (tick == 2) stageCurtains.playAnim('open');
 	}
 }

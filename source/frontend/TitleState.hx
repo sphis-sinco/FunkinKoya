@@ -93,8 +93,7 @@ class TitleState extends MusicBeatState
 	{
 		super.stepHit();
 
-		if (curStep % 5 == 0)
-			logoDRK.animation.play('bump');
+		if (curStep % 5 == 0) logoDRK.animation.play('bump');
 	}
 
 	override function update(elapsed:Float)
@@ -106,8 +105,7 @@ class TitleState extends MusicBeatState
 			playingTitle = false;
 		}
 
-		if (FlxG.sound.music != null)
-			Conductor.songPosition = FlxG.sound.music.time;
+		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
 
 		if (controls.ACCEPT && !transitioning)
 		{
@@ -118,8 +116,7 @@ class TitleState extends MusicBeatState
 
 				FlxG.sound.play(AssetPaths.music('titleShoot'), 1.0, false, null, true, function() {});
 
-				FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function()
-				{
+				FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, function() {
 					FlxG.switchState(() -> new FreeplayState());
 				});
 			}
@@ -127,8 +124,7 @@ class TitleState extends MusicBeatState
 			{
 				FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'), 1.0, false, null, true, function() {});
 
-				FlxG.camera.flash(FlxColor.WHITE, 1, function()
-				{
+				FlxG.camera.flash(FlxColor.WHITE, 1, function() {
 					FlxG.switchState(() -> new FreeplayState());
 				});
 			}

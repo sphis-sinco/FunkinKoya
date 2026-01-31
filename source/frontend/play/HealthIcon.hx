@@ -9,18 +9,16 @@ class HealthIcon extends FunkinSprite
 
 	function set_state(state:HealthIconState):HealthIconState
 	{
-		if (state == null)
-			state = NORMAL;
+		if (state == null) state = NORMAL;
 
-		if (anim.getNameList().length > 0)
-			switch (state)
-			{
-				// case WINNING: playAnim('');
-				case LOSING:
-					playAnim('losing');
-				case _:
-					playAnim('normal');
-			}
+		if (anim.getNameList().length > 0) switch (state)
+		{
+			// case WINNING: playAnim('');
+			case LOSING:
+				playAnim('losing');
+			case _:
+				playAnim('normal');
+		}
 
 		return state;
 	}

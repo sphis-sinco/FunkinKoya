@@ -11,9 +11,12 @@ class CharacterGetter
 	{
 		switch (char)
 		{
-			case 'bf': return new BFRegular(x, y, isPlayer);
-			case 'gf': return new GFRegular(x, y, isPlayer);
-			case 'dad': return new DaddyDearest(x, y, isPlayer);
+			case 'bf':
+				return new BFRegular(x, y, isPlayer);
+			case 'gf':
+				return new GFRegular(x, y, isPlayer);
+			case 'dad':
+				return new DaddyDearest(x, y, isPlayer);
 		}
 
 		return new Character(x, y, char, isPlayer);
@@ -23,7 +26,6 @@ class CharacterGetter
 	{
 		if (startingCamPos == null) return;
 
-		switch(char)
-		{}
+		switch (char) {}
 	}
 }

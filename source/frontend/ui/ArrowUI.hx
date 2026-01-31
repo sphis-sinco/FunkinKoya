@@ -5,14 +5,16 @@ import flixel.FlxSprite;
 
 class ArrowUI extends FlxSprite
 {
-	public static var SKIN_DIFFICULTY_SELECT:ArrowUISkinData = {
-		animation_suffix: ' difficulty select',
-		path: 'ui_arrows-difficulty-select'
-	};
-	public static var SKIN_DEFAULT:ArrowUISkinData = {
-		animation_suffix: '',
-		path: 'ui_arrows'
-	};
+	public static var SKIN_DIFFICULTY_SELECT:ArrowUISkinData =
+		{
+			animation_suffix: ' difficulty select',
+			path: 'ui_arrows-difficulty-select'
+		};
+	public static var SKIN_DEFAULT:ArrowUISkinData =
+		{
+			animation_suffix: '',
+			path: 'ui_arrows'
+		};
 
 	override public function new(direction:ArrowUIDirection, ?skin:ArrowUISkinData, ?x:Float, ?y:Float)
 	{

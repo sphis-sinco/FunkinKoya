@@ -48,9 +48,10 @@ class FreshScript extends SongClass
 			if (dad != null)
 			{
 				trace('DAD FADE');
-				dadFade = FlxTween.tween(dad, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
-					ease: FlxEase.sineInOut
-				});
+				dadFade = FlxTween.tween(dad, {alpha: 1}, (Conductor.crochet / 1000) * 4,
+					{
+						ease: FlxEase.sineInOut
+					});
 				dadFade.manager = PlayState.instance.tweenManager;
 			}
 		}
@@ -67,9 +68,10 @@ class FreshScript extends SongClass
 				if (boyfriend != null)
 				{
 					trace('BOYFRIEND FADE');
-					bfFade = FlxTween.tween(boyfriend, {alpha: 1}, (Conductor.crochet / 1000) * 4, {
-						ease: FlxEase.sineInOut
-					});
+					bfFade = FlxTween.tween(boyfriend, {alpha: 1}, (Conductor.crochet / 1000) * 4,
+						{
+							ease: FlxEase.sineInOut
+						});
 					bfFade.manager = PlayState.instance.tweenManager;
 				}
 			case 16:
@@ -95,8 +97,7 @@ class FreshScript extends SongClass
 
 	override public function moveCamera(bf:Bool):Bool
 	{
-		if (PlayState.instance.curBeat < 16)
-			return false;
+		if (PlayState.instance.curBeat < 16) return false;
 
 		return true;
 	}
@@ -105,19 +106,15 @@ class FreshScript extends SongClass
 	{
 		super.pause();
 
-		if (bfFade != null)
-			bfFade.active = false;
-		if (dadFade != null)
-			dadFade.active = false;
+		if (bfFade != null) bfFade.active = false;
+		if (dadFade != null) dadFade.active = false;
 	}
 
 	override function unpause()
 	{
 		super.unpause();
 
-		if (bfFade != null)
-			bfFade.active = true;
-		if (dadFade != null)
-			dadFade.active = true;
+		if (bfFade != null) bfFade.active = true;
+		if (dadFade != null) dadFade.active = true;
 	}
 }

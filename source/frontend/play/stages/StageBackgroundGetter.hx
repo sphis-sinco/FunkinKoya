@@ -9,7 +9,8 @@ class StageBackgroundGetter
 	{
 		switch (stage.toLowerCase())
 		{
-			case 'mainstage': return new MainStage(song);
+			case 'mainstage':
+				return new MainStage(song);
 		}
 
 		return new StageBackground(song);

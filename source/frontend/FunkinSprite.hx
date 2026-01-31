@@ -16,8 +16,7 @@ class FunkinSprite extends FlxAnimate
 			var x = splitLine[1] ?? '0';
 			var y = splitLine[2] ?? '0';
 
-			if (anim != null)
-				addOffset(anim, Std.parseFloat(x), Std.parseFloat(y));
+			if (anim != null) addOffset(anim, Std.parseFloat(x), Std.parseFloat(y));
 		}
 	}
 
@@ -32,9 +31,8 @@ class FunkinSprite extends FlxAnimate
 	public function hasAnimation(id:String):Bool
 	{
 		var animationList:Array<String> = this.anim?.getNameList() ?? [];
-		
-		if (animationList.contains(id))
-			return true;
+
+		if (animationList.contains(id)) return true;
 
 		return false;
 	}
@@ -48,8 +46,7 @@ class FunkinSprite extends FlxAnimate
 	function correctAnimationName(name:String, ?fallback:String):String
 	{
 		// If the animation exists, we're good.
-		if (hasAnimation(name))
-			return name;
+		if (hasAnimation(name)) return name;
 
 		// Attempt to strip a `-alt` suffix, if it exists.
 		if (name.lastIndexOf('-') != -1)
@@ -86,8 +83,7 @@ class FunkinSprite extends FlxAnimate
 		anim.play(correctAnimationName(AnimName), Force, Reversed, Frame);
 
 		var daOffset = animOffsets.get(anim.name);
-		if (animOffsets.exists(anim.name))
-			offset.set(daOffset[0] + (generalOffsets[0] ?? 0), daOffset[1] + (generalOffsets[1] ?? 0));
+		if (animOffsets.exists(anim.name)) offset.set(daOffset[0] + (generalOffsets[0] ?? 0), daOffset[1] + (generalOffsets[1] ?? 0));
 		else
 			offset.set(0 + (generalOffsets[0] ?? 0), 0 + (generalOffsets[1] ?? 0));
 	}

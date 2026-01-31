@@ -15,13 +15,10 @@ class GFRegular extends Character
 	{
 		super.playAnim(AnimName, Force, Reversed, Frame);
 
-		if (AnimName == 'singLEFT')
-			danced = true;
-		else if (AnimName == 'singRIGHT')
-			danced = false;
+		if (AnimName == 'singLEFT') danced = true;
+		else if (AnimName == 'singRIGHT') danced = false;
 
-		if (AnimName == 'singUP' || AnimName == 'singDOWN')
-			danced = !danced;
+		if (AnimName == 'singUP' || AnimName == 'singDOWN') danced = !danced;
 	}
 
 	override function initChar()
@@ -31,7 +28,7 @@ class GFRegular extends Character
 		addIndicesFrameLabelAnim('danceLeft', 'danceBeat', [0, 1, 2, 3, 4]);
 		addIndicesFrameLabelAnim('danceRight', 'danceBeat', [5, 6, 7, 8, 9]);
 		addFrameLabelAnim('sad', 'sad');
-		
+
 		addSingingAnimations(false, (name, prefix) -> addFrameLabelAnim(name, prefix));
 	}
 
@@ -39,13 +36,11 @@ class GFRegular extends Character
 	{
 		if (!debugMode)
 		{
-			if (anim.name?.startsWith('hair'))
-				return;
+			if (anim.name?.startsWith('hair')) return;
 
 			danced = !danced;
 
-			if (danced)
-				playAnim('danceRight');
+			if (danced) playAnim('danceRight');
 			else
 				playAnim('danceLeft');
 		}
@@ -55,8 +50,7 @@ class GFRegular extends Character
 	{
 		super.update(elapsed);
 
-		if (anim.name == 'hairFall' && anim.finished)
-			playAnim('danceRight');
+		if (anim.name == 'hairFall' && anim.finished) playAnim('danceRight');
 	}
 
 	override function getDataPathPrefix():String

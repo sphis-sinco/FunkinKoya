@@ -16,6 +16,7 @@ class MusicBeatState extends FlxUIState
 
 	public var curStep:Int = 0;
 	public var curBeat:Int = 0;
+
 	private var controls(get, never):Controls;
 
 	inline function get_controls():Controls
@@ -23,11 +24,10 @@ class MusicBeatState extends FlxUIState
 
 	override function create()
 	{
-		if (transIn != null)
-			trace('reg ' + transIn.region);
+		if (transIn != null) trace('reg ' + transIn.region);
 
 		super.create();
-		
+
 		FlxG.mouse.visible = false;
 
 		sectionHit();
@@ -42,8 +42,7 @@ class MusicBeatState extends FlxUIState
 		updateBeat();
 		updateSection();
 
-		if (oldStep != curStep && curStep > 0)
-			stepHit();
+		if (oldStep != curStep && curStep > 0) stepHit();
 
 		super.update(elapsed);
 	}
@@ -52,7 +51,7 @@ class MusicBeatState extends FlxUIState
 	{
 		curBeat = Math.floor(curStep / 4);
 	}
-	
+
 	public var curSection:Int = 0;
 
 	private function updateSection()
@@ -62,15 +61,15 @@ class MusicBeatState extends FlxUIState
 
 	private function updateCurStep():Void
 	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: 0
-		}
+		var lastChange:BPMChangeEvent =
+			{
+				stepTime: 0,
+				songTime: 0,
+				bpm: 0
+			}
 		for (i in 0...Conductor.bpmChangeMap.length)
 		{
-			if (Conductor.songPosition >= Conductor.bpmChangeMap[i].songTime)
-				lastChange = Conductor.bpmChangeMap[i];
+			if (Conductor.songPosition >= Conductor.bpmChangeMap[i].songTime) lastChange = Conductor.bpmChangeMap[i];
 		}
 
 		curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
@@ -78,17 +77,11 @@ class MusicBeatState extends FlxUIState
 
 	public function stepHit():Void
 	{
-		if (curStep % 4 == 0)
-			beatHit();
-		if (curStep % 16 == 0)
-			sectionHit();
+		if (curStep % 4 == 0) beatHit();
+		if (curStep % 16 == 0) sectionHit();
 	}
 
-	public function beatHit():Void
-	{
-	}
+	public function beatHit():Void {}
 
-	public function sectionHit():Void
-	{
-	}
+	public function sectionHit():Void {}
 }

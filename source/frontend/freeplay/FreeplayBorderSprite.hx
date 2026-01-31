@@ -18,8 +18,8 @@ class FreeplayBorderSprite extends FlxTypedGroup<FlxSprite>
 	{
 		super();
 
-		innerSprite = new FlxSprite(x + (INNER_PADDING / 2),y + (INNER_PADDING / 2)).makeGraphic(width - INNER_PADDING, height - INNER_PADDING, COLOR_INNER);
-		outerSprite = new FlxSprite(x,y).makeGraphic(width, height, COLOR_OUTER);
+		innerSprite = new FlxSprite(x + (INNER_PADDING / 2), y + (INNER_PADDING / 2)).makeGraphic(width - INNER_PADDING, height - INNER_PADDING, COLOR_INNER);
+		outerSprite = new FlxSprite(x, y).makeGraphic(width, height, COLOR_OUTER);
 
 		add(outerSprite);
 		add(innerSprite);

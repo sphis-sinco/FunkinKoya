@@ -52,10 +52,8 @@ class FreeplayState extends MusicBeatState
 
 	function get_currentScore():Int
 	{
-		if (Save.songScores.get() == null)
-			return 0;
-		if (!Save.songScores.get().exists(currentSongChart))
-			return 0;
+		if (Save.songScores.get() == null) return 0;
+		if (!Save.songScores.get().exists(currentSongChart)) return 0;
 
 		return Save.songScores.get().get(currentSongChart);
 	}
@@ -134,17 +132,13 @@ class FreeplayState extends MusicBeatState
 
 		performControls();
 
-		if (currentDifficulty < 0)
-			currentDifficulty = 0;
-		if (currentDifficulty > Difficulty.list.length - 1)
-			currentDifficulty = Difficulty.list.length - 1;
+		if (currentDifficulty < 0) currentDifficulty = 0;
+		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = Difficulty.list.length - 1;
 
 		currentDifficultyEnum = currentDifficulty;
 
-		if (currentSelection < 0)
-			currentSelection = 0;
-		if (currentSelection >= songList.length)
-			currentSelection = songList.length - 1;
+		if (currentSelection < 0) currentSelection = 0;
+		if (currentSelection >= songList.length) currentSelection = songList.length - 1;
 
 		FlxG.watch.addQuick('currentScore', currentScore);
 
@@ -162,16 +156,14 @@ class FreeplayState extends MusicBeatState
 		songText.screenCenter(Y);
 
 		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}):\n';
-		if (currentScore < 0)
-			songScoreText.text += '-';
+		if (currentScore < 0) songScoreText.text += '-';
 		songScoreText.text += '${Math.abs(currentScore)}'.lpad('0', 8);
 
 		songAuthorText.text = 'Composers:\n${currentSong.authors}';
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
 
 		songText.alpha = 1;
-		if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart)))
-			songText.alpha = .5;
+		if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) songText.alpha = .5;
 
 		opponentIcon.char = currentSong.player2;
 		playerIcon.char = currentSong.player1;
@@ -191,8 +183,7 @@ class FreeplayState extends MusicBeatState
 			Conductor.changeBPM(102);
 		}
 
-		if (FlxG.sound.music != null)
-			Conductor.songPosition = FlxG.sound.music.time;
+		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
 	}
 
 	public var transitioning:Bool = false;
@@ -247,8 +238,7 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
-			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart)))
-				return;
+			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return;
 
 			transitioning = true;
 			FlxG.sound.music.stop();

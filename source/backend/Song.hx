@@ -77,8 +77,7 @@ class Song
 
 	public static function parseJSONshit(rawJson:ChartSwagSong, fix:Bool = true):SwagSong
 	{
-		if (rawJson == null)
-			return null;
+		if (rawJson == null) return null;
 
 		var swagShit:SwagSong = rawJson.song;
 
@@ -87,8 +86,7 @@ class Song
 			songMissingStuff = [];
 
 			swagShit.version ??= 0;
-			if (swagShit.version < SWAGVERSION)
-				fixSwagVersion(swagShit);
+			if (swagShit.version < SWAGVERSION) fixSwagVersion(swagShit);
 		}
 
 		return swagShit;
@@ -119,10 +117,8 @@ class Song
 
 		if (swagShit.version != SWAGVERSION)
 		{
-			if (swagShit.version < SWAGVERSION)
-				swagShit.version += 1;
-			if (swagShit.version > SWAGVERSION)
-				swagShit.version -= 1;
+			if (swagShit.version < SWAGVERSION) swagShit.version += 1;
+			if (swagShit.version > SWAGVERSION) swagShit.version -= 1;
 			fixSwagVersion(swagShit);
 		}
 		else if (swagShit.version == SWAGVERSION)
@@ -143,21 +139,20 @@ class Song
 
 	public static var SWAGVERSION:Int = 5;
 
-	public static var dummySong:SwagSong = {
-		song: 'Test',
-		notes: [],
-		bpm: 150,
-		needsVoices: true,
-		player1: 'bf',
-		player2: 'dad',
-		speed: 1,
-		
-		gfVersion: 'gf',
-		stage: new MainStage(null, false).BG_NAME,
-		authors: 'Kawai Sprite (ft. MtH)',
-		difficulty: NORMAL,
-		generatedBy: 'Macohi (hand)',
-
-		version: SWAGVERSION
-	}
+	public static var dummySong:SwagSong =
+		{
+			song: 'Test',
+			notes: [],
+			bpm: 150,
+			needsVoices: true,
+			player1: 'bf',
+			player2: 'dad',
+			speed: 1,
+			gfVersion: 'gf',
+			stage: new MainStage(null, false).BG_NAME,
+			authors: 'Kawai Sprite (ft. MtH)',
+			difficulty: NORMAL,
+			generatedBy: 'Macohi (hand)',
+			version: SWAGVERSION
+		}
 }

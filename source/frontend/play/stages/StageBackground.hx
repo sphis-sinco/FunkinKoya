@@ -18,8 +18,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	{
 		var offsetPath = getStagePropOffsetPath();
 
-		if (!Assets.exists(offsetPath))
-			return;
+		if (!Assets.exists(offsetPath)) return;
 
 		trace('found stage prop value file: $offsetPath');
 
@@ -90,8 +89,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		this.songData = song;
 		this.BG_NAME = BG_NAME;
 
-		if (performInit)
-			init();
+		if (performInit) init();
 	}
 
 	var startingCamPos:FlxPoint;
@@ -103,29 +101,25 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		trace('Loading stage: $BG_NAME');
 
 		initBG();
-		if (songData != null)
-			initChars();
+		if (songData != null) initChars();
 		initFG();
 
 		getPropOffsets();
 
 		setCamera();
 
-		if (dad != null && gf != null)
-			if (dad.curCharacter == gf.curCharacter)
-			{
-				dad.setPosition(gf.x, gf.y);
-				gf.visible = false;
-			}
+		if (dad != null && gf != null) if (dad.curCharacter == gf.curCharacter)
+		{
+			dad.setPosition(gf.x, gf.y);
+			gf.visible = false;
+		}
 	}
 
 	public function setCamera()
 	{
-		if (PlayState.instance == null)
-			return;
+		if (PlayState.instance == null) return;
 
-		if (startingCamPos != null)
-			PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);
+		if (startingCamPos != null) PlayState.instance.camFollow.setPosition(startingCamPos.x, startingCamPos.y);
 		else
 			PlayState.instance.camFollow.screenCenter();
 	}
@@ -133,8 +127,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	public function initInfo()
 	{
 		PlayState.SONG_STAGE = BG_NAME;
-		if (PlayState.instance != null)
-			PlayState.instance.defaultCamZoom = 1.05;
+		if (PlayState.instance != null) PlayState.instance.defaultCamZoom = 1.05;
 	}
 
 	public function initBG() {}
@@ -153,25 +146,20 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 			gf.scrollFactor.set(0.95, 0.95);
 		}
 
-		if (songData?.player2 != null)
-			dad = Character.getCharacter(songData?.player2, false, 0, 0);
+		if (songData?.player2 != null) dad = Character.getCharacter(songData?.player2, false, 0, 0);
 
-		if (songData?.player1 != null)
-			boyfriend = Character.getCharacter(songData?.player1, true, 0, 0);
+		if (songData?.player1 != null) boyfriend = Character.getCharacter(songData?.player1, true, 0, 0);
 
 		for (char in [gf, dad, boyfriend])
 		{
-			if (char != null)
-				add(char);
+			if (char != null) add(char);
 		}
 
 		for (char in [dad, gf, boyfriend])
 		{
-			if (char == null)
-				continue;
+			if (char == null) continue;
 
-			if (startingCamPos == null)
-				startingCamPos = FlxPoint.get(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y);
+			if (startingCamPos == null) startingCamPos = FlxPoint.get(char.getGraphicMidpoint().x, char.getGraphicMidpoint().y);
 			CharacterGetter.getCharacterStartingCamPos(startingCamPos, char.curCharacter);
 		}
 	}
@@ -184,33 +172,30 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function countdownTick(tick:Int = 0)
 	{
-		if (dad != null)
-			dad.dance();
-		if (gf != null)
-			gf.dance();
-		if (boyfriend != null)
-			boyfriend.dance();
+		if (dad != null) dad.dance();
+		if (gf != null) gf.dance();
+		if (boyfriend != null) boyfriend.dance();
 	}
 
 	public function makeCharacterSing(note:Note, character:Character, ?miss:Bool = false, ?addition:String)
 	{
 		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
-		if (miss)
-			animationName += 'miss';
+		if (miss) animationName += 'miss';
 
 		character.playAnim(animationName + ((addition != null) ? addition : ''), true);
 	}
 
 	public function stepHit(step:Int) {};
+
 	public function beatHit(beat:Int) {};
+
 	public function sectionHit(section:Int) {};
 
 	public function moveCamera(bf:Bool)
 	{
 		for (char in [(bf) ? boyfriend : dad])
 		{
-			if (char == null)
-				continue;
+			if (char == null) continue;
 
 			PlayState.instance.camFollow.x += char.cameraOffsets[0];
 			PlayState.instance.camFollow.y += char.cameraOffsets[1];

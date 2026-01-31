@@ -38,7 +38,6 @@ class InitState extends FlxState
 		startingState = () -> new TouchHere();
 		#end
 
-
 		#if TASK_RESAVE_ALL_SONGS
 		ResaveAllSongs.run();
 		#end

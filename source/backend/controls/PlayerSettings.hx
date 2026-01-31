@@ -42,10 +42,8 @@ class PlayerSettings
 		if (controlData != null)
 		{
 			var keyData:Dynamic = null;
-			if (id == 0 && controlData.p1 != null && controlData.p1.keys != null)
-				keyData = controlData.p1.keys;
-			else if (id == 1 && controlData.p2 != null && controlData.p2.keys != null)
-				keyData = controlData.p2.keys;
+			if (id == 0 && controlData.p1 != null && controlData.p1.keys != null) keyData = controlData.p1.keys;
+			else if (id == 1 && controlData.p2 != null && controlData.p2.keys != null) keyData = controlData.p2.keys;
 
 			if (keyData != null)
 			{
@@ -55,8 +53,7 @@ class PlayerSettings
 			}
 		}
 
-		if (useDefault)
-			controls.setKeyboardScheme(Solo);
+		if (useDefault) controls.setKeyboardScheme(Solo);
 	}
 
 	function addGamepad(gamepad:FlxGamepad)
@@ -66,10 +63,8 @@ class PlayerSettings
 		if (controlData != null)
 		{
 			var padData:Dynamic = null;
-			if (id == 0 && controlData.p1 != null && controlData.p1.pad != null)
-				padData = controlData.p1.pad;
-			else if (id == 1 && controlData.p2 != null && controlData.p2.pad != null)
-				padData = controlData.p2.pad;
+			if (id == 0 && controlData.p1 != null && controlData.p1.pad != null) padData = controlData.p1.pad;
+			else if (id == 1 && controlData.p2 != null && controlData.p2.pad != null) padData = controlData.p2.pad;
 
 			if (padData != null)
 			{
@@ -79,26 +74,22 @@ class PlayerSettings
 			}
 		}
 
-		if (useDefault)
-			controls.addDefaultGamepad(gamepad.id);
+		if (useDefault) controls.addDefaultGamepad(gamepad.id);
 	}
 
 	public function saveControls()
 	{
-		if (Save.controls.get() == null)
-			Save.controls.set({});
+		if (Save.controls.get() == null) Save.controls.set({});
 
 		var playerData:{?keys:Dynamic, ?pad:Dynamic}
 		if (id == 0)
 		{
-			if (Save.controls.get().p1 == null)
-				Save.controls.get().p1 = {};
+			if (Save.controls.get().p1 == null) Save.controls.get().p1 = {};
 			playerData = Save.controls.get().p1;
 		}
 		else
 		{
-			if (Save.controls.get().p2 == null)
-				Save.controls.get().p2 = {};
+			if (Save.controls.get().p2 == null) Save.controls.get().p2 = {};
 			playerData = Save.controls.get().p2;
 		}
 
@@ -136,8 +127,7 @@ class PlayerSettings
 		for (i in 0...numGamepads)
 		{
 			var gamepad = FlxG.gamepads.getByID(i);
-			if (gamepad != null)
-				onGamepadAdded(gamepad);
+			if (gamepad != null) onGamepadAdded(gamepad);
 		}
 	}
 

@@ -96,8 +96,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
-		if (pauseMusic.volume < 0.5)
-			pauseMusic.volume += 0.01 * elapsed;
+		if (pauseMusic.volume < 0.5) pauseMusic.volume += 0.01 * elapsed;
 
 		super.update(elapsed);
 
@@ -105,10 +104,8 @@ class PauseSubState extends MusicBeatSubstate
 		var downP = controls.UI_DOWN_P;
 		var accepted = controls.ACCEPT;
 
-		if (upP)
-			changeSelection(-1);
-		if (downP)
-			changeSelection(1);
+		if (upP) changeSelection(-1);
+		if (downP) changeSelection(1);
 
 		if (accepted)
 		{
@@ -139,10 +136,8 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		curSelected += change;
 
-		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
-		if (curSelected >= menuItems.length)
-			curSelected = 0;
+		if (curSelected < 0) curSelected = menuItems.length - 1;
+		if (curSelected >= menuItems.length) curSelected = 0;
 
 		var bullShit:Int = 0;
 
@@ -153,8 +148,7 @@ class PauseSubState extends MusicBeatSubstate
 
 			item.alpha = 0.6;
 
-			if (item.targetY == 0)
-				item.alpha = 1;
+			if (item.targetY == 0) item.alpha = 1;
 		}
 	}
 }

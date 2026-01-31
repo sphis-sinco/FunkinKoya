@@ -14,8 +14,7 @@ class Highscore
 
 		if (songScores.exists(daSong))
 		{
-			if (songScores.get(daSong) < score)
-				setScore(daSong, score);
+			if (songScores.get(daSong) < score) setScore(daSong, score);
 		}
 		else
 			setScore(daSong, score);
@@ -27,8 +26,7 @@ class Highscore
 
 		if (songScores.exists(daWeek))
 		{
-			if (songScores.get(daWeek) < score)
-				setScore(daWeek, score);
+			if (songScores.get(daWeek) < score) setScore(daWeek, score);
 		}
 		else
 			setScore(daWeek, score);
@@ -54,23 +52,20 @@ class Highscore
 
 	public static function getScore(song:String, diff:Difficulty):Int
 	{
-		if (!songScores.exists(formatSong(song, diff)))
-			setScore(formatSong(song, diff), 0);
+		if (!songScores.exists(formatSong(song, diff))) setScore(formatSong(song, diff), 0);
 
 		return songScores.get(formatSong(song, diff));
 	}
 
 	public static function getWeekScore(week:Int, diff:Difficulty):Int
 	{
-		if (!songScores.exists(formatSong('week' + week, diff)))
-			setScore(formatSong('week' + week, diff), 0);
+		if (!songScores.exists(formatSong('week' + week, diff))) setScore(formatSong('week' + week, diff), 0);
 
 		return songScores.get(formatSong('week' + week, diff));
 	}
 
 	public static function load():Void
 	{
-		if (Save.songScores.get() != null)
-			songScores = Save.songScores.get();
+		if (Save.songScores.get() != null) songScores = Save.songScores.get();
 	}
 }

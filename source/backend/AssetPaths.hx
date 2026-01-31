@@ -14,16 +14,14 @@ class AssetPaths
 
 	public static function getPath(path:String, ?library:String):String
 	{
-		if (library != null)
-			return getLibraryPath(path, library);
+		if (library != null) return getLibraryPath(path, library);
 
 		return 'assets/$path';
 	}
 
 	public static function getLibraryPath(path:String, ?library:String):String
 	{
-		if (library == null)
-			return getPath(path);
+		if (library == null) return getPath(path);
 
 		return getPath('$library/$path');
 	}
@@ -68,8 +66,7 @@ class AssetPaths
 	{
 		var graphicKey:String = animateAtlas(key, library);
 
-		if (!Assets.exists('${graphicKey}/Animation.json'))
-			throw 'No Animation.json file exists at the specified path (${graphicKey})';
+		if (!Assets.exists('${graphicKey}/Animation.json')) throw 'No Animation.json file exists at the specified path (${graphicKey})';
 
 		return FlxAnimateFrames.fromAnimate(graphicKey);
 	}

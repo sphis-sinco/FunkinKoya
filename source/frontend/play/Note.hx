@@ -36,8 +36,7 @@ class Note extends FunkinSprite
 		this.noteData = noteData;
 		super(50 + (swagWidth * this.noteData), -2000);
 
-		if (prevNote == null)
-			prevNote = this;
+		if (prevNote == null) prevNote = this;
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
@@ -108,25 +107,20 @@ class Note extends FunkinSprite
 		{
 			// The * 0.5 us so that its easier to hit them too late, instead of too early
 			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
-				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5))
-				canBeHit = true;
+				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5)) canBeHit = true;
 			else
 				canBeHit = false;
 
-			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset)
-				tooLate = true;
+			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset) tooLate = true;
 		}
 		else
 		{
 			canBeHit = false;
 
-			if (strumTime <= Conductor.songPosition)
-				wasGoodHit = true;
+			if (strumTime <= Conductor.songPosition) wasGoodHit = true;
 		}
 
-		if (tooLate)
-			if (alpha > 0.3)
-				alpha = 0.3;
+		if (tooLate) if (alpha > 0.3) alpha = 0.3;
 	}
 
 	public function getDirectionName():String

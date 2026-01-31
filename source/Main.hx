@@ -74,8 +74,7 @@ class Main extends Sprite
 		errMsg += "\nPlease report this error to the GitHub page: https://github.com/sphis-sinco/FunkinKoya/issues";
 		errMsg += "\n\n> Crash Handler written by: sqirra-rng, used by Psych Engine, and modified for Koya";
 
-		if (!FileSystem.exists("./crash/"))
-			FileSystem.createDirectory("./crash/");
+		if (!FileSystem.exists("./crash/")) FileSystem.createDirectory("./crash/");
 
 		File.saveContent(path, errMsg + "\n");
 

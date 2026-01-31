@@ -25,7 +25,7 @@ class MusicBeatSubstate extends FlxSubState
 	override function create()
 	{
 		super.create();
-		
+
 		sectionHit();
 	}
 
@@ -39,8 +39,7 @@ class MusicBeatSubstate extends FlxSubState
 		updateSection();
 		curBeat = Math.floor(curStep / 4);
 
-		if (oldStep != curStep && curStep > 0)
-			stepHit();
+		if (oldStep != curStep && curStep > 0) stepHit();
 
 		super.update(elapsed);
 	}
@@ -59,15 +58,15 @@ class MusicBeatSubstate extends FlxSubState
 
 	private function updateCurStep():Void
 	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: 0
-		}
+		var lastChange:BPMChangeEvent =
+			{
+				stepTime: 0,
+				songTime: 0,
+				bpm: 0
+			}
 		for (i in 0...Conductor.bpmChangeMap.length)
 		{
-			if (Conductor.songPosition > Conductor.bpmChangeMap[i].songTime)
-				lastChange = Conductor.bpmChangeMap[i];
+			if (Conductor.songPosition > Conductor.bpmChangeMap[i].songTime) lastChange = Conductor.bpmChangeMap[i];
 		}
 
 		curStep = lastChange.stepTime + Math.floor((Conductor.songPosition - lastChange.songTime) / Conductor.stepCrochet);
@@ -75,10 +74,8 @@ class MusicBeatSubstate extends FlxSubState
 
 	public function stepHit():Void
 	{
-		if (curStep % 4 == 0)
-			beatHit();
-		if (curStep % 16 == 0)
-			sectionHit();
+		if (curStep % 4 == 0) beatHit();
+		if (curStep % 16 == 0) sectionHit();
 	}
 
 	public function beatHit():Void {}

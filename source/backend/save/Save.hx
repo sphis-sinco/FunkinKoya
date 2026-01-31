@@ -21,8 +21,7 @@ class Save
 		FlxG.save.bind('koya', 'Macohi');
 		Highscore.load();
 
-		if (version.get() == SAVE_VERSION)
-			return;
+		if (version.get() == SAVE_VERSION) return;
 
 		switch (version.get())
 		{
@@ -32,8 +31,7 @@ class Save
 
 		flush();
 
-		Application.current.onExit.add(function(l)
-		{
+		Application.current.onExit.add(function(l) {
 			flush();
 		});
 	}
