@@ -62,7 +62,7 @@ class Song
 		catch (e)
 		{
 			// rawJson = Json.stringify({song: dummySong});
-			rawJson = null;
+			return null;
 		}
 
 		while (!rawJson.endsWith("}"))
