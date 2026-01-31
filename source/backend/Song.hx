@@ -83,12 +83,17 @@ class Song
 
 		if (fix)
 		{
+			songMissingStuff = [];
+
 			swagShit.version ??= 0;
-			fixSwagVersion(swagShit);
+			if (swagShit.version < SWAGVERSION)
+				fixSwagVersion(swagShit);
 		}
 
 		return swagShit;
 	}
+
+	static var songMissingStuff:Array<String> = [];
 
 	public static function fixSwagVersion(swagShit:SwagSong)
 	{
@@ -96,17 +101,26 @@ class Song
 		{
 			case 0:
 				swagShit.gfVersion = dummySong.gfVersion;
+				songMissingStuff.push('gfVersion');
 			case 1:
 				swagShit.stage = dummySong.stage;
+				songMissingStuff.push('stage');
 			case 2:
 				swagShit.authors = 'Unknown';
+				songMissingStuff.push('authors');
 		}
 
 		if (swagShit.version < SWAGVERSION)
 		{
 			swagShit.version += 1;
-			trace('Upgraded ${swagShit.song} to v.${swagShit.version}');
 			fixSwagVersion(swagShit);
+		}
+		else
+		{
+			trace('Upgraded ${swagShit.song} to v.${swagShit.version}');
+			for (thing in songMissingStuff)
+				trace(' * Added $thing');
+			songMissingStuff = [];
 		}
 	}
 
