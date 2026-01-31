@@ -1,5 +1,6 @@
 package koya.frontend.play;
 
+import koya.frontend.mainmenu.MainMenuState;
 import koya.frontend.play.songs.SongClass;
 import koya.frontend.freeplay.FreeplayState;
 import koya.backend.play.Difficulty;
@@ -40,6 +41,7 @@ class PlayState extends MusicBeatState
 	public static var SONG_DIFFICULTY:Int = Difficulty.NORMAL;
 	public static var SONG_STAGE:String = '';
 
+	public static var storyMode:Bool = false;
 	public static var chartingMode:Bool = false;
 
 	public var vocals:FlxSound;
@@ -645,9 +647,18 @@ class PlayState extends MusicBeatState
 
 		Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 
-		if (chartingMode) FlxG.switchState(() -> new ChartingState());
+		if (chartingMode)
+		{
+			FlxG.switchState(() -> new ChartingState());
+			return;
+		}
 
-		FlxG.switchState(() -> new FreeplayState());
+		if (storyMode)
+		{
+			FlxG.switchState(() -> new MainMenuState());
+		}
+		else
+			FlxG.switchState(() -> new FreeplayState());
 	}
 
 	var endingSong:Bool = false;

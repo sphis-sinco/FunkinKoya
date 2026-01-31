@@ -1,5 +1,10 @@
 package koya.backend;
 
+import koya.backend.songs.Song;
+import koya.backend.play.Difficulty;
+import lime.utils.Assets;
+import haxe.macro.Compiler;
+import koya.frontend.play.PlayState;
 import koya.frontend.mainmenu.MainMenuState;
 import koya.frontend.TitleState;
 import koya.frontend.play.editors.ChartingState;
@@ -69,6 +74,32 @@ class InitState extends FlxState
 		#if MAINMENU
 		return () -> new MainMenuState();
 		#end
+
+		var SONG = Compiler.getDefine('SONG');
+		if (SONG != null && SONG != '1')
+		{
+			var currentSongName:String = SONG.toLowerCase();
+			var currentSongChart:String = currentSongName.toLowerCase();
+			var currentDifficulty:Difficulty = NORMAL;
+
+			#if DIFFICULTY_EASY
+			currentDifficulty = EASY;
+			#end
+			#if DIFFICULTY_HARD
+			currentDifficulty = HARD;
+			#end
+
+			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return () -> new TitleState();
+
+			FlxG.sound.music.stop();
+			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
+
+			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSongName);
+			PlayState.SONG_DIFFICULTY = currentDifficulty;
+			PlayState.chartingMode = false;
+			PlayState.storyMode = false;
+			return () -> new PlayState();
+		}
 
 		return () -> new TitleState();
 	}
