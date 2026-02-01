@@ -1,11 +1,34 @@
 package koya.frontend;
 
+import flixel.FlxSprite;
 import flixel.FlxG;
 import koya.backend.AssetPaths;
 import animate.FlxAnimate;
 
 class FunkinSprite extends FlxAnimate
 {
+	public function loadGraphicFromFSprite(Sprite:FunkinSprite):FunkinSprite
+	{
+		frames = Sprite.frames;
+		bakedRotationAngle = Sprite.bakedRotationAngle;
+		if (bakedRotationAngle > 0)
+		{
+			width = Sprite.width;
+			height = Sprite.height;
+			centerOffsets();
+		}
+		antialiasing = Sprite.antialiasing;
+		animation.copyFrom(Sprite.animation);
+		graphicLoaded();
+		clipRect = Sprite.clipRect;
+		return this;
+	}
+
+	override function clone():FunkinSprite
+	{
+		return (new FunkinSprite()).loadGraphicFromFSprite(this);
+	}
+
 	public function parseAnimationOffsetFile(offsetFile:Array<String>)
 	{
 		for (line in offsetFile)
