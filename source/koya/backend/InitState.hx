@@ -5,7 +5,7 @@ import koya.backend.play.Difficulty;
 import lime.utils.Assets;
 import haxe.macro.Compiler;
 import koya.frontend.play.PlayState;
-import koya.frontend.mainmenu.MainMenuState;
+import koya.frontend.MainMenuState;
 import koya.frontend.TitleState;
 import koya.frontend.play.editors.ChartingState;
 import koya.frontend.freeplay.FreeplayState;

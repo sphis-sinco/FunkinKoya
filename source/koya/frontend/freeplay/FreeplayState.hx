@@ -1,7 +1,6 @@
 package koya.frontend.freeplay;
 
 import koya.frontend.play.characters.Character;
-import koya.frontend.mainmenu.MainMenuState;
 import koya.backend.songs.SongList;
 import koya.frontend.play.HealthIcon;
 import lime.utils.Assets;

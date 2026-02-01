@@ -1,4 +1,4 @@
-package koya.frontend.mainmenu;
+package koya.frontend.ui.menustate;
 
 import flixel.util.FlxTimer;
 import flixel.sound.FlxSound;
@@ -16,31 +16,28 @@ enum MenuType
 	Horizontal;
 }
 
-class MainMenuState extends MusicBeatState
+class MenuState extends MusicBeatState
 {
 	public var pinkBG:MenuBG = new MenuBG(true);
 	public var flashBG:MenuBG = new MenuBG(false);
 
-	public var itemList:Array<String> = [
-		'story mode',
-		'freeplay',
-		'support',
-		// 'options',
-	];
+	public var itemList:Array<String> = [];
 	public var itemsGroup:FlxTypedGroup<MenuItem>;
 
 	public var currentSelection:Int = 0;
 
 	public var menuType:MenuType = Vertical;
+	public var menuItemPathPrefix:String = '';
 
 	public var itemStartingPos:Float = 240;
 	public var itemIncOffset:Float = 320;
 
-	override public function new(menuType:MenuType = Horizontal)
+	override public function new(menuItemPathPrefix:String, menuType:MenuType = Vertical)
 	{
 		super();
 
 		this.menuType = menuType;
+		this.menuItemPathPrefix = menuItemPathPrefix;
 	}
 
 	override function create()
@@ -63,7 +60,7 @@ class MainMenuState extends MusicBeatState
 		var i = 0;
 		for (item in itemList)
 		{
-			var menuItem = new MenuItem(item, (menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0);
+			var menuItem = new MenuItem(item, menuItemPathPrefix, (menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0);
 
 			menuItem.scale.set(.5, .5);
 			menuItem.updateHitbox();

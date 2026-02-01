@@ -1,6 +1,5 @@
 package koya.frontend;
 
-import koya.frontend.mainmenu.MainMenuState;
 import koya.frontend.play.stages.basegame.MainStage;
 import koya.frontend.freeplay.FreeplayState;
 import koya.frontend.play.PlayState;

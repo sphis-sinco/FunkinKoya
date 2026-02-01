@@ -1,4 +1,4 @@
-package koya.frontend.mainmenu;
+package koya.frontend.ui.menustate;
 
 import koya.backend.AssetPaths;
 
@@ -8,8 +8,8 @@ class MenuBG extends FunkinSprite
 	{
 		super(x, y);
 
-		if (pink) loadGraphic(AssetPaths.image('mainmenu/bg_pink', 'ui'));
+		if (pink) loadGraphic(AssetPaths.image('bg_pink', 'ui'));
 		else
-			loadGraphic(AssetPaths.image('mainmenu/bg_desat', 'ui'));
+			loadGraphic(AssetPaths.image('bg_desat', 'ui'));
 	}
 }

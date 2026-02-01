@@ -1,6 +1,5 @@
 package koya.frontend.play;
 
-import koya.frontend.mainmenu.MainMenuState;
 import koya.frontend.play.songs.SongClass;
 import koya.frontend.freeplay.FreeplayState;
 import koya.backend.play.Difficulty;
