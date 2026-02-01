@@ -78,6 +78,7 @@ class ResultsSubState extends MusicBeatSubstate
 				cn.destroy();
 				FlxG.switchState(nextState);
 			});
+
 			for (numScore in comboNum.members)
 			{
 				numScore.screenCenter();
@@ -88,7 +89,9 @@ class ResultsSubState extends MusicBeatSubstate
 					numScore.x += (43 * numScore.ID) - 90;
 				}
 
-				FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+				FlxTimer.wait(.1 * numScore.ID, () -> {
+					FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+				});
 			}
 			comboNum.cameras = [resultsCam];
 			add(comboNum);
