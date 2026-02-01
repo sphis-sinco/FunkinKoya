@@ -51,6 +51,8 @@ class FreshScript extends SongIntroFadeScript
 			case 80:
 				PlayState.instance.gfSpeed = 2;
 		}
+		
+		super.beatHit(beat);
 	}
 
 	override public function moveCamera(bf:Bool):Bool
