@@ -192,10 +192,9 @@ class Note extends FunkinSprite
 				return '-cheer';
 			case 'hey':
 				return '-hey';
-			case '':
 
 			default:
-				trace('No case for: ${event.toLowerCase().trim()}');
+				if (event.toLowerCase().trim().length > 0) trace('No case for: "${event.toLowerCase().trim()}"');
 		}
 
 		return '';
@@ -214,13 +213,12 @@ class Note extends FunkinSprite
 			case 'hey':
 				return 'hey';
 
-			case '':
-
 			default:
-				trace('No case for: ${event.toLowerCase().trim()}');
+				if (event.toLowerCase().trim().length > 0) trace('No case for: "${event.toLowerCase().trim()}"');
 		}
 
 		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
+		if (miss) animationName += 'miss';
 		return (animationName + ((addition != null) ? addition : ''));
 	}
 }
