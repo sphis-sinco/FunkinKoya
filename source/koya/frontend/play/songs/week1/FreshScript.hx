@@ -1,93 +1,49 @@
 package koya.frontend.play.songs.week1;
 
-import flixel.util.FlxColor;
-import flixel.FlxG;
-import flixel.tweens.FlxEase;
-import koya.backend.Conductor;
-import flixel.tweens.FlxTween;
-import koya.frontend.play.characters.Character;
+import koya.frontend.play.songs.templates.SongIntroFadeScript;
 
-class FreshScript extends SongClass
+class FreshScript extends SongIntroFadeScript
 {
-	public var dad(get, never):Character;
-	public var boyfriend(get, never):Character;
-	public var gf(get, never):Character;
+	override public function new()
+	{
+		super(['stageBack', 'songFloor']);
+		endingFlashBeats = 16;
+	}
 
-	public var stageBack(get, never):FunkinSprite;
-	public var stageFloor(get, never):FunkinSprite;
+	override function finishedIntro()
+	{
+		super.finishedIntro();
 
-	function get_dad():Character
-		return PlayState.instance.currentStage.dad;
+		forStageObject((obj) -> {
+			var funkSpr:FunkinSprite = cast obj;
 
-	function get_boyfriend():Character
-		return PlayState.instance.currentStage.boyfriend;
-
-	function get_gf():Character
-		return PlayState.instance.currentStage.gf;
-
-	function get_stageBack():FunkinSprite
-		return cast PlayState.instance.currentStage?.getThing('stageBack');
-
-	function get_stageFloor():FunkinSprite
-		return cast PlayState.instance.currentStage?.getThing('stageFloor');
+			if (funkSpr != null) funkSpr.alpha = 1;
+		});
+	}
 
 	override public function preCountdown():Bool
 	{
-		if (stageBack != null) stageBack.alpha = 0;
-		if (stageFloor != null) stageFloor.alpha = 0;
-		if (gf != null) gf.alpha = 0;
+		forStageObject((obj) -> {
+			var funkSpr:FunkinSprite = cast obj;
 
-		if (dad != null) dad.alpha = 0;
-		if (boyfriend != null) boyfriend.alpha = 0;
+			if (funkSpr != null) funkSpr.alpha = 0;
+		});
 
-		return true;
+		return super.preCountdown();
 	}
 
 	override public function countdownTick(swagCounter:Int)
 	{
-		if (swagCounter == 4)
-		{
-			if (dad != null)
-			{
-				trace('DAD FADE');
-				dadFade = FlxTween.tween(dad, {alpha: 1}, (Conductor.crochet / 1000) * 4,
-					{
-						ease: FlxEase.sineInOut
-					});
-				dadFade.manager = PlayState.instance.tweenManager;
-			}
-		}
+		if (swagCounter == 4) dadFadeFunction();
 	}
-
-	public var dadFade:FlxTween;
-	public var bfFade:FlxTween;
 
 	override public function beatHit(beat:Int)
 	{
 		switch (beat)
 		{
 			case 4:
-				if (boyfriend != null)
-				{
-					trace('BOYFRIEND FADE');
-					bfFade = FlxTween.tween(boyfriend, {alpha: 1}, (Conductor.crochet / 1000) * 4,
-						{
-							ease: FlxEase.sineInOut
-						});
-					bfFade.manager = PlayState.instance.tweenManager;
-				}
+				boyfriendFadeFunction();
 			case 16:
-				if (stageBack != null) stageBack.alpha = 1;
-				if (stageFloor != null) stageFloor.alpha = 1;
-				if (gf != null) gf.alpha = 1;
-				if (boyfriend != null) boyfriend.alpha = 1;
-				if (dad != null) dad.alpha = 1;
-
-				dadFade.destroy();
-				bfFade.destroy();
-
-				FlxG.camera.flash(FlxColor.WHITE, (Conductor.crochet / 1000) * 1);
-
 				PlayState.instance.camZooming = true;
 				PlayState.instance.gfSpeed = 2;
 			case 48, 112:
@@ -102,21 +58,5 @@ class FreshScript extends SongClass
 		if (PlayState.instance.curBeat < 16) return false;
 
 		return true;
-	}
-
-	override function pause()
-	{
-		super.pause();
-
-		if (bfFade != null) bfFade.active = false;
-		if (dadFade != null) dadFade.active = false;
-	}
-
-	override function unpause()
-	{
-		super.unpause();
-
-		if (bfFade != null) bfFade.active = true;
-		if (dadFade != null) dadFade.active = true;
 	}
 }

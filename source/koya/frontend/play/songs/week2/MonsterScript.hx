@@ -1,48 +1,20 @@
 package koya.frontend.play.songs.week2;
 
+import koya.frontend.play.songs.templates.SongIntroFadeScript;
 import koya.frontend.shaders.AdjustColorShader;
-import flixel.util.FlxColor;
-import flixel.FlxG;
-import flixel.tweens.FlxEase;
-import koya.backend.Conductor;
-import flixel.tweens.FlxTween;
-import koya.frontend.play.characters.Character;
 
-class MonsterScript extends SongClass
+class MonsterScript extends SongIntroFadeScript
 {
-	public var dad(get, never):Character;
-	public var boyfriend(get, never):Character;
-	public var gf(get, never):Character;
-
-	public var halloweenBack(get, never):FunkinSprite;
-	public var stairs(get, never):FunkinSprite;
-
-	function get_dad():Character
-		return PlayState.instance.currentStage.dad;
-
-	function get_boyfriend():Character
-		return PlayState.instance.currentStage.boyfriend;
-
-	function get_gf():Character
-		return PlayState.instance.currentStage.gf;
-
-	function get_halloweenBack():FunkinSprite
-		return cast PlayState.instance.currentStage?.getThing('halloweenBack');
-
-	function get_stairs():FunkinSprite
-		return cast PlayState.instance.currentStage?.getThing('stairs');
+	override public function new()
+	{
+		super(['halloweenBack', 'stairs']);
+		endingFlashBeats = 20;
+	}
 
 	public var startShader:AdjustColorShader;
 
 	override public function preCountdown():Bool
 	{
-		if (halloweenBack != null) halloweenBack.alpha = 0;
-		if (stairs != null) stairs.alpha = 0;
-		if (gf != null) gf.alpha = 0;
-
-		if (dad != null) dad.alpha = 0;
-		if (boyfriend != null) boyfriend.alpha = 0;
-
 		startShader = new AdjustColorShader();
 
 		startShader.saturation = -62;
@@ -54,75 +26,38 @@ class MonsterScript extends SongClass
 		if (dad != null) dad.shader = startShader;
 		if (gf != null) gf.shader = startShader;
 
-		if (halloweenBack != null) halloweenBack.shader = startShader;
-		if (stairs != null) stairs.shader = startShader;
+		forStageObject((obj) -> {
+			var funkSpr:FunkinSprite = cast obj;
 
-		return true;
+			if (funkSpr != null)
+			{
+				funkSpr.alpha = 0;
+				funkSpr.shader = startShader;
+			}
+		});
+
+		return super.preCountdown();
 	}
-
-	public var dadFade:FlxTween;
-	public var bfFade:FlxTween;
 
 	override public function beatHit(beat:Int)
 	{
 		switch (beat)
 		{
 			case 4:
-				if (dad != null)
-				{
-					trace('DAD FADE');
-					dadFade = FlxTween.tween(dad, {alpha: 1}, (Conductor.crochet / 1000) * 4,
-						{
-							ease: FlxEase.sineInOut
-						});
-					dadFade.manager = PlayState.instance.tweenManager;
-				}
-
+				dadFadeFunction();
 			case 12:
-				if (boyfriend != null)
-				{
-					trace('BOYFRIEND FADE');
-					bfFade = FlxTween.tween(boyfriend, {alpha: 1}, (Conductor.crochet / 1000) * 4,
-						{
-							ease: FlxEase.sineInOut
-						});
-					bfFade.manager = PlayState.instance.tweenManager;
-				}
-
-			case 20:
-				if (halloweenBack != null) halloweenBack.alpha = 1;
-				if (stairs != null) stairs.alpha = 1;
-				if (gf != null) gf.alpha = 1;
-				if (boyfriend != null) boyfriend.alpha = 1;
-				if (dad != null) dad.alpha = 1;
-
-				dadFade.destroy();
-				bfFade.destroy();
-
-				FlxG.camera.flash(FlxColor.WHITE, (Conductor.crochet / 1000) * 1);
+				boyfriendFadeFunction();
 		}
 	}
 
-	override public function moveCamera(bf:Bool):Bool
+	override function finishedIntro()
 	{
-		if (PlayState.instance.curBeat < 16) return false;
+		super.finishedIntro();
 
-		return true;
-	}
+		forStageObject((obj) -> {
+			var funkSpr:FunkinSprite = cast obj;
 
-	override function pause()
-	{
-		super.pause();
-
-		if (bfFade != null) bfFade.active = false;
-		if (dadFade != null) dadFade.active = false;
-	}
-
-	override function unpause()
-	{
-		super.unpause();
-
-		if (bfFade != null) bfFade.active = true;
-		if (dadFade != null) dadFade.active = true;
+			if (funkSpr != null) funkSpr.alpha = 1;
+		});
 	}
 }
