@@ -1,5 +1,6 @@
 package koya.frontend.play.characters.ogchars;
 
+import flixel.util.FlxColor;
 import flixel.FlxG;
 import koya.backend.AssetPaths;
 
@@ -10,7 +11,7 @@ class Monster extends Character
 		super(x, y, 'monster', isPlayer);
 		iconChar = 'retsnom';
 
-		if (!isPlayer) PlayState.instance.healthBar_emptyColor = 0xCC9999;
+		if (!isPlayer) PlayState.instance.healthBar_emptyColor = FlxColor.fromString('#CC9999');
 	}
 
 	override function initChar()
