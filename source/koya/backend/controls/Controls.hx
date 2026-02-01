@@ -530,14 +530,20 @@ class Controls extends FlxActionSet
 	 */
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
-		var keysString:Array<String> = [];
+		if (lastBound.get(control) != keys)
+		{
+			lastBound.set(control, keys);
+			var keysString:Array<String> = [];
 
-		for (key in keys)
-			keysString.push(key.toString());
+			for (key in keys)
+				keysString.push(key.toString());
 
-		trace('binding $keysString to $control');
+			trace('binding $keysString to $control');
+		}
 		forEachBound(control, function(action, state) addKeys(action, keys, state));
 	}
+
+	public static var lastBound:Map<Control, Array<FlxKey>> = [];
 
 	/**
 	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
