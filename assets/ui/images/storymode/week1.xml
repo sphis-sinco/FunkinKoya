@@ -3,4 +3,5 @@
 	<!-- Created with Adobe Animate version 21.0.6.41649 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="week 1 idle0000" x="4" y="4" width="564" height="236"/>
+	<SubTexture name="week 1 selected0000" x="4" y="248" width="560" height="251"/>
 </TextureAtlas>
