@@ -26,6 +26,9 @@ class AssetPaths
 		return getPath('$library/$path');
 	}
 
+	public static function frag(path:String, ?library:String):String
+		return getPath('shaders/$path.frag', library);
+
 	public static function txt(path:String, ?library:String):String
 		return getPath('$path.txt', library);
 

@@ -1,5 +1,6 @@
 package koya.frontend.play.songs.week2;
 
+import koya.frontend.shaders.AdjustColorShader;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
@@ -31,6 +32,8 @@ class MonsterScript extends SongClass
 	function get_stairs():FunkinSprite
 		return cast PlayState.instance.currentStage?.getThing('stairs');
 
+	public var startShader:AdjustColorShader;
+
 	override public function countdownTick(swagCounter:Int)
 	{
 		if (swagCounter == 0)
@@ -41,6 +44,20 @@ class MonsterScript extends SongClass
 
 			dad.alpha = 0;
 			boyfriend.alpha = 0;
+
+			startShader = new AdjustColorShader();
+
+			startShader.saturation = -62;
+			startShader.hue = -24;
+			startShader.contrast = -32;
+			startShader.brightness = -28;
+
+			if (boyfriend != null) boyfriend.shader = startShader;
+			if (dad != null) dad.shader = startShader;
+			if (gf != null) gf.shader = startShader;
+
+			if (halloweenBack != null) halloweenBack.shader = startShader;
+			if (stairs != null) stairs.shader = startShader;
 		}
 	}
 
@@ -61,7 +78,7 @@ class MonsterScript extends SongClass
 						});
 					dadFade.manager = PlayState.instance.tweenManager;
 				}
-				
+
 			case 12:
 				if (boyfriend != null)
 				{
