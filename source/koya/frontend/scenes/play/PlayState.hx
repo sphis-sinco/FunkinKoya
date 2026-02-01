@@ -145,6 +145,7 @@ class PlayState extends MusicBeatState
 		instance = this;
 
 		strums = new StrumsGroup();
+		add(strums);
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();

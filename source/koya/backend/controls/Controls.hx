@@ -764,6 +764,23 @@ class Controls extends FlxActionSet
 			FlxKey.fromString(Save.keybind_ui_right.get()),
 		]);
 
+		bindKeys(Control.NOTE_UP, [
+			FlxKey.fromString(Save.keybind_note_up_alt.get()),
+			FlxKey.fromString(Save.keybind_note_up.get()),
+		]);
+		bindKeys(Control.NOTE_DOWN, [
+			FlxKey.fromString(Save.keybind_note_down_alt.get()),
+			FlxKey.fromString(Save.keybind_note_down.get()),
+		]);
+		bindKeys(Control.NOTE_LEFT, [
+			FlxKey.fromString(Save.keybind_note_left_alt.get()),
+			FlxKey.fromString(Save.keybind_note_left.get()),
+		]);
+		bindKeys(Control.NOTE_RIGHT, [
+			FlxKey.fromString(Save.keybind_note_right_alt.get()),
+			FlxKey.fromString(Save.keybind_note_right.get()),
+		]);
+
 		bindKeys(Control.RESET, [FlxKey.fromString(Save.keybind_reset.get())]);
 
 		bindKeys(Control.ACCEPT, [Z, ENTER]);
