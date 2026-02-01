@@ -9,6 +9,9 @@
 
 A quick save patch update
 
+## Added
+- Added 1 second wait until starting to let the save class do its thing
+
 ## SAVE VERSION 2:
 - Save fields are initialized (properly now) before ANY attempt at loading save information
 - The save will now always attempt to upgrade
