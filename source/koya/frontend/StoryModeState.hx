@@ -14,6 +14,7 @@ class StoryModeState extends MenuState
 		super('storymode/', Horizontal);
 
 		this.itemList = SongList.weekList.textList;
+		this.itemIncOffset += 100;
 	}
 
 	override function create()
@@ -52,7 +53,7 @@ class StoryModeState extends MenuState
 		if (PlayState.playList.length > 0)
 		{
 			FlxG.sound.music.stop();
-			
+
 			FlxG.switchState(() -> new PlayState());
 		}
 	}
