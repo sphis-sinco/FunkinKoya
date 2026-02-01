@@ -10,7 +10,7 @@ import koya.frontend.scenes.freeplay.FreeplayState;
 import koya.backend.play.Difficulty;
 import koya.frontend.scenes.play.stages.StageBackground;
 import koya.backend.*;
-import koya.backend.Section;
+import koya.backend.songs.Section;
 import koya.backend.songs.Song;
 import flixel.*;
 import flixel.group.FlxGroup;

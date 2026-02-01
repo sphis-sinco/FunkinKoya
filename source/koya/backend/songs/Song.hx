@@ -4,7 +4,7 @@ import flixel.math.FlxMath;
 import koya.backend.play.Difficulty;
 import koya.frontend.scenes.play.stages.basegame.*;
 import koya.backend.AssetPaths;
-import koya.backend.Section.SwagSection;
+import koya.backend.songs.Section.SwagSection;
 import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;

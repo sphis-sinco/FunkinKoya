@@ -1,4 +1,4 @@
-package koya.backend;
+package koya.backend.songs;
 
 typedef SwagSection =
 {

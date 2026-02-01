@@ -4,7 +4,7 @@ import koya.backend.plugins.Cursor;
 import koya.backend.songs.SongList;
 import koya.backend.play.Difficulty;
 import koya.backend.save.Save;
-import koya.backend.Section;
+import koya.backend.songs.Section;
 import koya.backend.songs.Song;
 import koya.backend.*;
 import koya.backend.Conductor;
