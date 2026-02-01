@@ -1,6 +1,7 @@
 # [Unreleased] - 2/1/2026
 
 ## Fixed
+- Crash when selecting "Monster" on freeplay
 - Cursor being visible when it shouldn't be
 
 # [0.2.1] - 2/1/2026

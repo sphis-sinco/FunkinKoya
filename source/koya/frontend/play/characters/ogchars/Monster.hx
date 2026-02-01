@@ -11,7 +11,7 @@ class Monster extends Character
 		super(x, y, 'monster', isPlayer);
 		iconChar = 'retsnom';
 
-		if (!isPlayer)
+		if (!isPlayer && PlayState.instance != null)
 		{
 			PlayState.instance.healthBar_emptyColor = FlxColor.fromString('#CC9999');
 			PlayState.instance.healthBar_fillColor = PlayState.instance.healthBar_emptyColor;
