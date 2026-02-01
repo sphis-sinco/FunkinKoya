@@ -118,7 +118,7 @@ class SongIntroFadeScript extends SongClass
 
 	public function forcedBFFade()
 	{
-		trace('i wanna fade hmmm');
+		// trace('i wanna fade hmmm');
 		if (PlayState.instance.health <= 0 && (!bfFade?.active || bfFade == null) && boyfriend.alpha < 1) boyfriendFadeFunction();
 	}
 
