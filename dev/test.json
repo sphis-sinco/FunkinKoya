@@ -1,0 +1,52 @@
+{
+	"song": {
+		"authors": "Kawai Sprite (ft. MtH)",
+		"bpm": 150,
+		"difficulty": 1,
+		"generatedBy": "Funkin' Koya* 0.2.0 : Week 2 Update (develop:d621f22) | Chart Editor (koyta_5)",
+		"gfVersion": "gf",
+		"needsVoices": true,
+		"notes": [
+			{
+				"altAnim": false,
+				"bpm": 150,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionNotes": [
+					[
+						100,
+						2,
+						0,
+						"mycoolnoteevent!"
+					],
+					[
+						200,
+						3,
+						0,
+						"mycoolnoteevent!"
+					],
+					[
+						200,
+						1,
+						0,
+						"mycoolnoteevent!"
+					],
+					[
+						300,
+						2,
+						0,
+						"mycoolnoteevent!"
+					]
+				],
+				"typeOfSection": 0
+			}
+		],
+		"player1": "bf",
+		"player2": "dad",
+		"song": "Test",
+		"speed": 1,
+		"stage": "mainStage",
+		"version": 5
+	}
+}

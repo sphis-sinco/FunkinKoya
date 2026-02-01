@@ -668,8 +668,8 @@ class ChartingState extends MusicBeatState
 			{
 				modifMade('Typing(${typingShit.text})');
 
-				if (UI_note.hasFocus)
-					curSelectedNote[4] = typingShit.text;
+				if (UI_note.hasFocus && curSelectedNote != null)
+					curSelectedNote[3] = typingShit.text;
 			}
 		}
 
@@ -805,7 +805,7 @@ class ChartingState extends MusicBeatState
 	function updateNoteUI():Void
 	{
 		if (curSelectedNote != null) stepperSusLength.value = curSelectedNote[2];
-		if (curSelectedNote != null) UI_note.text = curSelectedNote[4];
+		if (curSelectedNote != null && curSelectedNote[3] != null) UI_note.text = curSelectedNote[3];
 	}
 
 	function updateGrid():Void
@@ -837,9 +837,11 @@ class ChartingState extends MusicBeatState
 			var daNoteInfo = i[1];
 			var daStrumTime = i[0];
 			var daSus = i[2];
+			var event = i[3];
 
 			var note:Note = new Note(daStrumTime, daNoteInfo % 4);
 			note.sustainLength = daSus;
+			note.noteData = event;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
 			note.x = Math.floor(daNoteInfo * GRID_SIZE);
