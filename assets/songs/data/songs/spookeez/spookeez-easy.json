@@ -3,7 +3,7 @@
 		"song": "Spookeez",
 		"needsVoices": true,
 		"player1": "bf-spooky",
-		"player2": "gf-spooky",
+		"player2": "spooky",
 		"notes": [
 			{
 				"lengthInSteps": 16,
@@ -2151,7 +2151,7 @@
 				"bpm": 150
 			}
 		],
-		"gfVersion": "gf",
+		"gfVersion": "gf-spooky",
 		"stage": "halloween",
 		"authors": "Kawai Sprite",
 		"generatedBy": "Funkin' Koya* 0.2.0 | Task: Resave All Songs",

@@ -3,7 +3,7 @@
 		"song": "Monster",
 		"needsVoices": true,
 		"player1": "bf-spooky",
-		"player2": "gf-spooky-monster",
+		"player2": "monster",
 		"speed": 1.3,
 		"notes": [
 			{
@@ -2597,7 +2597,7 @@
 				"sectionNotes": []
 			}
 		],
-		"gfVersion": "gf",
+		"gfVersion": "gf-spooky-monster",
 		"stage": "halloween",
 		"authors": "Bassetfilms",
 		"generatedBy": "Funkin' Koya* 0.2.0 | Task: Resave All Songs",
