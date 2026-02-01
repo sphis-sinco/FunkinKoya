@@ -66,7 +66,7 @@ class Note extends FunkinSprite
 		switch (event.toLowerCase().trim())
 		{
 			default:
-				trace('no case for ${event.toLowerCase().trim()}');
+				// trace('no case for ${event.toLowerCase().trim()}');
 				initAssetOG();
 		}
 	}
@@ -80,7 +80,7 @@ class Note extends FunkinSprite
 		switch (event.toLowerCase().trim())
 		{
 			default:
-				trace('no case for ${event.toLowerCase().trim()}');
+				// trace('no case for ${event.toLowerCase().trim()}');
 				ogNoteAnims();
 		}
 	}
