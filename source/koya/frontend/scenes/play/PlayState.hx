@@ -767,7 +767,7 @@ class PlayState extends MusicBeatState
 		if (combo >= 10 || combo == 0)
 		{
 			var seperatedScore:Array<Int> = [];
-			var tempCombo:Int = combo;
+			var tempCombo:Int = Std.int(Math.abs(combo));
 
 			while (tempCombo != 0)
 			{
@@ -775,8 +775,8 @@ class PlayState extends MusicBeatState
 				tempCombo = Std.int(tempCombo / 10);
 			}
 
-			// while (seperatedScore.length < 3)
-				// seperatedScore.push(0);
+			while (seperatedScore.length < 1)
+				seperatedScore.push(0);
 
 			seperatedScore.reverse();
 			add(new ComboNumbers(seperatedScore, coolText.x, (cn) -> {
@@ -985,8 +985,7 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				#if COMBO_10X
-				if (combo > 0)
-				combo *= 10;
+				if (combo > 0) combo *= 10;
 				else
 				#end
 				combo += 1;
