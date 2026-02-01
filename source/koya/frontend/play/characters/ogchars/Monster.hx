@@ -7,6 +7,7 @@ class Monster extends Character
 	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false)
 	{
 		super(x, y, 'monster', isPlayer);
+		iconChar = 'retsnom';
 	}
 
 	override function initChar()

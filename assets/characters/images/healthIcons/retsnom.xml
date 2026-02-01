@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="retsnom.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="retsnom lose0000" x="4" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0001" x="4" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0002" x="4" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0003" x="142" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0004" x="142" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0005" x="142" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0006" x="280" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0007" x="280" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0008" x="280" y="4" width="130" height="91"/>
+	<SubTexture name="retsnom lose0009" x="4" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom lose0010" x="4" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom lose0011" x="4" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom normal0000" x="142" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom normal0001" x="142" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom normal0002" x="142" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom normal0003" x="280" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom normal0004" x="280" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom normal0005" x="280" y="103" width="130" height="91"/>
+	<SubTexture name="retsnom normal0006" x="4" y="202" width="130" height="91"/>
+	<SubTexture name="retsnom normal0007" x="4" y="202" width="130" height="91"/>
+	<SubTexture name="retsnom normal0008" x="4" y="202" width="130" height="91"/>
+	<SubTexture name="retsnom normal0009" x="142" y="202" width="130" height="91"/>
+	<SubTexture name="retsnom normal0010" x="142" y="202" width="130" height="91"/>
+	<SubTexture name="retsnom normal0011" x="142" y="202" width="130" height="91"/>
+</TextureAtlas>
