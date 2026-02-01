@@ -30,8 +30,6 @@ class TitleState extends MusicBeatState
 	public var logo:FlxSprite;
 	public var logoDRK:FlxSprite;
 
-	public var versionText:FlxText;
-
 	public var transitioning:Bool = false;
 
 	override public function create():Void
@@ -77,10 +75,6 @@ class TitleState extends MusicBeatState
 
 		FlxTween.tween(logo, {y: logo.y + 100}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		FlxTween.tween(logoDRK, {y: logo.y + 100}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: .1});
-
-		versionText = new FlxText(4, FlxG.height - (18 + 4), 0, Constants.VERSION, 16);
-		versionText.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-		add(versionText);
 	}
 
 	override function beatHit()
