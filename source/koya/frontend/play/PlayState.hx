@@ -44,6 +44,9 @@ class PlayState extends MusicBeatState
 		PlayState.SONG_DIFFICULTY = difficulty;
 		PlayState.chartingMode = chartingMode;
 		PlayState.storyMode = storyMode;
+
+		if (PlayState.SONG == null)
+			PlayState.SONG = Song.dummySong;
 	}
 
 	public static function loadWeek(weekPath:String, difficulty:Difficulty = NORMAL, chartingMode:Bool = false, storyMode:Bool = true)
@@ -713,14 +716,15 @@ class PlayState extends MusicBeatState
 			{
 				playList.remove(SONG.song);
 
-				var nextSong = playList[0];
+				var nextSong = playList[0].toLowerCase();
 				var nextChart = Highscore.formatSong(nextSong, SONG_DIFFICULTY);
 
 				loadSong(nextChart, nextSong, SONG_DIFFICULTY, chartingMode, storyMode);
 
 				transIn = null;
 				transOut = null;
-				trace('Moving to next song: ${SONG.song}');
+
+				trace('Moving to next song: ${nextSong}');
 				FlxG.switchState(() -> new PlayState());
 			}
 			else
