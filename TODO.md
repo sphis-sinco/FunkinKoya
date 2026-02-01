@@ -65,6 +65,7 @@
 
 ## Misc:
 
+- Options Menu
 - New Window Icons
 - Medals
 - Outdated State
