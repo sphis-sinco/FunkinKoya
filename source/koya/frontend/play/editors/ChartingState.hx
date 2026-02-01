@@ -600,7 +600,7 @@ class ChartingState extends MusicBeatState
 				vocals.stop();
 
 				PlayState.SONG = _song;
-				PlayState.chartingMode = true;
+				PlayState.IS_CHARTINGMODE = true;
 				FlxG.switchState(() -> new PlayState());
 			}
 

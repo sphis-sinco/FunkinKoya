@@ -42,13 +42,15 @@ class MainStage extends StageBackground
 
 		stageCurtains.scrollFactor.set();
 
-		add(stageCurtains);
+		if (PlayState.IS_STORYMODE && PlayState.STORYMODE_PLAYLIST_NUMBER == 0 || !PlayState.IS_STORYMODE) add(stageCurtains);
 	}
 
 	override function countdownTick(tick:Int = 0)
 	{
 		super.countdownTick(tick);
 
-		if (tick == 2) stageCurtains.playAnim('open');
+		if (PlayState.IS_STORYMODE
+			&& PlayState.STORYMODE_PLAYLIST_NUMBER == 0
+			|| !PlayState.IS_STORYMODE) if (tick == 2) stageCurtains.playAnim('open');
 	}
 }

@@ -70,7 +70,7 @@ class StoryModeState extends MenuState
 	{
 		PlayState.loadWeek(SongList.weekList.getEntryFilePath(week), currentDifficulty);
 
-		if (PlayState.playList.length > 0)
+		if (PlayState.STORYMODE_PLAYLIST.length > 0)
 		{
 			transitioning = true;
 			FlxG.sound.music.stop();
