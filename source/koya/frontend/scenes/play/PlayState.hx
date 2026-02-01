@@ -148,6 +148,9 @@ class PlayState extends MusicBeatState
 
 		if (resultsData == null) resultsData = new ResultsData();
 
+		if (IS_STORYMODE && STORYMODE_PLAYLIST_NUMBER > 0)
+			transIn = null;
+
 		strums = new StrumsGroup();
 		add(strums);
 
@@ -683,7 +686,6 @@ class PlayState extends MusicBeatState
 
 				loadSong(nextChart, nextSong, SONG_DIFFICULTY, IS_CHARTINGMODE, IS_STORYMODE);
 
-				transIn = null;
 				transOut = null;
 
 				trace('Moving to next song: ${nextSong}');
@@ -697,14 +699,14 @@ class PlayState extends MusicBeatState
 
 				resultsData = null;
 				Highscore.saveWeekScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
-				FlxG.switchState(() -> new StoryModeState());
+				openSubState(new ResultsSubState((() -> new StoryModeState())));
 			}
 		}
 		else
 		{
 			resultsData = null;
 			Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
-			FlxG.switchState(() -> new FreeplayState());
+			openSubState(new ResultsSubState((() -> new FreeplayState())));
 		}
 	}
 
