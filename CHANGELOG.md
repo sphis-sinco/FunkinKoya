@@ -1,5 +1,8 @@
 # [0.3.0] - 2/2026
 
+## Fixed
+- When you are on the last song of a week, the game no longer crashes trying to load another song
+
 # [0.2.3] - 2/1/2026
 
 This is just a quick hotfix to fix the game from being busted.

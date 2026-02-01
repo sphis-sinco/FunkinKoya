@@ -674,10 +674,10 @@ class PlayState extends MusicBeatState
 
 		if (IS_STORYMODE)
 		{
+			STORYMODE_PLAYLIST.remove(SONG.song);
+
 			if (STORYMODE_PLAYLIST.length > 0)
 			{
-				STORYMODE_PLAYLIST.remove(SONG.song);
-
 				var nextSong = STORYMODE_PLAYLIST[0].toLowerCase();
 				var nextChart = Highscore.formatSong(nextSong, SONG_DIFFICULTY);
 
