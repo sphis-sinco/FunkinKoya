@@ -73,25 +73,12 @@ class ResultsSubState extends MusicBeatSubstate
 			});
 
 		FlxTimer.wait(backFadeInTime + 0.25, function() {
-			var comboPercent:Float = 0;
-			while (comboPercent != percent)
-			{
-				var prevComboPercent = comboPercent;
-				comboPercent = Math.round(FlxMath.lerp(comboPercent, percent, .1));
-
-				if (comboPercent != prevComboPercent)
-				{
-					FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
-
-					trace(Std.int(comboPercent));
-					var comboNum = new ComboNumbers(Std.int(comboPercent), FlxG.width / 2.2, (cn) -> {
-						remove(cn);
-						cn.destroy();
-					});
-					comboNum.cameras = [resultsCam];
-					add(comboNum);
-				}
-			}
+			var comboNum = new ComboNumbers(Std.int(percent), FlxG.width / 2.2, (cn) -> {
+				remove(cn);
+				cn.destroy();
+			});
+			comboNum.cameras = [resultsCam];
+			add(comboNum);
 		});
 	}
 
