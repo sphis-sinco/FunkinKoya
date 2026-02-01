@@ -1,4 +1,4 @@
-# [Unreleased] - 2/1/2026
+# [0.2.2] - 2/1/2026
 
 ## Fixed
 - Crash when selecting "Monster" on freeplay
