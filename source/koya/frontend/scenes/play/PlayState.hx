@@ -146,6 +146,7 @@ class PlayState extends MusicBeatState
 		if (instance != null) instance = null;
 		instance = this;
 
+		if (!IS_STORYMODE && resultsData == null) resultsData = null;
 		if (resultsData == null) resultsData = new ResultsData();
 
 		strums = new StrumsGroup();
@@ -703,14 +704,12 @@ class PlayState extends MusicBeatState
 				STORYMODE_PLAYLIST = [];
 				STORYMODE_WEEK = '';
 
-				resultsData = null;
 				Highscore.saveWeekScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 				openSubState(new ResultsSubState((() -> new StoryModeState())));
 			}
 		}
 		else
 		{
-			resultsData = null;
 			Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 			openSubState(new ResultsSubState((() -> new FreeplayState())));
 		}
