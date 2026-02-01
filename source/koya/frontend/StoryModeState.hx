@@ -50,6 +50,10 @@ class StoryModeState extends MenuState
 		PlayState.loadWeek(SongList.weekList.getEntryFilePath(week), currentDifficulty);
 
 		if (PlayState.playList.length > 0)
+		{
+			FlxG.sound.music.stop();
+			
 			FlxG.switchState(() -> new PlayState());
+		}
 	}
 }
