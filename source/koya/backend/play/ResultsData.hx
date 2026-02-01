@@ -1,5 +1,7 @@
 package koya.backend.play;
 
+import flixel.math.FlxMath;
+
 class ResultsData
 {
 	/**
@@ -49,5 +51,23 @@ class ResultsData
 			Reflect.setField(data, '${rating}Count', count);
 
 		return Std.string(data);
+	}
+
+	public function grade()
+	{
+		var sickPercent:Float = noteRatingCounts.get('sick') / totalNotesHit;
+		var goodPercent:Float = noteRatingCounts.get('good') / totalNotesHit;
+		var badPercent:Float = noteRatingCounts.get('bad') / totalNotesHit;
+		var shitPercent:Float = noteRatingCounts.get('shit') / totalNotesHit;
+
+		sickPercent = Math.round(sickPercent * 100);
+		goodPercent = Math.round(goodPercent * 100);
+		badPercent = Math.round(badPercent * 100);
+		shitPercent = Math.round(shitPercent * 100);
+
+		trace(sickPercent);
+		trace(goodPercent);
+		trace(badPercent);
+		trace(shitPercent);
 	}
 }

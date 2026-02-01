@@ -29,7 +29,6 @@ class ResultsSubState extends MusicBeatSubstate
 
 		back = new FunkinSprite();
 		back.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#FFA7E5'));
-		PlayState.instance.add(back);
 
 		resultsCam = new FlxCamera();
 
@@ -47,7 +46,7 @@ class ResultsSubState extends MusicBeatSubstate
 		{
 			if (object != null && Reflect.fields(object).contains('alpha'))
 			{
-				FlxTween.tween(object, {alpha: 0}, (Conductor.stepCrochet / 1000) * (2 * stepAddition),
+				FlxTween.tween(object, {alpha: 0}, (Conductor.stepCrochet / 1000) * (2 + stepAddition),
 					{
 						ease: FlxEase.quadInOut
 					});
@@ -55,12 +54,13 @@ class ResultsSubState extends MusicBeatSubstate
 			stepAddition++;
 		}
 
-		
-		FlxTween.cancelTweensOf(back);
+		PlayState.instance.add(back);
 		FlxTween.tween(back, {y: 0, alpha: 1}, (Conductor.crochet / 1000) * 4,
 			{
 				ease: FlxEase.quadInOut
 			});
+
+		PlayState.resultsData.grade();
 	}
 
 	override function update(elapsed:Float)
