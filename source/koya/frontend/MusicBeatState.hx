@@ -1,5 +1,6 @@
 package koya.frontend;
 
+import koya.backend.plugins.Cursor;
 import koya.backend.Conductor;
 import flixel.FlxG;
 import flixel.addons.transition.FlxTransitionableState;
@@ -28,8 +29,7 @@ class MusicBeatState extends FlxUIState
 
 		super.create();
 
-		FlxG.mouse.visible = false;
-
+		Cursor.cursorVisible = false;
 		controls.loadKeyBinds();
 		sectionHit();
 	}

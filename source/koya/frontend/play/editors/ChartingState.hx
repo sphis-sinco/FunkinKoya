@@ -1,5 +1,6 @@
 package koya.frontend.play.editors;
 
+import koya.backend.plugins.Cursor;
 import koya.backend.songs.SongList;
 import koya.backend.play.Difficulty;
 import koya.backend.save.Save;
@@ -162,7 +163,7 @@ class ChartingState extends MusicBeatState
 
 		super.create();
 
-		FlxG.mouse.visible = true;
+		Cursor.cursorVisible = true;
 
 		updateGrid();
 	}

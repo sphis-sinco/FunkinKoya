@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.backend.plugins.Cursor;
 import flixel.util.FlxTimer;
 import koya.frontend.StoryModeState;
 import koya.backend.songs.Song;
@@ -33,6 +34,8 @@ class InitState extends FlxState
 		super.create();
 
 		FlxSprite.defaultAntialiasing = true;
+
+		FlxG.plugins.addPlugin(new Cursor());
 
 		var startingState:NextState = getStartingState();
 

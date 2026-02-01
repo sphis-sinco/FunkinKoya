@@ -1,5 +1,6 @@
 package koya.frontend.web;
 
+import koya.backend.plugins.Cursor;
 import koya.backend.InitState;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -25,7 +26,7 @@ class TouchHere extends MusicBeatState
 
 		button.screenCenter();
 
-		FlxG.mouse.visible = true;
+		Cursor.cursorVisible = true;
 	}
 
 	override function update(elapsed:Float)

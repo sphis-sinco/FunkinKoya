@@ -35,8 +35,6 @@ class TitleState extends MusicBeatState
 	{
 		super.create();
 
-		FlxG.mouse.visible = false;
-
 		begin();
 	}
 

@@ -1,5 +1,6 @@
 package koya.frontend;
 
+import koya.backend.plugins.Cursor;
 import koya.backend.Conductor;
 import koya.backend.controls.Controls;
 import koya.backend.controls.PlayerSettings;
@@ -27,7 +28,8 @@ class MusicBeatSubstate extends FlxSubState
 	{
 		super.create();
 
-				controls.loadKeyBinds();
+		Cursor.cursorVisible = false;
+		controls.loadKeyBinds();
 		sectionHit();
 	}
 
