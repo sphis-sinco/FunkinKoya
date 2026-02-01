@@ -20,11 +20,7 @@ using StringTools;
 
 class Main extends Sprite
 {
-	#if web
-	public static var FPS:Int = 60;
-	#else
 	public static var FPS:Int = 144;
-	#end
 
 	public function new()
 	{
