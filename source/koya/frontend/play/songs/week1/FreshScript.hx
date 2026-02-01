@@ -31,18 +31,20 @@ class FreshScript extends SongClass
 	function get_stageFloor():FunkinSprite
 		return cast PlayState.instance.currentStage?.getThing('stageFloor');
 
+	override public function preCountdown():Bool
+	{
+		if (stageBack != null) stageBack.alpha = 0;
+		if (stageFloor != null) stageFloor.alpha = 0;
+		if (gf != null) gf.alpha = 0;
+
+		if (dad != null) dad.alpha = 0;
+		if (boyfriend != null) boyfriend.alpha = 0;
+
+		return true;
+	}
+
 	override public function countdownTick(swagCounter:Int)
 	{
-		if (swagCounter == 0)
-		{
-			stageBack.alpha = 0;
-			stageFloor.alpha = 0;
-			gf.alpha = 0;
-
-			dad.alpha = 0;
-			boyfriend.alpha = 0;
-		}
-
 		if (swagCounter == 4)
 		{
 			if (dad != null)
@@ -75,11 +77,11 @@ class FreshScript extends SongClass
 					bfFade.manager = PlayState.instance.tweenManager;
 				}
 			case 16:
-				stageBack.alpha = 1;
-				stageFloor.alpha = 1;
-				gf.alpha = 1;
-				boyfriend.alpha = 1;
-				dad.alpha = 1;
+				if (stageBack != null) stageBack.alpha = 1;
+				if (stageFloor != null) stageFloor.alpha = 1;
+				if (gf != null) gf.alpha = 1;
+				if (boyfriend != null) boyfriend.alpha = 1;
+				if (dad != null) dad.alpha = 1;
 
 				dadFade.destroy();
 				bfFade.destroy();

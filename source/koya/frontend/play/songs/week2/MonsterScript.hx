@@ -34,31 +34,30 @@ class MonsterScript extends SongClass
 
 	public var startShader:AdjustColorShader;
 
-	override public function countdownTick(swagCounter:Int)
+	override public function preCountdown():Bool
 	{
-		if (swagCounter == 0)
-		{
-			halloweenBack.alpha = 0;
-			stairs.alpha = 0;
-			gf.alpha = 0;
+		if (halloweenBack != null) halloweenBack.alpha = 0;
+		if (stairs != null) stairs.alpha = 0;
+		if (gf != null) gf.alpha = 0;
 
-			dad.alpha = 0;
-			boyfriend.alpha = 0;
+		if (dad != null) dad.alpha = 0;
+		if (boyfriend != null) boyfriend.alpha = 0;
 
-			startShader = new AdjustColorShader();
+		startShader = new AdjustColorShader();
 
-			startShader.saturation = -62;
-			startShader.hue = -24;
-			startShader.contrast = -32;
-			startShader.brightness = -28;
+		startShader.saturation = -62;
+		startShader.hue = -24;
+		startShader.contrast = -32;
+		startShader.brightness = -28;
 
-			if (boyfriend != null) boyfriend.shader = startShader;
-			if (dad != null) dad.shader = startShader;
-			if (gf != null) gf.shader = startShader;
+		if (boyfriend != null) boyfriend.shader = startShader;
+		if (dad != null) dad.shader = startShader;
+		if (gf != null) gf.shader = startShader;
 
-			if (halloweenBack != null) halloweenBack.shader = startShader;
-			if (stairs != null) stairs.shader = startShader;
-		}
+		if (halloweenBack != null) halloweenBack.shader = startShader;
+		if (stairs != null) stairs.shader = startShader;
+
+		return true;
 	}
 
 	public var dadFade:FlxTween;
@@ -91,11 +90,11 @@ class MonsterScript extends SongClass
 				}
 
 			case 20:
-				halloweenBack.alpha = 1;
-				stairs.alpha = 1;
-				gf.alpha = 1;
-				boyfriend.alpha = 1;
-				dad.alpha = 1;
+				if (halloweenBack != null) halloweenBack.alpha = 1;
+				if (stairs != null) stairs.alpha = 1;
+				if (gf != null) gf.alpha = 1;
+				if (boyfriend != null) boyfriend.alpha = 1;
+				if (dad != null) dad.alpha = 1;
 
 				dadFade.destroy();
 				bfFade.destroy();
