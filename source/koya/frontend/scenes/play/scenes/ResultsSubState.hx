@@ -85,10 +85,6 @@ class ResultsSubState extends MusicBeatSubstate
 				numScore.x -= (43 * comboNum.comboLength / 2) - 90;
 				numScore.x += (43 * numScore.ID) - 90;
 
-				numScore.acceleration.y = FlxG.random.int(50, 75);
-				numScore.velocity.y -= FlxG.random.int(70, 80);
-				numScore.velocity.x = FlxG.random.float(-5, 5);
-
 				FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 			}
 			comboNum.cameras = [resultsCam];
