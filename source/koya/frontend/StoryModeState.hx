@@ -1,5 +1,7 @@
 package koya.frontend;
 
+import flixel.tweens.FlxTween;
+import koya.backend.AssetPaths;
 import koya.frontend.ui.DifficultySprite;
 import koya.frontend.ui.ArrowUI;
 import koya.backend.Constants;
@@ -23,6 +25,9 @@ class StoryModeState extends MenuState
 	var arrow_UP:ArrowUI = new ArrowUI(UP, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 
+	var aU_y:Float = 0;
+	var aD_y:Float = 0;
+
 	override function create()
 	{
 		super.create();
@@ -43,9 +48,11 @@ class StoryModeState extends MenuState
 		arrow_UP.y -= arrow_UP.height * 7;
 		arrow_DOWN.y -= arrow_DOWN.height * 3;
 
+		aU_y = arrow_UP.y;
+		aD_y = arrow_DOWN.y;
+
 		songDifficultySprite = new DifficultySprite(currentDifficulty);
 		add(songDifficultySprite);
-		songDifficultySprite.screenCenter();
 	}
 
 	override function accept(item:String)
@@ -80,12 +87,33 @@ class StoryModeState extends MenuState
 	{
 		super.update(elapsed);
 
-		if (currentDifficulty < 0) currentDifficulty = 0;
-		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = Difficulty.list.length - 1;
+		
+		if (controls.UI_UP_R)
+		{
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+			currentDifficulty -= 1;
+
+			arrow_UP.y -= 10;
+			FlxTween.cancelTweensOf(arrow_UP);
+			FlxTween.tween(arrow_UP, {y: aU_y}, .1);
+		}
+		if (controls.UI_DOWN_R)
+		{
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+			currentDifficulty += 1;
+
+			arrow_DOWN.y += 10;
+			FlxTween.cancelTweensOf(arrow_DOWN);
+			FlxTween.tween(arrow_DOWN, {y: aD_y}, .1);
+		}
+
+		arrow_UP.alpha = (currentDifficulty == Difficulty.list[0].toInt()) ? 0.5 : 1;
+		arrow_DOWN.alpha = (currentDifficulty == Difficulty.list[Difficulty.list.length - 1].toInt()) ? 0.5 : 1;
 
 		currentDifficultyEnum = currentDifficulty;
 
 		songDifficultySprite.difficulty = currentDifficulty;
+		songDifficultySprite.screenCenter(X);
 		songDifficultySprite.y = FlxG.height - songDifficultySprite.height * 2.5;
 	}
 
