@@ -1,4 +1,6 @@
-# [0.2.1] - 2/2026
+# [0.2.1] - 2/1/2026
+
+A quick save patch update
 
 ## SAVE VERSION 2:
 - Save fields are initalized (properly now) before ANY attempt at loading save information
