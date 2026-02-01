@@ -860,9 +860,6 @@ class PlayState extends MusicBeatState
 
 								if (!inIgnoreList && !daNote.inactive)
 								{
-									resultsData.notesMissed++;
-
-									// HIT NOTE (MISS)
 									badNoteCheck();
 								}
 							}
@@ -884,7 +881,6 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				// GHOST TAP
 				badNoteCheck();
 			}
 		}
@@ -947,6 +943,7 @@ class PlayState extends MusicBeatState
 			health -= 0.04;
 			if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
 			combo = 0;
+			resultsData.notesMissed++;
 
 			songScore -= 10;
 
