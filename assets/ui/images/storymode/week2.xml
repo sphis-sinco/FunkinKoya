@@ -2,6 +2,6 @@
 <TextureAtlas imagePath="week2.png">
 	<!-- Created with Adobe Animate version 21.0.6.41649 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="week 2 idle0000" x="4" y="4" width="557" height="242"/>
-	<SubTexture name="week 2 selected0000" x="4" y="254" width="566" height="251"/>
+	<SubTexture name="week2 idle0000" x="4" y="4" width="557" height="242"/>
+	<SubTexture name="week2 selected0000" x="4" y="254" width="566" height="251"/>
 </TextureAtlas>
