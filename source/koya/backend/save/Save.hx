@@ -52,7 +52,8 @@ class Save
 			default:
 				trace('unimplemented upgrade from version: ${version.get()}');
 		}
-
+		
+		version.set(version.get() + 1);
 		if (version.get() < SAVE_VERSION)
 			upgradeVersion();
 	}
