@@ -1,20 +1,22 @@
-# 0.3.0 (Week 3 + Results Screen):
+# 0.3.0 ( Results Screen):
 
 - Results screen
 - Results GOOD bf Anim
+
+# 0.4.0 (Week 3):
 
 - Week 3 Songs
 - Pico (BASIC)
 - Newgrounds Office BG
 
-# 0.4.0 (Week 4):
+# 0.5.0 (Week 4):
 
 - Week 4 Songs
 - Ms. Mearest
 - BF Flying hair
 - Limo BG
 
-# 0.5.0 (Week 5):
+# 0.6.0 (Week 5):
 
 - Week 5 Songs
 - Parents
@@ -22,7 +24,7 @@
 - GF Christmas
 - Christmas BG
 
-# 0.6.0 (Week 6):
+# 0.7.0 (Week 6):
 
 - Week 6 Songs
 - Senpai
@@ -32,7 +34,7 @@
 - Week 6 Dialogue
 - Cutscenes support
 
-# 0.7.0 (Week 7):
+# 0.8.0 (Week 7):
 
 - Week 7 Songs
 - Tankman
@@ -43,7 +45,7 @@
 - Video Cutscenes support
 - Week 7 Video Cutscenes
 
-# 0.8.0 (Weekend 1):
+# 0.9.0 (Weekend 1):
 
 - Weekend 1 Songs
 - Darnell
