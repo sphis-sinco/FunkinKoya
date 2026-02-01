@@ -190,6 +190,7 @@ class Note extends FunkinSprite
 				return '-alt';
 			case 'cheer':
 				return '-cheer';
+			case '':
 
 			default:
 				trace('No case for: ${event.toLowerCase()}');
@@ -208,6 +209,8 @@ class Note extends FunkinSprite
 		{
 			case 'cheer':
 				return 'cheer';
+
+			case '':
 
 			default:
 				trace('No case for: ${event.toLowerCase()}');
