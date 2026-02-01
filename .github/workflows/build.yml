@@ -27,26 +27,6 @@ jobs:
           name: Windows Build
           path: export/release/windows/bin
 
-  buildWeb:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v6.0.1
-      - uses: krdlab/setup-haxe@v2.0.2
-        with:
-          haxe-version: 4.3.7
-      - name: compile Web
-        run: |
-          haxelib --global install hmm
-          haxelib --global run hmm setup
-          haxelib run hmm install
-          haxelib list
-          haxelib run lime build html5
-
-      - uses: actions/upload-artifact@v6.0.0
-        with:
-          name: HTML5 Build
-          path: export/release/html5/bin
-
   buildLinux:
     runs-on: ubuntu-latest
     steps:
