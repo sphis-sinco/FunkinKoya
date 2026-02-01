@@ -8,7 +8,7 @@ class MonsterScript extends SongIntroFadeScript
 	override public function new()
 	{
 		super(['halloweenBack', 'stairs']);
-		endingFlashBeats = 71;
+		finishBeat = 71;
 	}
 
 	public var startShader:AdjustColorShader;

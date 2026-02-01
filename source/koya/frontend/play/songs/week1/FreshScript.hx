@@ -7,7 +7,7 @@ class FreshScript extends SongIntroFadeScript
 	override public function new()
 	{
 		super(['stageBack', 'songFloor']);
-		endingFlashBeats = 16;
+		finishBeat = 16;
 	}
 
 	override function finishedIntro()
