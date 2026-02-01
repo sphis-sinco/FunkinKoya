@@ -7,11 +7,10 @@ import koya.backend.songs.Week;
 import lime.utils.Assets;
 import koya.frontend.scenes.play.songs.SongClass;
 import koya.frontend.scenes.freeplay.FreeplayState;
-import koya.backend.play.Difficulty;
+import koya.backend.play.*;
 import koya.frontend.scenes.play.stages.StageBackground;
 import koya.backend.*;
-import koya.backend.songs.Section;
-import koya.backend.songs.Song;
+import koya.backend.songs.*;
 import flixel.*;
 import flixel.group.FlxGroup;
 import flixel.math.*;
@@ -139,10 +138,14 @@ class PlayState extends MusicBeatState
 
 	public var strums:StrumsGroup;
 
+	public var resultsData:ResultsData;
+
 	override public function create()
 	{
 		if (instance != null) instance = null;
 		instance = this;
+
+		resultsData = new ResultsData();
 
 		strums = new StrumsGroup();
 		add(strums);
@@ -653,13 +656,14 @@ class PlayState extends MusicBeatState
 	function endSong():Void
 	{
 		var ret:Bool = songScript.endSong();
-
 		if (!ret) return;
 
 		canPause = false;
 
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
+
+		trace('${resultsData}');
 
 		if (IS_CHARTINGMODE)
 		{
@@ -734,6 +738,8 @@ class PlayState extends MusicBeatState
 			daRating = 'good';
 			score = 200;
 		}
+
+		resultsData.earnRating(daRating);
 
 		songScore += score;
 
@@ -849,7 +855,13 @@ class PlayState extends MusicBeatState
 								for (shit in 0...ignoreList.length)
 									if (controlArray[ignoreList[shit]]) inIgnoreList = true;
 
-								if (!inIgnoreList && !daNote.inactive) badNoteCheck();
+								if (!inIgnoreList && !daNote.inactive)
+								{
+									resultsData.notesMissed++;
+
+									// HIT NOTE (MISS)
+									badNoteCheck();
+								}
 							}
 					}
 					else if (possibleNotes[0].noteID == possibleNotes[1].noteID) noteCheck(controlArray[daNote.noteID], daNote);
@@ -868,7 +880,10 @@ class PlayState extends MusicBeatState
 				}
 			}
 			else
+			{
+				// GHOST TAP
 				badNoteCheck();
+			}
 		}
 
 		if ((up || right || down || left) && !currentStage.boyfriend?.stunned && generatedMusic)
@@ -976,6 +991,7 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
+				resultsData.totalNotesHit++;
 			}
 
 			if (note.noteID >= 0) health += 0.023;
