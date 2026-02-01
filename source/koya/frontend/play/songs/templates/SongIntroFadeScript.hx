@@ -59,7 +59,17 @@ class SongIntroFadeScript extends SongClass
 	public function forStageObject(thendo:Dynamic->Void)
 	{
 		for (obj in songObjectsToHide)
-			if (PlayState.instance.currentStage.getThing(obj) != null) thendo(obj);
+			if (PlayState.instance.currentStage.getThing(obj) != null)
+			{
+				var invalidTypes:Array<Dynamic> = [String, Int, Float, Enum];
+
+				var dontdo = false;
+
+				for (type in invalidTypes)
+					if (Std.isOfType(type, obj)) dontdo = true;
+
+				if (!dontdo) thendo(PlayState.instance.currentStage.getThing(obj));
+			}
 	}
 
 	public var finishBeat:Int = 0;
