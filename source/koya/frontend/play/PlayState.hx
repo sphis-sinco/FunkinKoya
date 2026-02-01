@@ -38,7 +38,7 @@ class PlayState extends MusicBeatState
 	public static var instance:PlayState = null;
 
 	public static var SONG:SwagSong;
-	public static var SONG_DIFFICULTY:Int = Difficulty.NORMAL;
+	public static var SONG_DIFFICULTY:Difficulty = Difficulty.NORMAL;
 	public static var SONG_STAGE:String = '';
 
 	public static var storyMode:Bool = false;

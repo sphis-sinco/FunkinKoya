@@ -14,9 +14,10 @@
 
 ## Added
 
-- "Event Notes"
-- WEEK 2 KOYA
+- WEEK 2 KOYA!
 - MAIN MENU!
+- Difficulty changing via the pause menu!
+- "Event Notes"
 - `weekList` text file
 - Face health icon for when a health Icon cannot be found
 

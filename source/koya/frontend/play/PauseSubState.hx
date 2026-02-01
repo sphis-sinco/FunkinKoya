@@ -1,5 +1,9 @@
 package koya.frontend.play;
 
+import koya.backend.songs.Song;
+import lime.utils.Assets;
+import koya.backend.Highscore;
+import koya.backend.play.Difficulty;
 import koya.frontend.play.songs.SongClass;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
@@ -13,11 +17,13 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.sound.FlxSound;
 import flixel.util.FlxColor;
 
+using StringTools;
+
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = ['resume', 'restart song'];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
@@ -34,6 +40,18 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
+
+		for (difficulty in Difficulty.list)
+		{
+			if (PlayState.SONG_DIFFICULTY == difficulty) continue;
+
+			var song = PlayState.SONG.song.toLowerCase();
+			var chart = Highscore.formatSong(song, difficulty);
+
+			if (Assets.exists(AssetPaths.chart(song, chart))) menuItems.push('change to ${difficulty.toString()}');
+		}
+
+		menuItems.push('exit to menu');
 
 		pauseMusic = new FlxSound().loadEmbedded(AssetPaths.music('breakfast'), true, true);
 		pauseMusic.volume = 0;
@@ -112,15 +130,39 @@ class PauseSubState extends MusicBeatSubstate
 			var daSelected:String = menuItems[curSelected];
 
 			FlxG.camera.followLerp = PlayState.CAMFOLLOWLERP;
-			PlayState.instance.tweenManager.active = true;
-			switch (daSelected)
+			switch (daSelected.toLowerCase())
 			{
-				case "Resume":
+				case "resume":
+					PlayState.instance.tweenManager.active = true;
 					close();
-				case "Restart Song":
+				case "restart song":
 					FlxG.switchState(() -> new PlayState());
-				case "Exit to menu":
+				case "exit to menu":
 					FlxG.switchState(() -> new FreeplayState());
+			}
+
+			if (daSelected.toLowerCase().startsWith('change to '))
+			{
+				var difficulty:String = '';
+
+				var i = 0;
+				for (e in daSelected.split(' '))
+				{
+					if (i > 1) difficulty += '$e ';
+
+					i++;
+				}
+
+				difficulty = difficulty.toLowerCase().trim();
+
+				var song = PlayState.SONG.song.toLowerCase();
+				var chart = Highscore.formatSong(song, Difficulty.stringList.indexOf(difficulty));
+
+				PlayState.SONG = Song.loadFromJson(chart, song);
+				PlayState.SONG_DIFFICULTY = Difficulty.stringList.indexOf(difficulty);
+
+				trace(AssetPaths.chart(song, chart));
+				FlxG.switchState(() -> new PlayState());
 			}
 		}
 	}
