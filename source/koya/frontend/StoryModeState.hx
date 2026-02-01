@@ -30,14 +30,9 @@ class StoryModeState extends MenuState
 	{
 		super.create();
 
-		var topBorder:FunkinSprite = new FunkinSprite();
-		add(topBorder);
-		topBorder.makeGraphic(FlxG.width, Math.round(FlxG.height / 4), FlxColor.BLACK);
-		topBorder.screenCenter(X);
-		topBorder.y = 0;
-
-		var bottomBorder:FunkinSprite = topBorder.clone();
+		var bottomBorder:FunkinSprite = new FunkinSprite();
 		add(bottomBorder);
+		bottomBorder.makeGraphic(FlxG.width, Math.round(FlxG.height / 2), FlxColor.BLACK);
 		bottomBorder.screenCenter(X);
 		bottomBorder.y = FlxG.height - bottomBorder.height;
 
@@ -48,8 +43,8 @@ class StoryModeState extends MenuState
 			add(arrow);
 		}
 
-		arrow_UP.y -= arrow_UP.height * 4;
-		arrow_DOWN.y -= arrow_DOWN.height * 2;
+		arrow_UP.y -= arrow_UP.height * 8;
+		arrow_DOWN.y -= arrow_DOWN.height * 4;
 
 		aU_y = arrow_UP.y;
 		aD_y = arrow_DOWN.y;
@@ -97,6 +92,14 @@ class StoryModeState extends MenuState
 		currentDifficultyEnum = currentDifficulty;
 
 		songDifficultySprite.difficulty = currentDifficulty;
-		songDifficultySprite.y = FlxG.height - songDifficultySprite.height * 4;
+		songDifficultySprite.y = FlxG.height - songDifficultySprite.height * 3;
+	}
+
+	override function select(change:Int = 0)
+	{
+		super.select(change);
+
+		for (menuItem in itemsGroup.members)
+			menuItem.y -= menuItem.height * 2;
 	}
 }
