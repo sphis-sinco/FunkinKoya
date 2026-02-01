@@ -5,40 +5,26 @@ import flixel.sound.FlxSound;
 import flixel.effects.FlxFlicker;
 import koya.frontend.freeplay.FreeplayState;
 import flixel.math.FlxMath;
+import flixel.FlxObject;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
 import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
-enum MenuType
-{
-	Vertical;
-	Horizontal;
-}
-
-class MainMenuState extends MusicBeatState
+class MainMenuStateOG extends MusicBeatState
 {
 	public var pinkBG:MenuBG = new MenuBG(true);
 	public var flashBG:MenuBG = new MenuBG(false);
 
-	public var itemList:Array<String> = [
+	public var menuItemsList:Array<String> = [
 		'story mode',
 		'freeplay',
 		'support',
 		// 'options',
 	];
-	public var itemsGroup:FlxTypedGroup<MenuItem>;
+	public var menuItemsGroup:FlxTypedGroup<MenuItem>;
 
 	public var currentSelection:Int = 0;
-
-	public var menuType:MenuType = Vertical;
-
-	override public function new(menuType:MenuType = Horizontal)
-	{
-		super();
-
-		this.menuType = menuType;
-	}
 
 	override function create()
 	{
@@ -54,13 +40,13 @@ class MainMenuState extends MusicBeatState
 		flashBG.updateHitbox();
 		pinkBG.updateHitbox();
 
-		itemsGroup = new FlxTypedGroup<MenuItem>();
-		add(itemsGroup);
+		menuItemsGroup = new FlxTypedGroup<MenuItem>();
+		add(menuItemsGroup);
 
 		var i = 0;
-		for (item in itemList)
+		for (item in menuItemsList)
 		{
-			var menuItem = new MenuItem(item, (menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0);
+			var menuItem = new MenuItem(item, 0, -640);
 
 			menuItem.scale.set(.5, .5);
 			menuItem.updateHitbox();
@@ -68,11 +54,10 @@ class MainMenuState extends MusicBeatState
 
 			menuItem.playAnim('idle');
 
-			if (menuType == Horizontal) menuItem.screenCenter(Y);
-			if (menuType == Vertical) menuItem.screenCenter(X);
+			menuItem.screenCenter(X);
 
 			menuItem.ID = i;
-			itemsGroup.add(menuItem);
+			menuItemsGroup.add(menuItem);
 
 			i++;
 		}
@@ -86,28 +71,17 @@ class MainMenuState extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		if (menuType == Vertical)
-		{
-			pinkBG.screenCenter(X);
-			pinkBG.y = FlxMath.lerp((FlxG.height - pinkBG.height) / 2 - (currentSelection * 2), pinkBG.y, 0.9);
-		}
-		else
-		{
-			pinkBG.screenCenter(Y);
-			pinkBG.x = FlxMath.lerp((FlxG.width - pinkBG.width) / 2 - (currentSelection * 2), pinkBG.x, 0.9);
-		}
+		pinkBG.screenCenter(X);
+		pinkBG.y = FlxMath.lerp((FlxG.height - pinkBG.height) / 2 - (currentSelection * 2), pinkBG.y, 0.9);
 		flashBG.setPosition(pinkBG.x, pinkBG.y);
 
-		for (menuItem in itemsGroup.members)
-		{
-			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.x, 0.9);
-			if (menuType == Vertical) menuItem.y = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.y, 0.9);
-		}
+		for (menuItem in menuItemsGroup.members)
+			menuItem.y = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.y, 0.9);
 
 		if (controls.UI_UP_R) select(-1);
 		if (controls.UI_DOWN_R) select(1);
 
-		if (controls.ACCEPT) accepted(itemsGroup.members[currentSelection].item);
+		if (controls.ACCEPT) accepted(menuItemsGroup.members[currentSelection].item);
 		if (controls.BACK) FlxG.switchState(() -> new TitleState());
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
@@ -125,12 +99,11 @@ class MainMenuState extends MusicBeatState
 		if (change != 0) FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 		if (currentSelection < 0) currentSelection = 0;
-		if (currentSelection >= itemList.length) currentSelection = itemList.length - 1;
+		if (currentSelection >= menuItemsList.length) currentSelection = menuItemsList.length - 1;
 
-		for (menuItem in itemsGroup.members)
+		for (menuItem in menuItemsGroup.members)
 		{
-			if (menuType == Horizontal) menuItem.screenCenter(Y);
-			if (menuType == Vertical) menuItem.screenCenter(X);
+			menuItem.screenCenter(X);
 			menuItem.playAnim('idle');
 
 			if (menuItem.ID == currentSelection) menuItem.playAnim('selected');
@@ -147,29 +120,24 @@ class MainMenuState extends MusicBeatState
 		confirmMenu.play();
 
 		FlxFlicker.flicker(pinkBG, (confirmMenu.length / 2) / 1000, .1);
-		FlxFlicker.flicker(itemsGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
+		FlxFlicker.flicker(menuItemsGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
 
 		FlxTimer.wait((confirmMenu.length / 2) / 1000, function() {
 			transitioning = false;
-			accept(item);
+			switch (item)
+			{
+				case 'story mode':
+					trace('the tale you play');
+				case 'freeplay':
+					trace('FREE');
+					FlxG.switchState(() -> new FreeplayState());
+					transitioning = true;
+				case 'support':
+					trace('mone?');
+					FlxG.openURL('https://ko-fi.com/sphis');
+				case 'options':
+					trace('change is supported');
+			}
 		});
-	}
-
-	public function accept(item:String)
-	{
-		switch (item)
-		{
-			case 'story mode':
-				trace('the tale you play');
-			case 'freeplay':
-				trace('FREE');
-				FlxG.switchState(() -> new FreeplayState());
-				transitioning = true;
-			case 'support':
-				trace('mone?');
-				FlxG.openURL('https://ko-fi.com/sphis');
-			case 'options':
-				trace('change is supported');
-		}
 	}
 }
