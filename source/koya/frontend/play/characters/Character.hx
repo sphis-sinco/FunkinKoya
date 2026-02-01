@@ -138,9 +138,9 @@ class Character extends FunkinSprite
 		trace(' * found character offset file: $offsetPath');
 		var offsetfile = Assets.getText(offsetPath).split('\n');
 
-		cameraOffsets = [];
+		generalOffsets = [];
 		for (line in offsetfile)
-			cameraOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
+			generalOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
 	}
 
 	public function cameraMoveToMe() {}
