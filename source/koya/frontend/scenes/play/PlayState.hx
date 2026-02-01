@@ -148,13 +148,9 @@ class PlayState extends MusicBeatState
 
 		if (resultsData == null) resultsData = new ResultsData();
 
-		if (IS_STORYMODE && STORYMODE_PLAYLIST_NUMBER > 0)
-			transIn = null;
-
 		strums = new StrumsGroup();
 		add(strums);
 
-		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
@@ -620,9 +616,6 @@ class PlayState extends MusicBeatState
 					daNote.destroy();
 				}
 
-				// WIP interpolation shit? Need to fix the pause issue
-				// daNote.y = (STRUMLINE_Y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
-
 				if (daNote.y < -daNote.height)
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
@@ -681,12 +674,14 @@ class PlayState extends MusicBeatState
 
 			if (STORYMODE_PLAYLIST.length > 0)
 			{
+				/**
+					Load the next
+					story mode song chart
+				**/
 				var nextSong = STORYMODE_PLAYLIST[0].toLowerCase();
 				var nextChart = Highscore.formatSong(nextSong, SONG_DIFFICULTY);
 
 				loadSong(nextChart, nextSong, SONG_DIFFICULTY, IS_CHARTINGMODE, IS_STORYMODE);
-
-				transOut = null;
 
 				trace('Moving to next song: ${nextSong}');
 				FlxG.switchState(() -> new PlayState());
