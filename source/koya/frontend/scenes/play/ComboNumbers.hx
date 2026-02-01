@@ -19,20 +19,24 @@ class ComboNumbers extends FlxTypedGroup<FunkinSprite>
 		this.onComplete = onComplete;
 
 		var seperatedScore:Array<Int> = [];
-		var tempCombo:Int = Std.int(Math.abs(combo));
-
-		while (tempCombo != 0)
+		if (combo < 1) seperatedScore = [0, 0];
+		else
 		{
-			seperatedScore.push(tempCombo % 10);
-			tempCombo = Std.int(tempCombo / 10);
-		}
+			var tempCombo:Int = Std.int(Math.abs(combo));
 
-		while (seperatedScore.length < 1)
-			seperatedScore.push(0);
+			while (tempCombo != 0)
+			{
+				seperatedScore.push(tempCombo % 10);
+				tempCombo = Std.int(tempCombo / 10);
+			}
+
+			while (seperatedScore.length < 1)
+				seperatedScore.push(0);
+		}
 
 		seperatedScore.reverse();
 
-		this.comboLength = seperatedScore.length - 1;
+		this.comboLength = seperatedScore.length;
 
 		var daLoop:Int = 0;
 		FlxG.log.add(seperatedScore);
