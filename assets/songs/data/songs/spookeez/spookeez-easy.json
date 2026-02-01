@@ -3,7 +3,7 @@
 		"song": "Spookeez",
 		"needsVoices": true,
 		"player1": "bf",
-		"player2": "spooky",
+		"player2": "gf-spooky",
 		"notes": [
 			{
 				"lengthInSteps": 16,
