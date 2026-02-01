@@ -775,9 +775,10 @@ class PlayState extends MusicBeatState
 				tempCombo = Std.int(tempCombo / 10);
 			}
 
-			while (seperatedScore.length < 3)
-				seperatedScore.push(0);
+			// while (seperatedScore.length < 3)
+				// seperatedScore.push(0);
 
+			seperatedScore.reverse();
 			add(new ComboNumbers(seperatedScore, coolText.x, (cn) -> {
 				remove(cn);
 				cn.destroy();

@@ -21,6 +21,7 @@ class ComboNumbers extends FlxTypedGroup<FlxBasic>
 		this.comboLength = combo.length - 1;
 
 		var daLoop:Int = 0;
+		FlxG.log.add(combo);
 		for (i in combo)
 		{
 			var numScore:FunkinSprite = new FunkinSprite();
@@ -28,6 +29,7 @@ class ComboNumbers extends FlxTypedGroup<FlxBasic>
 			numScore.screenCenter();
 			numScore.x = startingX + (43 * daLoop) - 90;
 			numScore.y += 80;
+			numScore.ID = daLoop;
 
 			numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			numScore.updateHitbox();
@@ -41,9 +43,11 @@ class ComboNumbers extends FlxTypedGroup<FlxBasic>
 			FlxTween.tween(numScore, {alpha: 0}, 0.2,
 				{
 					onComplete: function(tween:FlxTween) {
-						numScore.destroy();
-						numScoreDied(daLoop);
+						numScoreDied(numScore.ID);
 						comboLength--;
+
+						numScore.destroy();
+						remove(numScore);						
 					},
 					startDelay: Conductor.crochet * 0.002
 				});
