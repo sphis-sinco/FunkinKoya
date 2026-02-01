@@ -1,5 +1,7 @@
 package koya.frontend;
 
+import koya.frontend.ui.DifficultySprite;
+import koya.frontend.ui.ArrowUI;
 import koya.backend.Constants;
 import flixel.util.FlxColor;
 import flixel.FlxG;
@@ -68,8 +70,6 @@ class StoryModeState extends MenuState
 		}
 	}
 
-	public var currentDifficulty:Difficulty = NORMAL;
-
 	public function loadWeek(week:String)
 	{
 		PlayState.loadWeek(SongList.weekList.getEntryFilePath(week), currentDifficulty);
@@ -84,6 +84,8 @@ class StoryModeState extends MenuState
 	}
 
 	public var songDifficultySprite:DifficultySprite;
+	public var currentDifficulty:Int = Difficulty.NORMAL;
+	public var currentDifficultyEnum:Difficulty;
 
 	override function update(elapsed:Float)
 	{
