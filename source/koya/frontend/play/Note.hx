@@ -184,7 +184,7 @@ class Note extends FunkinSprite
 
 		if (note != null) if (note.noteData != null) event = note.noteData;
 
-		switch (event.toLowerCase())
+		switch (event.toLowerCase().trim())
 		{
 			case 'alt', 'alternate':
 				return '-alt';
@@ -193,7 +193,7 @@ class Note extends FunkinSprite
 			case '':
 
 			default:
-				trace('No case for: ${event.toLowerCase()}');
+				trace('No case for: ${event.toLowerCase().trim()}');
 		}
 
 		return '';
@@ -205,7 +205,7 @@ class Note extends FunkinSprite
 
 		if (note != null) if (note.noteData != null) event = note.noteData;
 
-		switch (event.toLowerCase())
+		switch (event.toLowerCase().trim())
 		{
 			case 'cheer':
 				return 'cheer';
@@ -213,7 +213,7 @@ class Note extends FunkinSprite
 			case '':
 
 			default:
-				trace('No case for: ${event.toLowerCase()}');
+				trace('No case for: ${event.toLowerCase().trim()}');
 		}
 
 		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
