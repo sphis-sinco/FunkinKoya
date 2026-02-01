@@ -12,22 +12,16 @@ class StoryModeState extends MenuState
 		this.itemList = SongList.weekList.textList;
 	}
 
-	
-
 	override function accept(item:String)
 	{
 		super.accept(item);
 
 		switch (item.toLowerCase())
 		{
-			case 'tutorial':
-			case 'week1':
-			case 'week2':
+			case 'tutorial', 'week1', 'week2':
+				loadWeek(item.toLowerCase());
 		}
 	}
 
-	public function loadWeek(week:String)
-	{
-		
-	}
+	public function loadWeek(week:String) {}
 }
