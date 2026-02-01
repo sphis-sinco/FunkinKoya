@@ -33,7 +33,10 @@ class Character extends FunkinSprite
 		curCharacter = character;
 		this.iconChar = character;
 		this.isPlayer = isPlayer;
+	}
 
+	public function loadAssets()
+	{
 		trace('Loading character: $curCharacter');
 		getCharacterOffsets();
 		getAnimationOffsets();

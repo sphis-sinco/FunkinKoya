@@ -152,6 +152,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 		for (char in [gf, dad, boyfriend])
 		{
+			char.loadAssets();
 			if (char != null) add(char);
 		}
 
