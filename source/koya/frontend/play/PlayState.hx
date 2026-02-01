@@ -108,9 +108,6 @@ class PlayState extends MusicBeatState
 
 	public static var prevCamFollow:FlxObject;
 
-	public var opponentStrums:FlxTypedGroup<FunkinSprite>;
-	public var playerStrums:FlxTypedGroup<FunkinSprite>;
-
 	public var camZooming:Bool = false;
 	public var curSong:String = "";
 
@@ -150,6 +147,8 @@ class PlayState extends MusicBeatState
 		return 0.04;
 	}
 
+	public var strums:StrumsGroup;
+
 	override public function create()
 	{
 		if (instance != null) instance = null;
@@ -181,12 +180,6 @@ class PlayState extends MusicBeatState
 
 		songScript = SongClass.getSongClass(SONG.song.toLowerCase());
 
-		opponentStrums = new FlxTypedGroup<FunkinSprite>();
-		add(opponentStrums);
-
-		playerStrums = new FlxTypedGroup<FunkinSprite>();
-		add(playerStrums);
-
 		generateSong(SONG.song);
 
 		if (prevCamFollow != null)
@@ -207,8 +200,7 @@ class PlayState extends MusicBeatState
 
 		initUI();
 
-		opponentStrums.cameras = [camHUD];
-		playerStrums.cameras = [camHUD];
+		strums.cameras = [camHUD];
 		notes.cameras = [camHUD];
 
 		startingSong = true;
@@ -407,11 +399,11 @@ class PlayState extends MusicBeatState
 			if (player)
 			{
 				babyArrow.x += FlxG.width / 2;
-				playerStrums.add(babyArrow);
+				strums.playerStrums.add(babyArrow);
 			}
 			else
 			{
-				opponentStrums.add(babyArrow);
+				strums.opponentStrums.add(babyArrow);
 
 				babyArrow.anim.onFinish.add((animName:String) -> {
 					if (animName == "confirm") babyArrow.playAnim("static");
@@ -617,7 +609,7 @@ class PlayState extends MusicBeatState
 
 					if (currentStage.dad != null) currentStage.dad.holdTimer = 0;
 
-					opponentStrums.forEach(function(spr:FunkinSprite) {
+					strums.opponentStrums.forEach(function(spr:FunkinSprite) {
 						if (Math.abs(daNote.noteID) == spr.ID) spr.playAnim('confirm');
 					});
 
@@ -910,7 +902,7 @@ class PlayState extends MusicBeatState
 			&& !left) if (currentStage.boyfriend?.anim.name?.startsWith('sing')
 				&& !currentStage.boyfriend?.anim.name?.endsWith('miss')) currentStage.boyfriend?.playAnim('idle');
 
-		playerStrums.forEach(function(spr:FunkinSprite) {
+		strums.playerStrums.forEach(function(spr:FunkinSprite) {
 			var dirP = false;
 			var dirR = false;
 
@@ -1005,7 +997,7 @@ class PlayState extends MusicBeatState
 
 			currentStage.makeCharacterSing(note, currentStage.boyfriend, false, altAnim);
 
-			playerStrums.forEach(function(spr:FunkinSprite) {
+			strums.playerStrums.forEach(function(spr:FunkinSprite) {
 				if (Math.abs(note.noteID) == spr.ID) spr.playAnim('confirm', true);
 			});
 
