@@ -45,8 +45,7 @@ class PlayState extends MusicBeatState
 		PlayState.chartingMode = chartingMode;
 		PlayState.storyMode = storyMode;
 
-		if (PlayState.SONG == null)
-			PlayState.SONG = Song.dummySong;
+		if (PlayState.SONG == null) PlayState.SONG = Song.dummySong;
 	}
 
 	public static function loadWeek(weekPath:String, difficulty:Difficulty = NORMAL, chartingMode:Bool = false, storyMode:Bool = true)
@@ -74,6 +73,7 @@ class PlayState extends MusicBeatState
 
 			trace('New Playlist: ' + playList);
 
+			week = weekFile.name;
 			loadSong(Highscore.formatSong(playList[0].toLowerCase(), difficulty), playList[0].toLowerCase(), difficulty, chartingMode, storyMode);
 		}
 		catch (e)
@@ -87,6 +87,7 @@ class PlayState extends MusicBeatState
 	public static var instance:PlayState = null;
 
 	public static var playList:Array<String> = [];
+	public static var week:String = '';
 
 	public static var SONG:SwagSong;
 	public static var SONG_DIFFICULTY:Difficulty = Difficulty.NORMAL;
@@ -702,8 +703,6 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
 
-		Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
-
 		if (chartingMode)
 		{
 			FlxG.switchState(() -> new ChartingState());
@@ -728,10 +727,16 @@ class PlayState extends MusicBeatState
 				FlxG.switchState(() -> new PlayState());
 			}
 			else
+			{
+				Highscore.saveWeekScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 				FlxG.switchState(() -> new StoryModeState());
+			}
 		}
 		else
+		{
+			Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 			FlxG.switchState(() -> new FreeplayState());
+		}
 	}
 
 	var endingSong:Bool = false;
