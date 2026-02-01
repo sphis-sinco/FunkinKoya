@@ -1,5 +1,6 @@
 package koya.frontend.play;
 
+import koya.backend.songs.Song.SwagSong;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
 import flixel.FlxSprite;
@@ -164,5 +165,35 @@ class Note extends FunkinSprite
 
 		setGraphicSize(Std.int(width * 0.7));
 		updateHitbox();
+	}
+
+	public static function getIfNoteIsInactive(note:Note, ?song:SwagSong):Bool
+	{
+		return false;
+	}
+
+	public static function getAlt(note:Note, ?song:SwagSong):String
+	{
+		switch (note.noteData.toLowerCase())
+		{
+			case 'alt', 'alternate':
+				return '-alt';
+			case 'cheer':
+				return '-cheer';
+		}
+
+		return '';
+	}
+
+	public static function getSingAnimation(note:Note, ?song:SwagSong, ?miss:Bool = false, ?addition:String):String
+	{
+		switch (note.noteData.toLowerCase())
+		{
+			case 'cheer':
+				return 'cheer';
+		}
+
+		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
+		return (animationName + ((addition != null) ? addition : ''));
 	}
 }

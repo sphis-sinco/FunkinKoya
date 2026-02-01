@@ -321,7 +321,7 @@ class PlayState extends MusicBeatState
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
 				swagNote.noteData = songNotes[4] ?? null;
-				swagNote.inactive = swagNote.noteData != null;
+				swagNote.inactive = Note.getIfNoteIsInactive(swagNote, SONG);
 
 				var susLength:Float = swagNote.sustainLength;
 
@@ -578,7 +578,9 @@ class PlayState extends MusicBeatState
 
 					var altAnim:String = "";
 
-					if (SONG.notes[Math.floor(curStep / 16)] != null) if (SONG.notes[Math.floor(curStep / 16)].altAnim) altAnim = '-alt';
+					if (SONG.notes[curSection] != null) if (SONG.notes[curSection].altAnim) altAnim = '-alt';
+
+					if (altAnim == "") altAnim = Note.getAlt(daNote, SONG);
 
 					currentStage.makeCharacterSing(daNote, currentStage.dad, false, altAnim);
 
@@ -944,7 +946,9 @@ class PlayState extends MusicBeatState
 
 			var altAnim:String = "";
 
-			if (SONG.notes[Math.floor(curStep / 16)] != null) if (SONG.notes[Math.floor(curStep / 16)].altAnim) altAnim = '-alt';
+			if (SONG.notes[curSection] != null) if (SONG.notes[curSection].altAnim) altAnim = '-alt';
+
+			if (altAnim == "") altAnim = Note.getAlt(note, SONG);
 
 			currentStage.makeCharacterSing(note, currentStage.boyfriend, false, altAnim);
 
@@ -980,16 +984,16 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic) notes.sort(FlxSort.byY, FlxSort.DESCENDING);
 
-		if (SONG.notes[Math.floor(curStep / 16)] != null)
+		if (SONG.notes[curSection] != null)
 		{
-			if (SONG.notes[Math.floor(curStep / 16)].changeBPM)
+			if (SONG.notes[curSection].changeBPM)
 			{
-				Conductor.changeBPM(SONG.notes[Math.floor(curStep / 16)].bpm);
+				Conductor.changeBPM(SONG.notes[curSection].bpm);
 				FlxG.log.add('CHANGED BPM!');
 			}
 
 			// Dad doesnt interupt his own notes
-			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection) currentStage.dad?.dance();
+			if (SONG.notes[curSection].mustHitSection) currentStage.dad?.dance();
 		}
 
 		if (camZooming && FlxG.camera.zoom < 1.35 && curBeat % 4 == 0)

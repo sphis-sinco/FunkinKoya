@@ -179,10 +179,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function makeCharacterSing(note:Note, character:Character, ?miss:Bool = false, ?addition:String)
 	{
-		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
-		if (miss) animationName += 'miss';
-
-		character.playAnim(animationName + ((addition != null) ? addition : ''), true);
+		character.playAnim(Note.getSingAnimation(note, PlayState.SONG, miss, addition), true);
 	}
 
 	public function stepHit(step:Int) {};
