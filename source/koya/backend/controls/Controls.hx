@@ -530,9 +530,9 @@ class Controls extends FlxActionSet
 	 */
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
-		if (lastBound.get(control) != keys)
+		if (lastBound.get(control.getName()) != keys)
 		{
-			lastBound.set(control, keys);
+			lastBound.set(control.getName(), keys);
 			var keysString:Array<String> = [];
 
 			for (key in keys)
@@ -543,7 +543,7 @@ class Controls extends FlxActionSet
 		forEachBound(control, function(action, state) addKeys(action, keys, state));
 	}
 
-	public static var lastBound:Map<Control, Array<FlxKey>> = [];
+	public static var lastBound:Map<String, Array<FlxKey>> = [];
 
 	/**
 	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
