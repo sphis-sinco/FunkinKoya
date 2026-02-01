@@ -30,9 +30,14 @@ class Character extends FunkinSprite
 	{
 		super(x, y);
 
+		setCharacter(character);
+		this.isPlayer = isPlayer;
+	}
+
+	public function setCharacter(character:String = 'bf')
+	{
 		curCharacter = character;
 		this.iconChar = character;
-		this.isPlayer = isPlayer;
 	}
 
 	public function loadAssets()

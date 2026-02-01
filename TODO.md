@@ -1,6 +1,5 @@
 # 0.2.0 (Week 2):
 
-- GF Halloween
 - BF Halloween
 
 # 0.3.0 (Week 3):

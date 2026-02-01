@@ -6,16 +6,20 @@ import koya.frontend.play.characters.bf.*;
 import koya.frontend.play.characters.gf.*;
 import koya.frontend.play.characters.parents.*;
 
+using StringTools;
+
 class CharacterGetter
 {
 	public static function getCharacter(char:String, ?isPlayer:Bool, ?x:Float, ?y:Float):Character
 	{
-		switch (char)
+		switch (char.toLowerCase())
 		{
 			case 'bf':
 				return new BFRegular(x, y, isPlayer);
 			case 'gf':
 				return new GFRegular(x, y, isPlayer);
+			case 'gf-spooky', 'gf-spooky-monster':
+				return new GFSpooky(x, y, isPlayer, char.contains('monster'));
 			case 'dad':
 				return new DaddyDearest(x, y, isPlayer);
 			case 'spooky':

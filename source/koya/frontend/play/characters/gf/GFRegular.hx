@@ -6,30 +6,44 @@ using StringTools;
 
 class GFRegular extends Character
 {
-	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false)
+	public var gfVersion:String = 'gf';
+
+	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false, ?gfVersion:String = 'gf')
 	{
-		super(x, y, 'gf', isPlayer);
+		this.gfVersion = gfVersion;
+
+		super(x, y, gfVersion, isPlayer);
+		setCharacter(gfVersion);
+		iconChar = 'gf';
 	}
 
 	override function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0)
 	{
 		super.playAnim(AnimName, Force, Reversed, Frame);
 
-		if (AnimName == 'singLEFT') danced = true;
-		else if (AnimName == 'singRIGHT') danced = false;
+		if (gfVersion == 'gf')
+		{
+			if (AnimName == 'singLEFT') danced = true;
+			else if (AnimName == 'singRIGHT') danced = false;
 
-		if (AnimName == 'singUP' || AnimName == 'singDOWN') danced = !danced;
+			if (AnimName == 'singUP' || AnimName == 'singDOWN') danced = !danced;
+		}
+	}
+
+	public function getFrames()
+	{
+		frames = AssetPaths.getAnimateAtlas('characters/girlfriend-regular', 'characters');
 	}
 
 	override function initChar()
 	{
-		frames = AssetPaths.getAnimateAtlas('characters/girlfriend-regular', 'characters');
+		getFrames();
 
 		addIndicesFrameLabelAnim('danceLeft', 'danceBeat', [0, 1, 2, 3, 4]);
 		addIndicesFrameLabelAnim('danceRight', 'danceBeat', [5, 6, 7, 8, 9]);
 		addFrameLabelAnim('sad', 'sad');
 
-		addSingingAnimations(false, (name, prefix) -> addFrameLabelAnim(name, prefix));
+		if (gfVersion == 'gf') addSingingAnimations(false, (name, prefix) -> addFrameLabelAnim(name, prefix));
 	}
 
 	override function dance()
