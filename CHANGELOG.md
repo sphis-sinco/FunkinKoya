@@ -9,7 +9,6 @@
 
 ## Changed
 
-- You can no longer pause before the song starts
 - The FPS text now has the version text
 - The FPS text now has the VCR font
 - The logo now flys up after pressing enter on the title screen
@@ -40,6 +39,7 @@
 
 ## Fixed
 
+- Sustain Notes being offset from the note
 - The gameplay camera no longer moves in the pause screen
 - titleShoot no longer plays when pressing enter when freakyMenu is playing
 - Pause screen text going out of bounds.

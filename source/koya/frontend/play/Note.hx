@@ -104,7 +104,7 @@ class Note extends FunkinSprite
 			noteScore * 0.2;
 			alpha = 0.6;
 
-			x += width / 2;
+			x += width / 1.8;
 
 			switch (noteID)
 			{

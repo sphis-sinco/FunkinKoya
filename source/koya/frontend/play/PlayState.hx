@@ -252,6 +252,7 @@ class PlayState extends MusicBeatState
 	function startCountdown():Void
 	{
 		inCutscene = false;
+		canPause = true;
 
 		generateStaticArrows(false);
 		generateStaticArrows(true);
@@ -386,7 +387,8 @@ class PlayState extends MusicBeatState
 					{
 						oldNote = unspawnNotes[Std.int(unspawnNotes.length - 1)];
 
-						var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, danoteID, oldNote, true, songNotes[3] ?? null);
+						var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, danoteID, oldNote, true,
+							songNotes[3] ?? null);
 						sustainNote.scrollFactor.set();
 						unspawnNotes.push(sustainNote);
 
@@ -500,7 +502,6 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
 		scoreTxt.text = "Score:" + songScore;
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
@@ -572,6 +573,8 @@ class PlayState extends MusicBeatState
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
 
+		songScript.update(elapsed);
+
 		// RESET = Quick Game Over Screen
 		if (controls.RESET)
 		{
@@ -587,8 +590,8 @@ class PlayState extends MusicBeatState
 			persistentDraw = false;
 			paused = true;
 
-			vocals.stop();
-			FlxG.sound.music.stop();
+			if (vocals != null) vocals.stop();
+			if (FlxG.sound.music != null) FlxG.sound.music.stop();
 
 			openSubState(new GameOverSubstate(currentStage.boyfriend?.getScreenPosition().x, currentStage.boyfriend?.getScreenPosition().y));
 		}
@@ -686,8 +689,6 @@ class PlayState extends MusicBeatState
 		#if debug
 		if (FlxG.keys.justPressed.ONE) endSong();
 		#end
-
-		songScript.update(elapsed);
 	}
 
 	function endSong():Void
