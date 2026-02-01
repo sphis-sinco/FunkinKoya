@@ -1,5 +1,6 @@
 package koya.frontend.freeplay;
 
+import koya.frontend.play.characters.Character;
 import koya.frontend.mainmenu.MainMenuState;
 import koya.backend.songs.SongList;
 import koya.frontend.play.HealthIcon;
@@ -155,8 +156,8 @@ class FreeplayState extends MusicBeatState
 		songText.alpha = 1;
 		if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) songText.alpha = .5;
 
-		opponentIcon.char = currentSong.player2;
-		playerIcon.char = currentSong.player1;
+		opponentIcon.char = Character.getCharacter(currentSong.player2).iconChar ?? currentSong.player2;
+		playerIcon.char = Character.getCharacter(currentSong.player1).iconChar ?? currentSong.player1;
 
 		opponentIcon.screenCenter();
 		playerIcon.screenCenter();
