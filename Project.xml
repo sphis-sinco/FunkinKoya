@@ -136,12 +136,11 @@
 
 	<section if="TASK_RESAVE_ALL_SONGS">
 		<!-- <define name="DIABLE_FIXSWAGVERSION_TRACES" /> -->
-		<define name="EMPTY_VERSION_SUFFIX" />
+		<!-- <define name="EMPTY_VERSION_SUFFIX" /> -->
 		<!-- <define name="DISABLE_DEBUG_ASTERISK" /> -->
 	</section>
 
 	<define name="FIXSWAGVERSION_TRACES" unless="DIABLE_FIXSWAGVERSION_TRACES"/>
-	<define name="DEBUG_ASTERISK" if="debug || indev" unless="DISABLE_DEBUG_ASTERISK"/>
 	
 	<define name="CRASH_HANDLER" if="desktop" />
 	
@@ -149,7 +148,11 @@
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_TRACE" if="CRASH_HANDLER" />
 
-	<define name="INCLUDE_GIT" if="debug || indev" />
+	<section if="debug || indev">
+		<define name="INCLUDE_GIT" />
+		<define name="ONE_ENDSONG_KEY" />
+		<define name="DEBUG_ASTERISK" unless="DISABLE_DEBUG_ASTERISK"/>
+	</section>
 
 	<assets path="update_name.txt" embed="true"/>
 </project>
