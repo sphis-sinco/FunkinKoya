@@ -1,6 +1,6 @@
-# [0.3.0] - 2/2026
+# [0.2.3] - 2/1/2026
 
-
+This is just a quick hotfix to fix the game from being busted.
 
 # [0.2.2] - 2/1/2026
 

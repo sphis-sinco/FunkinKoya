@@ -28,7 +28,9 @@ class Constants
 
 		var suffix:String = '';
 
-		suffix += ' : Week 3 (+ Results) Update';
+		// suffix += ' : Week 3 (+ Results) Update';
+		suffix += ' : Hotfix';
+		// suffix += ' : Patch';
 
 		#if INCLUDE_GIT
 		suffix += ' (${Git.branch()}:${Git.hash()})';

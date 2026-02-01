@@ -530,20 +530,8 @@ class Controls extends FlxActionSet
 	 */
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
-		if (lastBound.get(control.getName()) != keys)
-		{
-			lastBound.set(control.getName(), keys);
-			var keysString:Array<String> = [];
-
-			for (key in keys)
-				keysString.push(key.toString());
-
-			// trace('binding $keysString to $control');
-		}
 		forEachBound(control, function(action, state) addKeys(action, keys, state));
 	}
-
-	public static var lastBound:Map<String, Array<FlxKey>> = [];
 
 	/**
 	 * Sets all actions that pertain to the binder to trigger when the supplied keys are used.
@@ -572,6 +560,10 @@ class Controls extends FlxActionSet
 
 	public function setKeyboardScheme(scheme:KeyboardScheme, reset = true)
 	{
+		if (reset) removeKeyboard();
+
+		keyboardScheme = scheme;
+
 		loadKeyBinds();
 	}
 
@@ -753,30 +745,30 @@ class Controls extends FlxActionSet
 
 	public function loadKeyBinds()
 	{
-		removeKeyboard();
+		// removeKeyboard();
 
-		inline bindKeys(Control.UI_UP, [
+		bindKeys(Control.UI_UP, [
 			FlxKey.fromString(Save.keybind_ui_up_alt.get()),
 			FlxKey.fromString(Save.keybind_ui_up.get()),
 		]);
-		inline bindKeys(Control.UI_DOWN, [
+		bindKeys(Control.UI_DOWN, [
 			FlxKey.fromString(Save.keybind_ui_down_alt.get()),
 			FlxKey.fromString(Save.keybind_ui_down.get()),
 		]);
-		inline bindKeys(Control.UI_LEFT, [
+		bindKeys(Control.UI_LEFT, [
 			FlxKey.fromString(Save.keybind_ui_left_alt.get()),
 			FlxKey.fromString(Save.keybind_ui_left.get()),
 		]);
-		inline bindKeys(Control.UI_RIGHT, [
+		bindKeys(Control.UI_RIGHT, [
 			FlxKey.fromString(Save.keybind_ui_right_alt.get()),
 			FlxKey.fromString(Save.keybind_ui_right.get()),
 		]);
 
-		inline bindKeys(Control.RESET, [FlxKey.fromString(Save.keybind_reset.get())]);
+		bindKeys(Control.RESET, [FlxKey.fromString(Save.keybind_reset.get())]);
 
-		inline bindKeys(Control.ACCEPT, [Z, ENTER]);
-		inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
-		inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
+		bindKeys(Control.ACCEPT, [Z, ENTER]);
+		bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
+		bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 	}
 }
 
