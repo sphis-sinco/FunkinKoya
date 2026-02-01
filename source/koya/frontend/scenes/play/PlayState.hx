@@ -10,7 +10,8 @@ import koya.frontend.scenes.freeplay.FreeplayState;
 import koya.backend.play.*;
 import koya.frontend.scenes.play.stages.StageBackground;
 import koya.backend.*;
-import koya.backend.songs.*;
+import koya.backend.songs.Section;
+import koya.backend.songs.Song;
 import flixel.*;
 import flixel.group.FlxGroup;
 import flixel.math.*;
@@ -138,14 +139,14 @@ class PlayState extends MusicBeatState
 
 	public var strums:StrumsGroup;
 
-	public var resultsData:ResultsData;
+	public static var resultsData:ResultsData = null;
 
 	override public function create()
 	{
 		if (instance != null) instance = null;
 		instance = this;
 
-		resultsData = new ResultsData();
+		if (resultsData == null) resultsData = new ResultsData();
 
 		strums = new StrumsGroup();
 		add(strums);
@@ -694,12 +695,14 @@ class PlayState extends MusicBeatState
 				STORYMODE_PLAYLIST = [];
 				STORYMODE_WEEK = '';
 
+				resultsData = null;
 				Highscore.saveWeekScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 				FlxG.switchState(() -> new StoryModeState());
 			}
 		}
 		else
 		{
+			resultsData = null;
 			Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 			FlxG.switchState(() -> new FreeplayState());
 		}

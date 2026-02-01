@@ -27,7 +27,7 @@ class ResultsData
 
 	public function earnRating(rating:String)
 	{
-		if (noteRatingCounts.exists(rating)) noteRatingCounts.set(noteRatingCounts.get(rating) + 1);
+		if (noteRatingCounts.exists(rating)) noteRatingCounts.set(rating, noteRatingCounts.get(rating) + 1);
 	}
 
 	public function reset()
