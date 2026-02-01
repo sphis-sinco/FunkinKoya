@@ -320,7 +320,7 @@ class PlayState extends MusicBeatState
 				var swagNote:Note = new Note(daStrumTime, danoteID, oldNote);
 				swagNote.sustainLength = songNotes[2];
 				swagNote.scrollFactor.set(0, 0);
-				swagNote.noteData = songNotes[4] ?? null;
+				swagNote.noteData = songNotes[3] ?? null;
 				swagNote.inactive = Note.getIfNoteIsInactive(swagNote, SONG);
 
 				var susLength:Float = swagNote.sustainLength;
@@ -337,6 +337,9 @@ class PlayState extends MusicBeatState
 						var sustainNote:Note = new Note(daStrumTime + (Conductor.stepCrochet * susNote) + Conductor.stepCrochet, danoteID, oldNote, true);
 						sustainNote.scrollFactor.set();
 						unspawnNotes.push(sustainNote);
+
+						sustainNote.noteData = songNotes[3] ?? null;
+						sustainNote.inactive = Note.getIfNoteIsInactive(sustainNote, SONG);
 
 						sustainNote.mustPress = gottaHitNote;
 

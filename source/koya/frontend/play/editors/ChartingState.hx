@@ -667,11 +667,10 @@ class ChartingState extends MusicBeatState
 			if (FlxG.keys.justReleased.ANY)
 			{
 				modifMade('Typing(${typingShit.text})');
-
-				if (UI_note.hasFocus && curSelectedNote != null)
-					curSelectedNote[3] = typingShit.text;
 			}
 		}
+
+		if (curSelectedNote != null && UI_note.hasFocus) curSelectedNote[3] = UI_note.text;
 
 		_song.bpm = tempBpm;
 
@@ -768,7 +767,7 @@ class ChartingState extends MusicBeatState
 		{
 			var strum = note[0] + Conductor.stepCrochet * (_song.notes[daSec].lengthInSteps * sectionNum);
 
-			var copiedNote:Array<Dynamic> = [strum, note[1], note[2], note[3] ?? null];
+			var copiedNote:Array<Dynamic> = [strum, note[1], note[2], note[3]];
 			_song.notes[daSec].sectionNotes.push(copiedNote);
 		}
 
@@ -939,6 +938,7 @@ class ChartingState extends MusicBeatState
 		if (FlxG.keys.pressed.CONTROL) _song.notes[curChartEditorSection].sectionNotes.push([noteStrum, (noteID + 4) % 8, noteSus, noteEventShit]);
 
 		trace(noteStrum);
+		trace(noteEventShit);
 		trace(curChartEditorSection);
 
 		updateGrid();
