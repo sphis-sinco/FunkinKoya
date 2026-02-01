@@ -115,7 +115,7 @@ class MenuState extends MusicBeatState
 
 		for (menuItem in itemsGroup.members)
 		{
-			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
+			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(menuItem.x, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
 			if (menuType == Vertical) menuItem.y = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
 		}
 

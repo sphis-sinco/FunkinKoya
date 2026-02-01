@@ -9,7 +9,8 @@
 - Added support for the combo popup to be longer then 999.
 
 ## Fixed
-- Fixed Freeplay Icons not being able to be animated
+- Fresh stageFloor not fading properly
+- Main Stage curtains still playing after the first week 1 song in story mode
 - Boyfriend animations being flipped
 - When you are on the last song of a week, the game no longer crashes trying to load another song
 

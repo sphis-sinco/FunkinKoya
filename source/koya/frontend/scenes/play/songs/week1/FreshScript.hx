@@ -6,7 +6,7 @@ class FreshScript extends SongIntroFadeScript
 {
 	override public function new()
 	{
-		super(['stageBack', 'songFloor']);
+		super(['stageBack', 'stageFloor']);
 		finishBeat = 16;
 	}
 

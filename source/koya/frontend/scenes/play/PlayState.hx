@@ -148,7 +148,7 @@ class PlayState extends MusicBeatState
 		if (instance != null) instance = null;
 		instance = this;
 
-		if (!IS_STORYMODE && global_resultsData == null) global_resultsData = new ResultsData();
+		if (!IS_STORYMODE || global_resultsData == null) global_resultsData = new ResultsData();
 		local_resultsData = new ResultsData();
 
 		strums = new StrumsGroup();
@@ -704,6 +704,7 @@ class PlayState extends MusicBeatState
 
 				loadSong(nextChart, nextSong, SONG_DIFFICULTY, IS_CHARTINGMODE, IS_STORYMODE);
 
+				STORYMODE_PLAYLIST_NUMBER++;
 				trace('Moving to next song: ${nextSong}');
 				FlxG.switchState(() -> new PlayState());
 			}

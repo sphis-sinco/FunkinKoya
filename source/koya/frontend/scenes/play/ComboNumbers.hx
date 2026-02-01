@@ -4,10 +4,9 @@ import flixel.FlxG;
 import flixel.tweens.FlxTween;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
-import flixel.FlxBasic;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
-class ComboNumbers extends FlxTypedGroup<FlxBasic>
+class ComboNumbers extends FlxTypedGroup<FunkinSprite>
 {
 	public var onComplete:ComboNumbers->Void = null;
 

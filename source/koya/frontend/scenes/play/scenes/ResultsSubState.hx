@@ -76,7 +76,21 @@ class ResultsSubState extends MusicBeatSubstate
 			var comboNum = new ComboNumbers(Std.int(percent), FlxG.width / 2.2, (cn) -> {
 				remove(cn);
 				cn.destroy();
+				FlxG.switchState(nextState);
 			});
+			for (numScore in comboNum.members)
+			{
+				numScore.screenCenter();
+
+				numScore.x -= (43 * comboNum.comboLength / 2) - 90;
+				numScore.x += (43 * numScore.ID) - 90;
+
+				numScore.acceleration.y = FlxG.random.int(50, 75);
+				numScore.velocity.y -= FlxG.random.int(70, 80);
+				numScore.velocity.x = FlxG.random.float(-5, 5);
+
+				FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+			}
 			comboNum.cameras = [resultsCam];
 			add(comboNum);
 		});
@@ -86,6 +100,10 @@ class ResultsSubState extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
-		if (controls.ACCEPT && back.alpha == 1) FlxG.switchState(nextState);
+		if (controls.ACCEPT && back.alpha == 1)
+		{
+			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
+			FlxG.switchState(nextState);
+		}
 	}
 }
