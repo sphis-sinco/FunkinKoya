@@ -538,7 +538,7 @@ class Controls extends FlxActionSet
 			for (key in keys)
 				keysString.push(key.toString());
 
-			trace('binding $keysString to $control');
+			// trace('binding $keysString to $control');
 		}
 		forEachBound(control, function(action, state) addKeys(action, keys, state));
 	}
