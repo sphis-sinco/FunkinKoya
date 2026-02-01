@@ -403,7 +403,8 @@ class ChartingState extends MusicBeatState
 
 		tab_group_note.add(new FlxText(stepperSusLength.x, stepperSusLength.y - 16, 0, 'Note Sustain Length', 8));
 		tab_group_note.add(stepperSusLength);
-		// tab_group_note.add(applyLength);
+		tab_group_note.add(new FlxText(UI_note.x, UI_note.y - 16, 0, 'Note Event:', 8));
+		tab_group_note.add(UI_note);
 
 		UI_box.addGroup(tab_group_note);
 	}
@@ -523,6 +524,7 @@ class ChartingState extends MusicBeatState
 
 		if (UI_songTitle.hasFocus) typingShit = UI_songTitle;
 		if (UI_songAuthors.hasFocus) typingShit = UI_songAuthors;
+		if (UI_note.hasFocus) typingShit = UI_note;
 
 		_song.song = UI_songTitle.text;
 		_song.authors = UI_songAuthors.text;
@@ -662,7 +664,13 @@ class ChartingState extends MusicBeatState
 		}
 		else
 		{
-			if (FlxG.keys.justReleased.ANY) modifMade('Typing(${typingShit.text})');
+			if (FlxG.keys.justReleased.ANY)
+			{
+				modifMade('Typing(${typingShit.text})');
+
+				if (UI_note.hasFocus)
+					curSelectedNote[4] = typingShit.text;
+			}
 		}
 
 		_song.bpm = tempBpm;
@@ -784,19 +792,20 @@ class ChartingState extends MusicBeatState
 	{
 		if (check_mustHitSection?.checked ?? true)
 		{
-			leftIcon.animation.play('bf');
-			rightIcon.animation.play('dad');
+			leftIcon.char = 'bf';
+			rightIcon.char = 'dad';
 		}
 		else
 		{
-			leftIcon.animation.play('dad');
-			rightIcon.animation.play('bf');
+			leftIcon.char = 'dad';
+			rightIcon.char = 'bf';
 		}
 	}
 
 	function updateNoteUI():Void
 	{
 		if (curSelectedNote != null) stepperSusLength.value = curSelectedNote[2];
+		if (curSelectedNote != null) UI_note.text = curSelectedNote[4];
 	}
 
 	function updateGrid():Void
@@ -919,7 +928,7 @@ class ChartingState extends MusicBeatState
 		var noteStrum = getStrumTime(dummyArrow.y) + sectionStartTime();
 		var noteID = Math.floor(FlxG.mouse.x / GRID_SIZE);
 		var noteSus = 0;
-		var noteEventShit = null;
+		var noteEventShit = UI_note.text;
 
 		_song.notes[curChartEditorSection].sectionNotes.push([noteStrum, noteID, noteSus, noteEventShit]);
 
