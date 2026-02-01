@@ -268,11 +268,12 @@ class PlayState extends MusicBeatState
 
 		previousFrameTime = FlxG.game.ticks;
 
-		if (!paused) FlxG.sound.playMusic(AssetPaths.song_inst(curSong), 1, false);
-
+		FlxG.sound.playMusic(AssetPaths.song_inst(curSong), 1, false);
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
 		songScript.startSong();
+
+		canPause = true;
 	}
 
 	var debugNum:Int = 0;
@@ -442,7 +443,7 @@ class PlayState extends MusicBeatState
 	public var paused:Bool = false;
 
 	public var startedCountdown:Bool = false;
-	public var canPause:Bool = true;
+	public var canPause:Bool = false;
 
 	public static var ICON_OFFSET:Int = 13;
 

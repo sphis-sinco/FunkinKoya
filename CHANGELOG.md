@@ -8,6 +8,7 @@
 
 ## Changed
 
+- You can no longer pause before the song starts
 - The FPS text now has the version text
 - The FPS text now has the VCR font
 - The logo now flys up after pressing enter on the title screen
