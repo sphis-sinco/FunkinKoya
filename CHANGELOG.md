@@ -1,5 +1,9 @@
 # [0.3.0] - 2/2026
 
+## Added
+
+- Added support for the combo popup to be longer then 3.
+
 ## Fixed
 - Fixed Freeplay Icons not being able to be animated
 - Boyfriend animations being flipped

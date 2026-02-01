@@ -1,0 +1,67 @@
+package koya.frontend.scenes.play;
+
+import flixel.FlxG;
+import flixel.tweens.FlxTween;
+import koya.backend.Conductor;
+import koya.backend.AssetPaths;
+import flixel.FlxBasic;
+import flixel.group.FlxGroup.FlxTypedGroup;
+
+class ComboNumbers extends FlxTypedGroup<FlxBasic>
+{
+	public var onComplete:ComboNumbers->Void = null;
+
+	public var comboLength:Int = 0;
+
+	override public function new(combo:Array<Int>, startingX:Float = 0, ?onComplete:ComboNumbers->Void)
+	{
+		super();
+
+		this.onComplete = onComplete;
+		this.comboLength = combo.length - 1;
+
+		var daLoop:Int = 0;
+		for (i in combo)
+		{
+			var numScore:FunkinSprite = new FunkinSprite();
+			numScore.loadGraphic(AssetPaths.image('num${Std.int(i)}'));
+			numScore.screenCenter();
+			numScore.x = startingX + (43 * daLoop) - 90;
+			numScore.y += 80;
+
+			numScore.setGraphicSize(Std.int(numScore.width * 0.5));
+			numScore.updateHitbox();
+
+			numScore.acceleration.y = FlxG.random.int(200, 300);
+			numScore.velocity.y -= FlxG.random.int(140, 160);
+			numScore.velocity.x = FlxG.random.float(-5, 5);
+
+			add(numScore);
+
+			FlxTween.tween(numScore, {alpha: 0}, 0.2,
+				{
+					onComplete: function(tween:FlxTween) {
+						numScore.destroy();
+						numScoreDied(daLoop);
+						comboLength--;
+					},
+					startDelay: Conductor.crochet * 0.002
+				});
+
+			daLoop++;
+		}
+	}
+
+	override function update(elapsed:Float) {
+		super.update(elapsed);
+
+		if (comboLength == 0)
+		{
+			comboLength--;
+			if (onComplete != null)
+				onComplete(this);
+		}
+	}
+
+	public dynamic function numScoreDied(id:Int) {}
+}

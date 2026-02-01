@@ -764,38 +764,24 @@ class PlayState extends MusicBeatState
 		rating.setGraphicSize(Std.int(rating.width * 0.7));
 		rating.updateHitbox();
 
-		var seperatedScore:Array<Int> = [];
-
-		seperatedScore.push(Math.floor(combo / 100));
-		seperatedScore.push(Math.floor((combo - (seperatedScore[0] * 100)) / 10));
-		seperatedScore.push(combo % 10);
-
-		var daLoop:Int = 0;
-		for (i in seperatedScore)
+		if (combo >= 10 || combo == 0)
 		{
-			var numScore:FlxSprite = new FlxSprite().loadGraphic(AssetPaths.image('num${Std.int(i)}'));
-			numScore.screenCenter();
-			numScore.x = coolText.x + (43 * daLoop) - 90;
-			numScore.y += 80;
+			var seperatedScore:Array<Int> = [];
+			var tempCombo:Int = combo;
 
-			numScore.setGraphicSize(Std.int(numScore.width * 0.5));
-			numScore.updateHitbox();
+			while (tempCombo != 0)
+			{
+				seperatedScore.push(tempCombo % 10);
+				tempCombo = Std.int(tempCombo / 10);
+			}
 
-			numScore.acceleration.y = FlxG.random.int(200, 300);
-			numScore.velocity.y -= FlxG.random.int(140, 160);
-			numScore.velocity.x = FlxG.random.float(-5, 5);
+			while (seperatedScore.length < 3)
+				seperatedScore.push(0);
 
-			if (combo >= 10 || combo == 0) add(numScore);
-
-			FlxTween.tween(numScore, {alpha: 0}, 0.2,
-				{
-					onComplete: function(tween:FlxTween) {
-						numScore.destroy();
-					},
-					startDelay: Conductor.crochet * 0.002
-				});
-
-			daLoop++;
+			add(new ComboNumbers(seperatedScore, coolText.x, (cn) -> {
+				remove(cn);
+				cn.destroy();
+			}));
 		}
 
 		add(rating);
@@ -997,6 +983,11 @@ class PlayState extends MusicBeatState
 			if (!note.isSustainNote)
 			{
 				popUpScore(note.strumTime);
+				#if COMBO_10X
+				if (combo > 0)
+				combo *= 10;
+				else
+				#end
 				combo += 1;
 				resultsData.totalNotesHit++;
 			}
