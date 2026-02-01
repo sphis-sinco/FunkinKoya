@@ -1,7 +1,22 @@
 package koya.frontend.play.songs;
 
+import koya.frontend.play.characters.Character;
+
 class SongClass
 {
+	public var dad(get, never):Character;
+	public var boyfriend(get, never):Character;
+	public var gf(get, never):Character;
+
+	function get_dad():Character
+		return PlayState.instance.currentStage.dad;
+
+	function get_boyfriend():Character
+		return PlayState.instance.currentStage.boyfriend;
+
+	function get_gf():Character
+		return PlayState.instance.currentStage.gf;
+
 	public static function getSongClass(song:String):SongClass
 		return SongClassGetter.getSongClass(song);
 

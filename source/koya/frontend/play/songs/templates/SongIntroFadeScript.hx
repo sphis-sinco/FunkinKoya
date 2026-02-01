@@ -5,7 +5,6 @@ import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import koya.backend.Conductor;
 import flixel.tweens.FlxTween;
-import koya.frontend.play.characters.Character;
 
 class SongIntroFadeScript extends SongClass
 {
@@ -17,19 +16,6 @@ class SongIntroFadeScript extends SongClass
 
 		this.songObjectsToHide = songObjectsToHide;
 	}
-
-	public var dad(get, never):Character;
-	public var boyfriend(get, never):Character;
-	public var gf(get, never):Character;
-
-	function get_dad():Character
-		return PlayState.instance.currentStage.dad;
-
-	function get_boyfriend():Character
-		return PlayState.instance.currentStage.boyfriend;
-
-	function get_gf():Character
-		return PlayState.instance.currentStage.gf;
 
 	override public function preCountdown():Bool
 	{
