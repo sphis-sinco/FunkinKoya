@@ -92,10 +92,7 @@ class InitState extends FlxState
 
 			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return () -> new TitleState();
 
-			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSongName);
-			PlayState.SONG_DIFFICULTY = currentDifficulty;
-			PlayState.chartingMode = false;
-			PlayState.storyMode = false;
+			PlayState.loadSong(currentSongChart, currentSongName, currentDifficulty);
 			return () -> new PlayState();
 		}
 

@@ -596,9 +596,10 @@ class ChartingState extends MusicBeatState
 			{
 				lastSection = curChartEditorSection;
 
-				PlayState.SONG = _song;
 				FlxG.sound.music.stop();
 				vocals.stop();
+
+				PlayState.SONG = _song;
 				PlayState.chartingMode = true;
 				FlxG.switchState(() -> new PlayState());
 			}

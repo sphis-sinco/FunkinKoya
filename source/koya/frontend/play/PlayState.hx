@@ -32,9 +32,26 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
+	public static function loadSong(chart:String, song:String, difficulty:Difficulty = NORMAL, chartingMode:Bool = false, storyMode:Bool = false)
+	{
+		trace('Loading song: ' + AssetPaths.chart(song, chart));
+
+		PlayState.SONG = Song.loadFromJson(chart, song);
+		PlayState.SONG_DIFFICULTY = difficulty;
+		PlayState.chartingMode = chartingMode;
+		PlayState.storyMode = storyMode;
+	}
+
+	public static function loadWeek(weekPath:String, difficulty:Difficulty = NORMAL, chartingMode:Bool = false, storyMode:Bool = true)
+	{
+		trace('Loading week: ' + weekPath);
+	}
+
 	public static var STRUMLINE_Y:Float = 50.0;
 
 	public static var instance:PlayState = null;
+
+	public static var playList:Array<String> = [];
 
 	public static var SONG:SwagSong;
 	public static var SONG_DIFFICULTY:Difficulty = Difficulty.NORMAL;

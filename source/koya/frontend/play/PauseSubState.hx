@@ -158,10 +158,7 @@ class PauseSubState extends MusicBeatSubstate
 				var song = PlayState.SONG.song.toLowerCase();
 				var chart = Highscore.formatSong(song, Difficulty.stringList.indexOf(difficulty));
 
-				PlayState.SONG = Song.loadFromJson(chart, song);
-				PlayState.SONG_DIFFICULTY = Difficulty.stringList.indexOf(difficulty);
-
-				trace(AssetPaths.chart(song, chart));
+				PlayState.loadSong(chart, song, Difficulty.stringList.indexOf(difficulty));
 				FlxG.switchState(() -> new PlayState());
 			}
 		}

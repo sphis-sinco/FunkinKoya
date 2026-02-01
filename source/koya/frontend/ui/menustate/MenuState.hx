@@ -3,7 +3,6 @@ package koya.frontend.ui.menustate;
 import flixel.util.FlxTimer;
 import flixel.sound.FlxSound;
 import flixel.effects.FlxFlicker;
-import koya.frontend.freeplay.FreeplayState;
 import flixel.math.FlxMath;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
@@ -164,21 +163,5 @@ class MenuState extends MusicBeatState
 		});
 	}
 
-	public function accept(item:String)
-	{
-		switch (item)
-		{
-			case 'story mode':
-				trace('the tale you play');
-			case 'freeplay':
-				trace('FREE');
-				FlxG.switchState(() -> new FreeplayState());
-				transitioning = true;
-			case 'support':
-				trace('mone?');
-				FlxG.openURL('https://ko-fi.com/sphis');
-			case 'options':
-				trace('change is supported');
-		}
-	}
+	public function accept(item:String) {}
 }

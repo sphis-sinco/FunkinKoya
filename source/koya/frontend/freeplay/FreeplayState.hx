@@ -234,11 +234,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.music.stop();
 			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
 
-			PlayState.SONG = Song.loadFromJson(currentSongChart, currentSongName);
-			PlayState.SONG_DIFFICULTY = currentDifficulty;
-			PlayState.chartingMode = false;
-			PlayState.storyMode = false;
-
+			PlayState.loadSong(currentSongChart, currentSongName, currentDifficulty);
 			FlxG.switchState(() -> new PlayState());
 		}
 	}
