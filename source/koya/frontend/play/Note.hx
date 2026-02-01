@@ -169,19 +169,30 @@ class Note extends FunkinSprite
 
 	public static function getIfNoteIsInactive(note:Note, ?song:SwagSong):Bool
 	{
-		switch (note?.noteData?.toLowerCase()) {}
+		var event:String = '';
+
+		if (note != null) if (note.noteData != null) event = note.noteData;
+
+		switch (event.toLowerCase()) {}
 
 		return false;
 	}
 
 	public static function getAlt(note:Note, ?song:SwagSong):String
 	{
-		switch (note?.noteData?.toLowerCase())
+		var event:String = '';
+
+		if (note != null) if (note.noteData != null) event = note.noteData;
+
+		switch (event.toLowerCase())
 		{
 			case 'alt', 'alternate':
 				return '-alt';
 			case 'cheer':
 				return '-cheer';
+
+			default:
+				trace('No case for: ${event.toLowerCase()}');
 		}
 
 		return '';
@@ -189,10 +200,17 @@ class Note extends FunkinSprite
 
 	public static function getSingAnimation(note:Note, ?song:SwagSong, ?miss:Bool = false, ?addition:String):String
 	{
-		switch (note?.noteData?.toLowerCase())
+		var event:String = '';
+
+		if (note != null) if (note.noteData != null) event = note.noteData;
+
+		switch (event.toLowerCase())
 		{
 			case 'cheer':
 				return 'cheer';
+
+			default:
+				trace('No case for: ${event.toLowerCase()}');
 		}
 
 		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
