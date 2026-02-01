@@ -8,7 +8,7 @@ class GFSpooky extends GFRegular
 
 	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool, ?monster:Bool = false)
 	{
-		super(x, y, isPlayer, 'gf-spooky');
+		super(x, y, isPlayer, 'gf-spooky${monster ? '-monster' : ''}');
 		this.monster = monster;
 	}
 
