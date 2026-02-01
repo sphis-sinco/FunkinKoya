@@ -660,6 +660,9 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
 
+		FlxG.sound.music.stop();
+		vocals.stop();
+
 		trace('${resultsData}');
 
 		if (IS_CHARTINGMODE)
