@@ -1,9 +1,7 @@
 # 0.2.0 (Week 2):
 
-- Monster
 - GF Halloween
 - BF Halloween
-- Story Mode
 
 # 0.3.0 (Week 3):
 

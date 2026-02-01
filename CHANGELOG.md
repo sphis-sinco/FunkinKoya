@@ -16,7 +16,8 @@
 
 ## Added
 
-- WEEK 2 KOYA!
+- WEEK 2 KOYA!!!
+- STORY MODE!!
 - MAIN MENU!
 - Difficulty changing via the pause menu!
 - "Event Notes"
