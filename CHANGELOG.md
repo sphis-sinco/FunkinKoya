@@ -3,10 +3,10 @@
 A quick save patch update
 
 ## SAVE VERSION 2:
-- Save fields are initalized (properly now) before ANY attempt at loading save information
+- Save fields are initialized (properly now) before ANY attempt at loading save information
 - The save will now always attempt to upgrade
 - Fixed save data saving on exit not being applied when you didn't require an upgrade
-- Save fields have to be null for their inital value to be set
+- Save fields have to be null for their initial value to be set
 - All keybinds are saved in your save data now
 
 # [0.2.0] - 2/1/2026
