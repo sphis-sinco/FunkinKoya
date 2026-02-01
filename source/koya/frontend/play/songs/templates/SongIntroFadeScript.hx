@@ -65,8 +65,15 @@ class SongIntroFadeScript extends SongClass
 
 				var dontdo = false;
 
-				for (type in invalidTypes)
-					if (Std.isOfType(type, PlayState.instance.currentStage.getThing(OBJECT_NAME))) dontdo = true;
+				try
+				{
+					for (type in invalidTypes)
+						if (Std.isOfType(type, PlayState.instance.currentStage.getThing(OBJECT_NAME))) dontdo = true;
+				}
+				catch (e)
+				{
+					trace(e.message);
+				}
 
 				if (!dontdo) thendo(PlayState.instance.currentStage.getThing(OBJECT_NAME));
 			}
