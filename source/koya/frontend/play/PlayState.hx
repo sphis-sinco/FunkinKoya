@@ -75,7 +75,8 @@ class PlayState extends MusicBeatState
 
 			STORYMODE_PLAYLIST_NUMBER = 0;
 			STORYMODE_WEEK = weekFile.name;
-			loadSong(Highscore.formatSong(STORYMODE_PLAYLIST[0].toLowerCase(), difficulty), STORYMODE_PLAYLIST[0].toLowerCase(), difficulty, chartingMode, storyMode);
+			loadSong(Highscore.formatSong(STORYMODE_PLAYLIST[0].toLowerCase(), difficulty), STORYMODE_PLAYLIST[0].toLowerCase(), difficulty, chartingMode,
+				storyMode);
 		}
 		catch (e)
 		{
@@ -131,7 +132,7 @@ class PlayState extends MusicBeatState
 	public var songScore:Int = 0;
 	public var scoreTxt:FlxText;
 
-	public static var campaignScore:Int = 0;
+	public static var STORYMODE_CAMPAIGN_SCORE:Int = 0;
 
 	public var defaultCamZoom:Float = 1.05;
 
@@ -204,40 +205,11 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
-		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(AssetPaths.image('healthBar'));
-		healthBarBG.screenCenter(X);
-		healthBarBG.scrollFactor.set();
-		add(healthBarBG);
-
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
-			'health', 0, 2);
-		healthBar.scrollFactor.set();
-		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
-		add(healthBar);
-
-		iconP1 = new HealthIcon(currentStage?.boyfriend?.iconChar, true);
-		iconP1.y = healthBar.y - (iconP1.height / 2);
-		if (currentStage.boyfriend != null) add(iconP1);
-
-		iconP2 = new HealthIcon(currentStage?.dad?.iconChar, false);
-		iconP2.y = healthBar.y - (iconP2.height / 2);
-		if (currentStage.dad != null) add(iconP2);
-
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
-		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
-		scoreTxt.scrollFactor.set();
-		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-		scoreTxt.antialiasing = false;
-		add(scoreTxt);
+		initUI();
 
 		opponentStrums.cameras = [camHUD];
 		playerStrums.cameras = [camHUD];
 		notes.cameras = [camHUD];
-		healthBar.cameras = [camHUD];
-		healthBarBG.cameras = [camHUD];
-		iconP1.cameras = [camHUD];
-		iconP2.cameras = [camHUD];
-		scoreTxt.cameras = [camHUD];
 
 		startingSong = true;
 
@@ -1109,15 +1081,55 @@ class PlayState extends MusicBeatState
 		{
 			var ret:Bool = songScript.moveCamera(PlayState.SONG.notes[curSection].mustHitSection);
 
-			if (ret)
-			{
-				if (!PlayState.SONG.notes[curSection].mustHitSection) camFollow.setPosition(currentStage.dad?.getMidpoint().x + 150,
-					currentStage.dad?.getMidpoint().y - 100);
+			if (!ret) return;
 
-				if (PlayState.SONG.notes[curSection].mustHitSection) camFollow.setPosition(currentStage.boyfriend?.getMidpoint().x - 100,
-					currentStage.boyfriend?.getMidpoint().y - 100);
-				currentStage.moveCamera(PlayState.SONG.notes[curSection].mustHitSection);
-			}
+			if (!PlayState.SONG.notes[curSection].mustHitSection) camFollow.setPosition(currentStage.dad?.getMidpoint().x + 150,
+				currentStage.dad?.getMidpoint().y - 100);
+
+			if (PlayState.SONG.notes[curSection].mustHitSection) camFollow.setPosition(currentStage.boyfriend?.getMidpoint().x - 100,
+				currentStage.boyfriend?.getMidpoint().y - 100);
+			currentStage.moveCamera(PlayState.SONG.notes[curSection].mustHitSection);
 		}
+	}
+
+	public var healthBar_emptyColor:FlxColor = 0xFFFF0000;
+	public var healthBar_fillColor:FlxColor = 0xFF66FF33;
+
+	public function initUI()
+	{
+		var ret:Bool = songScript.initUI();
+		if (!ret) return;
+
+		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(AssetPaths.image('healthBar'));
+		healthBarBG.screenCenter(X);
+		healthBarBG.scrollFactor.set();
+		add(healthBarBG);
+
+		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+			'health', 0, 2);
+		healthBar.scrollFactor.set();
+		healthBar.createFilledBar(healthBar_emptyColor, healthBar_fillColor);
+		add(healthBar);
+
+		iconP1 = new HealthIcon(currentStage?.boyfriend?.iconChar, true);
+		iconP1.y = healthBar.y - (iconP1.height / 2);
+		if (currentStage.boyfriend != null) add(iconP1);
+
+		iconP2 = new HealthIcon(currentStage?.dad?.iconChar, false);
+		iconP2.y = healthBar.y - (iconP2.height / 2);
+		if (currentStage.dad != null) add(iconP2);
+
+		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
+		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
+		scoreTxt.scrollFactor.set();
+		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+		scoreTxt.antialiasing = false;
+		add(scoreTxt);
+
+		healthBar.cameras = [camHUD];
+		healthBarBG.cameras = [camHUD];
+		iconP1.cameras = [camHUD];
+		iconP2.cameras = [camHUD];
+		scoreTxt.cameras = [camHUD];
 	}
 }

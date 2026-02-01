@@ -9,6 +9,8 @@ class Monster extends Character
 	{
 		super(x, y, 'monster', isPlayer);
 		iconChar = 'retsnom';
+
+		if (!isPlayer) PlayState.instance.healthBar_emptyColor = 0xCC9999;
 	}
 
 	override function initChar()
@@ -39,6 +41,6 @@ class Monster extends Character
 				minHealth = 0.1;
 		}
 
-		if (PlayState.instance.health > minHealth) PlayState.instance.health -= FlxG.random.float(1 / 1000, 0.25) / division;
+		if (!isPlayer) if (PlayState.instance.health > minHealth) PlayState.instance.health -= FlxG.random.float(1 / 1000, 0.25) / division;
 	}
 }

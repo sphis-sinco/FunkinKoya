@@ -68,4 +68,9 @@ class SongClass
 	{
 		return true;
 	}
+
+	public function initUI():Bool
+	{
+		return true;
+	}
 }
