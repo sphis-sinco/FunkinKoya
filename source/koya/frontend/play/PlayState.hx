@@ -709,7 +709,22 @@ class PlayState extends MusicBeatState
 
 		if (storyMode)
 		{
-			FlxG.switchState(() -> new StoryModeState());
+			if (playList.length > 0)
+			{
+				playList.remove(SONG.song);
+
+				var nextSong = playList[0];
+				var nextChart = Highscore.formatSong(nextSong, SONG_DIFFICULTY);
+
+				loadSong(nextChart, nextSong, SONG_DIFFICULTY, chartingMode, storyMode);
+
+				transIn = null;
+				transOut = null;
+				trace('Moving to next song: ${SONG.song}');
+				FlxG.switchState(() -> new PlayState());
+			}
+			else
+				FlxG.switchState(() -> new StoryModeState());
 		}
 		else
 			FlxG.switchState(() -> new FreeplayState());
