@@ -23,9 +23,6 @@ class StoryModeState extends MenuState
 	var arrow_UP:ArrowUI = new ArrowUI(UP, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 
-	var aU_y:Float = 0.0;
-	var aD_y:Float = 0.0;
-
 	override function create()
 	{
 		super.create();
@@ -43,11 +40,8 @@ class StoryModeState extends MenuState
 			add(arrow);
 		}
 
-		arrow_UP.y -= arrow_UP.height * 8;
-		arrow_DOWN.y -= arrow_DOWN.height * 4;
-
-		aU_y = arrow_UP.y;
-		aD_y = arrow_DOWN.y;
+		arrow_UP.y -= arrow_UP.height * 6;
+		arrow_DOWN.y -= arrow_DOWN.height * 2;
 
 		songDifficultySprite = new DifficultySprite(currentDifficulty);
 		add(songDifficultySprite);
@@ -92,7 +86,7 @@ class StoryModeState extends MenuState
 		currentDifficultyEnum = currentDifficulty;
 
 		songDifficultySprite.difficulty = currentDifficulty;
-		songDifficultySprite.y = FlxG.height - songDifficultySprite.height * 3;
+		songDifficultySprite.y = FlxG.height - songDifficultySprite.height * 2;
 	}
 
 	override function select(change:Int = 0)
@@ -100,6 +94,6 @@ class StoryModeState extends MenuState
 		super.select(change);
 
 		for (menuItem in itemsGroup.members)
-			menuItem.y -= menuItem.height * 2;
+			menuItem.y -= menuItem.height * 1.3;
 	}
 }
