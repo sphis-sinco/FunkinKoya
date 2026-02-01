@@ -63,7 +63,13 @@ class ResultsSubState extends MusicBeatSubstate
 			});
 
 		var rank:Rank = PlayState.resultsData.grade();
-		trace(rank + ' (${PlayState.resultsData.tallyCompletion(PlayState.resultsData.noteRatingCounts)})');
+		var percent:Int = Std.int(PlayState.resultsData.gradePercent() * 100);
+		trace(rank + ' ($percent%)');
+
+		add(new ComboNumbers(percent, FlxG.width / 2.2, (cn) -> {
+			remove(cn);
+			cn.destroy();
+		}));
 	}
 
 	override function update(elapsed:Float)

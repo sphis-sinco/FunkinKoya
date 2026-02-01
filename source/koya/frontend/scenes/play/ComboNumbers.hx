@@ -13,16 +13,31 @@ class ComboNumbers extends FlxTypedGroup<FlxBasic>
 
 	public var comboLength:Int = 0;
 
-	override public function new(combo:Array<Int>, startingX:Float = 0, ?onComplete:ComboNumbers->Void)
+	override public function new(combo:Int, startingX:Float = 0, ?onComplete:ComboNumbers->Void)
 	{
 		super();
 
 		this.onComplete = onComplete;
-		this.comboLength = combo.length - 1;
+
+		var seperatedScore:Array<Int> = [];
+		var tempCombo:Int = Std.int(Math.abs(combo));
+
+		while (tempCombo != 0)
+		{
+			seperatedScore.push(tempCombo % 10);
+			tempCombo = Std.int(tempCombo / 10);
+		}
+
+		while (seperatedScore.length < 1)
+			seperatedScore.push(0);
+
+		seperatedScore.reverse();
+
+		this.comboLength = seperatedScore.length - 1;
 
 		var daLoop:Int = 0;
-		FlxG.log.add(combo);
-		for (i in combo)
+		FlxG.log.add(seperatedScore);
+		for (i in seperatedScore)
 		{
 			var numScore:FunkinSprite = new FunkinSprite();
 			numScore.loadGraphic(AssetPaths.image('num${Std.int(i)}'));
@@ -47,7 +62,7 @@ class ComboNumbers extends FlxTypedGroup<FlxBasic>
 						comboLength--;
 
 						numScore.destroy();
-						remove(numScore);						
+						remove(numScore);
 					},
 					startDelay: Conductor.crochet * 0.002
 				});
@@ -56,14 +71,14 @@ class ComboNumbers extends FlxTypedGroup<FlxBasic>
 		}
 	}
 
-	override function update(elapsed:Float) {
+	override function update(elapsed:Float)
+	{
 		super.update(elapsed);
 
 		if (comboLength == 0)
 		{
 			comboLength--;
-			if (onComplete != null)
-				onComplete(this);
+			if (onComplete != null) onComplete(this);
 		}
 	}
 

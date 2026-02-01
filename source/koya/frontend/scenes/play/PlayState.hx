@@ -766,20 +766,7 @@ class PlayState extends MusicBeatState
 
 		if (combo >= 10 || combo == 0)
 		{
-			var seperatedScore:Array<Int> = [];
-			var tempCombo:Int = Std.int(Math.abs(combo));
-
-			while (tempCombo != 0)
-			{
-				seperatedScore.push(tempCombo % 10);
-				tempCombo = Std.int(tempCombo / 10);
-			}
-
-			while (seperatedScore.length < 1)
-				seperatedScore.push(0);
-
-			seperatedScore.reverse();
-			add(new ComboNumbers(seperatedScore, coolText.x, (cn) -> {
+			add(new ComboNumbers(combo, coolText.x, (cn) -> {
 				remove(cn);
 				cn.destroy();
 			}));

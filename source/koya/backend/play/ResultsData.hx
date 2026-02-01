@@ -53,10 +53,15 @@ class ResultsData
 		return Std.string(data);
 	}
 
+	public function gradePercent():Float
+	{
+		return tallyCompletion(noteRatingCounts);
+	}
+
 	public function grade():Rank
 	{
 		// Final Grade = ((Sick + Good) - (Miss)) / (Total Notes)
-		var completionAmount:Float = tallyCompletion(noteRatingCounts);
+		var completionAmount:Float = gradePercent();
 
 		if (completionAmount >= Rank.RANK_AMAZING_THRESHOLD) return AMAZING;
 		if (completionAmount >= Rank.RANK_EXCELLENT_THRESHOLD) return EXCELLENT;
