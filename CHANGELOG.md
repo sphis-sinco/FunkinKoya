@@ -1,3 +1,10 @@
+# [Unreleased] - 2/2026
+
+## Changed
+- SAVE VERSION 2:
+	- All keybinds are saved in your save data now
+	- Save fields have to be null for their inital value to be set
+
 # [0.2.0] - 2/1/2026
 
 ## Fixed

@@ -1,5 +1,6 @@
 package koya.backend.controls;
 
+import koya.backend.save.Save;
 import flixel.FlxG;
 import flixel.input.FlxInput;
 import flixel.input.actions.FlxAction;
@@ -529,6 +530,7 @@ class Controls extends FlxActionSet
 	 */
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
+		trace('binding $keys to $control');
 		forEachBound(control, function(action, state) addKeys(action, keys, state));
 	}
 
@@ -783,6 +785,34 @@ class Controls extends FlxActionSet
 	inline static function isGamepad(input:FlxActionInput, deviceID:Int)
 	{
 		return input.device == GAMEPAD && (deviceID == FlxInputDeviceID.ALL || input.deviceID == deviceID);
+	}
+
+	public function loadKeyBinds()
+	{
+		removeKeyboard();
+
+		inline bindKeys(Control.UI_UP, [
+			FlxKey.fromString(Save.keybind_ui_up_alt.get()),
+			FlxKey.fromString(Save.keybind_ui_up.get()),
+		]);
+		inline bindKeys(Control.UI_DOWN, [
+			FlxKey.fromString(Save.keybind_ui_down_alt.get()),
+			FlxKey.fromString(Save.keybind_ui_down.get()),
+		]);
+		inline bindKeys(Control.UI_LEFT, [
+			FlxKey.fromString(Save.keybind_ui_left_alt.get()),
+			FlxKey.fromString(Save.keybind_ui_left.get()),
+		]);
+		inline bindKeys(Control.UI_RIGHT, [
+			FlxKey.fromString(Save.keybind_ui_right_alt.get()),
+			FlxKey.fromString(Save.keybind_ui_right.get()),
+		]);
+
+		inline bindKeys(Control.RESET, [FlxKey.fromString(Save.keybind_reset.get())]);
+
+		inline bindKeys(Control.ACCEPT, [Z, ENTER]);
+		inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
+		inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 	}
 }
 

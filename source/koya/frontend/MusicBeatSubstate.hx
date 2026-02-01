@@ -27,6 +27,7 @@ class MusicBeatSubstate extends FlxSubState
 	{
 		super.create();
 
+				controls.loadKeyBinds();
 		sectionHit();
 	}
 

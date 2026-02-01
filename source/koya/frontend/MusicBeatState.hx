@@ -30,6 +30,7 @@ class MusicBeatState extends FlxUIState
 
 		FlxG.mouse.visible = false;
 
+		controls.loadKeyBinds();
 		sectionHit();
 	}
 
