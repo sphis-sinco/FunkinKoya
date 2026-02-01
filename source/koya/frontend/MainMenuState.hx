@@ -26,6 +26,8 @@ class MainMenuState extends MenuState
 		{
 			case 'story mode':
 				trace('the tale you play');
+				FlxG.switchState(() -> new StoryModeState());
+				transitioning = true;
 			case 'freeplay':
 				trace('FREE');
 				FlxG.switchState(() -> new FreeplayState());
