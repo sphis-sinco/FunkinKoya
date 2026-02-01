@@ -28,6 +28,8 @@ class Constants
 
 		var suffix:String = '';
 
+		suffix += ' : Week 3 (+ Results) Update';
+
 		#if INCLUDE_GIT
 		suffix += ' (${Git.branch()}:${Git.hash()})';
 		#end

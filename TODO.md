@@ -1,4 +1,7 @@
-# 0.3.0 (Week 3):
+# 0.3.0 (Week 3 + Results Screen):
+
+- Results screen
+- Results GOOD bf Anim
 
 - Week 3 Songs
 - Pico (BASIC)
@@ -52,9 +55,16 @@
 
 # Other:
 
+## Results Sceen:
+
+- Results BAD bf Anim
+- Results OK bf Anim
+- Results GREAT bf Anim
+- Results EXCELLENT bf Anim
+- Results AMAZING bf Anim
+
 ## Misc:
 
-- Results screen
 - New Window Icons
 - Medals
 - Outdated State
