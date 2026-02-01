@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="support.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="support idle0000" x="4" y="4" width="768" height="379"/>
+	<SubTexture name="support selected0000" x="4" y="391" width="750" height="369"/>
+</TextureAtlas>

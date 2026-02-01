@@ -19,7 +19,7 @@ class MainMenuState extends MusicBeatState
 	public var menuItemsList:Array<String> = [
 		'story mode',
 		'freeplay',
-		// 'support',
+		'support',
 		// 'options',
 	];
 	public var menuItemsGroup:FlxTypedGroup<MenuItem>;
