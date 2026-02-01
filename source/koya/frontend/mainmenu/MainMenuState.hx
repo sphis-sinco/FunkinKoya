@@ -88,6 +88,21 @@ class MainMenuState extends MusicBeatState
 
 		if (menuType == Vertical)
 		{
+			if (controls.UI_UP_R) select(-1);
+			if (controls.UI_DOWN_R) select(1);
+		}
+
+		if (menuType == Horizontal)
+		{
+			if (controls.UI_LEFT_R) select(-1);
+			if (controls.UI_RIGHT_R) select(1);
+		}
+
+		if (controls.ACCEPT) accepted(itemsGroup.members[currentSelection].item);
+		if (controls.BACK) FlxG.switchState(() -> new TitleState());
+
+		if (menuType == Vertical)
+		{
 			pinkBG.screenCenter(X);
 			pinkBG.y = FlxMath.lerp((FlxG.height - pinkBG.height) / 2 - (currentSelection * 2), pinkBG.y, 0.9);
 		}
@@ -103,12 +118,6 @@ class MainMenuState extends MusicBeatState
 			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.x, 0.9);
 			if (menuType == Vertical) menuItem.y = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.y, 0.9);
 		}
-
-		if (controls.UI_UP_R) select(-1);
-		if (controls.UI_DOWN_R) select(1);
-
-		if (controls.ACCEPT) accepted(itemsGroup.members[currentSelection].item);
-		if (controls.BACK) FlxG.switchState(() -> new TitleState());
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
