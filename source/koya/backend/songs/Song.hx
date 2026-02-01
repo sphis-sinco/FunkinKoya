@@ -113,6 +113,16 @@ class Song
 			case 4:
 				swagShit.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}fixSwagVersion';
 				songMissingStuff.push('generatedBy');
+			case 5:
+				var n = 0;
+				for (section in swagShit.notes)
+					for (note in section.sectionNotes)
+						if (note[3] == null)
+						{
+							note[3] = '';
+							n++;
+						}
+				songMissingStuff.push('$n (blank) event notes');
 		}
 
 		if (swagShit.version != SWAGVERSION)
@@ -140,7 +150,7 @@ class Song
 		}
 	}
 
-	public static var SWAGVERSION:Int = 5;
+	public static var SWAGVERSION:Int = 6;
 
 	public static var dummySong:SwagSong =
 		{

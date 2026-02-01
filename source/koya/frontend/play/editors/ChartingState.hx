@@ -294,7 +294,7 @@ class ChartingState extends MusicBeatState
 
 		var songDropDown = new FlxUIDropDownMenu(stageDropDown.x + stageDropDown.width + 16, stageDropDown.y,
 			FlxUIDropDownMenu.makeStrIdLabelArray(SongList.stringSongList, true), function(song:String) {
-				loadSong(songList[Std.parseInt(song)].song);
+				loadSong(SongList.songList[Std.parseInt(song)].song);
 				loadJson(SongList.stringSongList[Std.parseInt(song)],
 					Highscore.formatSong(SongList.stringSongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
 		});

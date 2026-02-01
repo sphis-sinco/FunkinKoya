@@ -13,6 +13,7 @@
 
 ## Added
 
+- "Event Notes"
 - WEEK 2 KOYA
 - MAIN MENU!
 - `weekList` text file

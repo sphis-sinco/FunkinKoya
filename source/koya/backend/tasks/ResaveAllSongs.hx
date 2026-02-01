@@ -24,6 +24,7 @@ class ResaveAllSongs
 				// trace('song: ${song.song} | difficulty: $difficulty');
 				var myJSONnoFix = Song.loadFromJson(Highscore.formatSong(song.song.toLowerCase(), difficulty), song.song.toLowerCase(), false);
 				var myJSON = Song.loadFromJson(Highscore.formatSong(song.song.toLowerCase(), difficulty), song.song.toLowerCase());
+				myJSON.difficulty = difficulty;
 
 				if (myJSON == null) continue;
 				if (myJSONnoFix == null) continue; // there should be no difference between them
@@ -32,13 +33,22 @@ class ResaveAllSongs
 
 				for (field in Reflect.fields(myJSONnoFix))
 				{
+					if (field == 'version') continue;
+
 					var mjf:String = Std.string(Reflect.field(myJSON, field)).trim();
 					var mjnff:String = Std.string(Reflect.field(myJSONnoFix, field)).trim();
 
 					if (mjf != mjnff)
 					{
 						fieldCheck--;
-						trace('${song.song.toLowerCase()}${difficulty.chartSuffix()} : "${mjf}" != "${mjnff}"');
+						if (!['notes'].contains(field))
+							trace('${song.song.toLowerCase()}${difficulty.chartSuffix()} : "$field : ${mjf}" != "$field : ${mjnff}"');
+						else
+							trace('${song.song.toLowerCase()}${difficulty.chartSuffix()} : "fixed : $field" != "notfixed : $field"');
+					}
+					else
+					{
+						// trace('${song.song.toLowerCase()}${difficulty.chartSuffix()} : "fixed : $field" == "notfixed : $field"');
 					}
 				}
 

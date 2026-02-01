@@ -169,12 +169,14 @@ class Note extends FunkinSprite
 
 	public static function getIfNoteIsInactive(note:Note, ?song:SwagSong):Bool
 	{
+		switch (note?.noteData?.toLowerCase()) {}
+
 		return false;
 	}
 
 	public static function getAlt(note:Note, ?song:SwagSong):String
 	{
-		switch (note.noteData.toLowerCase())
+		switch (note?.noteData?.toLowerCase())
 		{
 			case 'alt', 'alternate':
 				return '-alt';
@@ -187,7 +189,7 @@ class Note extends FunkinSprite
 
 	public static function getSingAnimation(note:Note, ?song:SwagSong, ?miss:Bool = false, ?addition:String):String
 	{
-		switch (note.noteData.toLowerCase())
+		switch (note?.noteData?.toLowerCase())
 		{
 			case 'cheer':
 				return 'cheer';
