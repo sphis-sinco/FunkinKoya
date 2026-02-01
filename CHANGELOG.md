@@ -1,3 +1,8 @@
+# [Unreleased] - 2/1/2026
+
+## Fixed
+- Cursor being visible when it shouldn't be
+
 # [0.2.1] - 2/1/2026
 
 A quick save patch update

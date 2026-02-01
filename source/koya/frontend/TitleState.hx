@@ -35,12 +35,14 @@ class TitleState extends MusicBeatState
 	{
 		super.create();
 
-		startIntro();
+		FlxG.mouse.visible = false;
+
+		begin();
 	}
 
 	var playingTitle:Bool = false;
 
-	function startIntro()
+	function begin()
 	{
 		if (!initialized)
 		{
