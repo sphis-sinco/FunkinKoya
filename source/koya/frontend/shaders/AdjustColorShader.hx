@@ -7,54 +7,54 @@ import flixel.addons.display.FlxRuntimeShader;
 @:nullSafety
 class AdjustColorShader extends FlxRuntimeShader
 {
-  public var hue(default, set):Float = 0;
-  public var saturation(default, set):Float = 0;
-  public var brightness(default, set):Float = 0;
-  public var contrast(default, set):Float = 0;
+	public var hue(default, set):Float = 0;
+	public var saturation(default, set):Float = 0;
+	public var brightness(default, set):Float = 0;
+	public var contrast(default, set):Float = 0;
 
-  public function new()
-  {
-    super(Assets.getText(AssetPaths.frag('adjustColor')));
-    hue = 0;
-    saturation = 0;
-    brightness = 0;
-    contrast = 0;
-  }
+	public function new()
+	{
+		super(Assets.getText(AssetPaths.frag('adjustColor')));
+		hue = 0;
+		saturation = 0;
+		brightness = 0;
+		contrast = 0;
+	}
 
-  function set_hue(value:Float):Float
-  {
-    this.setFloat('hue', value);
-    this.hue = value;
+	function set_hue(value:Float):Float
+	{
+		this.setFloat('hue', value);
+		this.hue = value;
 
-    return this.hue;
-  }
+		return this.hue;
+	}
 
-  function set_saturation(value:Float):Float
-  {
-    this.setFloat('saturation', value);
-    this.saturation = value;
+	function set_saturation(value:Float):Float
+	{
+		this.setFloat('saturation', value);
+		this.saturation = value;
 
-    return this.saturation;
-  }
+		return this.saturation;
+	}
 
-  function set_brightness(value:Float):Float
-  {
-    this.setFloat('brightness', value);
-    this.brightness = value;
+	function set_brightness(value:Float):Float
+	{
+		this.setFloat('brightness', value);
+		this.brightness = value;
 
-    return this.brightness;
-  }
+		return this.brightness;
+	}
 
-  function set_contrast(value:Float):Float
-  {
-    this.setFloat('contrast', value);
-    this.contrast = value;
+	function set_contrast(value:Float):Float
+	{
+		this.setFloat('contrast', value);
+		this.contrast = value;
 
-    return this.contrast;
-  }
+		return this.contrast;
+	}
 
-  public override function toString():String
-  {
-    return 'AdjustColorShader(${this.hue}, ${this.saturation}, ${this.brightness}, ${this.contrast})';
-  }
+	public override function toString():String
+	{
+		return 'AdjustColorShader(${this.hue}, ${this.saturation}, ${this.brightness}, ${this.contrast})';
+	}
 }

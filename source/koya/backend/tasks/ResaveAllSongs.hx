@@ -36,7 +36,7 @@ class ResaveAllSongs
 				{
 					case 'south', 'spookeez':
 						myJSON.stage = 'halloween';
-						
+
 						myJSON.player1 = 'bf-spooky';
 						myJSON.player2 = 'spooky';
 						myJSON.gfVersion = 'gf-spooky';

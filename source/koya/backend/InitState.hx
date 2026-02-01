@@ -88,7 +88,7 @@ class InitState extends FlxState
 			#if DIFFICULTY_HARD
 			currentDifficulty = HARD;
 			#end
-			
+
 			var currentSongChart:String = Highscore.formatSong(currentSongName.toLowerCase(), currentDifficulty);
 
 			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return () -> new TitleState();

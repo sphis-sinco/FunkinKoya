@@ -28,8 +28,7 @@ class HealthIcon extends FunkinSprite
 
 	function set_char(char:String):String
 	{
-		if (!Assets.exists(AssetPaths.image('healthIcons/$char', 'characters')))
-			char = 'face';
+		if (!Assets.exists(AssetPaths.image('healthIcons/$char', 'characters'))) char = 'face';
 
 		frames = AssetPaths.fromSparrow('healthIcons/$char', 'characters');
 

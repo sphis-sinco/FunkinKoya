@@ -37,10 +37,10 @@ class Halloween extends StageBackground
 		add(stairs);
 	}
 
-	override function moveCamera(bf:Bool) {
+	override function moveCamera(bf:Bool)
+	{
 		super.moveCamera(bf);
 
-		if (bf)
-			PlayState.instance.camFollow.x -= 120;
+		if (bf) PlayState.instance.camFollow.x -= 120;
 	}
 }

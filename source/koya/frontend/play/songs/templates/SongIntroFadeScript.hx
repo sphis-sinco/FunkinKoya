@@ -132,9 +132,9 @@ class SongIntroFadeScript extends SongClass
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
-
 		@:privateAccess
-		if (PlayState.instance.controls.RESET) {
+		if (PlayState.instance.controls.RESET)
+		{
 			PlayState.instance.health = -10;
 			forcedBFFade();
 		}
