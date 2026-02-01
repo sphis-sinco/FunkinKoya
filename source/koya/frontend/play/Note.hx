@@ -202,6 +202,7 @@ class Note extends FunkinSprite
 
 	public static function getSingAnimation(note:Note, ?song:SwagSong, ?miss:Bool = false, ?addition:String):String
 	{
+		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
 		var event:String = '';
 
 		if (note != null) if (note.noteData != null) event = note.noteData;
@@ -209,15 +210,16 @@ class Note extends FunkinSprite
 		switch (event.toLowerCase().trim())
 		{
 			case 'cheer':
-				return 'cheer';
+				animationName = 'cheer';
+				addition = null;
 			case 'hey':
-				return 'hey';
+				animationName = 'hey';
+				addition = null;
 
 			default:
 				if (event.toLowerCase().trim().length > 0) trace('No case for: "${event.toLowerCase().trim()}"');
 		}
 
-		var animationName:String = 'sing${note.getDirectionName().toUpperCase()}';
 		if (miss) animationName += 'miss';
 		return (animationName + ((addition != null) ? addition : ''));
 	}
