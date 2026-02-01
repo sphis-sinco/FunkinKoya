@@ -7,6 +7,7 @@ import flixel.math.FlxMath;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
 import flixel.FlxG;
+import koya.frontend.scenes.*;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
 enum MenuType

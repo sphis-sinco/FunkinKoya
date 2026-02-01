@@ -1,0 +1,25 @@
+package koya.frontend.scenes.play.characters.parents;
+
+import koya.backend.AssetPaths;
+
+class DaddyDearest extends Character
+{
+	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false)
+	{
+		super(x, y, 'dad', isPlayer);
+	}
+
+	override function get_dadVar():Float
+		return 6.1;
+
+	override function initChar()
+	{
+		frames = AssetPaths.getAnimateAtlas('characters/daddy_dearest', 'characters');
+
+		addFrameLabelAnim('idle', 'idle');
+		addSingingAnimations(false, (name, prefix) -> addFrameLabelAnim(name, prefix));
+	}
+
+	override function getDataPathPrefix():String
+		return 'data/characters/parents/${curCharacter}-';
+}

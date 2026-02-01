@@ -1,31 +1,26 @@
 package koya.backend;
 
 import koya.backend.plugins.Cursor;
-import flixel.util.FlxTimer;
-import koya.frontend.StoryModeState;
+import flixel.util.*;
 import koya.backend.songs.Song;
 import koya.backend.play.Difficulty;
 import lime.utils.Assets;
 import haxe.macro.Compiler;
-import koya.frontend.play.PlayState;
-import koya.frontend.MainMenuState;
-import koya.frontend.TitleState;
-import koya.frontend.play.editors.ChartingState;
-import koya.frontend.freeplay.FreeplayState;
-import koya.backend.tasks.ResaveAllSongs;
+import koya.frontend.scenes.*;
+import koya.frontend.scenes.web.*;
+import koya.frontend.scenes.play.*;
+import koya.frontend.scenes.play.scenes.*;
+import koya.frontend.scenes.play.scenes.freeplay.*;
+import koya.frontend.scenes.play.scenes.editors.*;
+import koya.backend.tasks.*;
 import koya.backend.save.Save;
-import flixel.math.FlxRect;
-import flixel.math.FlxPoint;
-import flixel.util.FlxColor;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.addons.transition.TransitionData;
+import koya.backend.*;
+import flixel.math.*;
+import flixel.addons.transition.*;
 import koya.backend.controls.PlayerSettings;
 import lime.app.Application;
-import flixel.FlxSprite;
 import flixel.util.typeLimit.NextState;
-import flixel.FlxG;
-import koya.frontend.web.TouchHere;
-import flixel.FlxState;
+import flixel.*;
 
 class InitState extends FlxState
 {

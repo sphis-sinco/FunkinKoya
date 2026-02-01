@@ -5,7 +5,7 @@ import koya.backend.songs.Song;
 import koya.backend.macros.Git;
 #end
 import koya.frontend.ui.ArrowUI;
-import koya.frontend.freeplay.FreeplayBorderSprite;
+import koya.frontend.scenes.freeplay.*;
 import flixel.util.FlxColor;
 import lime.app.Application;
 

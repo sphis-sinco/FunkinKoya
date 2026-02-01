@@ -2,7 +2,7 @@ package koya.backend.songs;
 
 import flixel.math.FlxMath;
 import koya.backend.play.Difficulty;
-import koya.frontend.play.stages.basegame.MainStage;
+import koya.frontend.scenes.play.stages.basegame.*;
 import koya.backend.AssetPaths;
 import koya.backend.Section.SwagSection;
 import haxe.Json;
