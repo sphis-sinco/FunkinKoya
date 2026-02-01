@@ -12,12 +12,13 @@ class MusicBeatSubstate extends FlxSubState
 		super();
 	}
 
-	private var lastBeat:Float = 0;
-	private var lastStep:Float = 0;
+	public var lastBeat:Float = 0;
+	public var lastStep:Float = 0;
 
-	private var curStep:Int = 0;
-	private var curBeat:Int = 0;
-	private var controls(get, never):Controls;
+	public var curStep:Int = 0;
+	public var curBeat:Int = 0;
+
+	public var controls(get, never):Controls;
 
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
@@ -44,19 +45,19 @@ class MusicBeatSubstate extends FlxSubState
 		super.update(elapsed);
 	}
 
-	private function updateBeat():Void
+	public function updateBeat():Void
 	{
 		curBeat = Math.floor(curStep / 4);
 	}
 
 	public var curSection:Int = 0;
 
-	private function updateSection()
+	public function updateSection()
 	{
 		curSection = Math.floor(curStep / 16);
 	}
 
-	private function updateCurStep():Void
+	public function updateCurStep():Void
 	{
 		var lastChange:BPMChangeEvent =
 			{
