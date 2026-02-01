@@ -123,6 +123,7 @@ class MainMenuState extends MusicBeatState
 		FlxFlicker.flicker(menuItemsGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
 
 		FlxTimer.wait((confirmMenu.length / 2) / 1000, function() {
+			transitioning = false;
 			switch (item)
 			{
 				case 'story mode':
@@ -130,13 +131,13 @@ class MainMenuState extends MusicBeatState
 				case 'freeplay':
 					trace('FREE');
 					FlxG.switchState(() -> new FreeplayState());
+					transitioning = true;
 				case 'support':
 					trace('mone?');
 					FlxG.openURL('https://ko-fi.com/sphis');
 				case 'options':
 					trace('change is supported');
 			}
-			transitioning = false;
 		});
 	}
 }
