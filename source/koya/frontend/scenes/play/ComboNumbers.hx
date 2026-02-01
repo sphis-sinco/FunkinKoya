@@ -19,7 +19,7 @@ class ComboNumbers extends FlxTypedGroup<FunkinSprite>
 		this.onComplete = onComplete;
 
 		var seperatedScore:Array<Int> = [];
-		if (combo < 1) seperatedScore = [0, 0];
+		if (combo < 1) seperatedScore = [0];
 		else
 		{
 			var tempCombo:Int = Std.int(Math.abs(combo));

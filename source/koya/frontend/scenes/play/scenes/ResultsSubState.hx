@@ -82,8 +82,11 @@ class ResultsSubState extends MusicBeatSubstate
 			{
 				numScore.screenCenter();
 
-				numScore.x -= (43 * comboNum.comboLength / 2) - 90;
-				numScore.x += (43 * numScore.ID) - 90;
+				if (comboNum.comboLength > 1)
+				{
+					numScore.x -= (43 * comboNum.comboLength / 2) - 90;
+					numScore.x += (43 * numScore.ID) - 90;
+				}
 
 				FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 			}
