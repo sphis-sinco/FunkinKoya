@@ -21,7 +21,7 @@ class Git
 		if (process.exitCode() != 0)
 		{
 			var message = process.stderr.readAll().toString();
-			haxe.macro.Context.info('[WARNING] Could not determine current git commit; is this a proper Git repository?', pos);
+			haxe.macro.Context.warning('Could not determine current git commit; is this a proper Git repository?', pos);
 		}
 
 		// read the output of the process
@@ -31,7 +31,7 @@ class Git
 		process.close();
 
 		// Generates a string expression
-		haxe.macro.Context.info('[INFO] Git hash: ${commitHashSplice}', pos);
+		haxe.macro.Context.info('${commitHashSplice}', pos);
 		return macro $v{commitHashSplice};
 		#else
 		// `#if display` is used for code completion. In this case returning an
@@ -54,14 +54,14 @@ class Git
 		if (branchProcess.exitCode() != 0)
 		{
 			var message = branchProcess.stderr.readAll().toString();
-			haxe.macro.Context.info('[WARNING] Could not determine current git commit; is this a proper Git repository?', pos);
+			haxe.macro.Context.warning('Could not determine current git commit; is this a proper Git repository?', pos);
 		}
 
 		var branchName:String = branchProcess.stdout.readLine();
 		branchProcess.close();
 
 		// Generates a string expression
-		haxe.macro.Context.info('[INFO] Git Branch: ${branchName}', pos);
+		haxe.macro.Context.info('${branchName}', pos);
 		return macro $v{branchName};
 		#else
 		// `#if display` is used for code completion. In this case returning an
