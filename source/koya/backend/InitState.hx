@@ -1,5 +1,6 @@
 package koya.backend;
 
+import flixel.util.FlxTimer;
 import koya.frontend.StoryModeState;
 import koya.backend.songs.Song;
 import koya.backend.play.Difficulty;
@@ -33,6 +34,12 @@ class InitState extends FlxState
 
 		FlxSprite.defaultAntialiasing = true;
 
+		var startingState:NextState = getStartingState();
+
+		#if web
+		startingState = () -> new TouchHere();
+		#end
+
 		Save.init();
 
 		Application.current.window.title = Constants.WINDOW_TITLE;
@@ -41,12 +48,6 @@ class InitState extends FlxState
 			new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
 		FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.7, new FlxPoint(0, 1), null,
 			new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
-
-		var startingState:NextState = getStartingState();
-
-		#if web
-		startingState = () -> new TouchHere();
-		#end
 
 		#if TASK_RESAVE_ALL_SONGS
 		ResaveAllSongs.run();
@@ -59,7 +60,9 @@ class InitState extends FlxState
 			}
 		});
 
-		FlxG.switchState(startingState);
+		new FlxTimer().start(1, function(t) {
+			FlxG.switchState(startingState);
+		});
 	}
 
 	public static function getStartingState():NextState

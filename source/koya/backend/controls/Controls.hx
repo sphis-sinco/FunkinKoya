@@ -530,7 +530,12 @@ class Controls extends FlxActionSet
 	 */
 	public function bindKeys(control:Control, keys:Array<FlxKey>)
 	{
-		trace('binding $keys to $control');
+		var keysString:Array<String> = [];
+
+		for (key in keys)
+			keysString.push(key.toString());
+
+		trace('binding $keysString to $control');
 		forEachBound(control, function(action, state) addKeys(action, keys, state));
 	}
 

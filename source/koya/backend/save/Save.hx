@@ -10,52 +10,87 @@ class Save
 {
 	public static var SAVE_VERSION:Null<Int> = 2;
 
-	public static var version:SaveField<Null<Int>> = new SaveField('version', SAVE_VERSION);
+	public static var version:SaveField<Null<Int>>;
 
-	public static var songScores:SaveField<Map<String, Int>> = new SaveField('songScores');
-	public static var autosave:SaveField<ChartSwagSong> = new SaveField('autosave');
-	public static var controls:SaveField<Dynamic> = new SaveField('controls');
+	public static var songScores:SaveField<Map<String, Int>>;
+	public static var autosave:SaveField<ChartSwagSong>;
+	public static var controls:SaveField<Dynamic>;
 
-	public static var keybind_reset:SaveField<String> = new SaveField('keybind_reset', 'R');
+	public static var keybind_reset:SaveField<String>;
 
-	public static var keybind_ui_left_alt:SaveField<String> = new SaveField('keybind_ui_left_alt', 'A');
-	public static var keybind_ui_down_alt:SaveField<String> = new SaveField('keybind_ui_down_alt', 'S');
-	public static var keybind_ui_up_alt:SaveField<String> = new SaveField('keybind_ui_up_alt', 'W');
-	public static var keybind_ui_right_alt:SaveField<String> = new SaveField('keybind_ui_right_alt', 'D');
+	public static var keybind_ui_left_alt:SaveField<String>;
+	public static var keybind_ui_down_alt:SaveField<String>;
+	public static var keybind_ui_up_alt:SaveField<String>;
+	public static var keybind_ui_right_alt:SaveField<String>;
 
-	public static var keybind_ui_left:SaveField<String> = new SaveField('keybind_ui_left', 'LEFT');
-	public static var keybind_ui_down:SaveField<String> = new SaveField('keybind_ui_down', 'DOWN');
-	public static var keybind_ui_up:SaveField<String> = new SaveField('keybind_ui_up', 'UP');
-	public static var keybind_ui_right:SaveField<String> = new SaveField('keybind_ui_right', 'RIGHT');
+	public static var keybind_ui_left:SaveField<String>;
+	public static var keybind_ui_down:SaveField<String>;
+	public static var keybind_ui_up:SaveField<String>;
+	public static var keybind_ui_right:SaveField<String>;
+
+	static function initFields()
+	{
+		version = new SaveField<Null<Int>>('version', SAVE_VERSION);
+
+		songScores = new SaveField<Map<String, Int>>('songScores');
+		autosave = new SaveField<ChartSwagSong>('autosave');
+		controls = new SaveField<Dynamic>('controls');
+
+		keybind_reset = new SaveField<String>('keybind_reset', 'R');
+
+		keybind_ui_left_alt = new SaveField<String>('keybind_ui_left_alt', 'A');
+		keybind_ui_down_alt = new SaveField<String>('keybind_ui_down_alt', 'S');
+		keybind_ui_up_alt = new SaveField<String>('keybind_ui_up_alt', 'W');
+		keybind_ui_right_alt = new SaveField<String>('keybind_ui_right_alt', 'D');
+
+		keybind_ui_left = new SaveField<String>('keybind_ui_left', 'LEFT');
+		keybind_ui_down = new SaveField<String>('keybind_ui_down', 'DOWN');
+		keybind_ui_up = new SaveField<String>('keybind_ui_up', 'UP');
+		keybind_ui_right = new SaveField<String>('keybind_ui_right', 'RIGHT');
+	}
 
 	public static function init()
 	{
-		PlayerSettings.init();
 		FlxG.save.bind('koya', 'Macohi');
+
+		initFields();
+
+		PlayerSettings.init();
 		Highscore.load();
 
-		if (version.get() == SAVE_VERSION) return;
+		upgradeVersion(() -> {
+			flush();
+			for (field in Reflect.fields(FlxG.save.data))
+			{
+				if (!Reflect.fields(Save).contains(field)) continue;
+				if (field == 'autosave') continue;
 
-		upgradeVersion();
-
-		flush();
+				trace('Save.${field} : ${Reflect.field(FlxG.save.data, field)}');
+			}
+		});
 
 		Application.current.onExit.add(function(l) {
 			flush();
 		});
 	}
 
-	public static function upgradeVersion()
+	public static function upgradeVersion(?onComplete:Void->Void)
 	{
 		switch (version.get())
 		{
 			default:
 				trace('unimplemented upgrade from version: ${version.get()}');
 		}
-		
+
 		version.set(version.get() + 1);
 		if (version.get() < SAVE_VERSION)
-			upgradeVersion();
+		{
+			upgradeVersion(onComplete);
+		}
+		else
+		{
+			if (onComplete != null) onComplete();
+		}
 	}
 
 	public static function flush()
