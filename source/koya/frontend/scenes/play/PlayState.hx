@@ -655,15 +655,23 @@ class PlayState extends MusicBeatState
 		var ret:Bool = songScript.endSong();
 		if (!ret) return;
 
-		canPause = false;
+		if (FlxG.sound.music != null)
+		{
+			FlxG.sound.music.volume = 0;
+			vocals.volume = 0;
 
-		FlxG.sound.music.volume = 0;
-		vocals.volume = 0;
-
-		FlxG.sound.music.stop();
-		vocals.stop();
+			FlxG.sound.music.stop();
+			vocals.stop();
+		}
 
 		trace('${resultsData}');
+
+		persistentUpdate = false;
+		persistentDraw = true;
+		paused = true;
+		canPause = false;
+
+		songScript.pause();
 
 		if (IS_CHARTINGMODE)
 		{
@@ -673,7 +681,7 @@ class PlayState extends MusicBeatState
 
 		if (IS_STORYMODE)
 		{
-			STORYMODE_PLAYLIST.remove(SONG.song);
+			if (STORYMODE_PLAYLIST.length > 0) STORYMODE_PLAYLIST.remove(SONG.song);
 
 			if (STORYMODE_PLAYLIST.length > 0)
 			{

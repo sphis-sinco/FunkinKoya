@@ -28,11 +28,10 @@ class ResultsSubState extends MusicBeatSubstate
 		super.create();
 
 		back = new FunkinSprite();
-		back.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#FFFF00'));
-		add(back);
+		back.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#FFA7E5'));
+		PlayState.instance.add(back);
 
-		resultsCam = new FlxCamera(0, 0, 1280, 720);
-		add(resultsCam);
+		resultsCam = new FlxCamera();
 
 		back.cameras = [resultsCam];
 
@@ -41,15 +40,33 @@ class ResultsSubState extends MusicBeatSubstate
 
 		back.y -= back.height;
 		back.alpha = 0;
-		FlxTween.tween(back, {y: 0, alpha: 1}, (Conductor.crochet / 1000) * 4, {
-			ease: FlxEase.quadInOut
-		});
+
+		var stepAddition = 0;
+
+		for (object in PlayState.instance.members)
+		{
+			if (object != null && Reflect.fields(object).contains('alpha'))
+			{
+				FlxTween.tween(object, {alpha: 0}, (Conductor.stepCrochet / 1000) * (2 * stepAddition),
+					{
+						ease: FlxEase.quadInOut
+					});
+			}
+			stepAddition++;
+		}
+
+		
+		FlxTween.cancelTweensOf(back);
+		FlxTween.tween(back, {y: 0, alpha: 1}, (Conductor.crochet / 1000) * 4,
+			{
+				ease: FlxEase.quadInOut
+			});
 	}
 
-	override function update(elapsed:Float) {
+	override function update(elapsed:Float)
+	{
 		super.update(elapsed);
 
-		if (controls.ACCEPT && back.alpha == 1)
-			FlxG.switchState(nextState);
+		if (controls.ACCEPT && back.alpha == 1) FlxG.switchState(nextState);
 	}
 }
