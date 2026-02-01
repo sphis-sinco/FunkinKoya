@@ -33,6 +33,9 @@ class MainMenuState extends MusicBeatState
 
 	public var menuType:MenuType = Vertical;
 
+	public var itemStartingPos:Float = 240;
+	public var itemIncOffset:Float = 320;
+
 	override public function new(menuType:MenuType = Horizontal)
 	{
 		super();
@@ -115,8 +118,8 @@ class MainMenuState extends MusicBeatState
 
 		for (menuItem in itemsGroup.members)
 		{
-			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.x, 0.9);
-			if (menuType == Vertical) menuItem.y = FlxMath.lerp(240 + (320 * (menuItem.ID - currentSelection)), menuItem.y, 0.9);
+			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), menuItem.x, 0.9);
+			if (menuType == Vertical) menuItem.y = FlxMath.lerp(itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), menuItem.y, 0.9);
 		}
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
