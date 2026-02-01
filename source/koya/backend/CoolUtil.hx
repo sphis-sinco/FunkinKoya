@@ -21,4 +21,21 @@ class CoolUtil
 
 		return daList;
 	}
+
+	/**
+	 * Constrain an float between a minimum and maximum value.
+	 */
+	public static function clampFloat(value:Float, min:Float, max:Float):Float
+	{
+		return value < min ? min : value > max ? max : value;
+	}
+
+	/**
+	 * Constrain an integer between a minimum and maximum value.
+	 */
+	public static function clampInt(value:Int, min:Int, max:Int):Int
+	{
+		// Don't use Math.min because it returns a Float.
+		return value < min ? min : value > max ? max : value;
+	}
 }

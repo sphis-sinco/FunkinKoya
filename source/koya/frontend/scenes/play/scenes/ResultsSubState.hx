@@ -1,5 +1,7 @@
 package koya.frontend.scenes.play.scenes;
 
+import koya.backend.play.ResultsData;
+import koya.backend.play.Rank;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import koya.backend.Conductor;
@@ -60,7 +62,8 @@ class ResultsSubState extends MusicBeatSubstate
 				ease: FlxEase.quadInOut
 			});
 
-		PlayState.resultsData.grade();
+		var rank:Rank = PlayState.resultsData.grade();
+		trace(rank + ' (${PlayState.resultsData.tallyCompletion(PlayState.resultsData.noteRatingCounts)})');
 	}
 
 	override function update(elapsed:Float)

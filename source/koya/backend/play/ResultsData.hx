@@ -1,6 +1,6 @@
 package koya.backend.play;
 
-import flixel.math.FlxMath;
+using Math;
 
 class ResultsData
 {
@@ -53,28 +53,26 @@ class ResultsData
 		return Std.string(data);
 	}
 
-	public function grade()
+	public function grade():Rank
 	{
-		var sickPercent:Float = noteRatingCounts.get('sick') / totalNotesHit;
-		var goodPercent:Float = noteRatingCounts.get('good') / totalNotesHit;
-		var badPercent:Float = noteRatingCounts.get('bad') / totalNotesHit;
-		var shitPercent:Float = noteRatingCounts.get('shit') / totalNotesHit;
+		// Final Grade = ((Sick + Good) - (Miss)) / (Total Notes)
+		var completionAmount:Float = tallyCompletion(noteRatingCounts);
 
-		sickPercent = Math.round(sickPercent * 100);
-		goodPercent = Math.round(goodPercent * 100);
-		badPercent = Math.round(badPercent * 100);
-		shitPercent = Math.round(shitPercent * 100);
+		if (completionAmount >= Rank.RANK_AMAZING_THRESHOLD) return AMAZING;
+		if (completionAmount >= Rank.RANK_EXCELLENT_THRESHOLD) return EXCELLENT;
+		if (completionAmount >= Rank.RANK_GREAT_THRESHOLD) return GREAT;
+		if (completionAmount >= Rank.RANK_GOOD_THRESHOLD) return GOOD;
+		if (completionAmount >= Rank.RANK_OK_THRESHOLD) return OK;
 
-		trace('sick: $sickPercent%');
-		trace('good: $goodPercent%');
-		trace('bad: $badPercent%');
-		trace('shit: $shitPercent%');
+		return BAD;
+	}
 
-		return {
-			sick: sickPercent,
-			good: goodPercent,
-			bad: badPercent,
-			shit: shitPercent,
-		}
+	public function tallyCompletion(noteRatingCounts:Map<String, Int>):Float
+	{
+		if (noteRatingCounts == null) return 0;
+
+		var positive = (noteRatingCounts.get('sick') + noteRatingCounts.get('good'));
+
+		return CoolUtil.clampFloat((positive - notesMissed) / totalNotesHit, 0, 1); // Needs to be clamped to make sure Perfect ranks are saved properly
 	}
 }
