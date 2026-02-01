@@ -5,3 +5,4 @@ spooky
 monster
 gf-spooky
 gf-spooky-monster
+bf-spooky

@@ -16,6 +16,8 @@ class CharacterGetter
 		{
 			case 'bf':
 				return new BFRegular(x, y, isPlayer);
+			case 'bf-spooky':
+				return new BFSpooky(x, y, isPlayer);
 			case 'gf':
 				return new GFRegular(x, y, isPlayer);
 			case 'gf-spooky', 'gf-spooky-monster':

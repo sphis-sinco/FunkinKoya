@@ -1,7 +1,3 @@
-# 0.2.0 (Week 2):
-
-- BF Halloween
-
 # 0.3.0 (Week 3):
 
 - Week 3 Songs

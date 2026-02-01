@@ -36,12 +36,12 @@ class ResaveAllSongs
 				{
 					case 'south', 'spookeez':
 						myJSON.stage = 'halloween';
-						myJSON.player1 = 'bf';
+						myJSON.player1 = 'bf-spooky';
 						myJSON.player2 = 'gf-spooky';
 					case 'monster':
 						myJSON.stage = 'halloween';
 						myJSON.authors = 'Bassetfilms';
-						myJSON.player1 = 'bf';
+						myJSON.player1 = 'bf-spooky';
 						myJSON.player2 = 'gf-spooky-monster';
 				}
 

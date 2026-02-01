@@ -2,7 +2,7 @@
 	"song": {
 		"song": "Monster",
 		"needsVoices": true,
-		"player1": "bf",
+		"player1": "bf-spooky",
 		"player2": "gf-spooky-monster",
 		"speed": 1.3,
 		"notes": [

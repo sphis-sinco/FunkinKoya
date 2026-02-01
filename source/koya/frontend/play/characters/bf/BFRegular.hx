@@ -4,14 +4,25 @@ import koya.backend.AssetPaths;
 
 class BFRegular extends Character
 {
-	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false)
+	public var bfVersion:String = 'bf';
+
+	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false, ?bfVersion:String = '')
 	{
-		super(x, y, 'bf', isPlayer);
+		this.bfVersion = bfVersion;
+
+		super(x, y, bfVersion, isPlayer);
+		setCharacter(bfVersion);
+		iconChar = 'bf';
+	}
+
+	public function getFrames()
+	{
+		frames = AssetPaths.getAnimateAtlas('characters/boyfriend-regular', 'characters');
 	}
 
 	override function initChar()
 	{
-		frames = AssetPaths.getAnimateAtlas('characters/boyfriend-regular', 'characters');
+		getFrames();
 
 		addFrameLabelAnim('idle', 'idle');
 

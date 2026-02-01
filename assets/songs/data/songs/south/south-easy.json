@@ -2,7 +2,7 @@
 	"song": {
 		"song": "South",
 		"needsVoices": true,
-		"player1": "bf",
+		"player1": "bf-spooky",
 		"player2": "gf-spooky",
 		"speed": 1.1,
 		"notes": [
