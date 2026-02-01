@@ -2,7 +2,8 @@
 
 ## Fixed
 
-- Song scroes are no longer saved in charting mode
+- On songs with a fade intro if BF isnt faded in when you die he will fade in during the gameover
+- Song scores are no longer saved in charting mode
 - Fixed icons bopping too fast
 - All note strume times in all charts no longer have decimal points
 - Freeplay now says "Composer(s)" and not "Composers"

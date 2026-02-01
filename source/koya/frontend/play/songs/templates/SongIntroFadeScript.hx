@@ -119,7 +119,7 @@ class SongIntroFadeScript extends SongClass
 	public function forcedBFFade()
 	{
 		trace('i wanna fade hmmm');
-		if (PlayState.instance.health <= 0 && (!bfFade.active || bfFade == null) && boyfriend.alpha < 1) boyfriendFadeFunction();
+		if (PlayState.instance.health <= 0 && (!bfFade?.active || bfFade == null) && boyfriend.alpha < 1) boyfriendFadeFunction();
 	}
 
 	override function noteMiss(direction:Int)
@@ -134,6 +134,9 @@ class SongIntroFadeScript extends SongClass
 		super.update(elapsed);
 
 		@:privateAccess
-		if (PlayState.instance.controls.RESET) forcedBFFade();
+		if (PlayState.instance.controls.RESET) {
+			PlayState.instance.health = -10;
+			forcedBFFade();
+		}
 	}
 }
