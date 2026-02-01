@@ -66,10 +66,12 @@ class ResultsSubState extends MusicBeatSubstate
 		var percent:Int = Std.int(PlayState.resultsData.gradePercent() * 100);
 		trace(rank + ' ($percent%)');
 
-		add(new ComboNumbers(percent, FlxG.width / 2.2, (cn) -> {
+		var comboNumbers = new ComboNumbers(percent, FlxG.width / 2.2, (cn) -> {
 			remove(cn);
 			cn.destroy();
-		}));
+		});
+		comboNumbers.cameras = [resultsCam];
+		add(comboNumbers);
 	}
 
 	override function update(elapsed:Float)
