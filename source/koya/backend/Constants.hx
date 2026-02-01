@@ -1,5 +1,6 @@
 package koya.backend;
 
+import lime.utils.Assets;
 import koya.backend.songs.Song;
 #if INCLUDE_GIT
 import koya.backend.macros.Git;
@@ -26,17 +27,20 @@ class Constants
 		return '';
 		#end
 
-		var suffix:String = '';
+		var values = {update_name: Assets.getText('update_name.txt')};
 
-		// suffix += ' : Week 3 (+ Results) Update';
-		suffix += ' : Hotfix';
+		var suffixSample:String = '';
+
+		suffixSample += ' : ::update_name:: Update';
+		// suffix += ' : Hotfix';
 		// suffix += ' : Patch';
 
 		#if INCLUDE_GIT
-		suffix += ' (${Git.branch()}:${Git.hash()})';
+		suffixSample += ' (${Git.branch()}:${Git.hash()})';
 		#end
 
-		return suffix;
+		var template = new haxe.Template(suffixSample);
+		return template.execute(values);
 	}
 
 	public static var WINDOW_TITLE(get, never):String;

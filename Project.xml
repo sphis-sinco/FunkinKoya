@@ -150,4 +150,6 @@
 	<haxedef name="HXCPP_STACK_TRACE" if="CRASH_HANDLER" />
 
 	<define name="INCLUDE_GIT" if="debug || indev" />
+
+	<assets path="update_name.txt" embed="true"/>
 </project>
