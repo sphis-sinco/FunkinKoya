@@ -668,6 +668,8 @@ class ChartingState extends MusicBeatState
 			if (FlxG.keys.justReleased.ANY)
 			{
 				modifMade('Typing(${typingShit.text})');
+
+				if (UI_note.hasFocus) updateGrid();
 			}
 		}
 
@@ -839,9 +841,8 @@ class ChartingState extends MusicBeatState
 			var daSus = i[2];
 			var event = i[3];
 
-			var note:Note = new Note(daStrumTime, daNoteInfo % 4);
+			var note:Note = new Note(daStrumTime, daNoteInfo % 4, false, event);
 			note.sustainLength = daSus;
-			note.noteData = event;
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
 			note.x = Math.floor(daNoteInfo * GRID_SIZE);

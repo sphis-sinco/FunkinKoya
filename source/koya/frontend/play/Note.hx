@@ -35,9 +35,10 @@ class Note extends FunkinSprite
 	public var noteData:String = '';
 	public var inactive:Bool = false;
 
-	public function new(strumTime:Float, noteID:Int, ?prevNote:Note, ?sustainNote:Bool = false)
+	public function new(strumTime:Float, noteID:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?eventShit:String = '')
 	{
 		this.noteID = noteID;
+		this.noteData = eventShit;
 		super(50 + (swagWidth * this.noteID), -2000);
 
 		if (prevNote == null) prevNote = this;
@@ -47,8 +48,45 @@ class Note extends FunkinSprite
 
 		this.strumTime = strumTime;
 
-		initAsset();
+		initVisuals();
+	}
 
+	public function initVisuals()
+	{
+		initAsset();
+		noteAnims();
+	}
+
+	public function initAsset()
+	{
+		var event:String = '';
+
+		if (noteData != null) event = noteData;
+
+		switch (event.toLowerCase().trim())
+		{
+			default:
+				trace('no case for ${event.toLowerCase().trim()}');
+				initAssetOG();
+		}
+	}
+
+	public function noteAnims()
+	{
+		var event:String = '';
+
+		if (noteData != null) event = noteData;
+
+		switch (event.toLowerCase().trim())
+		{
+			default:
+				trace('no case for ${event.toLowerCase().trim()}');
+				ogNoteAnims();
+		}
+	}
+
+	public function ogNoteAnims()
+	{
 		switch (noteID)
 		{
 			case 0:
@@ -144,7 +182,7 @@ class Note extends FunkinSprite
 		}
 	}
 
-	public function initAsset()
+	public function initAssetOG()
 	{
 		frames = AssetPaths.fromSparrow('NOTE_assets');
 
@@ -173,7 +211,7 @@ class Note extends FunkinSprite
 
 		if (note != null) if (note.noteData != null) event = note.noteData;
 
-		switch (event.toLowerCase()) {}
+		switch (event.toLowerCase().trim()) {}
 
 		return false;
 	}
