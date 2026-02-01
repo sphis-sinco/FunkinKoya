@@ -139,15 +139,17 @@ class PlayState extends MusicBeatState
 
 	public var strums:StrumsGroup;
 
-	public static var resultsData:ResultsData = null;
+	public static var global_resultsData:ResultsData = null;
+
+	public var local_resultsData:ResultsData = null;
 
 	override public function create()
 	{
 		if (instance != null) instance = null;
 		instance = this;
 
-		if (!IS_STORYMODE && resultsData == null) resultsData = null;
-		if (resultsData == null) resultsData = new ResultsData();
+		if (!IS_STORYMODE && global_resultsData == null) global_resultsData = new ResultsData();
+		local_resultsData = new ResultsData();
 
 		strums = new StrumsGroup();
 		add(strums);
@@ -479,8 +481,8 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.SEVEN) FlxG.switchState(() -> new ChartingState());
 
 		var targIconWidth = Std.int(100);
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(targIconWidth, iconP1.width, 0.90)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(targIconWidth, iconP2.width, 0.90)));
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(iconP1.width, targIconWidth, .1)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(iconP2.width, targIconWidth, .1)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
@@ -529,8 +531,8 @@ class PlayState extends MusicBeatState
 
 		if (camZooming)
 		{
-			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, 0.95);
-			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
+			FlxG.camera.zoom = FlxMath.lerp(FlxG.camera.zoom, defaultCamZoom, 0.05);
+			camHUD.zoom = FlxMath.lerp(camHUD.zoom, 1, 0.05);
 		}
 
 		FlxG.watch.addQuick("beatShit", curBeat);
@@ -665,7 +667,14 @@ class PlayState extends MusicBeatState
 			vocals.stop();
 		}
 
-		trace('${resultsData}');
+		global_resultsData.notesMissed += local_resultsData.notesMissed;
+		global_resultsData.totalNotesHit += local_resultsData.totalNotesHit;
+		for (key => value in local_resultsData.noteRatingCounts)
+		{
+			global_resultsData.noteRatingCounts.set(key, global_resultsData.noteRatingCounts.get(key) + value);
+		}
+		trace('local results data: ${local_resultsData}');
+		trace('global results data: ${global_resultsData}');
 
 		persistentUpdate = false;
 		persistentDraw = true;
@@ -749,7 +758,7 @@ class PlayState extends MusicBeatState
 			score = 200;
 		}
 
-		resultsData.earnRating(daRating);
+		local_resultsData.earnRating(daRating);
 
 		songScore += score;
 
@@ -924,7 +933,7 @@ class PlayState extends MusicBeatState
 			health -= 0.04;
 			if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
 			combo = 0;
-			resultsData.notesMissed++;
+			local_resultsData.notesMissed++;
 
 			songScore -= 10;
 
@@ -976,7 +985,7 @@ class PlayState extends MusicBeatState
 				else
 				#end
 				combo += 1;
-				resultsData.totalNotesHit++;
+				local_resultsData.totalNotesHit++;
 			}
 
 			if (note.noteID >= 0) health += 0.023;

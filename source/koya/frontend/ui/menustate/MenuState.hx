@@ -104,19 +104,19 @@ class MenuState extends MusicBeatState
 		if (menuType == Vertical)
 		{
 			pinkBG.screenCenter(X);
-			pinkBG.y = FlxMath.lerp((FlxG.height - pinkBG.height) / 2 - (currentSelection * 2), pinkBG.y, 0.9);
+			pinkBG.y = FlxMath.lerp(pinkBG.y, (FlxG.height - pinkBG.height) / 2 - (currentSelection * 2),.1);
 		}
 		else
 		{
 			pinkBG.screenCenter(Y);
-			pinkBG.x = FlxMath.lerp((FlxG.width - pinkBG.width) / 2 - (currentSelection * 2), pinkBG.x, 0.9);
+			pinkBG.x = FlxMath.lerp(pinkBG.x, (FlxG.width - pinkBG.width) / 2 - (currentSelection * 2), .1);
 		}
 		flashBG.setPosition(pinkBG.x, pinkBG.y);
 
 		for (menuItem in itemsGroup.members)
 		{
-			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), menuItem.x, 0.9);
-			if (menuType == Vertical) menuItem.y = FlxMath.lerp(itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), menuItem.y, 0.9);
+			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
+			if (menuType == Vertical) menuItem.y = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
 		}
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)

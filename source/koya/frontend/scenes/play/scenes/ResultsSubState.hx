@@ -1,5 +1,8 @@
 package koya.frontend.scenes.play.scenes;
 
+import koya.backend.AssetPaths;
+import flixel.math.FlxMath;
+import flixel.util.FlxTimer;
 import koya.backend.play.ResultsData;
 import koya.backend.play.Rank;
 import flixel.tweens.FlxEase;
@@ -29,6 +32,10 @@ class ResultsSubState extends MusicBeatSubstate
 	{
 		super.create();
 
+		var rank:Rank = PlayState.global_resultsData.grade();
+		var percent:Int = Std.int(PlayState.global_resultsData.gradePercent() * 100);
+		trace(rank + ' ($percent%)');
+
 		back = new FunkinSprite();
 		back.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#FFA7E5'));
 
@@ -56,22 +63,36 @@ class ResultsSubState extends MusicBeatSubstate
 			stepAddition++;
 		}
 
+		var backFadeInTime:Float = (Conductor.crochet / 1000) * 4;
+
 		PlayState.instance.add(back);
-		FlxTween.tween(back, {y: 0, alpha: 1}, (Conductor.crochet / 1000) * 4,
+		FlxTween.tween(back, {y: 0, alpha: 1}, backFadeInTime,
 			{
-				ease: FlxEase.quadInOut
+				ease: FlxEase.quadInOut,
+				onComplete: t -> {}
 			});
 
-		var rank:Rank = PlayState.resultsData.grade();
-		var percent:Int = Std.int(PlayState.resultsData.gradePercent() * 100);
-		trace(rank + ' ($percent%)');
+		FlxTimer.wait(backFadeInTime + 0.25, function() {
+			var comboPercent:Float = 0;
+			while (comboPercent != percent)
+			{
+				var prevComboPercent = comboPercent;
+				comboPercent = Math.round(FlxMath.lerp(comboPercent, percent, .1));
 
-		var comboNumbers = new ComboNumbers(percent, FlxG.width / 2.2, (cn) -> {
-			remove(cn);
-			cn.destroy();
+				if (comboPercent != prevComboPercent)
+				{
+					FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+
+					trace(Std.int(comboPercent));
+					var comboNum = new ComboNumbers(Std.int(comboPercent), FlxG.width / 2.2, (cn) -> {
+						remove(cn);
+						cn.destroy();
+					});
+					comboNum.cameras = [resultsCam];
+					add(comboNum);
+				}
+			}
 		});
-		comboNumbers.cameras = [resultsCam];
-		add(comboNumbers);
 	}
 
 	override function update(elapsed:Float)
