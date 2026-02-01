@@ -52,6 +52,7 @@ class StoryModeState extends MenuState
 
 		if (PlayState.playList.length > 0)
 		{
+			transitioning = true;
 			FlxG.sound.music.stop();
 
 			FlxG.switchState(() -> new PlayState());
