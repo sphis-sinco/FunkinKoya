@@ -62,4 +62,11 @@ class MonsterScript extends SongIntroFadeScript
 			if (funkSpr != null) funkSpr.alpha = 1;
 		});
 	}
+
+	override function noteMiss(direction:Int)
+	{
+		super.noteMiss(direction);
+
+		if (bfFade != null) if (PlayState.instance.health < 0 && !bfFade.active && boyfriend.alpha < 1) boyfriendFadeFunction();
+	}
 }
