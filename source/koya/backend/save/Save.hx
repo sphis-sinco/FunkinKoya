@@ -28,6 +28,16 @@ class Save
 	public static var keybind_ui_up:SaveField<String>;
 	public static var keybind_ui_right:SaveField<String>;
 
+	public static var keybind_note_left_alt:SaveField<String>;
+	public static var keybind_note_down_alt:SaveField<String>;
+	public static var keybind_note_up_alt:SaveField<String>;
+	public static var keybind_note_right_alt:SaveField<String>;
+
+	public static var keybind_note_left:SaveField<String>;
+	public static var keybind_note_down:SaveField<String>;
+	public static var keybind_note_up:SaveField<String>;
+	public static var keybind_note_right:SaveField<String>;
+
 	static function initFields()
 	{
 		version = new SaveField<Null<Int>>('version', SAVE_VERSION);
@@ -47,6 +57,16 @@ class Save
 		keybind_ui_down = new SaveField<String>('keybind_ui_down', 'DOWN');
 		keybind_ui_up = new SaveField<String>('keybind_ui_up', 'UP');
 		keybind_ui_right = new SaveField<String>('keybind_ui_right', 'RIGHT');
+
+		keybind_note_left_alt = new SaveField<String>('keybind_note_left_alt', 'A');
+		keybind_note_down_alt = new SaveField<String>('keybind_note_down_alt', 'S');
+		keybind_note_up_alt = new SaveField<String>('keybind_note_up_alt', 'W');
+		keybind_note_right_alt = new SaveField<String>('keybind_note_right_alt', 'D');
+
+		keybind_note_left = new SaveField<String>('keybind_note_left', 'LEFT');
+		keybind_note_down = new SaveField<String>('keybind_note_down', 'DOWN');
+		keybind_note_up = new SaveField<String>('keybind_note_up', 'UP');
+		keybind_note_right = new SaveField<String>('keybind_note_right', 'RIGHT');
 	}
 
 	public static function init()
