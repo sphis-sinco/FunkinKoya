@@ -6,11 +6,17 @@ class MenuItem extends FunkinSprite
 {
 	public var item(default, null):String;
 
+	public var sparrowPath(get, never):String;
+
+	function get_sparrowPath():String
+		return 'mainmenu/$item';
+
 	override public function new(item:String, ?x:Float, ?y:Float)
 	{
 		super(x, y);
 
-		frames = AssetPaths.fromSparrow('mainmenu/$item', 'ui');
+		this.item = item;
+		frames = AssetPaths.fromSparrow(sparrowPath, 'ui');
 
 		addPrefixAnim('idle', '$item idle');
 		addPrefixAnim('selected', '$item selected');
@@ -19,8 +25,6 @@ class MenuItem extends FunkinSprite
 		makeOffsets();
 
 		playAnim('idle');
-
-		this.item = item;
 	}
 
 	public function makeOffsets()
