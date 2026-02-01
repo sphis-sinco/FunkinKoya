@@ -6,7 +6,7 @@ class BFRegular extends Character
 {
 	public var bfVersion:String = 'bf';
 
-	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false, ?bfVersion:String = '')
+	override public function new(?x:Float, ?y:Float, ?isPlayer:Bool = false, ?bfVersion:String = 'bf')
 	{
 		this.bfVersion = bfVersion;
 
@@ -33,6 +33,7 @@ class BFRegular extends Character
 		addFrameLabelAnim('deathConfirm', 'deathConfirm');
 
 		flipX = true;
+		flipAnimationsAsPlayer = false;
 	}
 
 	override function getDataPathPrefix():String

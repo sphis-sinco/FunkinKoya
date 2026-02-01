@@ -40,6 +40,8 @@ class Character extends FunkinSprite
 		this.iconChar = character;
 	}
 
+	public var flipAnimationsAsPlayer:Bool = true;
+
 	public function loadAssets()
 	{
 		trace('Loading character: $curCharacter');
@@ -54,8 +56,8 @@ class Character extends FunkinSprite
 		{
 			flipX = !flipX;
 
-			// Doesn't flip for BF, since his are already in the right place???
-			if (!curCharacter.startsWith('bf'))
+			// Doesn't flip for some, since theirs are already in the right place???
+			if (flipAnimationsAsPlayer)
 			{
 				// var animArray
 				var oldRight = anim.getByName('singRIGHT').frames;

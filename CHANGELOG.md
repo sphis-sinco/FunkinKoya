@@ -1,6 +1,7 @@
 # [0.3.0] - 2/2026
 
 ## Fixed
+- Boyfriend animations being flipped
 - When you are on the last song of a week, the game no longer crashes trying to load another song
 
 # [0.2.3] - 2/1/2026

@@ -65,9 +65,16 @@ class ResultsData
 		badPercent = Math.round(badPercent * 100);
 		shitPercent = Math.round(shitPercent * 100);
 
-		trace(sickPercent);
-		trace(goodPercent);
-		trace(badPercent);
-		trace(shitPercent);
+		trace('sick: $sickPercent%');
+		trace('good: $goodPercent%');
+		trace('bad: $badPercent%');
+		trace('shit: $shitPercent%');
+
+		return {
+			sick: sickPercent,
+			good: goodPercent,
+			bad: badPercent,
+			shit: shitPercent,
+		}
 	}
 }
