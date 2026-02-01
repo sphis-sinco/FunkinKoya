@@ -25,7 +25,7 @@ class Halloween extends StageBackground
 
 		halloweenBack.loadGraphic(getBGImg('halloweenBack'));
 		add(halloweenBack);
-		halloweenBack.scale.set(halloweenBack.width / 2462.3, halloweenBack.height / 1589.95);
+		halloweenBack.scale.set(2462.3 / halloweenBack.width, 1589.95 / halloweenBack.height);
 	}
 
 	override function initFG()
@@ -33,6 +33,14 @@ class Halloween extends StageBackground
 		super.initFG();
 
 		stairs.loadGraphic(getBGImg('stairs'));
+		stairs.scrollFactor.set(0.6, 0.6);
 		add(stairs);
+	}
+
+	override function moveCamera(bf:Bool) {
+		super.moveCamera(bf);
+
+		if (bf)
+			PlayState.instance.camFollow.x -= 120;
 	}
 }
