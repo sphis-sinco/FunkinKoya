@@ -40,8 +40,8 @@ class StoryModeState extends MenuState
 			add(arrow);
 		}
 
-		arrow_UP.y -= arrow_UP.height * 6;
-		arrow_DOWN.y -= arrow_DOWN.height * 2;
+		arrow_UP.y -= arrow_UP.height * 7;
+		arrow_DOWN.y -= arrow_DOWN.height * 3;
 
 		songDifficultySprite = new DifficultySprite(currentDifficulty);
 		add(songDifficultySprite);
@@ -86,7 +86,7 @@ class StoryModeState extends MenuState
 		currentDifficultyEnum = currentDifficulty;
 
 		songDifficultySprite.difficulty = currentDifficulty;
-		songDifficultySprite.y = FlxG.height - songDifficultySprite.height * 2;
+		songDifficultySprite.y = FlxG.height - songDifficultySprite.height * 2.5;
 	}
 
 	override function select(change:Int = 0)
