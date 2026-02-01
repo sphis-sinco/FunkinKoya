@@ -24,14 +24,21 @@ class Monster extends Character
 		super.onNoteHit(note);
 
 		var division:Float = 10;
+		var minHealth:Float = 0.1;
 
-		switch(PlayState.SONG_DIFFICULTY)
+		switch (PlayState.SONG_DIFFICULTY)
 		{
-			case EASY: division = 32;
-			case NORMAL: division = 8;
-			case HARD: division = 4;
+			case EASY:
+				division = 32;
+				minHealth = 1.5;
+			case NORMAL:
+				division = 8;
+				minHealth = 0.5;
+			case HARD:
+				division = 4;
+				minHealth = 0.1;
 		}
 
-		if (PlayState.instance.health > 0.1) PlayState.instance.health -= FlxG.random.float(1 / 1000, 0.25) / division;
+		if (PlayState.instance.health > minHealth) PlayState.instance.health -= FlxG.random.float(1 / 1000, 0.25) / division;
 	}
 }
