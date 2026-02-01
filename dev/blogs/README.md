@@ -4,7 +4,7 @@ Progress is pleasant to see
 
 ## 0.2.0
 
-- [jan 31 2026](./blogs/feb/2.1.2026.md)
+- [feb 1 2026](./blogs/feb/2.1.2026.md)
 
 ## 0.1.1
 

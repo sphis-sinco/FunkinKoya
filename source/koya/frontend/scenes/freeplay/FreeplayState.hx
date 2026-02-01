@@ -122,14 +122,6 @@ class FreeplayState extends MusicBeatState
 
 		performControls();
 
-		if (currentDifficulty < 0) currentDifficulty = 0;
-		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = Difficulty.list.length - 1;
-
-		currentDifficultyEnum = currentDifficulty;
-
-		if (currentSelection < 0) currentSelection = 0;
-		if (currentSelection >= songList.length) currentSelection = songList.length - 1;
-
 		FlxG.watch.addQuick('currentScore', currentScore);
 
 		songDifficultySprite.difficulty = currentDifficulty;
@@ -154,18 +146,6 @@ class FreeplayState extends MusicBeatState
 
 		songText.alpha = 1;
 		if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) songText.alpha = .5;
-
-		opponentIcon.char = Character.getCharacter(currentSong.player2).iconChar ?? currentSong.player2;
-		playerIcon.char = Character.getCharacter(currentSong.player1).iconChar ?? currentSong.player1;
-
-		opponentIcon.screenCenter();
-		playerIcon.screenCenter();
-
-		opponentIcon.x -= opponentIcon.width;
-		playerIcon.x += playerIcon.width;
-
-		opponentIcon.visible = opponentIcon.frames != null;
-		playerIcon.visible = playerIcon.frames != null;
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -237,6 +217,26 @@ class FreeplayState extends MusicBeatState
 			PlayState.loadSong(currentSongChart, currentSongName, currentDifficulty);
 			FlxG.switchState(() -> new PlayState());
 		}
+
+		if (currentDifficulty < 0) currentDifficulty = 0;
+		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = Difficulty.list.length - 1;
+
+		currentDifficultyEnum = currentDifficulty;
+
+		if (currentSelection < 0) currentSelection = 0;
+		if (currentSelection >= songList.length) currentSelection = songList.length - 1;
+
+		opponentIcon.char = Character.getCharacter(currentSong.player2).iconChar ?? currentSong.player2;
+		playerIcon.char = Character.getCharacter(currentSong.player1).iconChar ?? currentSong.player1;
+
+		opponentIcon.screenCenter();
+		playerIcon.screenCenter();
+
+		opponentIcon.x -= opponentIcon.width;
+		playerIcon.x += playerIcon.width;
+
+		opponentIcon.visible = opponentIcon.frames != null;
+		playerIcon.visible = playerIcon.frames != null;
 	}
 
 	public var sideBorderWidths = 320 + 64;
