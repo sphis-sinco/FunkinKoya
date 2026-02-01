@@ -1,8 +1,7 @@
 package koya.frontend.play.songs;
 
-import koya.frontend.play.songs.week1.FreshScript;
-import koya.frontend.play.songs.week1.BopeeboScript;
-import koya.frontend.play.songs.week1.TutorialScript;
+import koya.frontend.play.songs.week1.*;
+import koya.frontend.play.songs.week2.*;
 
 class SongClassGetter
 {
@@ -16,6 +15,8 @@ class SongClassGetter
 				return new BopeeboScript();
 			case 'fresh':
 				return new FreshScript();
+			case 'monster':
+				return new MonsterScript();
 		}
 
 		return new SongClass();
