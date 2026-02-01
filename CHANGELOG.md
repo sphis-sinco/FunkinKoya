@@ -2,6 +2,7 @@
 
 ## Fixed
 
+- All note strume times in all charts no longer have decimal points
 - Freeplay now says "Composer(s)" and not "Composers"
 
 ## Changed
