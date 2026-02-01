@@ -87,7 +87,6 @@ class StoryModeState extends MenuState
 	{
 		super.update(elapsed);
 
-		
 		if (controls.UI_UP_R)
 		{
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
@@ -106,6 +105,9 @@ class StoryModeState extends MenuState
 			FlxTween.cancelTweensOf(arrow_DOWN);
 			FlxTween.tween(arrow_DOWN, {y: aD_y}, .1);
 		}
+
+		if (currentDifficulty < 0) currentDifficulty = 0;
+		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = Difficulty.list.length - 1;
 
 		arrow_UP.alpha = (currentDifficulty == Difficulty.list[0].toInt()) ? 0.5 : 1;
 		arrow_DOWN.alpha = (currentDifficulty == Difficulty.list[Difficulty.list.length - 1].toInt()) ? 0.5 : 1;
