@@ -179,6 +179,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function makeCharacterSing(note:Note, character:Character, ?miss:Bool = false, ?addition:String)
 	{
+		character.onNoteHit(note);
 		character.playAnim(Note.getSingAnimation(note, PlayState.SONG, miss, addition), true);
 	}
 

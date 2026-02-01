@@ -186,4 +186,6 @@ class Character extends FunkinSprite
 	{
 		if (startingCamPos == null) return;
 	}
+
+	public function onNoteHit(note:Note) {};
 }

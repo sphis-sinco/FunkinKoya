@@ -1,5 +1,6 @@
 package koya.frontend.play.characters.ogchars;
 
+import flixel.FlxG;
 import koya.backend.AssetPaths;
 
 class Monster extends Character
@@ -16,5 +17,12 @@ class Monster extends Character
 
 		addFrameLabelAnim('idle', 'idle');
 		addSingingAnimations(false, (name, prefix) -> addFrameLabelAnim(name, prefix));
+	}
+
+	override function onNoteHit(note:Note)
+	{
+		super.onNoteHit(note);
+
+		if (PlayState.instance.health > 0.1) PlayState.instance.health -= FlxG.random.float(0, 1) / 10;
 	}
 }
