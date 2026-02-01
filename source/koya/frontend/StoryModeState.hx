@@ -48,5 +48,8 @@ class StoryModeState extends MenuState
 	public function loadWeek(week:String)
 	{
 		PlayState.loadWeek(SongList.weekList.getEntryFilePath(week), currentDifficulty);
+
+		if (PlayState.playList.length > 0)
+			FlxG.switchState(() -> new PlayState());
 	}
 }

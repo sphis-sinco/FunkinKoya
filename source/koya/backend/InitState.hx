@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.frontend.StoryModeState;
 import koya.backend.songs.Song;
 import koya.backend.play.Difficulty;
 import lime.utils.Assets;
@@ -95,6 +96,10 @@ class InitState extends FlxState
 			PlayState.loadSong(currentSongChart, currentSongName, currentDifficulty);
 			return () -> new PlayState();
 		}
+
+		#if STORYMODE
+		return () -> new StoryModeState();
+		#end
 
 		return () -> new TitleState();
 	}

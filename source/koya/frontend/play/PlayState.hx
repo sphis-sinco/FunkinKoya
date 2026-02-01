@@ -1,5 +1,9 @@
 package koya.frontend.play;
 
+import haxe.Json;
+import koya.backend.songs.Week;
+import koya.backend.songs.SongList;
+import lime.utils.Assets;
 import koya.frontend.play.songs.SongClass;
 import koya.frontend.freeplay.FreeplayState;
 import koya.backend.play.Difficulty;
@@ -44,7 +48,35 @@ class PlayState extends MusicBeatState
 
 	public static function loadWeek(weekPath:String, difficulty:Difficulty = NORMAL, chartingMode:Bool = false, storyMode:Bool = true)
 	{
+		playList = [];
+
+		if (!Assets.exists(weekPath))
+		{
+			trace('Missing week: ' + weekPath);
+			return;
+		}
+
 		trace('Loading week: ' + weekPath);
+
+		try
+		{
+			var weekFile:Week = Json.parse(Assets.getText(weekPath));
+
+			for (song in weekFile.songs)
+			{
+				var songFile:SwagSong = Song.loadFromJson(Highscore.formatSong(song.toLowerCase(), difficulty), song.toLowerCase(), false);
+
+				if (songFile != null) playList.push(songFile.song);
+			}
+
+			trace('New Playlist: ' + playList);
+
+			loadSong(Highscore.formatSong(playList[0].toLowerCase(), difficulty), playList[0].toLowerCase(), difficulty, chartingMode, storyMode);
+		}
+		catch (e)
+		{
+			trace(e.message);
+		}
 	}
 
 	public static var STRUMLINE_Y:Float = 50.0;
@@ -677,7 +709,7 @@ class PlayState extends MusicBeatState
 
 		if (storyMode)
 		{
-			FlxG.switchState(() -> new MainMenuState());
+			FlxG.switchState(() -> new StoryModeState());
 		}
 		else
 			FlxG.switchState(() -> new FreeplayState());
