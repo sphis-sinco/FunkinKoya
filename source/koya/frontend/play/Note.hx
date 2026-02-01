@@ -190,6 +190,8 @@ class Note extends FunkinSprite
 				return '-alt';
 			case 'cheer':
 				return '-cheer';
+			case 'hey':
+				return '-hey';
 			case '':
 
 			default:
@@ -209,6 +211,8 @@ class Note extends FunkinSprite
 		{
 			case 'cheer':
 				return 'cheer';
+			case 'hey':
+				return 'hey';
 
 			case '':
 

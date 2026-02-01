@@ -1,5 +1,6 @@
 package koya.backend.songs;
 
+import flixel.math.FlxMath;
 import koya.backend.play.Difficulty;
 import koya.frontend.play.stages.basegame.MainStage;
 import koya.backend.AssetPaths;
@@ -137,12 +138,17 @@ class Song
 			// koyachartformat
 			// koyta
 
+			for (section in swagShit.notes)
+				for (note in section.sectionNotes)
+					note[0] = Math.round(note[0]);
+
 			#if FIXSWAGVERSION_TRACES
 			if (songMissingStuff.length > 0)
 			{
 				trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
 				for (thing in songMissingStuff)
 					trace(' * Added $thing');
+				trace(' * Rounded note positions');
 			}
 			#end
 

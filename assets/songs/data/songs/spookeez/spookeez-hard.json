@@ -106,7 +106,7 @@
 						9400,
 						3,
 						0,
-						""
+						"cheer"
 					]
 				]
 			},
@@ -295,10 +295,10 @@
 						""
 					],
 					[
-						15599.999,
+						15600,
 						2,
 						0,
-						""
+						"cheer"
 					]
 				]
 			},
@@ -922,7 +922,7 @@
 						35000,
 						3,
 						0,
-						""
+						"cheer"
 					]
 				]
 			},
@@ -1114,7 +1114,7 @@
 						41200,
 						2,
 						0,
-						""
+						"cheer"
 					]
 				]
 			},
@@ -2795,12 +2795,21 @@
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionNotes": []
+			},
+			{
+				"altAnim": false,
+				"bpm": 150,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionNotes": [],
+				"typeOfSection": 0
 			}
 		],
 		"gfVersion": "gf",
 		"stage": "halloween",
 		"authors": "Kawai Sprite",
-		"generatedBy": "Funkin' Koya* 0.2.0 | Task: Resave All Songs",
+		"generatedBy": "Funkin' Koya* 0.2.0 : Week 2 Update (develop:bed850f) | Chart Editor (koyta_6)",
 		"bpm": 150,
 		"difficulty": 2,
 		"version": 6
