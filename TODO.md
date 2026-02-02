@@ -66,7 +66,6 @@
 ## Misc:
 
 - Options Menu
-- New Window Icons
 - Medals
 - Outdated State
 
@@ -77,9 +76,8 @@
 
 ## Builds:
 
-- Android build (I wanna check out this shit on my phone lol)
-- Mac build
-- Linux build
+- Mobile build (I wanna check out this shit on my phone lol)
+- HTML5 build
 
 ## Songs:
 

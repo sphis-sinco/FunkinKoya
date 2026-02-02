@@ -1,5 +1,9 @@
 # [0.4.0] - 2/2026
 
+## Added
+
+- New Window Icons
+
 # [0.3.1] - 2/2/2026
 
 ## Changed
