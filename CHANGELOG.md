@@ -7,7 +7,7 @@
 ## Fixed
 
 - The Week score is now saved properly
-- After playing through a storymode week, the core of the last song played is no longer saved as your score
+- After playing through a storymode week, the score of the last song played is no longer saved as your score
 
 # [0.3.0] - 2/1/2026
 
