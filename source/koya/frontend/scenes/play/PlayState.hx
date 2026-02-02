@@ -56,7 +56,7 @@ class PlayState extends MusicBeatState
 
 			for (song in weekFile.songs)
 			{
-				var songFile:SwagSong = Song.loadFromJson(Highscore.formatSong(song.toLowerCase(), difficulty), song.toLowerCase(), false);
+				var songFile:SwagSong = Song.loadFromJson(Highscore.formatToDifficulty(song.toLowerCase(), difficulty), song.toLowerCase(), false);
 
 				if (songFile != null) STORYMODE_PLAYLIST.push(songFile.song);
 			}
@@ -65,7 +65,7 @@ class PlayState extends MusicBeatState
 
 			STORYMODE_PLAYLIST_NUMBER = 0;
 			STORYMODE_WEEK = weekFile.name;
-			loadSong(Highscore.formatSong(STORYMODE_PLAYLIST[0].toLowerCase(), difficulty), STORYMODE_PLAYLIST[0].toLowerCase(), difficulty, chartingMode,
+			loadSong(Highscore.formatToDifficulty(STORYMODE_PLAYLIST[0].toLowerCase(), difficulty), STORYMODE_PLAYLIST[0].toLowerCase(), difficulty, chartingMode,
 				storyMode);
 		}
 		catch (e)
@@ -700,7 +700,7 @@ class PlayState extends MusicBeatState
 					story mode song chart
 				**/
 				var nextSong = STORYMODE_PLAYLIST[0].toLowerCase();
-				var nextChart = Highscore.formatSong(nextSong, SONG_DIFFICULTY);
+				var nextChart = Highscore.formatToDifficulty(nextSong, SONG_DIFFICULTY);
 
 				loadSong(nextChart, nextSong, SONG_DIFFICULTY, IS_CHARTINGMODE, IS_STORYMODE);
 

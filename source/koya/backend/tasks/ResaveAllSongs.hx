@@ -22,7 +22,7 @@ class ResaveAllSongs
 			for (difficulty in Difficulty.list)
 			{
 				// trace('song: ${song.song} | difficulty: $difficulty');
-				var myJSON = Song.loadFromJson(Highscore.formatSong(song.song.toLowerCase(), difficulty), song.song.toLowerCase());
+				var myJSON = Song.loadFromJson(Highscore.formatToDifficulty(song.song.toLowerCase(), difficulty), song.song.toLowerCase());
 				myJSON.difficulty = difficulty;
 
 				if (myJSON == null) continue;

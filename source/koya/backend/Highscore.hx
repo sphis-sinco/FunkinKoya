@@ -10,16 +10,16 @@ class Highscore
 	public static var songScores:Map<String, Int> = [];
 	public static var songRanks:Map<String, Rank> = [];
 
-	public static function saveSongRank(song:String, rank:Rank, diff:Difficulty)
+	public static function saveRank(songOrWeek:String, rank:Rank, diff:Difficulty)
 	{
-		var daSong:String = formatSong(song, diff);
+		var formattedField:String = formatToDifficulty(songOrWeek, diff);
 
-		if (songRanks.exists(daSong))
+		if (songRanks.exists(formattedField))
 		{
-			if (Rank.compareRanks(songRanks.get(daSong), rank) == rank) setRank(daSong, rank);
+			if (Rank.compareRanks(songRanks.get(formattedField), rank) == rank) setRank(formattedField, rank);
 		}
 		else
-			setRank(daSong, rank);
+			setRank(formattedField, rank);
 
 	}
 
@@ -33,7 +33,7 @@ class Highscore
 
 	public static function saveScore(song:String, score:Int = 0, ?diff:Difficulty = 0):Void
 	{
-		var daSong:String = formatSong(song, diff);
+		var daSong:String = formatToDifficulty(song, diff);
 
 		if (songScores.exists(daSong))
 		{
@@ -45,7 +45,7 @@ class Highscore
 
 	public static function saveWeekScore(week:String = '', score:Int = 0, ?diff:Difficulty = 0):Void
 	{
-		var daWeek:String = formatSong(week, diff);
+		var daWeek:String = formatToDifficulty(week, diff);
 
 		if (songScores.exists(daWeek))
 		{
@@ -63,7 +63,7 @@ class Highscore
 		Save.flush();
 	}
 
-	public static function formatSong(song:String, diff:Difficulty):String
+	public static function formatToDifficulty(song:String, diff:Difficulty):String
 	{
 		var daSong:String = song;
 		daSong += diff.chartSuffix();
@@ -72,16 +72,16 @@ class Highscore
 
 	public static function getScore(song:String, diff:Difficulty):Int
 	{
-		if (!songScores.exists(formatSong(song, diff))) setScore(formatSong(song, diff), 0);
+		if (!songScores.exists(formatToDifficulty(song, diff))) setScore(formatToDifficulty(song, diff), 0);
 
-		return songScores.get(formatSong(song, diff));
+		return songScores.get(formatToDifficulty(song, diff));
 	}
 
 	public static function getWeekScore(week:Int, diff:Difficulty):Int
 	{
-		if (!songScores.exists(formatSong('week' + week, diff))) setScore(formatSong('week' + week, diff), 0);
+		if (!songScores.exists(formatToDifficulty('week' + week, diff))) setScore(formatToDifficulty('week' + week, diff), 0);
 
-		return songScores.get(formatSong('week' + week, diff));
+		return songScores.get(formatToDifficulty('week' + week, diff));
 	}
 
 	public static function load():Void

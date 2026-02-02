@@ -297,7 +297,7 @@ class ChartingState extends MusicBeatState
 			FlxUIDropDownMenu.makeStrIdLabelArray(SongList.stringSongList, true), function(song:String) {
 				loadSong(SongList.songList[Std.parseInt(song)].song);
 				loadJson(SongList.stringSongList[Std.parseInt(song)],
-					Highscore.formatSong(SongList.stringSongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
+					Highscore.formatToDifficulty(SongList.stringSongList[Std.parseInt(song)].toLowerCase(), _song.difficulty));
 		});
 
 		stageDropDown.selectedLabel = _song?.stage ?? Song.dummySong.stage;

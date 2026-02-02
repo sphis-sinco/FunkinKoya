@@ -48,7 +48,7 @@ class FreeplayState extends MusicBeatState
 	public var currentSongChart(get, never):String;
 
 	function get_currentSongChart():String
-		return Highscore.formatSong(currentSongName.toLowerCase(), currentDifficulty);
+		return Highscore.formatToDifficulty(currentSongName.toLowerCase(), currentDifficulty);
 
 	public var currentScore(get, never):Int;
 

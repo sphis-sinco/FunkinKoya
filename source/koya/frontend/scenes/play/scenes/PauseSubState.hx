@@ -46,7 +46,7 @@ class PauseSubState extends MusicBeatSubstate
 			if (PlayState.SONG_DIFFICULTY == difficulty) continue;
 
 			var song = PlayState.SONG.song.toLowerCase();
-			var chart = Highscore.formatSong(song, difficulty);
+			var chart = Highscore.formatToDifficulty(song, difficulty);
 
 			if (Assets.exists(AssetPaths.chart(song, chart))) menuItems.push('change to ${difficulty.toString()}');
 		}
@@ -158,7 +158,7 @@ class PauseSubState extends MusicBeatSubstate
 				difficulty = difficulty.toLowerCase().trim();
 
 				var song = PlayState.SONG.song.toLowerCase();
-				var chart = Highscore.formatSong(song, Difficulty.stringList.indexOf(difficulty));
+				var chart = Highscore.formatToDifficulty(song, Difficulty.stringList.indexOf(difficulty));
 
 				PlayState.loadSong(chart, song, Difficulty.stringList.indexOf(difficulty));
 				FlxG.switchState(() -> new PlayState());
