@@ -46,7 +46,7 @@
 - Week 6 Dialogue Cutscenes
 - Week 7 Video Cutscenes
 
-# 0.6.0 (Weekend 1):
+# 0.6.0 ( Weekend 1 ):
 
 - Weekend 1 Songs
 
