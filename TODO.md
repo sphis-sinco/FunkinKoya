@@ -1,5 +1,7 @@
 # 0.4.0 ( Week Pack 1 ):
 
+- Saved ranks
+
 - Week 1 Recharts
 - Week 1 Erect
 - Redraw Daddy Dearest with A 6 SIZED BRUSH.
@@ -60,10 +62,6 @@
 - Weekend 1 Video Cutscenes
 
 # Other:
-
-## Results Sceen:
-
-- Saved ranks
 
 ## Misc:
 
