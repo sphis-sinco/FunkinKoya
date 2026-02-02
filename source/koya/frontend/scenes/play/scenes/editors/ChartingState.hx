@@ -871,7 +871,6 @@ class ChartingState extends MusicBeatState
 				changeBPM: false,
 				mustHitSection: true,
 				sectionNotes: [],
-				typeOfSection: 0,
 				altAnim: false
 			};
 

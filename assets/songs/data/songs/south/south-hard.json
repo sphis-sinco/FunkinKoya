@@ -2463,9 +2463,9 @@
 		"gfVersion": "gf-spooky",
 		"stage": "halloween",
 		"authors": "Kawai Sprite",
-		"generatedBy": "Funkin' Koya* 0.2.0 | Task: Resave All Songs",
+		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (develop:87ce777) | Task: Resave All Songs",
 		"bpm": 165,
 		"difficulty": 2,
-		"version": 6
+		"version": 7
 	}
 }

@@ -91,6 +91,10 @@ class Constants
 
 	public static function getSongFormatFromVersion(version:Int)
 	{
+		// koya chart format
+		// koyachartformat
+		// koyta
+
 		return 'koyta_$version';
 	}
 }
