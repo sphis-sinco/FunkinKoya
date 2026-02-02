@@ -6,6 +6,7 @@
 
 ## Added
 
+- RESULTS SCREEN!
 - Added support for the combo popup to be longer then 999.
 
 ## Fixed
