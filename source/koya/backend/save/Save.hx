@@ -1,5 +1,6 @@
 package koya.backend.save;
 
+import koya.backend.play.Rank;
 import koya.backend.controls.Controls;
 import lime.app.Application;
 import koya.backend.controls.PlayerSettings;
@@ -8,11 +9,13 @@ import koya.backend.songs.Song.ChartSwagSong;
 
 class Save
 {
-	public static var SAVE_VERSION:Null<Int> = 2;
+	public static var SAVE_VERSION:Null<Int> = 3;
 
 	public static var version:SaveField<Null<Int>>;
 
 	public static var songScores:SaveField<Map<String, Int>>;
+	public static var songRanks:SaveField<Map<String, Rank>>;
+
 	public static var autosave:SaveField<ChartSwagSong>;
 	public static var controls:SaveField<Dynamic>;
 
@@ -43,6 +46,8 @@ class Save
 		version = new SaveField<Null<Int>>('version', SAVE_VERSION);
 
 		songScores = new SaveField<Map<String, Int>>('songScores');
+		songRanks = new SaveField<Map<String, Rank>>('songRanks');
+
 		autosave = new SaveField<ChartSwagSong>('autosave');
 		controls = new SaveField<Dynamic>('controls');
 
