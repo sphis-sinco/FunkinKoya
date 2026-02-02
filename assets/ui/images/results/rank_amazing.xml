@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="rank_amazing.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="amazing0000" x="4" y="4" width="894" height="301"/>
+	<SubTexture name="amazing0001" x="4" y="4" width="894" height="301"/>
+	<SubTexture name="amazing0002" x="4" y="313" width="894" height="301"/>
+	<SubTexture name="amazing0003" x="4" y="313" width="894" height="301"/>
+</TextureAtlas>

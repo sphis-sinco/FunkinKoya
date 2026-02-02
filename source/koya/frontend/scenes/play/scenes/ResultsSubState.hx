@@ -25,6 +25,7 @@ class ResultsSubState extends MusicBeatSubstate
 	}
 
 	public var back:FunkinSprite;
+	public var rankSpr:FunkinSprite;
 
 	public var resultsCam:FlxCamera;
 
@@ -39,9 +40,21 @@ class ResultsSubState extends MusicBeatSubstate
 		back = new FunkinSprite();
 		back.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#FFA7E5'));
 
+		rankSpr = new FunkinSprite();
+		rankSpr.frames = AssetPaths.fromSparrow('results/rank_${rank.toLowerCase()}', 'ui');
+		
+		rankSpr.addPrefixAnim('rank', rank.toLowerCase(), 24, true);
+		rankSpr.playAnim('rank');
+
+		rankSpr.updateHitbox();
+		rankSpr.screenCenter();
+
+		rankSpr.visible = false;
+
 		resultsCam = new FlxCamera();
 
 		back.cameras = [resultsCam];
+		rankSpr.cameras = [resultsCam];
 
 		resultsCam.bgColor.alpha = 0;
 		FlxG.cameras.add(resultsCam);
@@ -66,6 +79,7 @@ class ResultsSubState extends MusicBeatSubstate
 		var backFadeInTime:Float = (Conductor.crochet / 1000) * 4;
 
 		PlayState.instance.add(back);
+		PlayState.instance.add(rankSpr);
 		FlxTween.tween(back, {y: 0, alpha: 1}, backFadeInTime,
 			{
 				ease: FlxEase.quadInOut,
@@ -76,7 +90,17 @@ class ResultsSubState extends MusicBeatSubstate
 			var comboNum = new ComboNumbers(Std.int(percent), FlxG.width / 2.2, (cn) -> {
 				remove(cn);
 				cn.destroy();
-				FlxG.switchState(nextState);
+
+				FlxTimer.wait(1, () -> {
+					FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
+					FlxG.camera.flash(FlxColor.WHITE, 1 / 5);
+
+					rankSpr.visible = true;
+
+					FlxTimer.wait(1, () -> {
+						FlxG.switchState(nextState);
+					});
+				});
 			});
 
 			for (numScore in comboNum.members)

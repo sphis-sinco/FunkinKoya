@@ -16,4 +16,7 @@ enum abstract Rank(String) from String to String
 	public static final RANK_GREAT_THRESHOLD:Float = 0.60;
 	public static final RANK_GOOD_THRESHOLD:Float = 0.40;
 	public static final RANK_OK_THRESHOLD:Float = 0.20;
+
+	public function toLowerCase()
+		return this.toLowerCase();
 }
