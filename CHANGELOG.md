@@ -1,6 +1,11 @@
 # [0.4.0] - 2/2026
 
+## Changed
+
+- Ranks are now saved
+
 ## Fixed
+
 - The Week score is now saved properly
 - After playing through a storymode week, the core of the last song played is no longer saved as your score
 
@@ -16,6 +21,7 @@
 - Added support for the combo popup to be longer then 999.
 
 ## Fixed
+
 - Fixed Story mode not sending you to the main menu when you use the BACK control
 - Fresh stageFloor not fading properly
 - Main Stage curtains still playing after the first week 1 song in story mode
@@ -29,6 +35,7 @@ This is just a quick hotfix to fix the game from being busted.
 # [0.2.2] - 2/1/2026
 
 ## Fixed
+
 - The original control keybinds system still being applied
 - Crash when selecting "Monster" on freeplay
 - Cursor being visible when it shouldn't be
@@ -38,9 +45,11 @@ This is just a quick hotfix to fix the game from being busted.
 A quick save patch update
 
 ## Added
+
 - Added 1 second wait until starting to let the save class do its thing
 
 ## SAVE VERSION 2:
+
 - Save fields are initialized (properly now) before ANY attempt at loading save information
 - The save will now always attempt to upgrade
 - Fixed save data saving on exit not being applied when you didn't require an upgrade
