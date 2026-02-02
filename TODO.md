@@ -1,69 +1,69 @@
-# 0.3.0 ( Results Screen):
+# 0.4.0 ( Week Pack 1 ):
 
-- Results screen
-- Results GOOD bf Anim
-
-# 0.4.0 (Week 3):
+- Week 1 Recharts
+- Week 1 Erect
+- Redraw Daddy Dearest with A 6 SIZED BRUSH.
 
 - Week 3 Songs
-- Pico (BASIC)
-- Newgrounds Office BG
-
-# 0.5.0 (Week 4):
-
 - Week 4 Songs
+- Week 5 Songs
+
+- Pico (BASIC)
 - Ms. Mearest
 - BF Flying hair
-- Limo BG
-
-# 0.6.0 (Week 5):
-
-- Week 5 Songs
 - Parents
 - BF Christmas
 - GF Christmas
+
+- Newgrounds Office BG
+- Limo BG
 - Christmas BG
 
-# 0.7.0 (Week 6):
+- Week 3 Story Mode Intro Cutscene
+- In-game Cutscenes support
 
+# 0.5.0 ( Week Pack 2 ):
+
+- Week 2 Erect
+- Week 3 Erect
 - Week 6 Songs
+- Week 7 Songs
+
 - Senpai
 - Spirit
-- Weeb BG
-- Weeb Scary BG
-- Week 6 Dialogue
-- Cutscenes support
 
-# 0.8.0 (Week 7):
-
-- Week 7 Songs
 - Tankman
 - Pico Speaker
 - GF Gunpoint
 - BF & GF
+
+- Weeb BG
+- Weeb Scary BG
 - Military Base BG
+
+- Dialogue Cutscenes support
 - Video Cutscenes support
+- Week 6 Dialogue Cutscenes
 - Week 7 Video Cutscenes
 
-# 0.9.0 (Weekend 1):
+# 0.6.0 (Weekend 1):
 
 - Weekend 1 Songs
-- Darnell
-- Darnell Blazin
-- Nene (NO VISUALIZER SPEAKER, I WANT MY SANITY)
+
 - Pico Weekend 1 Assets
+- Darnell
 - Pico Blazin
+- Darnell Blazin
+
+- Nene (NO VISUALIZER SPEAKER, I WANT MY SANITY)
+
 - Weekend 1 Video Cutscenes
 
 # Other:
 
 ## Results Sceen:
 
-- Results BAD bf Anim
-- Results OK bf Anim
-- Results GREAT bf Anim
-- Results EXCELLENT bf Anim
-- Results AMAZING bf Anim
+- Saved ranks
 
 ## Misc:
 
@@ -71,8 +71,6 @@
 - New Window Icons
 - Medals
 - Outdated State
-- Code cleanup (this is an overall thing but whatev)
-- Redraw Mr.Dearest with A 6 SIZED BRUSH (u idiot).
 
 ## Softcode stuff:
 
@@ -85,15 +83,8 @@
 - Mac build
 - Linux build
 
-## Charts:
-
-- Week 1 Recharts
-
 ## Songs:
 
-- Week 1 Erect
-- Week 2 Erect
-- Week 3 Erect
 - Week 4 Erect
 - Week 5 Erect
 - Week 6 Erect
