@@ -65,8 +65,8 @@ class PlayState extends MusicBeatState
 
 			STORYMODE_PLAYLIST_NUMBER = 0;
 			STORYMODE_WEEK = weekFile.name;
-			loadSong(Highscore.formatToDifficulty(STORYMODE_PLAYLIST[0].toLowerCase(), difficulty), STORYMODE_PLAYLIST[0].toLowerCase(), difficulty, chartingMode,
-				storyMode);
+			loadSong(Highscore.formatToDifficulty(STORYMODE_PLAYLIST[0].toLowerCase(), difficulty), STORYMODE_PLAYLIST[0].toLowerCase(), difficulty,
+				chartingMode, storyMode);
 		}
 		catch (e)
 		{
@@ -116,7 +116,9 @@ class PlayState extends MusicBeatState
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
 
+	public static var globalScore:Int = 0;
 	public var songScore:Int = 0;
+
 	public var scoreTxt:FlxText;
 
 	public static var STORYMODE_CAMPAIGN_SCORE:Int = 0;
@@ -150,6 +152,8 @@ class PlayState extends MusicBeatState
 
 		if (!IS_STORYMODE || global_resultsData == null) global_resultsData = new ResultsData();
 		local_resultsData = new ResultsData();
+
+		if (!IS_STORYMODE) globalScore = 0;
 
 		strums = new StrumsGroup();
 		add(strums);
@@ -676,6 +680,8 @@ class PlayState extends MusicBeatState
 		trace('local results data: ${local_resultsData}');
 		trace('global results data: ${global_resultsData}');
 
+		globalScore += songScore;
+
 		persistentUpdate = false;
 		persistentDraw = true;
 		paused = true;
@@ -710,12 +716,12 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				Highscore.saveScore(STORYMODE_WEEK.toLowerCase(), globalScore, SONG_DIFFICULTY);
+				openSubState(new ResultsSubState((() -> new StoryModeState())));
+
 				STORYMODE_PLAYLIST_NUMBER = 0;
 				STORYMODE_PLAYLIST = [];
 				STORYMODE_WEEK = '';
-
-				Highscore.saveWeekScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
-				openSubState(new ResultsSubState((() -> new StoryModeState())));
 			}
 		}
 		else

@@ -2,7 +2,6 @@ package koya.backend;
 
 import koya.backend.play.Rank;
 import koya.backend.save.Save;
-import flixel.FlxG;
 import koya.backend.play.Difficulty;
 
 class Highscore
@@ -31,28 +30,16 @@ class Highscore
 		Save.flush();
 	}
 
-	public static function saveScore(song:String, score:Int = 0, ?diff:Difficulty = 0):Void
+	public static function saveScore(songOrWeek:String, score:Int = 0, ?diff:Difficulty = 0):Void
 	{
-		var daSong:String = formatToDifficulty(song, diff);
+		var formattedField:String = formatToDifficulty(songOrWeek, diff);
 
-		if (songScores.exists(daSong))
+		if (songScores.exists(formattedField))
 		{
-			if (songScores.get(daSong) < score) setScore(daSong, score);
+			if (songScores.get(formattedField) < score) setScore(formattedField, score);
 		}
 		else
-			setScore(daSong, score);
-	}
-
-	public static function saveWeekScore(week:String = '', score:Int = 0, ?diff:Difficulty = 0):Void
-	{
-		var daWeek:String = formatToDifficulty(week, diff);
-
-		if (songScores.exists(daWeek))
-		{
-			if (songScores.get(daWeek) < score) setScore(daWeek, score);
-		}
-		else
-			setScore(daWeek, score);
+			setScore(formattedField, score);
 	}
 
 	static function setScore(song:String, score:Int):Void
@@ -70,22 +57,16 @@ class Highscore
 		return daSong;
 	}
 
-	public static function getScore(song:String, diff:Difficulty):Int
+	public static function getScore(songOrWeek:String, diff:Difficulty):Int
 	{
-		if (!songScores.exists(formatToDifficulty(song, diff))) setScore(formatToDifficulty(song, diff), 0);
+		if (!songScores.exists(formatToDifficulty(songOrWeek, diff))) setScore(formatToDifficulty(songOrWeek, diff), 0);
 
-		return songScores.get(formatToDifficulty(song, diff));
-	}
-
-	public static function getWeekScore(week:Int, diff:Difficulty):Int
-	{
-		if (!songScores.exists(formatToDifficulty('week' + week, diff))) setScore(formatToDifficulty('week' + week, diff), 0);
-
-		return songScores.get(formatToDifficulty('week' + week, diff));
+		return songScores.get(formatToDifficulty(songOrWeek, diff));
 	}
 
 	public static function load():Void
 	{
 		if (Save.songScores.get() != null) songScores = Save.songScores.get();
+		if (Save.songRanks.get() != null) songRanks = Save.songRanks.get();
 	}
 }
