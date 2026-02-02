@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.scenes;
 
+import koya.backend.Highscore;
 import koya.backend.AssetPaths;
 import flixel.math.FlxMath;
 import flixel.util.FlxTimer;
@@ -36,6 +37,10 @@ class ResultsSubState extends MusicBeatSubstate
 		var rank:Rank = PlayState.global_resultsData.grade();
 		var percent:Int = Std.int(PlayState.global_resultsData.gradePercent() * 100);
 		trace(rank + ' ($percent%)');
+
+		if (!PlayState.IS_STORYMODE) Highscore.saveRank(PlayState.instance.curSong.toLowerCase(), rank, PlayState.SONG_DIFFICULTY);
+		else
+			Highscore.saveRank(PlayState.STORYMODE_WEEK, rank, PlayState.SONG_DIFFICULTY);
 
 		back = new FunkinSprite();
 		back.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#FFA7E5'));

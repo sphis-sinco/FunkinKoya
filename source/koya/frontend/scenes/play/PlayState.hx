@@ -121,8 +121,6 @@ class PlayState extends MusicBeatState
 
 	public var scoreTxt:FlxText;
 
-	public static var STORYMODE_CAMPAIGN_SCORE:Int = 0;
-
 	public var defaultCamZoom:Float = 1.05;
 
 	public var inCutscene:Bool = false;
