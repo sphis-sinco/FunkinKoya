@@ -31,7 +31,7 @@ class Constants
 
 		var suffixSample:String = '';
 
-		suffixSample += ' : ::update_name:: Update';
+		suffixSample += ' : ::update_name::';
 		// suffix += ' : Hotfix';
 		// suffix += ' : Patch';
 
