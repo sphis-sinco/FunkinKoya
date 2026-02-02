@@ -19,4 +19,40 @@ enum abstract Rank(String) from String to String
 
 	public function toLowerCase()
 		return this.toLowerCase();
+
+	public function getScore():Int
+	{
+		if (this == AMAZING) return 100;
+
+		if (this == EXCELLENT) return 80;
+
+		if (this == GREAT) return 40;
+
+		if (this == GOOD) return 20;
+
+		if (this == OK) return 10;
+
+		return 0;
+	}
+
+	public static function compareRanks(a:Rank, b:Rank, findHighest:Bool = true)
+	{
+		var aScore:Int = a.getScore();
+		var bScore:Int = b.getScore();
+
+		if (findHighest)
+		{
+			if (aScore > bScore) return a;
+			else
+				return b;
+		}
+		else
+		{
+			if (aScore < bScore) return a;
+			else
+				return b;
+		}
+
+		return null;
+	}
 }

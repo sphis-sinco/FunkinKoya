@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.backend.play.Rank;
 import koya.backend.save.Save;
 import flixel.FlxG;
 import koya.backend.play.Difficulty;
@@ -7,6 +8,28 @@ import koya.backend.play.Difficulty;
 class Highscore
 {
 	public static var songScores:Map<String, Int> = [];
+	public static var songRanks:Map<String, Rank> = [];
+
+	public static function saveSongRank(song:String, rank:Rank, diff:Difficulty)
+	{
+		var daSong:String = formatSong(song, diff);
+
+		if (songRanks.exists(daSong))
+		{
+			if (Rank.compareRanks(songRanks.get(daSong), rank) == rank) setRank(daSong, rank);
+		}
+		else
+			setRank(daSong, rank);
+
+	}
+
+	static function setRank(song:String, rank:Rank):Void
+	{
+		songRanks.set(song, rank);
+
+		Save.songRanks.set(songRanks);
+		Save.flush();
+	}
 
 	public static function saveScore(song:String, score:Int = 0, ?diff:Difficulty = 0):Void
 	{
@@ -32,9 +55,6 @@ class Highscore
 			setScore(daWeek, score);
 	}
 
-	/**
-	 * YOU SHOULD FORMAT SONG WITH formatSong() BEFORE TOSSING IN SONG VARIABLE
-	 */
 	static function setScore(song:String, score:Int):Void
 	{
 		songScores.set(song, score);
