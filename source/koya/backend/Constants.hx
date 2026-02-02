@@ -36,7 +36,7 @@ class Constants
 		suffixSample += ' : Patch';
 
 		#if INCLUDE_GIT
-		suffixSample += ' (${Git.branch()}:${Git.hash()})';
+		suffixSample += ' (${Git.gimmeSuffix()})';
 		#end
 
 		var template = new haxe.Template(suffixSample);

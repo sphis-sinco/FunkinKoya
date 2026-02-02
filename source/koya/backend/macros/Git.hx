@@ -8,10 +8,7 @@ package koya.backend.macros;
 **/
 class Git
 {
-	/**
-	 * Get the SHA1 hash of the current Git commit.
-	 */
-	public static macro function hash():haxe.macro.Expr.ExprOf<String>
+	public static macro function gimmeSuffix():haxe.macro.Expr.ExprOf<String>
 	{
 		#if !display
 		// Get the current line number.
@@ -31,24 +28,6 @@ class Git
 		process.close();
 
 		// Generates a string expression
-		haxe.macro.Context.info('${commitHashSplice}', pos);
-		return macro $v{commitHashSplice};
-		#else
-		// `#if display` is used for code completion. In this case returning an
-		// empty string is good enough; We don't want to call git on every hint.
-		var commitHash:String = "";
-		return macro $v{commitHashSplice};
-		#end
-	}
-
-	/**
-	 * Get the branch name of the current Git commit.
-	 */
-	public static macro function branch():haxe.macro.Expr.ExprOf<String>
-	{
-		#if !display
-		// Get the current line number.
-		var pos = haxe.macro.Context.currentPos();
 		var branchProcess = new sys.io.Process('git', ['rev-parse', '--abbrev-ref', 'HEAD']);
 
 		if (branchProcess.exitCode() != 0)
@@ -60,14 +39,16 @@ class Git
 		var branchName:String = branchProcess.stdout.readLine();
 		branchProcess.close();
 
+		var val = '$branchName:$commitHashSplice';
+
 		// Generates a string expression
-		haxe.macro.Context.info('${branchName}', pos);
-		return macro $v{branchName};
+		haxe.macro.Context.info('Git: ${val}', pos);
+		return macro $v{val};
 		#else
 		// `#if display` is used for code completion. In this case returning an
 		// empty string is good enough; We don't want to call git on every hint.
-		var branchName:String = "";
-		return macro $v{branchName};
+		var mt:String = "";
+		return macro $v{mt};
 		#end
 	}
 }
