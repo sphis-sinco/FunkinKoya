@@ -10,6 +10,7 @@
 - Added support for the combo popup to be longer then 999.
 
 ## Fixed
+- Fixed Story mode not sending you to the main menu when you use the BACK control
 - Fresh stageFloor not fading properly
 - Main Stage curtains still playing after the first week 1 song in story mode
 - Boyfriend animations being flipped

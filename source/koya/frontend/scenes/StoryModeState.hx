@@ -126,4 +126,8 @@ class StoryModeState extends MenuState
 		for (menuItem in itemsGroup.members)
 			menuItem.y -= menuItem.height * 1.3;
 	}
+
+	override function back() {
+		FlxG.switchState(() -> new MainMenuState());
+	}
 }

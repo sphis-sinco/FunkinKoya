@@ -99,7 +99,7 @@ class MenuState extends MusicBeatState
 		}
 
 		if (controls.ACCEPT) accepted(itemsGroup.members[currentSelection].item);
-		if (controls.BACK) FlxG.switchState(() -> new TitleState());
+		if (controls.BACK) back();
 
 		if (menuType == Vertical)
 		{
@@ -126,6 +126,11 @@ class MenuState extends MusicBeatState
 		}
 
 		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
+	}
+
+	public function back()
+	{
+		FlxG.switchState(() -> new TitleState());
 	}
 
 	public function select(change:Int = 0)
