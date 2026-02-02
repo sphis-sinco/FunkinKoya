@@ -1,5 +1,9 @@
 # [0.4.0] - 2/2026
 
+## Fixed
+
+- A song or week with a blank name will not save a score or rank
+
 ## Added
 
 - New Window Icons
