@@ -42,7 +42,7 @@ class ResultsSubState extends MusicBeatSubstate
 
 		rankSpr = new FunkinSprite();
 		rankSpr.frames = AssetPaths.fromSparrow('results/rank_${rank.toLowerCase()}', 'ui');
-		
+
 		rankSpr.addPrefixAnim('rank', rank.toLowerCase(), 24, true);
 		rankSpr.playAnim('rank');
 
@@ -93,7 +93,7 @@ class ResultsSubState extends MusicBeatSubstate
 
 				FlxTimer.wait(1, () -> {
 					FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
-					FlxG.camera.flash(FlxColor.WHITE, 1 / 5);
+					resultsCam.flash(FlxColor.WHITE, .2);
 
 					rankSpr.visible = true;
 
@@ -105,6 +105,7 @@ class ResultsSubState extends MusicBeatSubstate
 
 			for (numScore in comboNum.members)
 			{
+				numScore.visible = false;
 				numScore.screenCenter();
 
 				if (comboNum.comboLength > 1)
@@ -115,6 +116,7 @@ class ResultsSubState extends MusicBeatSubstate
 
 				FlxTimer.wait(.1 * numScore.ID, () -> {
 					FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+					numScore.visible = true;
 				});
 			}
 			comboNum.cameras = [resultsCam];
