@@ -31,9 +31,9 @@ class Constants
 
 		var suffixSample:String = '';
 
-		suffixSample += ' : ::update_name::';
-		// suffix += ' : Hotfix';
-		// suffix += ' : Patch';
+		// suffixSample += ' : ::update_name::';
+		// suffixSample += ' : Hotfix';
+		suffixSample += ' : Patch';
 
 		#if INCLUDE_GIT
 		suffixSample += ' (${Git.branch()}:${Git.hash()})';
