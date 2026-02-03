@@ -60,7 +60,9 @@ class SongClass
 
 	public function badNoteHit(direction:Int) {}
 
-	public function goodNoteHit(note:Note) {}
+	public function playerNoteHit(note:Note):Bool { return true; }
+
+	public function opNoteHit(note:Note):Bool { return true; }
 
 	public function stepHit(step:Int) {}
 

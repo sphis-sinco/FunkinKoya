@@ -606,28 +606,28 @@ class PlayState extends MusicBeatState
 
 					if (altAnim == "") altAnim = Note.getAlt(daNote, SONG);
 
-					currentStage.makeCharacterSing(daNote, currentStage.dad, false, altAnim);
+					var ret:Bool = songScript.opNoteHit(daNote);
 
-					if (currentStage.dad != null) currentStage.dad.holdTimer = 0;
+					if (ret)
+					{
+						currentStage.makeCharacterSing(daNote, currentStage.dad, false, altAnim);
+						if (currentStage.dad != null) currentStage.dad.holdTimer = 0;
 
-					strums.opponentStrums.forEach(function(spr:FunkinSprite) {
-						if (Math.abs(daNote.noteID) == spr.ID) spr.playAnim('confirm');
-					});
+						if (SONG.needsVoices) vocals.volume = 1;
 
-					if (SONG.needsVoices) vocals.volume = 1;
+						strums.opponentStrums.forEach(function(spr:FunkinSprite) {
+							if (Math.abs(daNote.noteID) == spr.ID) spr.playAnim('confirm');
+						});
+					}
 
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
+					endNote(daNote);
 				}
 
 				if (daNote.y < -daNote.height)
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
 					{
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
+						endNote(daNote);
 					}
 					else
 					{
@@ -640,9 +640,7 @@ class PlayState extends MusicBeatState
 						daNote.active = false;
 						daNote.visible = false;
 
-						daNote.kill();
-						notes.remove(daNote, true);
-						daNote.destroy();
+						endNote(daNote);
 					}
 				}
 			});
@@ -653,6 +651,13 @@ class PlayState extends MusicBeatState
 		#if ONE_ENDSONG_KEY
 		if (FlxG.keys.justPressed.ONE) endSong();
 		#end
+	}
+
+	public function endNote(daNote:Note)
+	{
+		daNote.kill();
+		notes.remove(daNote, true);
+		daNote.destroy();
 	}
 
 	function endSong():Void
@@ -861,9 +866,7 @@ class PlayState extends MusicBeatState
 			for (note in dumbNotes)
 			{
 				FlxG.log.add("killing dumb ass note at " + note.strumTime);
-				note.kill();
-				notes.remove(note, true);
-				note.destroy();
+				endNote(note);
 			}
 
 			possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
@@ -928,7 +931,7 @@ class PlayState extends MusicBeatState
 	{
 		health -= 0.04;
 		songScore -= 10;
-		
+
 		if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
 		combo = 0;
 		local_resultsData.notesMissed++;
@@ -963,26 +966,23 @@ class PlayState extends MusicBeatState
 			var altAnim:String = "";
 
 			if (SONG.notes[curSection] != null) if (SONG.notes[curSection].altAnim) altAnim = '-alt';
-
 			if (altAnim == "") altAnim = Note.getAlt(note, SONG);
 
-			currentStage.makeCharacterSing(note, currentStage.boyfriend, false, altAnim);
+			var ret:Bool = songScript.playerNoteHit(note);
 
-			strums.playerStrums.forEach(function(spr:FunkinSprite) {
-				if (Math.abs(note.noteID) == spr.ID) spr.playAnim('confirm', true);
-			});
-
-			note.wasGoodHit = true;
-			vocals.volume = 1;
-
-			if (!note.isSustainNote)
+			if (ret)
 			{
-				note.kill();
-				notes.remove(note, true);
-				note.destroy();
+				currentStage.makeCharacterSing(note, currentStage.boyfriend, false, altAnim);
+
+				strums.playerStrums.forEach(function(spr:FunkinSprite) {
+					if (Math.abs(note.noteID) == spr.ID) spr.playAnim('confirm', true);
+				});
+
+				note.wasGoodHit = true;
+				vocals.volume = 1;
 			}
 
-			songScript.goodNoteHit(note);
+			if (!note.isSustainNote) endNote(note);
 		}
 	}
 
