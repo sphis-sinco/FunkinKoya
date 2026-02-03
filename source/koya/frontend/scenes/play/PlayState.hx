@@ -216,7 +216,7 @@ class PlayState extends MusicBeatState
 	}
 
 	public var startTimer:FlxTimer;
-	public var perfectMode:Bool = #if BOTPLAY true #else false #end;
+	public var perfectMode:Bool = #if PERFECTMODE true #else false #end;
 
 	function startCountdown():Void
 	{
