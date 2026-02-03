@@ -384,7 +384,7 @@ class ChartingState extends MusicBeatState
 		stepperSectionBPM.value = Conductor.bpm;
 		stepperSectionBPM.name = 'section_bpm';
 
-		check_altAnim = new FlxUICheckBox(check_changeBPM.x, check_changeBPM.y + check_changeBPM.height + 30, null, null, "Alt Animation", 100, [], function() {
+		check_altAnim = new FlxUICheckBox(check_changeBPM.x, check_changeBPM.y + 30, null, null, "Alt Animation", 100, [], function() {
 			modifMade('Alt Anim');
 		});
 		check_altAnim.name = 'check_altAnim';
