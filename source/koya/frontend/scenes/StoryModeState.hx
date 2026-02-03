@@ -59,11 +59,7 @@ class StoryModeState extends MenuState
 	{
 		super.accept(item);
 
-		switch (item.toLowerCase())
-		{
-			case 'tutorial', 'week1', 'week2':
-				loadWeek(item.toLowerCase());
-		}
+		loadWeek(item.toLowerCase());
 	}
 
 	public function loadWeek(week:String)
@@ -127,7 +123,8 @@ class StoryModeState extends MenuState
 			menuItem.y -= menuItem.height * 1.3;
 	}
 
-	override function back() {
+	override function back()
+	{
 		FlxG.switchState(() -> new MainMenuState());
 	}
 }

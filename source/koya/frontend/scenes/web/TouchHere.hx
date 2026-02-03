@@ -1,4 +1,4 @@
-package koya.frontend.web;
+package koya.frontend.scenes.web;
 
 import koya.backend.plugins.Cursor;
 import koya.backend.InitState;
