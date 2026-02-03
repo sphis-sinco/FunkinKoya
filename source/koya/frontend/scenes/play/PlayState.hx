@@ -873,13 +873,13 @@ class PlayState extends MusicBeatState
 			{
 				// if a direction is hit that shouldn't be
 				for (shit in 0...pressArray.length)
-					if (pressArray[shit] && !directionList.contains(shit)) noteMiss(shit);
+					if (pressArray[shit] && !directionList.contains(shit)) badNoteHit(shit);
 				for (coolNote in possibleNotes)
 					if (pressArray[coolNote.noteID]) goodNoteHit(coolNote);
 			}
 			else
 				for (shit in 0...pressArray.length)
-					if (pressArray[shit]) noteMiss(shit);
+					if (pressArray[shit]) ghostNoteHit(shit);
 		}
 
 		if (currentStage.boyfriend?.holdTimer > Conductor.stepCrochet * currentStage.boyfriend.dadVar * 0.001
@@ -893,19 +893,52 @@ class PlayState extends MusicBeatState
 		songScript.keyShit();
 	}
 
-	function noteMiss(direction:Int = 1):Void
+	/**
+		This is what happens with
+		ALL note misses n shit
+	**/
+	function generalNoteMiss(direction:Int = 1):Void
+	{
+		FlxG.sound.play(AssetPaths.sound('missnote${FlxG.random.int(1, 3)}'), FlxG.random.float(0.1, 0.2));
+
+		currentStage.makeCharacterSing(new Note(0, direction, null, false), currentStage.boyfriend, true);
+		songScript.generalNoteMiss(direction);
+	}
+
+	/**
+		Hit a note when there
+		are NO NOTES.
+	**/
+	function ghostNoteHit(direction:Int):Void
+	{
+		health -= 0.08;
+		songScore -= 5;
+
+		FlxG.log.add('ghost');
+
+		generalNoteMiss(direction);
+		songScript.ghostNoteHit(direction);
+	}
+
+	/**
+		Hit a note that isn't there
+		when there ARE nots near
+	**/
+	function badNoteHit(direction:Int):Void
 	{
 		health -= 0.04;
+		songScore -= 10;
+		
 		if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
 		combo = 0;
 		local_resultsData.notesMissed++;
 
-		songScore -= 10;
+		vocals.volume = 0;
 
-		FlxG.sound.play(AssetPaths.sound('missnote${FlxG.random.int(1, 3)}'), FlxG.random.float(0.1, 0.2));
+		FlxG.log.add('non-ghost');
 
-		currentStage.makeCharacterSing(new Note(0, direction, null, false), currentStage.boyfriend, true);
-		songScript.noteMiss(direction);
+		generalNoteMiss(direction);
+		songScript.badNoteHit(direction);
 	}
 
 	function goodNoteHit(note:Note):Void
