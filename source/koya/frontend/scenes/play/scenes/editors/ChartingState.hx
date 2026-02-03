@@ -90,7 +90,7 @@ class ChartingState extends MusicBeatState
 
 		bpmTxt.text = '';
 
-		bpmTxt.text += '${songPos}s / ${songLen}s\n';
+		bpmTxt.text += 'Time: ${songPos}s / ${songLen}s\n';
 		bpmTxt.text += 'Beat: ${(curBeat < 0) ? 0 : curBeat}\n';
 		bpmTxt.text += 'Step: ${(curStep < 0) ? 0 : curStep}\n';
 		bpmTxt.text += 'Section: ${curSection}\n';
