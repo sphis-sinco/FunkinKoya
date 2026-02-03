@@ -6,6 +6,7 @@
 
 ## Changed
 
+- On monster the camera zooms into the stage zoom
 - The input system has been update to be closer to 0.3.0 FNF
 - In story mode when moving to a new song the score will stay how it was at the end of the last song
 
