@@ -152,6 +152,7 @@ class PlayState extends MusicBeatState
 		local_resultsData = new ResultsData();
 
 		if (!IS_STORYMODE) globalScore = 0;
+		songScore += globalScore;
 
 		strums = new StrumsGroup();
 		add(strums);

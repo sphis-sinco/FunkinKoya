@@ -1,12 +1,16 @@
 # [0.4.0] - 2/2026
 
-## Fixed
-
-- A song or week with a blank name will not save a score or rank
-
 ## Added
 
 - New Window Icons
+
+## Changed
+
+- In story mode when moving to a new song the score will stay how it was at the end of the last song
+
+## Fixed
+
+- A song or week with a blank name will not save a score or rank
 
 # [0.3.1] - 2/2/2026
 

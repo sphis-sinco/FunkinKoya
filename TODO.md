@@ -1,6 +1,6 @@
 # 0.4.0 ( Week Pack 1 ):
 
-- Saved ranks
+- Options Menu
 
 - Week 1 Recharts
 - Week 1 Erect
@@ -65,7 +65,6 @@
 
 ## Misc:
 
-- Options Menu
 - Medals
 - Outdated State
 
