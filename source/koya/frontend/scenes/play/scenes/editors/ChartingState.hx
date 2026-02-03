@@ -206,8 +206,6 @@ class ChartingState extends MusicBeatState
 		FlxG.sound.music.time = 0;
 	}
 
-	var eventList:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/eventList', 'songs'));
-
 	var eventValue:FlxUIInputText;
 	var eventDropDown:FlxUIInputText;
 
@@ -218,11 +216,13 @@ class ChartingState extends MusicBeatState
 
 		Event_UI.addGroup(tab_group);
 
-		eventDropDown = new FlxUIInputText(10, 10, Std.int(Event_UI.width - 20), 'eventName', 8);
+		eventDropDown = new FlxUIInputText(10, 20, Std.int(Event_UI.width - 20), '', 8);
+		tab_group.add(new FlxText(eventDropDown.x, eventDropDown.y - 16, 0, 'Event Name', 8));
 		tab_group.add(eventDropDown);
 
-		eventValue = new FlxUIInputText(eventDropDown.x, eventDropDown.y + eventDropDown.height, Std.int(Event_UI.width - 20),
-			'arrayFormat--split by--these things', 8);
+		eventValue = new FlxUIInputText(10, 100, Std.int(Event_UI.width - 20),
+			'', 8);
+		tab_group.add(new FlxText(eventValue.x, eventValue.y - 16, 0, 'Event Value (arrayFormat--split by--these things)', 8));
 		tab_group.add(eventValue);
 	}
 
