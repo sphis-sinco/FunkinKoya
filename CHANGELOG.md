@@ -2,6 +2,7 @@
 
 ## Added
 
+- New assets for Daddy Dearest
 - New Window Icons
 
 ## Changed

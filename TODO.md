@@ -4,7 +4,6 @@
 
 - Week 1 Recharts
 - Week 1 Erect
-- Redraw Daddy Dearest with A 6 SIZED BRUSH.
 
 - Week 3 Songs
 - Week 4 Songs
