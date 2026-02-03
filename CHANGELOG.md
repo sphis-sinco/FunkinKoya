@@ -9,6 +9,7 @@
 
 ## Changed
 
+- The main UI items have been tweaked
 - The main UI (the one with more tabs) has been resized
 - On monster the camera zooms into the stage zoom
 - The input system has been update to be closer to 0.3.0 FNF

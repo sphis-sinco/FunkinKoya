@@ -380,18 +380,18 @@ class ChartingState extends MusicBeatState
 		});
 		check_changeBPM.name = 'check_changeBPM';
 
-		check_altAnim = new FlxUICheckBox(stepperLength.x, 400, null, null, "Alt Animation", 100, [], function() {
-			modifMade('Alt Anim');
-		});
-		check_altAnim.name = 'check_altAnim';
-
 		stepperSectionBPM = new FlxUINumericStepper(check_changeBPM.x + check_changeBPM.width + 20, check_changeBPM.y, 1, Conductor.bpm, 0, 999, 0);
 		stepperSectionBPM.value = Conductor.bpm;
 		stepperSectionBPM.name = 'section_bpm';
 
+		check_altAnim = new FlxUICheckBox(check_changeBPM.x, check_changeBPM.y + check_changeBPM.height + 30, null, null, "Alt Animation", 100, [], function() {
+			modifMade('Alt Anim');
+		});
+		check_altAnim.name = 'check_altAnim';
+
 		var stepperCopy:FlxUINumericStepper = null;
 
-		var copyButton:FlxButton = new FlxButton(check_changeBPM.x, check_changeBPM.y + 30, "Copy last", function() {
+		var copyButton:FlxButton = new FlxButton(check_altAnim.x, check_altAnim.y + 30, "Copy last", function() {
 			if (stepperCopy != null) copySection(Std.int(stepperCopy.value));
 		});
 
