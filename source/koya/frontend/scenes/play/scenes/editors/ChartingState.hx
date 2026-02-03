@@ -206,12 +206,20 @@ class ChartingState extends MusicBeatState
 		FlxG.sound.music.time = 0;
 	}
 
+	var eventList:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/eventList', 'songs'));
+
 	function addEventUI():Void
 	{
 		var tab_group = new FlxUI(null, Event_UI);
 		tab_group.name = "Event";
 
 		Event_UI.addGroup(tab_group);
+
+		var eventDropDown = new FlxUIDropDownMenu(10, 10, FlxUIDropDownMenu.makeStrIdLabelArray(eventList, true),
+			function(event:String) {
+				var eventID = Std.parseInt(event);
+			});
+		tab_group.add(eventDropDown);
 	}
 
 	var characters:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/characterList', 'characters'));
