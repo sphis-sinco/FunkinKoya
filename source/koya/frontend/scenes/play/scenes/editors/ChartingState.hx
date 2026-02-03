@@ -231,7 +231,7 @@ class ChartingState extends MusicBeatState
 		eventValue = new FlxUIInputText(10, 10, Std.int(Event_UI.width - 20), '{ "info": "data here" }', 8);
 		tab_group.add(eventValue);
 
-		var eventDropDown = new FlxUIDropDownMenu(10, eventValue.y + 20, FlxUIDropDownMenu.makeStrIdLabelArray(eventList.textList, true),
+		var eventDropDown = new FlxUIDropDownMenu(10, 40, FlxUIDropDownMenu.makeStrIdLabelArray(eventList.textList, true),
 			function(event:String) {
 				var eventID = Std.parseInt(event);
 				trace('selected: ${eventList.textList[eventID]}');
