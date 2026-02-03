@@ -171,7 +171,7 @@ class ChartingState extends MusicBeatState
 
 		Event_UI = new FlxUITabMenu(null, event_tabs, true);
 
-		Event_UI.resize(225, Main_UI.height);
+		Event_UI.resize(350, Main_UI.height);
 		Event_UI.x = 20;
 		
 		Event_UI.y = Main_UI.y;
