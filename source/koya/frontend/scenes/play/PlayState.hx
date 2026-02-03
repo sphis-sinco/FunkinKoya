@@ -825,7 +825,7 @@ class PlayState extends MusicBeatState
 		// PRESSES, check for note hits
 		if (pressArray.contains(true) && generatedMusic)
 		{
-			if (currentStage != null && currentStage.boyfriend != null) currentStage.boyfriend.holdTimer = 0;
+			if (currentStage.boyfriend != null) currentStage.boyfriend.holdTimer = 0;
 
 			var possibleNotes:Array<Note> = []; // notes that can be hit
 			var directionList:Array<Int> = []; // directions that can be hit
@@ -862,7 +862,7 @@ class PlayState extends MusicBeatState
 
 			for (note in dumbNotes)
 			{
-				FlxG.log.add('killing dumb ass note at ' + note.strumTime);
+				FlxG.log.add("killing dumb ass note at " + note.strumTime);
 				note.kill();
 				notes.remove(note, true);
 				note.destroy();
@@ -873,59 +873,39 @@ class PlayState extends MusicBeatState
 			if (perfectMode) goodNoteHit(possibleNotes[0]);
 			else if (possibleNotes.length > 0)
 			{
+				// if a direction is hit that shouldn't be
 				for (shit in 0...pressArray.length)
-				{ // if a direction is hit that shouldn't be
-					if (pressArray[shit] && !directionList.contains(shit)) noteMiss(shit, false);
-				}
+					if (pressArray[shit] && !directionList.contains(shit)) noteMiss(shit);
 				for (coolNote in possibleNotes)
-				{
 					if (pressArray[coolNote.noteID]) goodNoteHit(coolNote);
-				}
 			}
 			else
-			{
-				// HNGGG I really want to add an option for ghost tapping
-				// L + ratio
 				for (shit in 0...pressArray.length)
-					if (pressArray[shit]) noteMiss(shit, false);
-			}
+					if (pressArray[shit]) noteMiss(shit);
 		}
 
-		if (PlayState.instance == null || currentStage == null) return;
+		if (currentStage.boyfriend?.holdTimer > Conductor.stepCrochet * 4 * 0.001
+			&& !holdArray.contains(true)) if (currentStage.boyfriend?.anim.name.startsWith('sing')
+				&& !currentStage.boyfriend?.anim.name.endsWith('miss')) currentStage.boyfriend.playAnim('idle');
 
-		for (keyId => isPressed in pressArray)
-		{
-			var arrow:FunkinSprite = strums.playerStrums.members[keyId];
-
-			if (isPressed && arrow.animation.curAnim.name != 'confirm')
-				arrow.playAnim('pressed');
-			if (!holdArray[keyId])
-				arrow.playAnim('static');
-		}
+		strums.playerStrums.forEach(function(spr:FunkinSprite) {
+			if (pressArray[spr.ID] && spr.animation.curAnim.name != 'confirm') spr.playAnim('pressed');
+			if (!holdArray[spr.ID]) spr.playAnim('static');
+		});
 		songScript.keyShit();
 	}
 
-	function noteMiss(direction:Int = 1, ghostHit:Bool = false):Void
+	function noteMiss(direction:Int = 1):Void
 	{
 		if (!currentStage.boyfriend?.stunned ?? true)
 		{
-			if (!ghostHit)
-			{
-				health -= 0.08;
+			health -= 0.04;
+			if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
+			combo = 0;
+			local_resultsData.notesMissed++;
 
-				songScore -= 5;
-			}
-			else
-			{
-				health -= 0.04;
+			songScore -= 10;
 
-				if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
-				combo = 0;
-				
-				local_resultsData.notesMissed++;
-
-				songScore -= 10;
-			}
 			FlxG.sound.play(AssetPaths.sound('missnote${FlxG.random.int(1, 3)}'), FlxG.random.float(0.1, 0.2));
 
 			if (currentStage.boyfriend != null) currentStage.boyfriend.stunned = true;
@@ -936,7 +916,7 @@ class PlayState extends MusicBeatState
 			});
 
 			currentStage.makeCharacterSing(new Note(0, direction, null, false), currentStage.boyfriend, true);
-			songScript.noteMiss(direction, ghostHit);
+			songScript.noteMiss(direction);
 		}
 	}
 

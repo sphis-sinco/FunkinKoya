@@ -54,7 +54,7 @@ class SongClass
 
 	public function popUpScore(strumtime:Float) {}
 
-	public function noteMiss(direction:Int, ghostHit:Bool) {}
+	public function noteMiss(direction:Int) {}
 
 	public function goodNoteHit(note:Note) {}
 
