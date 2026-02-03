@@ -884,7 +884,7 @@ class PlayState extends MusicBeatState
 					if (pressArray[shit]) noteMiss(shit);
 		}
 
-		if (currentStage.boyfriend?.holdTimer > Conductor.stepCrochet * 4 * 0.001
+		if (currentStage.boyfriend?.holdTimer > Conductor.stepCrochet * currentStage.boyfriend.dadVar * 0.001
 			&& !holdArray.contains(true)) if (currentStage.boyfriend?.anim.name.startsWith('sing')
 				&& !currentStage.boyfriend?.anim.name.endsWith('miss')) currentStage.boyfriend.playAnim('idle');
 
