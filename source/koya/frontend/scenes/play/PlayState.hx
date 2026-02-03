@@ -553,8 +553,6 @@ class PlayState extends MusicBeatState
 
 		if (health <= 0)
 		{
-			if (currentStage.boyfriend != null) currentStage.boyfriend.stunned = true;
-
 			persistentUpdate = false;
 			persistentDraw = false;
 			paused = true;
@@ -897,27 +895,17 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1):Void
 	{
-		if (!currentStage.boyfriend?.stunned ?? true)
-		{
-			health -= 0.04;
-			if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
-			combo = 0;
-			local_resultsData.notesMissed++;
+		health -= 0.04;
+		if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
+		combo = 0;
+		local_resultsData.notesMissed++;
 
-			songScore -= 10;
+		songScore -= 10;
 
-			FlxG.sound.play(AssetPaths.sound('missnote${FlxG.random.int(1, 3)}'), FlxG.random.float(0.1, 0.2));
+		FlxG.sound.play(AssetPaths.sound('missnote${FlxG.random.int(1, 3)}'), FlxG.random.float(0.1, 0.2));
 
-			if (currentStage.boyfriend != null) currentStage.boyfriend.stunned = true;
-
-			// get stunned for 5 seconds
-			new FlxTimer().start(5 / 60, function(tmr:FlxTimer) {
-				if (currentStage.boyfriend != null) currentStage.boyfriend.stunned = false;
-			});
-
-			currentStage.makeCharacterSing(new Note(0, direction, null, false), currentStage.boyfriend, true);
-			songScript.noteMiss(direction);
-		}
+		currentStage.makeCharacterSing(new Note(0, direction, null, false), currentStage.boyfriend, true);
+		songScript.noteMiss(direction);
 	}
 
 	function badNoteCheck()
