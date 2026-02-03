@@ -197,6 +197,9 @@ class ChartingState extends MusicBeatState
 		Cursor.cursorVisible = true;
 
 		updateGrid();
+
+		FlxG.sound.music.pause();
+		FlxG.sound.music.time = 0;
 	}
 
 	function addEventUI():Void

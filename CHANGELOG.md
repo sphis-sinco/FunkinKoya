@@ -17,6 +17,7 @@
 
 ## Fixed
 
+- When entering the Chart editor the song time will always be reset to 0
 - You can no longer to BEFORE the song in the chart editor
 - The Chart Editor Strumline is now the correct width
 	- UI Layout had to be changed because of it but it's whatev lol
