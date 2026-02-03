@@ -91,8 +91,8 @@ class ChartingState extends MusicBeatState
 		bpmTxt.text = '';
 
 		bpmTxt.text += '${songPos} / ${songLen}\n';
-		bpmTxt.text += 'Beat: ${curBeat}\n';
-		bpmTxt.text += 'Step: ${curStep}\n';
+		bpmTxt.text += 'Beat: ${(curBeat < 0) ? 0 : curBeat}\n';
+		bpmTxt.text += 'Step: ${(curStep < 0) ? 0 : curStep}\n';
 		bpmTxt.text += 'Section: ${curSection}\n';
 
 		bpmTxt.x = Event_UI.x;
@@ -561,7 +561,7 @@ class ChartingState extends MusicBeatState
 		if (FlxG.sound.music.time < 0) FlxG.sound.music.time = 0;
 
 		Conductor.songPosition = FlxG.sound.music.time;
-		
+
 		makeBPMText();
 
 		if (UI_songTitle.hasFocus) typingShit = UI_songTitle;
