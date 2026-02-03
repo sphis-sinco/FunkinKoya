@@ -908,28 +908,6 @@ class PlayState extends MusicBeatState
 		songScript.noteMiss(direction);
 	}
 
-	function badNoteCheck()
-	{
-		// just double pasting this shit cuz fuk u
-		// REDO THIS SYSTEM!
-		var upP = controls.NOTE_UP_P;
-		var rightP = controls.NOTE_RIGHT_P;
-		var downP = controls.NOTE_DOWN_P;
-		var leftP = controls.NOTE_LEFT_P;
-
-		if (leftP) noteMiss(0);
-		if (downP) noteMiss(1);
-		if (upP) noteMiss(2);
-		if (rightP) noteMiss(3);
-	}
-
-	function noteCheck(keyP:Bool, note:Note):Void
-	{
-		if (keyP) goodNoteHit(note);
-		else
-			badNoteCheck();
-	}
-
 	function goodNoteHit(note:Note):Void
 	{
 		if (!note.wasGoodHit)
