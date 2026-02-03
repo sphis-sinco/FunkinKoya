@@ -174,7 +174,7 @@ class ChartingState extends MusicBeatState
 
 		Event_UI.resize(350, Main_UI.height);
 		Event_UI.x = 20;
-		
+
 		Event_UI.y = Main_UI.y;
 		if (Main.WATERMARK != null) Event_UI.y += (Main.WATERMARK.height / 2) + Main.WATERMARK.y;
 
@@ -209,6 +209,8 @@ class ChartingState extends MusicBeatState
 
 	var eventList:EventList = new EventList();
 
+	var eventValue:FlxUIInputText;
+
 	function addEventUI():Void
 	{
 		var tab_group = new FlxUI(null, Event_UI);
@@ -216,9 +218,23 @@ class ChartingState extends MusicBeatState
 
 		Event_UI.addGroup(tab_group);
 
-		var eventDropDown = new FlxUIDropDownMenu(10, 10, FlxUIDropDownMenu.makeStrIdLabelArray(eventList.textList, true),
+		var testShit:String = '{ info: "bullshit" }';
+		try
+		{
+			trace(Json.parse(testShit));
+		}
+		catch (e)
+		{
+			trace(e.message);
+		}
+
+		eventValue = new FlxUIInputText(10, 10, Std.int(Event_UI.width - 20), '{ "info": "data here" }', 8);
+		tab_group.add(eventValue);
+
+		var eventDropDown = new FlxUIDropDownMenu(10, eventValue.y + 20, FlxUIDropDownMenu.makeStrIdLabelArray(eventList.textList, true),
 			function(event:String) {
 				var eventID = Std.parseInt(event);
+				trace('selected: ${eventList.textList[eventID]}');
 			});
 		tab_group.add(eventDropDown);
 	}
