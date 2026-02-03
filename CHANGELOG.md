@@ -6,6 +6,7 @@
 
 ## Changed
 
+- The input system has been update to be closer to 0.3.0 FNF
 - In story mode when moving to a new song the score will stay how it was at the end of the last song
 
 ## Fixed
