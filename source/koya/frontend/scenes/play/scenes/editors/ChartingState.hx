@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.scenes.editors;
 
+import koya.backend.songs.EventList;
 import koya.backend.plugins.Cursor;
 import koya.backend.songs.SongList;
 import koya.backend.play.Difficulty;
@@ -206,7 +207,7 @@ class ChartingState extends MusicBeatState
 		FlxG.sound.music.time = 0;
 	}
 
-	var eventList:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/eventList', 'songs'));
+	var eventList:EventList = new EventList();
 
 	function addEventUI():Void
 	{
@@ -215,7 +216,7 @@ class ChartingState extends MusicBeatState
 
 		Event_UI.addGroup(tab_group);
 
-		var eventDropDown = new FlxUIDropDownMenu(10, 10, FlxUIDropDownMenu.makeStrIdLabelArray(eventList, true),
+		var eventDropDown = new FlxUIDropDownMenu(10, 10, FlxUIDropDownMenu.makeStrIdLabelArray(eventList.textList, true),
 			function(event:String) {
 				var eventID = Std.parseInt(event);
 			});

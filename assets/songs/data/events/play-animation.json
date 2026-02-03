@@ -1,0 +1,5 @@
+{
+	"display": "Play Animation",
+	"description": "Plays an animation for the specified character\n\nValue 1: Character (0 : dad, 1 : boyfriend, 2 : girlfriend)\n\nValue 2 : Animation Name",
+	"values": 2
+}
