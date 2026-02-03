@@ -561,6 +561,8 @@ class ChartingState extends MusicBeatState
 		if (FlxG.sound.music.time < 0) FlxG.sound.music.time = 0;
 
 		Conductor.songPosition = FlxG.sound.music.time;
+		
+		makeBPMText();
 
 		if (UI_songTitle.hasFocus) typingShit = UI_songTitle;
 		if (UI_songAuthors.hasFocus) typingShit = UI_songAuthors;
@@ -717,7 +719,6 @@ class ChartingState extends MusicBeatState
 
 		_song.bpm = tempBpm;
 
-		makeBPMText();
 		super.update(elapsed);
 	}
 
