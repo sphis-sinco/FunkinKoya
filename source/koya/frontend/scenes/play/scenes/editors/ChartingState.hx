@@ -209,6 +209,7 @@ class ChartingState extends MusicBeatState
 	var eventList:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/eventList', 'songs'));
 
 	var eventValue:FlxUIInputText;
+	var eventDropDown:FlxUIInputText;
 
 	function addEventUI():Void
 	{
@@ -217,15 +218,12 @@ class ChartingState extends MusicBeatState
 
 		Event_UI.addGroup(tab_group);
 
-		eventValue = new FlxUIInputText(10, 10, Std.int(Event_UI.width - 20), 'arrayFormat--split by--these things', 8);
-		tab_group.add(eventValue);
-
-		var eventDropDown = new FlxUIDropDownMenu(10, 40, FlxUIDropDownMenu.makeStrIdLabelArray(eventList, true),
-			function(event:String) {
-				var eventID = Std.parseInt(event);
-				trace('selected: ${eventList[eventID]}');
-			});
+		eventDropDown = new FlxUIInputText(10, 10, Std.int(Event_UI.width - 20), 'eventName', 8);
 		tab_group.add(eventDropDown);
+
+		eventValue = new FlxUIInputText(eventDropDown.x, eventDropDown.y + eventDropDown.height, Std.int(Event_UI.width - 20),
+			'arrayFormat--split by--these things', 8);
+		tab_group.add(eventValue);
 	}
 
 	var characters:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/characterList', 'characters'));
@@ -589,6 +587,7 @@ class ChartingState extends MusicBeatState
 		if (UI_songAuthors.hasFocus) typingShit = UI_songAuthors;
 		if (UI_note.hasFocus) typingShit = UI_note;
 		if (eventValue.hasFocus) typingShit = eventValue;
+		if (eventDropDown.hasFocus) typingShit = eventDropDown;
 
 		_song.song = UI_songTitle.text;
 		_song.authors = UI_songAuthors.text;
