@@ -218,17 +218,7 @@ class ChartingState extends MusicBeatState
 
 		Event_UI.addGroup(tab_group);
 
-		var testShit:String = '{ info: "bullshit" }';
-		try
-		{
-			trace(Json.parse(testShit));
-		}
-		catch (e)
-		{
-			trace(e.message);
-		}
-
-		eventValue = new FlxUIInputText(10, 10, Std.int(Event_UI.width - 20), '{ "info": "data here" }', 8);
+		eventValue = new FlxUIInputText(10, 10, Std.int(Event_UI.width - 20), 'arrayFormat--split by--these things', 8);
 		tab_group.add(eventValue);
 
 		var eventDropDown = new FlxUIDropDownMenu(10, 40, FlxUIDropDownMenu.makeStrIdLabelArray(eventList.textList, true),
@@ -599,6 +589,7 @@ class ChartingState extends MusicBeatState
 		if (UI_songTitle.hasFocus) typingShit = UI_songTitle;
 		if (UI_songAuthors.hasFocus) typingShit = UI_songAuthors;
 		if (UI_note.hasFocus) typingShit = UI_note;
+		if (eventValue.hasFocus) typingShit = eventValue;
 
 		_song.song = UI_songTitle.text;
 		_song.authors = UI_songAuthors.text;
