@@ -2,17 +2,23 @@
 
 ## Added
 
+- Added events UI... window? whatever to the chart editor
+- Beats and Step to chart editor "info text"
 - New assets for Daddy Dearest
 - New Window Icons
 
 ## Changed
 
+- The main UI (the one with more tabs) has been resized
 - On monster the camera zooms into the stage zoom
 - The input system has been update to be closer to 0.3.0 FNF
 - In story mode when moving to a new song the score will stay how it was at the end of the last song
 
 ## Fixed
 
+- You can no longer to BEFORE the song in the chart editor
+- The Chart Editor Strumline is now the correct width
+	- UI Layout had to be changed because of it but it's whatev lol
 - A song or week with a blank name will not save a score or rank
 
 # [0.3.1] - 2/2/2026

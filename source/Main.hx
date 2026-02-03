@@ -22,13 +22,16 @@ class Main extends Sprite
 {
 	public static var FPS:Int = 144;
 
+	public static var WATERMARK:Watermark;
+
 	public function new()
 	{
 		super();
 		addChild(new FlxGame(0, 0, InitState, FPS, FPS));
 
+		WATERMARK = new Watermark(2);
 		#if !mobile
-		addChild(new Watermark(2));
+		addChild(WATERMARK);
 		#end
 
 		#if CRASH_HANDLER
