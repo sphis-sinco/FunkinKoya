@@ -741,6 +741,8 @@ class ChartingState extends MusicBeatState
 				FlxG.switchState(() -> new PlayState());
 			}
 
+			if (FlxG.keys.justPressed.P) addEvent();
+
 			if (FlxG.keys.justPressed.E)
 			{
 				modifMade('Note sus length (keybind)');

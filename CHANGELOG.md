@@ -2,6 +2,7 @@
 
 ## Added
 
+- EVENTS (press P to make one in the chart editor, you must have a name and a value)
 - Added events UI... window? whatever to the chart editor
 - Beats and Step to chart editor "info text"
 - New assets for Daddy Dearest
