@@ -600,7 +600,7 @@ class PlayState extends MusicBeatState
 				var diff = eventTime - FlxG.sound.music.time;
 				var msDiff = 5.0;
 
-				if (diff < 0) continue;
+				if ((diff / 1000) < 0) continue;
 
 				FlxG.watch.addQuick('event$i ($eventName)', '${diff / 1000}');
 
