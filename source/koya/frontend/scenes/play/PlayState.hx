@@ -591,7 +591,7 @@ class PlayState extends MusicBeatState
 
 				if (FlxG.sound.music.time == eventTime)
 				{
-					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)}) at $eventTime');
+					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)}) at ${FlxG.sound.music.time / 1000}s');
 
 					EventParser.sendEvent(eventName, eventValue);
 					songScript.sendEvent(eventName, eventValue.split(EventParser.splitText));
