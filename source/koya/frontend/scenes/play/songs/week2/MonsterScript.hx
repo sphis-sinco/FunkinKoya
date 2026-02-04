@@ -53,15 +53,18 @@ class MonsterScript extends SongIntroFadeScript
 		return super.opNoteHit(note);
 	}
 
+	var sceneTween:FlxTween;
+
 	override public function beatHit(beat:Int)
 	{
 		switch (beat)
 		{
 			case 4:
 				dadFadeFunction();
-				FlxTween.tween(FlxG.camera, {zoom: PlayState.instance.defaultCamZoom}, (Conductor.crochet / 1000) * (finishBeat - beat), {
-					ease: FlxEase.quadInOut,
-				});
+				sceneTween = FlxTween.tween(FlxG.camera, {zoom: PlayState.instance.defaultCamZoom}, (Conductor.crochet / 1000) * (finishBeat - beat),
+					{
+						ease: FlxEase.quadInOut,
+					});
 			case 12:
 				boyfriendFadeFunction();
 		}
@@ -78,5 +81,19 @@ class MonsterScript extends SongIntroFadeScript
 
 			if (funkSpr != null) funkSpr.alpha = 1;
 		});
+	}
+
+	override function pause()
+	{
+		super.pause();
+
+		sceneTween.active = false;
+	}
+
+	override function unpause()
+	{
+		super.unpause();
+
+		sceneTween.active = true;
 	}
 }

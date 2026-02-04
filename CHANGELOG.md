@@ -10,6 +10,7 @@
 
 ## Removed
 
+- Chart Editor Mouse Wheel support
 - Note rounding
 
 ## Changed

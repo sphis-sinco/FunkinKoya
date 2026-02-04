@@ -307,6 +307,7 @@ class PlayState extends MusicBeatState
 	{
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
+		EventParser.init();
 
 		curSong = songData.song.toLowerCase();
 

@@ -780,15 +780,6 @@ class ChartingState extends MusicBeatState
 			else
 				resetSection();
 
-			if (FlxG.mouse.wheel != 0)
-			{
-				FlxG.sound.music.pause();
-				vocals.pause();
-
-				FlxG.sound.music.time -= (FlxG.mouse.wheel * Conductor.stepCrochet * 0.4);
-				vocals.time = FlxG.sound.music.time;
-			}
-
 			var daTime:Float = (!FlxG.keys.pressed.SHIFT) ? 700 * FlxG.elapsed : Conductor.stepCrochet * 2;
 			if (FlxG.keys.pressed.W || FlxG.keys.pressed.S)
 			{
