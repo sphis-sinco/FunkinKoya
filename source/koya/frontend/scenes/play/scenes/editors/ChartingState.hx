@@ -269,7 +269,7 @@ class ChartingState extends MusicBeatState
 	public function addEvent()
 	{
 		var eventTime = getStrumTime(strumLine.y) + sectionStartTime();
-		var eventName = eventDropDown.text;
+		var eventName = eventDropDown.text.toLowerCase();
 		var eventValue = eventValue.text;
 
 		if (eventName.trim() == '') return;
