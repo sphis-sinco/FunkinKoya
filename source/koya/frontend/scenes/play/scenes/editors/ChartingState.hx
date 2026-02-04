@@ -64,6 +64,7 @@ class ChartingState extends MusicBeatState
 	var dummyArrow:FlxSprite;
 
 	var curRenderedNotes:FlxTypedGroup<Note>;
+	var curRenderedEvents:FlxTypedGroup<FunkinSprite>;
 	var curRenderedSustains:FlxTypedGroup<FlxSprite>;
 
 	var gridBG:FlxSprite;
@@ -124,6 +125,7 @@ class ChartingState extends MusicBeatState
 		add(gridBlackLine);
 
 		curRenderedNotes = new FlxTypedGroup<Note>();
+		curRenderedEvents = new FlxTypedGroup<FunkinSprite>();
 		curRenderedSustains = new FlxTypedGroup<FlxSprite>();
 
 		if (PlayState.SONG != null) _song = PlayState.SONG;
@@ -195,6 +197,7 @@ class ChartingState extends MusicBeatState
 
 		add(curRenderedNotes);
 		add(curRenderedSustains);
+		add(curRenderedEvents);
 
 		super.create();
 
@@ -220,8 +223,7 @@ class ChartingState extends MusicBeatState
 		tab_group.add(new FlxText(eventDropDown.x, eventDropDown.y - 16, 0, 'Event Name', 8));
 		tab_group.add(eventDropDown);
 
-		eventValue = new FlxUIInputText(10, 100, Std.int(Event_UI.width - 20),
-			'', 8);
+		eventValue = new FlxUIInputText(10, 100, Std.int(Event_UI.width - 20), '', 8);
 		tab_group.add(new FlxText(eventValue.x, eventValue.y - 16, 0, 'Event Value (arrayFormat--split by--these things)', 8));
 		tab_group.add(eventValue);
 
@@ -229,6 +231,30 @@ class ChartingState extends MusicBeatState
 			addEvent();
 		});
 		tab_group.add(addButton);
+
+		var removeButton:FlxButton = new FlxButton(10, eventValue.y, "Remove Event", function() {
+			removeEvent();
+		});
+		tab_group.add(removeButton);
+	}
+
+	public function removeEvent()
+	{
+		var eventTime = getStrumTime(strumLine.y) + sectionStartTime();
+
+		var i = 0;
+		for (j in 0..._song.notes[curSection].sectionEvents.length)
+		{
+			var eventVal = _song.notes[curSection].sectionEvents[j];
+
+			if (Math.round(eventVal[0]) == Math.round(eventTime))
+			{
+				i++;
+				_song.notes[curSection].sectionEvents.remove(eventVal);
+			}
+		}
+
+		modifMade('Removed $i event(s) from ${Math.round(eventTime)}');
 	}
 
 	public function addEvent()
@@ -240,9 +266,11 @@ class ChartingState extends MusicBeatState
 		if (eventName.trim() == '') return;
 		if (eventValue.trim() == '') return;
 
-		var event:Array<Dynamic> = [eventTime, eventName, eventValue];
+		var event:Array<Dynamic> = [Math.round(eventTime), eventName, eventValue];
 		_song.notes[curSection].sectionEvents.push(event);
 		modifMade('Added event($event)');
+
+		updateGrid();
 	}
 
 	var characters:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/characterList', 'characters'));
@@ -889,13 +917,17 @@ class ChartingState extends MusicBeatState
 
 	function updateGrid():Void
 	{
+		while (curRenderedEvents.members.length > 0)
+			curRenderedEvents.remove(curRenderedEvents.members[0], true);
+
 		while (curRenderedNotes.members.length > 0)
 			curRenderedNotes.remove(curRenderedNotes.members[0], true);
 
 		while (curRenderedSustains.members.length > 0)
 			curRenderedSustains.remove(curRenderedSustains.members[0], true);
 
-		var sectionInfo:Array<Dynamic> = _song.notes[curSection].sectionNotes;
+		var notes:Array<Dynamic> = _song.notes[curSection].sectionNotes;
+		var events:Array<Dynamic> = _song.notes[curSection].sectionEvents;
 
 		if (_song.notes[curSection].changeBPM && _song.notes[curSection].bpm > 0)
 		{
@@ -911,7 +943,7 @@ class ChartingState extends MusicBeatState
 			Conductor.changeBPM(daBPM);
 		}
 
-		for (i in sectionInfo)
+		for (i in notes)
 		{
 			var daNoteInfo = i[1];
 			var daStrumTime = i[0];
@@ -933,6 +965,18 @@ class ChartingState extends MusicBeatState
 					note.y + GRID_SIZE).makeGraphic(8, Math.floor(FlxMath.remapToRange(daSus, 0, Conductor.stepCrochet * 16, 0, gridBG.height)));
 				curRenderedSustains.add(sustainVis);
 			}
+		}
+
+		for (i in events)
+		{
+			var daStrumTime = i[0];
+
+			var event:FunkinSprite = new FunkinSprite();
+			event.makeGraphic(GRID_SIZE, GRID_SIZE);
+			event.x = gridBG.x - event.width;
+			event.y = Math.floor(getYfromStrum((daStrumTime - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps)));
+
+			curRenderedEvents.add(event);
 		}
 
 		updateHeads();

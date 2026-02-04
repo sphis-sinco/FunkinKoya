@@ -133,6 +133,17 @@ class Song
 					t++;
 				}
 				removedStuff.push('$t unused typeOfSection fields');
+			case 7:
+				var e = 0;
+				for (section in swagShit.notes)
+				{
+					if (section.sectionEvents == null)
+					{
+						section.sectionEvents = [];
+						e++;
+					}
+				}
+				addedStuff.push('$e blank sectionEvent\'s');
 		}
 
 		if (swagShit.version != SWAGVERSION)
@@ -156,7 +167,7 @@ class Song
 		}
 	}
 
-	public static var SWAGVERSION:Int = 7;
+	public static var SWAGVERSION:Int = 8;
 
 	public static var dummySong:SwagSong =
 		{
