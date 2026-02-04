@@ -67,25 +67,27 @@ class EventParser
 		subtitles.add(newText);
 		var tweenNumber = subtitleTweens.length;
 		var delay = ((Conductor.crochet * (visibleFor ?? 2)) / 1000);
-		subtitleTweens.push(FlxTween.tween(newText, {alpha: 0}, fadeTime,
+
+		var THESTUPIDPIECEOFSHIT:FlxTween = null;
+
+		THESTUPIDPIECEOFSHIT = FlxTween.tween(newText, {alpha: 0}, fadeTime,
 			{
 				ease: FlxEase.quadInOut,
 				// last for 2 (default) beats then fades
 				startDelay: delay,
 				onComplete: function(t) {
-					var theText = subtitles.members[subtitles.members.length - 1];
-					var subTween = subtitleTweens[tweenNumber];
-					
-					subtitles.members.remove(theText);
-					theText.destroy();
+					subtitles.members.remove(newText);
+					newText.destroy();
 
-					subtitleTweens.remove(subTween);
-					if (subTween != null) subTween.destroy();
+					subtitleTweens.remove(THESTUPIDPIECEOFSHIT);
+					THESTUPIDPIECEOFSHIT.destroy();
 				},
 				onStart: function(t) {
 					trace('started fadin sub("$text") for $fadeTime after $delay');
 				}
-			}));
+			});
+
+		subtitleTweens.push(THESTUPIDPIECEOFSHIT);
 
 		// trace(text);
 		// trace(fadeTime);
