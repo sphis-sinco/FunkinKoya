@@ -246,12 +246,14 @@ class ChartingState extends MusicBeatState
 		var i = 0;
 		for (j in 0..._song.notes[curSection].sectionEvents.length)
 		{
-			var eventVal = _song.notes[curSection].sectionEvents[j];
+			trace(_song.notes[curSection].sectionEvents[j]);
+			var eventVal:Dynamic = _song.notes[curSection].sectionEvents[j];
+			var eventValTime = eventVal[0];
 
-			var lessThen = eventVal[0] < (eventTime - change);
-			var moreThen = eventVal[0] > (eventTime + change);
+			var minCheck = eventValTime > (eventTime - change);
+			var maxCheck = eventValTime < (eventTime + change);
 
-			if (!lessThen && moreThen)
+			if (minCheck && maxCheck)
 			{
 				i++;
 				_song.notes[curSection].sectionEvents.remove(eventVal);
@@ -259,6 +261,7 @@ class ChartingState extends MusicBeatState
 		}
 
 		modifMade('Removed $i event(s) from range : ${eventTime - change} - ${eventTime + change}');
+		updateGrid();
 	}
 
 	public function addEvent()
