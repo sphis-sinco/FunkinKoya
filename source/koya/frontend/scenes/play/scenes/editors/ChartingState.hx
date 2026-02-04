@@ -66,6 +66,7 @@ class ChartingState extends MusicBeatState
 
 	var curRenderedNotes:FlxTypedGroup<Note>;
 	var curRenderedEvents:FlxTypedGroup<FunkinSprite>;
+	var curRenderedEventTexts:FlxTypedGroup<FlxText>;
 	var curRenderedSustains:FlxTypedGroup<FlxSprite>;
 
 	var gridBG:FlxSprite;
@@ -97,8 +98,9 @@ class ChartingState extends MusicBeatState
 		bpmTxt.text += 'Step: ${(curStep < 0) ? 0 : curStep}\n';
 		bpmTxt.text += 'Section: ${curSection}\n';
 
-		bpmTxt.x = Event_UI.x;
-		bpmTxt.y = Event_UI.y + Event_UI.height + 20;
+		bpmTxt.x = 20;
+		bpmTxt.y = 20;
+		if (Main.WATERMARK != null) bpmTxt.y += (Main.WATERMARK.height / 2) + Main.WATERMARK.y;
 	}
 
 	override function create()
@@ -127,6 +129,7 @@ class ChartingState extends MusicBeatState
 
 		curRenderedNotes = new FlxTypedGroup<Note>();
 		curRenderedEvents = new FlxTypedGroup<FunkinSprite>();
+		curRenderedEventTexts = new FlxTypedGroup<FlxText>();
 		curRenderedSustains = new FlxTypedGroup<FlxSprite>();
 
 		if (PlayState.SONG != null) _song = PlayState.SONG;
@@ -174,13 +177,9 @@ class ChartingState extends MusicBeatState
 
 		Event_UI = new FlxUITabMenu(null, event_tabs, true);
 
-		Event_UI.resize(350, Main_UI.height);
-		Event_UI.x = 20;
-
-		Event_UI.y = Main_UI.y;
-		if (Main.WATERMARK != null) Event_UI.y += (Main.WATERMARK.height / 2) + Main.WATERMARK.y;
-
-		Main_UI.y = Event_UI.y;
+		Event_UI.resize(Main_UI.width, 200);
+		Event_UI.x = Main_UI.x;
+		Event_UI.y = Main_UI.y + Main_UI.height + 20;
 
 		add(Event_UI);
 		Event_UI.scrollFactor.set();
@@ -199,6 +198,7 @@ class ChartingState extends MusicBeatState
 		add(curRenderedNotes);
 		add(curRenderedSustains);
 		add(curRenderedEvents);
+		add(curRenderedEventTexts);
 
 		super.create();
 
@@ -224,16 +224,16 @@ class ChartingState extends MusicBeatState
 		tab_group.add(new FlxText(eventDropDown.x, eventDropDown.y - 16, 0, 'Event Name', 8));
 		tab_group.add(eventDropDown);
 
-		eventValue = new FlxUIInputText(10, 100, Std.int(Event_UI.width - 20), '', 8);
+		eventValue = new FlxUIInputText(10, 60, Std.int(Event_UI.width - 20), '', 8);
 		tab_group.add(new FlxText(eventValue.x, eventValue.y - 16, 0, 'Event Value (arrayFormat/split by/these things)', 8));
 		tab_group.add(eventValue);
 
-		var addButton:FlxButton = new FlxButton(10, eventValue.y, "Add Event", function() {
+		var addButton:FlxButton = new FlxButton(10, 100, "Add Event", function() {
 			addEvent();
 		});
 		tab_group.add(addButton);
 
-		var removeButton:FlxButton = new FlxButton(addButton.x + addButton.width + 10, eventValue.y, "Remove Event", function() {
+		var removeButton:FlxButton = new FlxButton(130, 100, "Remove Event", function() {
 			removeEvent();
 		});
 		tab_group.add(removeButton);
@@ -949,6 +949,9 @@ class ChartingState extends MusicBeatState
 		while (curRenderedEvents.members.length > 0)
 			curRenderedEvents.remove(curRenderedEvents.members[0], true);
 
+		while (curRenderedEventTexts.members.length > 0)
+			curRenderedEventTexts.remove(curRenderedEventTexts.members[0], true);
+
 		while (curRenderedNotes.members.length > 0)
 			curRenderedNotes.remove(curRenderedNotes.members[0], true);
 
@@ -1026,9 +1029,15 @@ class ChartingState extends MusicBeatState
 			event.x = gridBG.x - event.width;
 			event.y = Math.floor(getYfromStrum((daStrumTime - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps)));
 
+			var eventText:FlxText = new FlxText(event.x, event.y, 0, '$eventName : $eventValue', 8);
+			eventText.alignment = RIGHT;
+			eventText.x -= eventText.width;
+			curRenderedEventTexts.add(eventText);
+
 			curRenderedEvents.add(event);
 		}
 		curRenderedEvents.sort(FlxSort.byY, FlxSort.DESCENDING);
+		curRenderedEventTexts.sort(FlxSort.byY, FlxSort.DESCENDING);
 
 		updateHeads();
 	}
