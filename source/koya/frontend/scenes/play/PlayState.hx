@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play;
 
+import koya.backend.songs.EventParser;
 import koya.frontend.scenes.play.scenes.*;
 import koya.frontend.scenes.play.scenes.editors.*;
 import haxe.Json;
@@ -300,6 +301,8 @@ class PlayState extends MusicBeatState
 
 	var debugNum:Int = 0;
 
+	public var events:Array<Array<Dynamic>> = [];
+
 	public function generateSong(dataPath:String):Void
 	{
 		var songData = SONG;
@@ -321,11 +324,12 @@ class PlayState extends MusicBeatState
 		// NEW SHIT
 		noteID = songData.notes;
 
-		var playerCounter:Int = 0;
-
-		var daBeats:Int = 0; // Not exactly representative of 'daBeats' lol, just how much it has looped
+		var loops:Int = 0;
 		for (section in noteID)
 		{
+			for (event in section.sectionEvents)
+				events.push(event);
+
 			for (songNotes in section.sectionNotes)
 			{
 				var daStrumTime:Float = songNotes[0];
@@ -373,7 +377,7 @@ class PlayState extends MusicBeatState
 
 				if (swagNote.mustPress) swagNote.x += FlxG.width / 2; // general offset
 			}
-			daBeats += 1;
+			loops += 1;
 		}
 
 		unspawnNotes.sort(sortByShit);
@@ -577,6 +581,20 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
+			for (event in events)
+			{
+				var eventTime:Float = event[0];
+				var eventName:String = event[1];
+				var eventValue:String = event[2];
+
+				if (FlxG.sound.music.time == eventTime)
+				{
+					trace('Sending event($eventName, $eventValue) at $eventTime');
+					EventParser.sendEvent(eventName, eventValue);
+					events.remove(event);
+				}
+			}
+
 			notes.forEachAlive(function(daNote:Note) {
 				if (daNote.y > FlxG.height) daNote.active = daNote.visible = false;
 				else
