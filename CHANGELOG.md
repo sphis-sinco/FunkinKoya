@@ -15,6 +15,7 @@
 
 ## Changed
 
+- Antialiasing has been added back(?) to the texts without it
 - The main UI items have been tweaked
 - The main UI (the one with more tabs) has been resized
 - On monster the camera zooms into the stage zoom

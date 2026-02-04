@@ -203,6 +203,8 @@ class PlayState extends MusicBeatState
 		FlxG.fixedTimestep = false;
 
 		initUI();
+		
+		EventParser.init();
 
 		strums.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -307,7 +309,6 @@ class PlayState extends MusicBeatState
 	{
 		var songData = SONG;
 		Conductor.changeBPM(songData.bpm);
-		EventParser.init();
 
 		curSong = songData.song.toLowerCase();
 
@@ -1115,7 +1116,6 @@ class PlayState extends MusicBeatState
 		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
-		scoreTxt.antialiasing = false;
 		add(scoreTxt);
 
 		healthBar.cameras = [camHUD];

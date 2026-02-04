@@ -1,5 +1,6 @@
 package koya.backend.songs;
 
+import flixel.util.FlxColor;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
@@ -20,6 +21,7 @@ class EventParser
 	{
 		subtitles = new FlxTypedGroup<FlxText>();
 		subtitleTweens = [];
+		subtitles.cameras = [PlayState.instance.camHUD];
 		PlayState.instance.add(subtitles);
 	}
 
@@ -40,30 +42,47 @@ class EventParser
 		var tilBeat:Null<Int> = Std.parseInt(values[1] ?? '0');
 		var tilStep:Null<Int> = Std.parseInt(values[2] ?? '0');
 		var visibleFor:Null<Int> = Std.parseInt(values[3] ?? null);
+		var fadeTime:Float = (Conductor.stepCrochet * (tilStep ?? 0) + ((tilBeat ?? 0) * 4)) / 1000;
 
 		if (text.trim() == '') return;
 
 		var newText:FlxText = new FlxText();
 		newText.font = AssetPaths.font('vcr.ttf');
-		newText.size = 16;
+		newText.size = 32;
 		newText.text = text;
 
 		newText.screenCenter(X);
 
-		newText.y = PlayState.instance.healthBar.y - newText.height;
+		newText.y = PlayState.instance.healthBar.y - (newText.height * 2);
+		newText.scrollFactor.set();
+
+		newText.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
 
 		for (text in subtitles.members)
 			text.y -= newText.height;
 
 		subtitles.add(newText);
+		var subTween:FlxTween = null;
 
-		var fadeTime:Float = ((Conductor.stepCrochet / 1000) * ((tilStep ?? 0) + ((tilBeat ?? 0) * 4)));
-
-		subtitleTweens.push(FlxTween.tween(newText, {alpha: 1}, fadeTime,
+		subTween = FlxTween.tween(newText, {alpha: 0}, fadeTime,
 			{
 				ease: FlxEase.quadInOut,
-				startDelay: (Conductor.crochet / 1000) * (visibleFor ?? 2) // last for 2 (default) beats then fades
-			}));
+				// last for 2 (default) beats then fades
+				startDelay: ((Conductor.crochet * visibleFor ?? 2) / 1000),
+				onComplete: function(t) {
+					subtitles.members.remove(newText);
+					newText.destroy();
+
+					subtitleTweens.remove(subTween);
+					subTween.destroy();
+				}
+			});
+
+		subtitleTweens.push(subTween);
+		// subTween.start();
+
+		trace(text);
+		trace(subTween.startDelay);
 	}
 
 	public static function removesubtitles(values:Array<String>)
