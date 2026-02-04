@@ -7,6 +7,10 @@
 - New assets for Daddy Dearest
 - New Window Icons
 
+## Removed
+
+- Note rounding
+
 ## Changed
 
 - The main UI items have been tweaked

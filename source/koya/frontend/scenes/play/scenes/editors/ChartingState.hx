@@ -224,6 +224,22 @@ class ChartingState extends MusicBeatState
 			'', 8);
 		tab_group.add(new FlxText(eventValue.x, eventValue.y - 16, 0, 'Event Value (arrayFormat--split by--these things)', 8));
 		tab_group.add(eventValue);
+
+		var saveButton:FlxButton = new FlxButton(0, 8, "Add Event", function() {
+			addEvent();
+		});
+		tab_group.add(saveButton);
+	}
+
+	public function addEvent()
+	{
+		var eventTime = getStrumTime(strumLine.y) + sectionStartTime();
+		var eventName = eventDropDown.text;
+		var eventValue = eventValue.text;
+
+		var event:Array<Dynamic> = [eventTime, eventName, eventValue];
+		_song.notes[curSection].sectionEvents.push(event);
+		modifMade('Added event($event)');
 	}
 
 	var characters:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/characterList', 'characters'));
@@ -928,6 +944,7 @@ class ChartingState extends MusicBeatState
 				changeBPM: false,
 				mustHitSection: true,
 				sectionNotes: [],
+				sectionEvents: [],
 				altAnim: false
 			};
 
@@ -990,11 +1007,14 @@ class ChartingState extends MusicBeatState
 		var noteSus = 0;
 		var noteEventShit = UI_note.text;
 
-		_song.notes[curSection].sectionNotes.push([noteStrum, noteID, noteSus, noteEventShit]);
+		var note:Array<Dynamic> = [noteStrum, noteID, noteSus, noteEventShit];
+
+		_song.notes[curSection].sectionNotes.push(note);
+		modifMade('Added note($note)');
 
 		curSelectedNote = _song.notes[curSection].sectionNotes[_song.notes[curSection].sectionNotes.length - 1];
 
-		if (FlxG.keys.pressed.CONTROL) _song.notes[curSection].sectionNotes.push([noteStrum, (noteID + 4) % 8, noteSus, noteEventShit]);
+		if (FlxG.keys.pressed.CONTROL) _song.notes[curSection].sectionNotes.push([note[0], (noteID + 4) % 8, note[2], note[3]]);
 
 		trace(noteStrum);
 		trace(noteEventShit);

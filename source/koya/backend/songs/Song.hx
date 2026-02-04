@@ -143,17 +143,12 @@ class Song
 		}
 		else if (swagShit.version == SWAGVERSION)
 		{
-			for (section in swagShit.notes)
-				for (note in section.sectionNotes)
-					note[0] = Math.round(note[0]);
-
 			#if FIXSWAGVERSION_TRACES
 			trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
 			if (addedStuff.length > 0) for (thing in addedStuff)
 				trace(' * Added $thing');
 			if (removedStuff.length > 0) for (thing in removedStuff)
 				trace(' * Removed $thing');
-			trace(' * Rounded note positions');
 			#end
 
 			addedStuff = [];
