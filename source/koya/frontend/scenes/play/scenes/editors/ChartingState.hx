@@ -1013,14 +1013,14 @@ class ChartingState extends MusicBeatState
 			}
 			if (loadedImg)
 			{
-				event.setGraphicSize(Math.round(GRID_SIZE / 2));
+				event.setGraphicSize(Math.round(GRID_SIZE));
 				event.updateHitbox();
 			}
 
 			event.x = gridBG.x - event.width;
 			event.y = Math.floor(getYfromStrum((daStrumTime - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps)));
 
-			var eventText:FlxText = new FlxText(event.x, event.y, 0, '$eventName : $eventValue', 8);
+			var eventText:FlxText = new FlxText(event.getGraphicMidpoint().x, event.getGraphicMidpoint().y, 0, '$eventName : $eventValue', 8);
 			eventText.alignment = RIGHT;
 			eventText.x -= eventText.width;
 			curRenderedEventTexts.add(eventText);
