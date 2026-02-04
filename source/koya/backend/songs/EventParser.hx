@@ -63,7 +63,6 @@ class EventParser
 
 		subtitles.add(newText);
 		var subTween:FlxTween = null;
-
 		subTween = FlxTween.tween(newText, {alpha: 0}, fadeTime,
 			{
 				ease: FlxEase.quadInOut,
@@ -77,9 +76,7 @@ class EventParser
 					subTween.destroy();
 				}
 			});
-
 		subtitleTweens.push(subTween);
-		// subTween.start();
 
 		trace(text);
 		trace(subTween.startDelay);
