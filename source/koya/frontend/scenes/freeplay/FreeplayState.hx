@@ -114,6 +114,10 @@ class FreeplayState extends MusicBeatState
 		playerIcon = new HealthIcon('bf', true);
 		add(opponentIcon);
 		add(playerIcon);
+		
+		songText.font = AssetPaths.font('vcr.ttf');
+		songScoreText.font = AssetPaths.font('vcr.ttf');
+		songAuthorText.font = AssetPaths.font('vcr.ttf');
 	}
 
 	override function update(elapsed:Float)
