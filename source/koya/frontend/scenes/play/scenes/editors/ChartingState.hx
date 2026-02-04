@@ -459,7 +459,7 @@ class ChartingState extends MusicBeatState
 		tab_group_section.name = 'Section';
 
 		stepperLength = new FlxUINumericStepper(10, 24, 4, 0, 0, 999, 0);
-		stepperLength.value = _song.notes[curSection].lengthInSteps;
+		stepperLength.value = _song.notes[curSection]?.lengthInSteps ?? 16;
 		stepperLength.name = "section_length";
 
 		check_mustHitSection = new FlxUICheckBox(stepperLength.x, stepperLength.y + 30, null, null, "Must hit section", 100, [], function() {
