@@ -87,13 +87,13 @@ class MonsterScript extends SongIntroFadeScript
 	{
 		super.pause();
 
-		sceneTween.active = false;
+		if (sceneTween != null) sceneTween.active = false;
 	}
 
 	override function unpause()
 	{
 		super.unpause();
 
-		sceneTween.active = true;
+		if (sceneTween != null) sceneTween.active = true;
 	}
 }

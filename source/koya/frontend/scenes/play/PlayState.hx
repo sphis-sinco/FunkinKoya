@@ -203,7 +203,7 @@ class PlayState extends MusicBeatState
 		// FlxG.fixedTimestep = false;
 
 		initUI();
-		
+
 		EventParser.init();
 
 		strums.cameras = [camHUD];
@@ -381,6 +381,8 @@ class PlayState extends MusicBeatState
 			}
 			loops += 1;
 		}
+
+		trace('Event count: ${events.length}');
 
 		unspawnNotes.sort(sortByShit);
 
@@ -585,15 +587,30 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
+			var i = 0;
 			for (event in events)
 			{
+				i++;
+				if (event == null) continue;
+
 				var eventTime:Float = event[0];
 				var eventName:String = event[1];
 				var eventValue:String = event[2];
 
-				if (FlxG.sound.music.time == eventTime)
+				var diff = eventTime - FlxG.sound.music.time;
+				var msDiff = 5.0;
+
+				if (diff < 0) continue;
+
+				FlxG.watch.addQuick('event$i ($eventName)', '${diff / 1000}');
+
+				if (diff > -msDiff && diff < msDiff)
 				{
-					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)}) at ${FlxG.sound.music.time / 1000}s');
+					FlxG.watch.removeQuick('event$i ($eventName)');
+
+					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)})');
+					trace(' * musicTime: ${FlxG.sound.music.time / 1000}');
+					trace(' * eventTime: ${eventTime / 1000}');
 
 					EventParser.sendEvent(eventName, eventValue);
 					songScript.sendEvent(eventName, eventValue.split(EventParser.splitText));
@@ -603,7 +620,8 @@ class PlayState extends MusicBeatState
 					if (currentStage.gf != null) currentStage.gf.sendEvent(eventName, eventValue.split(EventParser.splitText));
 					if (currentStage.boyfriend != null) currentStage.boyfriend.sendEvent(eventName, eventValue.split(EventParser.splitText));
 
-					events.remove(event);
+					// events.remove(event);
+					event = null;
 				}
 			}
 

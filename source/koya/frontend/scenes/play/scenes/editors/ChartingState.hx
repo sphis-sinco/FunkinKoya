@@ -250,6 +250,8 @@ class ChartingState extends MusicBeatState
 		{
 			// trace(_song.notes[curSection].sectionEvents[j]);
 			var eventVal:Dynamic = _song.notes[curSection].sectionEvents[j];
+			if (eventVal == null) return;
+
 			var eventValTime = eventVal[0];
 
 			var minCheck = eventValTime > (eventTime - eventRangeValue);

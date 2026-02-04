@@ -77,8 +77,9 @@ class EventParser
 					newText.destroy();
 
 					var subTween = subtitleTweens[tweenNumber];
+
 					subtitleTweens.remove(subTween);
-					subTween.destroy();
+					if (subTween != null) subTween.destroy();
 				},
 				onStart: function(t) {
 					trace('started fadin sub');
