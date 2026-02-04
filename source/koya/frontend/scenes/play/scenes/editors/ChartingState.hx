@@ -225,7 +225,7 @@ class ChartingState extends MusicBeatState
 		tab_group.add(eventDropDown);
 
 		eventValue = new FlxUIInputText(10, 100, Std.int(Event_UI.width - 20), '', 8);
-		tab_group.add(new FlxText(eventValue.x, eventValue.y - 16, 0, 'Event Value (arrayFormat--split by--these things)', 8));
+		tab_group.add(new FlxText(eventValue.x, eventValue.y - 16, 0, 'Event Value (arrayFormat:split by:these things:unless you do "\\:")', 8));
 		tab_group.add(eventValue);
 
 		var addButton:FlxButton = new FlxButton(10, eventValue.y, "Add Event", function() {
