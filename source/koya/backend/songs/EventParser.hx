@@ -37,9 +37,9 @@ class EventParser
 	public static function subtitle(values:Array<String>)
 	{
 		var text:String = values[0];
-		var tilBeat:Null<Int> = Std.parseInt((values[1].trim() != '') ? values[1] : '0');
-		var tilStep:Null<Int> = Std.parseInt((values[2].trim() != '') ? values[2] : '0');
-		var visibleFor:Null<Int> = Std.parseInt((values[3].trim() != '') ? values[3] : null);
+		var tilBeat:Null<Int> = Std.parseInt(values[1] ?? '0');
+		var tilStep:Null<Int> = Std.parseInt(values[2] ?? '0');
+		var visibleFor:Null<Int> = Std.parseInt(values[3] ?? null);
 
 		if (text.trim() == '') return;
 
@@ -57,9 +57,9 @@ class EventParser
 
 		subtitles.add(newText);
 
-		var timeAddition:Float = ((Conductor.stepCrochet / 1000) * (tilStep + (tilBeat * 4)));
+		var fadeTime:Float = ((Conductor.stepCrochet / 1000) * ((tilStep ?? 0) + ((tilBeat ?? 0) * 4)));
 
-		subtitleTweens.push(FlxTween.tween(newText, {alpha: 1}, Conductor.songPosition + timeAddition,
+		subtitleTweens.push(FlxTween.tween(newText, {alpha: 1}, fadeTime,
 			{
 				ease: FlxEase.quadInOut,
 				startDelay: (Conductor.crochet / 1000) * (visibleFor ?? 2) // last for 2 (default) beats then fades
