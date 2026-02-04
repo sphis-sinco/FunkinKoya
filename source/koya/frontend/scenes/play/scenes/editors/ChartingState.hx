@@ -225,10 +225,10 @@ class ChartingState extends MusicBeatState
 		tab_group.add(new FlxText(eventValue.x, eventValue.y - 16, 0, 'Event Value (arrayFormat--split by--these things)', 8));
 		tab_group.add(eventValue);
 
-		var saveButton:FlxButton = new FlxButton(0, 8, "Add Event", function() {
+		var addButton:FlxButton = new FlxButton(10, eventValue.y, "Add Event", function() {
 			addEvent();
 		});
-		tab_group.add(saveButton);
+		tab_group.add(addButton);
 	}
 
 	public function addEvent()
@@ -236,6 +236,9 @@ class ChartingState extends MusicBeatState
 		var eventTime = getStrumTime(strumLine.y) + sectionStartTime();
 		var eventName = eventDropDown.text;
 		var eventValue = eventValue.text;
+
+		if (eventName.trim() == '') return;
+		if (eventValue.trim() == '') return;
 
 		var event:Array<Dynamic> = [eventTime, eventName, eventValue];
 		_song.notes[curSection].sectionEvents.push(event);
