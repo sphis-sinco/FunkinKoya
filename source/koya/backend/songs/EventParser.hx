@@ -4,10 +4,12 @@ import koya.frontend.scenes.play.PlayState;
 
 class EventParser
 {
+	public static final splitText:String = '/';
+
 	public static function sendEvent(name:String, value:String)
 	{
 		name = name.toLowerCase();
-		var vals:Array<String> = value.split('/');
+		var vals:Array<String> = value.split(splitText);
 
 		if (name == 'playanim') playAnim(vals);
 	}
@@ -27,4 +29,7 @@ class EventParser
 				PlayState.instance.currentStage.gf?.playAnim(animationName);
 		}
 	}
+
+	public static function pause() {}
+	public static function unpause() {}
 }

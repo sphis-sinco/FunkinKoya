@@ -448,6 +448,7 @@ class PlayState extends MusicBeatState
 			if (!startTimer.finished) startTimer.active = true;
 			paused = false;
 			songScript.unpause();
+			EventParser.unpause();
 		}
 
 		super.closeSubState();
@@ -483,6 +484,7 @@ class PlayState extends MusicBeatState
 			persistentDraw = true;
 			paused = true;
 
+			EventParser.pause();
 			openSubState(new PauseSubState(currentStage.boyfriend?.getScreenPosition().x, currentStage.boyfriend?.getScreenPosition().y));
 		}
 
@@ -589,7 +591,7 @@ class PlayState extends MusicBeatState
 
 				if (FlxG.sound.music.time == eventTime)
 				{
-					trace('Sending event($eventName, $eventValue) at $eventTime');
+					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)}) at $eventTime');
 					EventParser.sendEvent(eventName, eventValue);
 					events.remove(event);
 				}
