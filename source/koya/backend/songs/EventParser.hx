@@ -36,16 +36,16 @@ class EventParser
 		if (name == 'removesubtitles') subtitle(vals);
 
 		for (twn in subtitleTweens)
-			twn.active = true;
+			if (!twn.active) twn.active = true;
 	}
 
 	public static function subtitle(values:Array<String>)
 	{
 		var text:String = values[0];
-		var tilBeat:Null<Int> = Std.parseInt(values[1] ?? '0');
-		var tilStep:Null<Int> = Std.parseInt(values[2] ?? '0');
+		var addBeat:Null<Int> = Std.parseInt(values[1] ?? '0');
+		var addStep:Null<Int> = Std.parseInt(values[2] ?? '0');
 		var visibleFor:Null<Int> = Std.parseInt(values[3] ?? null);
-		var fadeTime:Float = (Conductor.stepCrochet * (tilStep ?? 0) + ((tilBeat ?? 0) * 4)) / 1000;
+		var fadeTime:Float = (Conductor.stepCrochet * (addStep ?? 0) + ((addBeat ?? 0) * 4)) / 1000;
 
 		if (text.trim() == '') return;
 
@@ -73,22 +73,23 @@ class EventParser
 				// last for 2 (default) beats then fades
 				startDelay: delay,
 				onComplete: function(t) {
-					subtitles.members.remove(newText);
-					newText.destroy();
-
+					var theText = subtitles.members[subtitles.members.length - 1];
 					var subTween = subtitleTweens[tweenNumber];
+					
+					subtitles.members.remove(theText);
+					theText.destroy();
 
 					subtitleTweens.remove(subTween);
 					if (subTween != null) subTween.destroy();
 				},
 				onStart: function(t) {
-					trace('started fadin sub');
+					trace('started fadin sub("$text") for $fadeTime after $delay');
 				}
 			}));
 
-		trace(text);
-		trace(fadeTime);
-		trace(delay);
+		// trace(text);
+		// trace(fadeTime);
+		// trace(delay);
 	}
 
 	public static function removesubtitles(values:Array<String>)

@@ -183,6 +183,9 @@ class PlayState extends MusicBeatState
 		add(currentStage);
 
 		songScript = SongClass.getSongClass(SONG.song.toLowerCase());
+		
+		Conductor.songPosition = 0;
+		Conductor.songPosition -= Conductor.crochet * 5;
 
 		generateSong(SONG.song);
 
@@ -201,7 +204,7 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 
 		// FlxG.fixedTimestep = false;
-
+		
 		initUI();
 
 		EventParser.init();
@@ -230,9 +233,6 @@ class PlayState extends MusicBeatState
 		generateStaticArrows(true);
 
 		startedCountdown = true;
-
-		Conductor.songPosition = 0;
-		Conductor.songPosition -= Conductor.crochet * 5;
 
 		var swagCounter:Int = 0;
 
@@ -303,7 +303,7 @@ class PlayState extends MusicBeatState
 
 	var debugNum:Int = 0;
 
-	public var events:Array<Array<Dynamic>> = [];
+	public var events:Array<FlxTimer> = [];
 
 	public function generateSong(dataPath:String):Void
 	{
@@ -330,7 +330,28 @@ class PlayState extends MusicBeatState
 		for (section in noteID)
 		{
 			for (event in section.sectionEvents)
-				events.push(event);
+			{
+				if (event == null) continue;
+
+				var eventTime:Float = event[0];
+				var eventName:String = event[1];
+				var eventValue:String = event[2];
+
+				events.push(new FlxTimer().start(Math.abs(Conductor.songPosition / 1000) + (eventTime / 1000), function(t) {
+					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)})');
+					// trace(' * musicTime: ${FlxG.sound.music.time / 1000}');
+					// trace(' * eventTime: ${eventTime / 1000}');
+
+					EventParser.sendEvent(eventName, eventValue);
+
+					songScript.sendEvent(eventName, eventValue.split(EventParser.splitText));
+					currentStage.sendEvent(eventName, eventValue.split(EventParser.splitText));
+
+					if (currentStage.dad != null) currentStage.dad.sendEvent(eventName, eventValue.split(EventParser.splitText));
+					if (currentStage.gf != null) currentStage.gf.sendEvent(eventName, eventValue.split(EventParser.splitText));
+					if (currentStage.boyfriend != null) currentStage.boyfriend.sendEvent(eventName, eventValue.split(EventParser.splitText));
+				}));
+			}
 
 			for (songNotes in section.sectionNotes)
 			{
@@ -587,44 +608,6 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
-			var i = 0;
-			for (event in events)
-			{
-				i++;
-				if (event == null) continue;
-
-				var eventTime:Float = event[0];
-				var eventName:String = event[1];
-				var eventValue:String = event[2];
-
-				var diff = eventTime - FlxG.sound.music.time;
-				var msDiff = 5.0;
-
-				if ((diff / 1000) < 0) continue;
-
-				FlxG.watch.addQuick('event$i ($eventName)', '${diff / 1000}');
-
-				if (diff > -msDiff && diff < msDiff)
-				{
-					FlxG.watch.removeQuick('event$i ($eventName)');
-
-					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)})');
-					trace(' * musicTime: ${FlxG.sound.music.time / 1000}');
-					trace(' * eventTime: ${eventTime / 1000}');
-
-					EventParser.sendEvent(eventName, eventValue);
-					songScript.sendEvent(eventName, eventValue.split(EventParser.splitText));
-					currentStage.sendEvent(eventName, eventValue.split(EventParser.splitText));
-
-					if (currentStage.dad != null) currentStage.dad.sendEvent(eventName, eventValue.split(EventParser.splitText));
-					if (currentStage.gf != null) currentStage.gf.sendEvent(eventName, eventValue.split(EventParser.splitText));
-					if (currentStage.boyfriend != null) currentStage.boyfriend.sendEvent(eventName, eventValue.split(EventParser.splitText));
-
-					// events.remove(event);
-					event = null;
-				}
-			}
-
 			notes.forEachAlive(function(daNote:Note) {
 				if (daNote.y > FlxG.height) daNote.active = daNote.visible = false;
 				else
