@@ -232,7 +232,7 @@ class ChartingState extends MusicBeatState
 		});
 		tab_group.add(addButton);
 
-		var removeButton:FlxButton = new FlxButton(10, eventValue.y, "Remove Event", function() {
+		var removeButton:FlxButton = new FlxButton(addButton.x + addButton.width + 10, eventValue.y, "Remove Event", function() {
 			removeEvent();
 		});
 		tab_group.add(removeButton);
@@ -241,20 +241,24 @@ class ChartingState extends MusicBeatState
 	public function removeEvent()
 	{
 		var eventTime = getStrumTime(strumLine.y) + sectionStartTime();
+		var change:Float = 20; // this should be in milliseconds right?
 
 		var i = 0;
 		for (j in 0..._song.notes[curSection].sectionEvents.length)
 		{
 			var eventVal = _song.notes[curSection].sectionEvents[j];
 
-			if (Math.round(eventVal[0]) == Math.round(eventTime))
+			var lessThen = eventVal[0] < (eventTime - change);
+			var moreThen = eventVal[0] > (eventTime + change);
+
+			if (!lessThen && moreThen)
 			{
 				i++;
 				_song.notes[curSection].sectionEvents.remove(eventVal);
 			}
 		}
 
-		modifMade('Removed $i event(s) from ${Math.round(eventTime)}');
+		modifMade('Removed $i event(s) from range : ${eventTime - change} - ${eventTime + change}');
 	}
 
 	public function addEvent()
@@ -266,7 +270,7 @@ class ChartingState extends MusicBeatState
 		if (eventName.trim() == '') return;
 		if (eventValue.trim() == '') return;
 
-		var event:Array<Dynamic> = [Math.round(eventTime), eventName, eventValue];
+		var event:Array<Dynamic> = [eventTime, eventName, eventValue];
 		_song.notes[curSection].sectionEvents.push(event);
 		modifMade('Added event($event)');
 
