@@ -339,9 +339,6 @@ class PlayState extends MusicBeatState
 
 				events.push(new FlxTimer().start(Math.abs(Conductor.songPosition / 1000) + (eventTime / 1000), function(t) {
 					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)})');
-					// trace(' * musicTime: ${FlxG.sound.music.time / 1000}');
-					// trace(' * eventTime: ${eventTime / 1000}');
-
 					EventParser.sendEvent(eventName, eventValue);
 
 					songScript.sendEvent(eventName, eventValue.split(EventParser.splitText));
