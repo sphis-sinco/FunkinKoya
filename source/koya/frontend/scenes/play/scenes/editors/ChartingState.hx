@@ -260,7 +260,7 @@ class ChartingState extends MusicBeatState
 			}
 		}
 
-		modifMade('Removed $i event(s) from range : ${eventTime - change} - ${eventTime + change}');
+		if (i > 0) modifMade('Removed $i event(s) from range : ${eventTime - change} - ${eventTime + change}');
 		updateGrid();
 	}
 
