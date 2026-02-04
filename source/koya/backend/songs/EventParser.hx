@@ -83,7 +83,7 @@ class EventParser
 					THESTUPIDPIECEOFSHIT.destroy();
 				},
 				onStart: function(t) {
-					trace('started fadin sub("$text") for $fadeTime after $delay');
+					trace('started fadin sub("$text") for ${fadeTime}s after ${delay}s');
 				}
 			});
 
