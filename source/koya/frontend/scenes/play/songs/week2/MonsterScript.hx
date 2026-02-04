@@ -1,5 +1,9 @@
 package koya.frontend.scenes.play.songs.week2;
 
+import flixel.tweens.FlxEase;
+import koya.backend.Conductor;
+import flixel.tweens.FlxTween;
+import flixel.FlxG;
 import koya.frontend.scenes.play.songs.templates.SongIntroFadeScript;
 import koya.frontend.shaders.AdjustColorShader;
 
@@ -36,8 +40,20 @@ class MonsterScript extends SongIntroFadeScript
 			}
 		});
 
+		FlxG.camera.zoom = 0.4;
+		PlayState.instance.camZooming = false;
+
 		return super.preCountdown();
 	}
+
+	override function opNoteHit(note:Note):Bool
+	{
+		if (PlayState.instance.curBeat < finishBeat) PlayState.instance.camZooming = false;
+
+		return super.opNoteHit(note);
+	}
+
+	var sceneTween:FlxTween;
 
 	override public function beatHit(beat:Int)
 	{
@@ -45,6 +61,10 @@ class MonsterScript extends SongIntroFadeScript
 		{
 			case 4:
 				dadFadeFunction();
+				sceneTween = FlxTween.tween(FlxG.camera, {zoom: PlayState.instance.defaultCamZoom}, (Conductor.crochet / 1000) * (finishBeat - beat),
+					{
+						ease: FlxEase.quadInOut,
+					});
 			case 12:
 				boyfriendFadeFunction();
 		}
@@ -61,5 +81,19 @@ class MonsterScript extends SongIntroFadeScript
 
 			if (funkSpr != null) funkSpr.alpha = 1;
 		});
+	}
+
+	override function pause()
+	{
+		super.pause();
+
+		if (sceneTween != null) sceneTween.active = false;
+	}
+
+	override function unpause()
+	{
+		super.unpause();
+
+		if (sceneTween != null) sceneTween.active = true;
 	}
 }

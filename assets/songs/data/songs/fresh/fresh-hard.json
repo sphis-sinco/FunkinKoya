@@ -9,7 +9,6 @@
 		"notes": [
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -66,11 +65,11 @@
 						250,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -127,11 +126,11 @@
 						250,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -188,11 +187,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -249,11 +248,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -274,11 +273,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -299,11 +298,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -330,11 +329,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -361,11 +360,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -398,11 +397,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -435,11 +434,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -478,11 +477,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -521,11 +520,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -558,11 +557,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -607,11 +606,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -644,11 +643,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -693,11 +692,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -736,11 +735,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -773,11 +772,11 @@
 						250,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -816,11 +815,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -853,11 +852,11 @@
 						250,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -890,11 +889,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -927,11 +926,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -964,11 +963,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1001,11 +1000,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1038,11 +1037,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1075,11 +1074,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1124,11 +1123,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1173,11 +1172,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1210,11 +1209,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1259,11 +1258,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1296,11 +1295,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1345,11 +1344,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1388,11 +1387,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1425,11 +1424,11 @@
 						250,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1468,11 +1467,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1505,11 +1504,11 @@
 						250,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1566,11 +1565,11 @@
 						250,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1627,11 +1626,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1688,11 +1687,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
 				"sectionNotes": [
 					[
@@ -1743,36 +1742,37 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
-				"typeOfSection": 0,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"changeBPM": false,
 				"mustHitSection": true,
 				"sectionNotes": [],
-				"typeOfSection": 0,
-				"bpm": 120
+				"bpm": 120,
+				"sectionEvents": []
 			}
 		],
 		"sections": 0,
 		"gfVersion": "gf",
 		"stage": "mainStage",
 		"authors": "Kawai Sprite",
-		"generatedBy": "Funkin' Koya* 0.2.0 | Task: Resave All Songs",
+		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:2659a1d) | Task: Resave All Songs",
 		"bpm": 120,
 		"difficulty": 2,
-		"version": 6
+		"version": 8
 	}
 }

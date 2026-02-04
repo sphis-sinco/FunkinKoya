@@ -4,6 +4,8 @@ import koya.backend.play.Rank;
 import koya.backend.save.Save;
 import koya.backend.play.Difficulty;
 
+using StringTools;
+
 class Highscore
 {
 	public static var songScores:Map<String, Int> = [];
@@ -11,6 +13,8 @@ class Highscore
 
 	public static function saveRank(songOrWeek:String, rank:Rank, diff:Difficulty)
 	{
+		if (songOrWeek.trim() == '') return;
+
 		var formattedField:String = formatToDifficulty(songOrWeek, diff);
 
 		if (songRanks.exists(formattedField))
@@ -24,6 +28,8 @@ class Highscore
 
 	static function setRank(song:String, rank:Rank):Void
 	{
+		if (song.trim() == '') return;
+		
 		songRanks.set(song, rank);
 
 		Save.songRanks.set(songRanks);
@@ -32,6 +38,8 @@ class Highscore
 
 	public static function saveScore(songOrWeek:String, score:Int = 0, ?diff:Difficulty = 0):Void
 	{
+		if (songOrWeek.trim() == '') return;
+
 		var formattedField:String = formatToDifficulty(songOrWeek, diff);
 
 		if (songScores.exists(formattedField))
@@ -44,6 +52,8 @@ class Highscore
 
 	static function setScore(song:String, score:Int):Void
 	{
+		if (song.trim() == '') return;
+
 		songScores.set(song, score);
 
 		Save.songScores.set(songScores);

@@ -15,11 +15,11 @@ class MenuItem extends FunkinSprite
 
 		addPrefixAnim('idle', '$item idle');
 		addPrefixAnim('selected', '$item selected');
+		makeOffsets();
 		updateHitbox();
 
-		makeOffsets();
-
 		playAnim('idle');
+		updateHitbox();
 	}
 
 	public function makeOffsets()

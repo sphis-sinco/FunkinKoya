@@ -1,10 +1,9 @@
 # 0.4.0 ( Week Pack 1 ):
 
-- Saved ranks
+- Options Menu
 
 - Week 1 Recharts
 - Week 1 Erect
-- Redraw Daddy Dearest with A 6 SIZED BRUSH.
 
 - Week 3 Songs
 - Week 4 Songs
@@ -65,8 +64,6 @@
 
 ## Misc:
 
-- Options Menu
-- New Window Icons
 - Medals
 - Outdated State
 
@@ -77,9 +74,8 @@
 
 ## Builds:
 
-- Android build (I wanna check out this shit on my phone lol)
-- Mac build
-- Linux build
+- Mobile build (I wanna check out this shit on my phone lol)
+- HTML5 build
 
 ## Songs:
 

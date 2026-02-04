@@ -1,3 +1,38 @@
+# [0.4.0] - 2/2026
+
+## Added
+
+- week 3
+- EVENTS (press P to make one in the chart editor, you must have a name and a value)
+	- The only event is playanim
+- Added events UI... window? whatever to the chart editor
+- Beats and Step to chart editor "info text"
+- New assets for Daddy Dearest
+- New Window Icons
+
+## Removed
+
+- Chart Editor Mouse Wheel support
+- Note rounding
+
+## Changed
+
+- Antialiasing has been added back(?) to the texts without it
+- The main UI items have been tweaked
+- The main UI (the one with more tabs) has been resized
+- On monster the camera zooms into the stage zoom
+- The input system has been update to be closer to 0.3.0 FNF
+- In story mode when moving to a new song the score will stay how it was at the end of the last song
+
+## Fixed
+
+- The freeplay texts now use the VCR font
+- When entering the Chart editor the song time will always be reset to 0
+- You can no longer to BEFORE the song in the chart editor
+- The Chart Editor Strumline is now the correct width
+	- UI Layout had to be changed because of it but it's whatev lol
+- A song or week with a blank name will not save a score or rank
+
 # [0.3.1] - 2/2/2026
 
 ## Changed

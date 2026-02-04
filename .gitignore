@@ -3,3 +3,4 @@ export/
 .haxelib/
 RECOVER_**.fla
 Backup/
+**.swf

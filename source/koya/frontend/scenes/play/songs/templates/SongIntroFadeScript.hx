@@ -122,9 +122,9 @@ class SongIntroFadeScript extends SongClass
 		if (PlayState.instance.health <= 0 && (!bfFade?.active || bfFade == null) && boyfriend.alpha < 1) boyfriendFadeFunction();
 	}
 
-	override function noteMiss(direction:Int)
+	override function generalNoteMiss(direction:Int)
 	{
-		super.noteMiss(direction);
+		super.generalNoteMiss(direction);
 
 		forcedBFFade();
 	}

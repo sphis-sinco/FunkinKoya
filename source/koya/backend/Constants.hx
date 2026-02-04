@@ -31,9 +31,9 @@ class Constants
 
 		var suffixSample:String = '';
 
-		// suffixSample += ' : ::update_name::';
+		suffixSample += ' : ::update_name::';
 		// suffixSample += ' : Hotfix';
-		suffixSample += ' : Patch';
+		// suffixSample += ' : Patch';
 
 		#if INCLUDE_GIT
 		suffixSample += ' (${Git.gimmeSuffix()})';
@@ -91,6 +91,10 @@ class Constants
 
 	public static function getSongFormatFromVersion(version:Int)
 	{
+		// koya chart format
+		// koyachartformat
+		// koyta
+
 		return 'koyta_$version';
 	}
 }

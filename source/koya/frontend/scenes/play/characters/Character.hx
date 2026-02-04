@@ -198,4 +198,6 @@ class Character extends FunkinSprite
 	}
 
 	public function onNoteHit(note:Note) {};
+	
+	public function sendEvent(name:String, values:Array<String>) {}
 }

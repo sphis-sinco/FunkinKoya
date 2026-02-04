@@ -54,9 +54,21 @@ class SongClass
 
 	public function popUpScore(strumtime:Float) {}
 
-	public function noteMiss(direction:Int) {}
+	public function generalNoteMiss(direction:Int) {}
 
-	public function goodNoteHit(note:Note) {}
+	public function ghostNoteHit(direction:Int) {}
+
+	public function badNoteHit(direction:Int) {}
+
+	public function playerNoteHit(note:Note):Bool
+	{
+		return true;
+	}
+
+	public function opNoteHit(note:Note):Bool
+	{
+		return true;
+	}
 
 	public function stepHit(step:Int) {}
 
@@ -73,4 +85,6 @@ class SongClass
 	{
 		return true;
 	}
+
+	public function sendEvent(name:String, values:Array<String>) {}
 }

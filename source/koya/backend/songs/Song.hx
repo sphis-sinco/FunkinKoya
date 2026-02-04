@@ -84,7 +84,7 @@ class Song
 
 		if (fix)
 		{
-			songMissingStuff = [];
+			addedStuff = [];
 
 			swagShit.version ??= 0;
 			fixSwagVersion(swagShit);
@@ -93,7 +93,8 @@ class Song
 		return swagShit;
 	}
 
-	static var songMissingStuff:Array<String> = [];
+	static var addedStuff:Array<String> = [];
+	static var removedStuff:Array<String> = [];
 
 	public static function fixSwagVersion(swagShit:SwagSong)
 	{
@@ -101,19 +102,19 @@ class Song
 		{
 			case 0:
 				swagShit.gfVersion = dummySong.gfVersion;
-				songMissingStuff.push('gfVersion');
+				addedStuff.push('gfVersion');
 			case 1:
 				swagShit.stage = dummySong.stage;
-				songMissingStuff.push('stage');
+				addedStuff.push('stage');
 			case 2:
 				swagShit.authors = 'Unknown';
-				songMissingStuff.push('authors');
+				addedStuff.push('authors');
 			case 3:
 				swagShit.difficulty = NORMAL;
-				songMissingStuff.push('difficulty');
+				addedStuff.push('difficulty');
 			case 4:
 				swagShit.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}fixSwagVersion';
-				songMissingStuff.push('generatedBy');
+				addedStuff.push('generatedBy');
 			case 5:
 				var n = 0;
 				for (section in swagShit.notes)
@@ -123,7 +124,26 @@ class Song
 							note[3] = '';
 							n++;
 						}
-				songMissingStuff.push('$n (blank) event notes');
+				addedStuff.push('$n (blank) event notes');
+			case 6:
+				var t = 0;
+				for (section in swagShit.notes)
+				{
+					Reflect.deleteField(section, 'typeOfSection');
+					t++;
+				}
+				removedStuff.push('$t unused typeOfSection fields');
+			case 7:
+				var e = 0;
+				for (section in swagShit.notes)
+				{
+					if (section.sectionEvents == null)
+					{
+						section.sectionEvents = [];
+						e++;
+					}
+				}
+				addedStuff.push('$e blank sectionEvent\'s');
 		}
 
 		if (swagShit.version != SWAGVERSION)
@@ -134,29 +154,20 @@ class Song
 		}
 		else if (swagShit.version == SWAGVERSION)
 		{
-			// koya chart format
-			// koyachartformat
-			// koyta
-
-			for (section in swagShit.notes)
-				for (note in section.sectionNotes)
-					note[0] = Math.round(note[0]);
-
 			#if FIXSWAGVERSION_TRACES
-			if (songMissingStuff.length > 0)
-			{
-				trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
-				for (thing in songMissingStuff)
-					trace(' * Added $thing');
-				trace(' * Rounded note positions');
-			}
+			trace('Upgraded ${swagShit.song} to ${Constants.SONG_FORMAT}');
+			if (addedStuff.length > 0) for (thing in addedStuff)
+				trace(' * Added $thing');
+			if (removedStuff.length > 0) for (thing in removedStuff)
+				trace(' * Removed $thing');
 			#end
 
-			songMissingStuff = [];
+			addedStuff = [];
+			removedStuff = [];
 		}
 	}
 
-	public static var SWAGVERSION:Int = 6;
+	public static var SWAGVERSION:Int = 8;
 
 	public static var dummySong:SwagSong =
 		{

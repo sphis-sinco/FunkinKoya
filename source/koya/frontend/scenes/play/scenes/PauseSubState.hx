@@ -90,7 +90,6 @@ class PauseSubState extends MusicBeatSubstate
 				newTopText.scrollFactor.set();
 				newTopText.setFormat(AssetPaths.font('vcr.ttf'), 32);
 				newTopText.updateHitbox();
-				newTopText.antialiasing = false;
 				newTopText.alignment = RIGHT;
 				topText.add(newTopText);
 				newTopText.alpha = 0;
