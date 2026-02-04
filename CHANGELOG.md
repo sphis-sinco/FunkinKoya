@@ -2,6 +2,7 @@
 
 ## Added
 
+- week 3
 - EVENTS (press P to make one in the chart editor, you must have a name and a value)
 	- The only event is playanim
 - Added events UI... window? whatever to the chart editor
