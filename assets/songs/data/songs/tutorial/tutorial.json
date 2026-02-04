@@ -5,22 +5,26 @@
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -38,7 +42,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -56,7 +61,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -74,7 +80,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -92,7 +99,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -110,7 +118,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -128,7 +137,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -146,7 +156,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -164,7 +175,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -182,7 +194,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -200,7 +213,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -218,7 +232,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -236,7 +251,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -260,7 +276,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -284,7 +301,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -308,7 +326,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -332,7 +351,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -368,7 +388,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -404,7 +425,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -434,7 +456,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -464,7 +487,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -476,17 +500,20 @@
 						750,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"altAnim": false,
@@ -494,7 +521,8 @@
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionNotes": [],
-				"bpm": 100
+				"bpm": 100,
+				"sectionEvents": []
 			}
 		],
 		"sections": 0,
@@ -505,10 +533,10 @@
 		"gfVersion": "gf",
 		"stage": "mainStage",
 		"authors": "Kawai Sprite",
-		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (develop:87ce777) | Task: Resave All Songs",
+		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:2659a1d) | Task: Resave All Songs",
 		"bpm": 100,
 		"difficulty": 1,
 		"speed": 1,
-		"version": 7
+		"version": 8
 	}
 }

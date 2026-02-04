@@ -6,42 +6,50 @@
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
 				"lengthInSteps": 16,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -71,7 +79,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -107,7 +116,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -137,7 +147,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -173,7 +184,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -197,7 +209,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -227,7 +240,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -251,7 +265,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -287,7 +302,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -305,7 +321,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -323,7 +340,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -347,7 +365,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -371,7 +390,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -389,7 +409,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -407,7 +428,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -431,7 +453,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -455,7 +478,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -479,7 +503,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -503,7 +528,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -533,7 +559,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -557,7 +584,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -581,7 +609,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -617,7 +646,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -653,7 +683,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -707,7 +738,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -731,7 +763,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -755,7 +788,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -785,7 +819,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -809,7 +844,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -833,7 +869,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -869,7 +906,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -905,7 +943,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -935,7 +974,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -965,7 +1005,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1001,7 +1042,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1031,7 +1073,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1067,7 +1110,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1091,7 +1135,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1121,7 +1166,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1145,7 +1191,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1223,7 +1270,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1247,7 +1295,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1271,7 +1320,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1295,7 +1345,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1349,7 +1400,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1373,7 +1425,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1397,7 +1450,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1427,7 +1481,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1457,7 +1512,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1487,7 +1543,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1517,7 +1574,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1547,7 +1605,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": true,
@@ -1577,7 +1636,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1607,7 +1667,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"mustHitSection": false,
@@ -1631,7 +1692,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1663,7 +1725,8 @@
 						""
 					]
 				],
-				"bpm": 180
+				"bpm": 180,
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1689,14 +1752,16 @@
 						""
 					]
 				],
-				"bpm": 180
+				"bpm": 180,
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"changeBPM": false,
 				"mustHitSection": true,
 				"sectionNotes": [],
-				"bpm": 180
+				"bpm": 180,
+				"sectionEvents": []
 			}
 		],
 		"needsVoices": true,
@@ -1706,9 +1771,9 @@
 		"gfVersion": "gf",
 		"stage": "mainStage",
 		"authors": "Kawai Sprite",
-		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (develop:87ce777) | Task: Resave All Songs",
+		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:2659a1d) | Task: Resave All Songs",
 		"bpm": 180,
 		"difficulty": 0,
-		"version": 7
+		"version": 8
 	}
 }

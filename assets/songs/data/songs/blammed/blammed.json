@@ -1,51 +1,58 @@
 {
 	"song": {
 		"song": "Blammed",
-		"bpm": 165,
 		"needsVoices": true,
 		"player1": "bf",
-		"player2": "dad",
+		"player2": "pico",
 		"speed": 1.5,
 		"notes": [
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -69,7 +76,8 @@
 						181.818176,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -99,7 +107,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -123,7 +132,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -147,7 +157,8 @@
 						181.818176,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -171,7 +182,8 @@
 						181.818176,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -201,7 +213,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -225,7 +238,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -249,7 +263,8 @@
 						181.818176,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -279,7 +294,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -309,7 +325,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -339,7 +356,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -375,7 +393,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -405,7 +424,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -435,7 +455,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -465,7 +486,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -501,7 +523,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -525,7 +548,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -561,7 +585,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -585,7 +610,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -621,7 +647,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -645,7 +672,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -681,7 +709,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -705,7 +734,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -741,7 +771,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -783,7 +814,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -825,7 +857,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -867,7 +900,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -909,7 +943,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -951,7 +986,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -993,7 +1029,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1053,7 +1090,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1125,7 +1163,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1167,7 +1206,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1209,7 +1249,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1251,7 +1292,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1299,7 +1341,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1341,7 +1384,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1383,7 +1427,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1425,7 +1470,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1473,7 +1519,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1509,7 +1556,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1545,7 +1593,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1569,7 +1618,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1605,7 +1655,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1635,7 +1686,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1671,7 +1723,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1695,7 +1748,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1731,7 +1785,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1761,7 +1816,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1797,7 +1853,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1827,7 +1884,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1863,7 +1921,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1893,7 +1952,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1929,7 +1989,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1959,7 +2020,8 @@
 						272.727264,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1995,64 +2057,76 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			}
 		],
-		"version": 7,
 		"gfVersion": "gf",
 		"stage": "philly",
 		"authors": "Kawai Sprite",
+		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:2659a1d) | Task: Resave All Songs",
+		"bpm": 165,
 		"difficulty": 1,
-		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:59bd83b) | Task: Resave All Songs"
+		"version": 8
 	}
 }

@@ -1,21 +1,22 @@
 {
 	"song": {
 		"song": "Pico",
-		"bpm": 150,
 		"needsVoices": true,
 		"player1": "bf",
-		"player2": "dad",
+		"player2": "pico",
 		"speed": 1.6,
 		"notes": [
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
 				"mustHitSection": true,
-				"sectionNotes": []
+				"sectionNotes": [],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -45,7 +46,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -81,7 +83,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -111,7 +114,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -147,7 +151,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -177,7 +182,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -213,7 +219,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -243,7 +250,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -279,7 +287,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -321,7 +330,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -363,7 +373,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -405,7 +416,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -447,7 +459,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -489,7 +502,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -531,7 +545,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -573,7 +588,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -615,7 +631,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -663,7 +680,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -711,7 +729,8 @@
 						200,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -759,7 +778,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -801,7 +821,8 @@
 						300,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -849,7 +870,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -897,7 +919,8 @@
 						200,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -951,7 +974,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -993,7 +1017,8 @@
 						300,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1041,7 +1066,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1089,7 +1115,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1137,7 +1164,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1185,7 +1213,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1233,7 +1262,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1281,7 +1311,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1329,7 +1360,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1377,7 +1409,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1449,7 +1482,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1527,7 +1561,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1599,7 +1634,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1695,7 +1731,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1743,7 +1780,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1791,7 +1829,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1839,7 +1878,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1887,7 +1927,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1935,7 +1976,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -1983,7 +2025,8 @@
 						200,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -2031,7 +2074,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -2073,7 +2117,8 @@
 						300,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -2121,7 +2166,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -2169,7 +2215,8 @@
 						200,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -2223,7 +2270,8 @@
 						0,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			},
 			{
 				"lengthInSteps": 16,
@@ -2265,14 +2313,16 @@
 						300,
 						""
 					]
-				]
+				],
+				"sectionEvents": []
 			}
 		],
-		"version": 7,
 		"gfVersion": "gf",
 		"stage": "philly",
 		"authors": "Kawai Sprite",
+		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:2659a1d) | Task: Resave All Songs",
+		"bpm": 150,
 		"difficulty": 2,
-		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:59bd83b) | Task: Resave All Songs"
+		"version": 8
 	}
 }

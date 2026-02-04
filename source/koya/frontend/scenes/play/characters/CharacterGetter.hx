@@ -26,6 +26,8 @@ class CharacterGetter
 				return new DaddyDearest(x, y, isPlayer);
 			case 'spooky':
 				return new Spooky(x, y, isPlayer);
+			case 'pico':
+				return new Pico(x, y, isPlayer);
 			case 'monster':
 				return new Monster(x, y, isPlayer);
 		}

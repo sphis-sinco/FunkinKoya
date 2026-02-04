@@ -13,6 +13,8 @@ class StageBackgroundGetter
 				return new MainStage(song, performInit);
 			case 'halloween':
 				return new Halloween(song, performInit);
+			case 'philly':
+				return new Philly(song, performInit);
 		}
 
 		return new StageBackground(song, 'Unknown', performInit);

@@ -25,8 +25,8 @@ class ResaveAllSongs
 				var myJSON = Song.loadFromJson(Highscore.formatToDifficulty(song.song.toLowerCase(), difficulty), song.song.toLowerCase());
 				var myJSONnofix = Song.loadFromJson(Highscore.formatToDifficulty(song.song.toLowerCase(), difficulty), song.song.toLowerCase(), false);
 
-				if (myJSON == null) continue;
-				if (myJSONnofix == null || myJSONnofix.version != null) continue;
+				// if (myJSON == null) continue;
+				// if (myJSONnofix == null || myJSONnofix.version != null) continue;
 
 				myJSON.difficulty = difficulty;
 
@@ -61,7 +61,7 @@ class ResaveAllSongs
 
 					case 'blammed', 'pico', 'philly':
 						myJSON.player1 = 'bf';
-						myJSON.player2 = 'dad';
+						myJSON.player2 = 'pico';
 						myJSON.gfVersion = 'gf';
 
 						myJSON.stage = 'philly';
