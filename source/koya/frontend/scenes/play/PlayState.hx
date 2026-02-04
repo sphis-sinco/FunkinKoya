@@ -592,7 +592,15 @@ class PlayState extends MusicBeatState
 				if (FlxG.sound.music.time == eventTime)
 				{
 					trace('Sending event($eventName, ${eventValue.split(EventParser.splitText)}) at $eventTime');
+
 					EventParser.sendEvent(eventName, eventValue);
+					songScript.sendEvent(eventName, eventValue.split(EventParser.splitText));
+					currentStage.sendEvent(eventName, eventValue.split(EventParser.splitText));
+
+					if (currentStage.dad != null) currentStage.dad.sendEvent(eventName, eventValue.split(EventParser.splitText));
+					if (currentStage.gf != null) currentStage.gf.sendEvent(eventName, eventValue.split(EventParser.splitText));
+					if (currentStage.boyfriend != null) currentStage.boyfriend.sendEvent(eventName, eventValue.split(EventParser.splitText));
+
 					events.remove(event);
 				}
 			}

@@ -202,4 +202,6 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 			char.cameraMoveToMe();
 		}
 	};
+
+	public function sendEvent(name:String, values:Array<String>) {}
 }
