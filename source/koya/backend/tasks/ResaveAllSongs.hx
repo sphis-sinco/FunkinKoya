@@ -54,7 +54,7 @@ class ResaveAllSongs
 
 					case 'milf', 'satin-panties', 'high':
 						myJSON.player1 = 'bf';
-						myJSON.player2 = 'dad';
+						myJSON.player2 = 'mom';
 						myJSON.gfVersion = 'gf';
 
 						myJSON.stage = 'limo';
