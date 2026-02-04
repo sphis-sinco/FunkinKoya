@@ -34,6 +34,9 @@ class EventParser
 
 		if (name == 'subtitle') subtitle(vals);
 		if (name == 'removesubtitles') subtitle(vals);
+
+		for (twn in subtitleTweens)
+			twn.active = true;
 	}
 
 	public static function subtitle(values:Array<String>)
@@ -62,24 +65,29 @@ class EventParser
 			text.y -= newText.height;
 
 		subtitles.add(newText);
-		var subTween:FlxTween = null;
-		subTween = FlxTween.tween(newText, {alpha: 0}, fadeTime,
+		var tweenNumber = subtitleTweens.length;
+		var delay = ((Conductor.crochet * (visibleFor ?? 2)) / 1000);
+		subtitleTweens.push(FlxTween.tween(newText, {alpha: 0}, fadeTime,
 			{
 				ease: FlxEase.quadInOut,
 				// last for 2 (default) beats then fades
-				startDelay: ((Conductor.crochet * visibleFor ?? 2) / 1000),
+				startDelay: delay,
 				onComplete: function(t) {
 					subtitles.members.remove(newText);
 					newText.destroy();
 
+					var subTween = subtitleTweens[tweenNumber];
 					subtitleTweens.remove(subTween);
 					subTween.destroy();
+				},
+				onStart: function(t) {
+					trace('started fadin sub');
 				}
-			});
-		subtitleTweens.push(subTween);
+			}));
 
 		trace(text);
-		trace(subTween.startDelay);
+		trace(fadeTime);
+		trace(delay);
 	}
 
 	public static function removesubtitles(values:Array<String>)
@@ -112,7 +120,15 @@ class EventParser
 		}
 	}
 
-	public static function pause() {}
+	public static function pause()
+	{
+		for (twn in subtitleTweens)
+			twn.active = false;
+	}
 
-	public static function unpause() {}
+	public static function unpause()
+	{
+		for (twn in subtitleTweens)
+			twn.active = true;
+	}
 }
