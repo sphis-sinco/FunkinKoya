@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.scenes.editors;
 
+import flixel.util.FlxSort;
 import koya.backend.plugins.Cursor;
 import koya.backend.songs.SongList;
 import koya.backend.play.Difficulty;
@@ -238,20 +239,21 @@ class ChartingState extends MusicBeatState
 		tab_group.add(removeButton);
 	}
 
+	public var eventRangeValue:Float = 40; // this should be in milliseconds right?
+
 	public function removeEvent()
 	{
 		var eventTime = getStrumTime(strumLine.y) + sectionStartTime();
-		var change:Float = 20; // this should be in milliseconds right?
 
 		var i = 0;
 		for (j in 0..._song.notes[curSection].sectionEvents.length)
 		{
-			trace(_song.notes[curSection].sectionEvents[j]);
+			// trace(_song.notes[curSection].sectionEvents[j]);
 			var eventVal:Dynamic = _song.notes[curSection].sectionEvents[j];
 			var eventValTime = eventVal[0];
 
-			var minCheck = eventValTime > (eventTime - change);
-			var maxCheck = eventValTime < (eventTime + change);
+			var minCheck = eventValTime > (eventTime - eventRangeValue);
+			var maxCheck = eventValTime < (eventTime + eventRangeValue);
 
 			if (minCheck && maxCheck)
 			{
@@ -260,7 +262,7 @@ class ChartingState extends MusicBeatState
 			}
 		}
 
-		if (i > 0) modifMade('Removed $i event(s) from range : ${eventTime - change} - ${eventTime + change}');
+		if (i > 0) modifMade('Removed $i event(s) from range : ${eventTime - eventRangeValue} - ${eventTime + eventRangeValue}');
 		updateGrid();
 	}
 
@@ -274,8 +276,26 @@ class ChartingState extends MusicBeatState
 		if (eventValue.trim() == '') return;
 
 		var event:Array<Dynamic> = [eventTime, eventName, eventValue];
-		_song.notes[curSection].sectionEvents.push(event);
-		modifMade('Added event($event)');
+		var addEvent:Bool = true;
+
+		for (j in 0..._song.notes[curSection].sectionEvents.length)
+		{
+			// trace(_song.notes[curSection].sectionEvents[j]);
+			var eventVal:Dynamic = _song.notes[curSection].sectionEvents[j];
+			var eventValTime = eventVal[0];
+
+			var minCheck = eventValTime > (eventTime - eventRangeValue);
+			var maxCheck = eventValTime < (eventTime + eventRangeValue);
+
+			if (minCheck && maxCheck) addEvent = false;
+		}
+
+		if (addEvent)
+		{
+			_song.notes[curSection].sectionEvents.push(event);
+
+			modifMade('Added event($event)');
+		}
 
 		updateGrid();
 	}
@@ -977,14 +997,36 @@ class ChartingState extends MusicBeatState
 		for (i in events)
 		{
 			var daStrumTime = i[0];
+			var eventName = i[1];
+			var eventValue = i[2];
+
+			var defaultPath:String = AssetPaths.image('events/default', 'ui');
+			var curEventPath:String = AssetPaths.image('events/$eventName', 'ui');
+			var curEventValuePath:String = AssetPaths.image('events/$eventName=$eventValue', 'ui');
 
 			var event:FunkinSprite = new FunkinSprite();
-			event.makeGraphic(GRID_SIZE, GRID_SIZE);
+			var loadedImg:Bool = true;
+
+			if (Assets.exists(curEventValuePath)) event.loadGraphic(curEventValuePath);
+			else if (Assets.exists(curEventPath)) event.loadGraphic(curEventPath);
+			else if (Assets.exists(defaultPath)) event.loadGraphic(defaultPath);
+			else
+			{
+				loadedImg = false;
+				event.makeGraphic(Math.round(GRID_SIZE / 2), Math.round(GRID_SIZE / 2));
+			}
+			if (loadedImg)
+			{
+				event.setGraphicSize(Math.round(GRID_SIZE / 2));
+				event.updateHitbox();
+			}
+
 			event.x = gridBG.x - event.width;
 			event.y = Math.floor(getYfromStrum((daStrumTime - sectionStartTime()) % (Conductor.stepCrochet * _song.notes[curSection].lengthInSteps)));
 
 			curRenderedEvents.add(event);
 		}
+		curRenderedEvents.sort(FlxSort.byY, FlxSort.DESCENDING);
 
 		updateHeads();
 	}
