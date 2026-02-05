@@ -54,7 +54,7 @@ class PreloaderScene extends FlxBasePreloader
 		_text.multiline = false;
 		_text.x = 2;
 		_text.y = _bmpBar.y - 24;
-		_text.width = 200;
+		_text.width = _text.defaultTextFormat.size * ((FlxG.width - (_text.x * 2)) / _text.defaultTextFormat.size);
 		_buffer.addChild(_text);
 
 		var bitmap = new Bitmap(new BitmapData(_width, _height, false, color_overlay));
