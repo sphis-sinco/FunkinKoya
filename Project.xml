@@ -65,7 +65,7 @@
 	<assets path="assets/backgrounds" exclude="*.ogg" if="web"/>
 	<assets path="assets/backgrounds" exclude="*.mp3" unless="web"/>
 
-	<assets path="CHANGELOG.md" rename='changelog.txt'/>
+	<assets path="CHANGELOG.md"/>
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
