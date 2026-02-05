@@ -7,6 +7,7 @@ From 0.4.1 and beyond the mod will be more focused on the technical side, if any
 - Updated README to adapt to the new direction
 
 ## Technical
+- Crash Handler code has been moved to `koya.backend.CrashHandler`
 - Removed `update_name.txt` : Update names are unrequired and can just be a community method of refering to an update
 
 # [0.4.0] - 2/4/2026
