@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/upload-artifact@v6.0.0
         with:
-          name: Windows Build
+          name: koya-windows
           path: export/release/windows/bin
 
   buildLinux:
@@ -47,7 +47,7 @@ jobs:
 
       - uses: actions/upload-artifact@v6.0.0
         with:
-          name: Linux Build
+          name: koya-linux
           path: export/release/linux/bin
 
   buildMac:
@@ -67,5 +67,5 @@ jobs:
 
       - uses: actions/upload-artifact@v6.0.0
         with:
-          name: MacOS Build
+          name: koya-mac
           path: export/release/macos/bin

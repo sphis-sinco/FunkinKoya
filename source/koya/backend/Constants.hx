@@ -27,20 +27,13 @@ class Constants
 		return '';
 		#end
 
-		var values = {update_name: Assets.getText('update_name.txt')};
-
-		var suffixSample:String = '';
-
-		suffixSample += ' : ::update_name::';
-		// suffixSample += ' : Hotfix';
-		// suffixSample += ' : Patch';
+		var suffix:String = '';
 
 		#if INCLUDE_GIT
-		suffixSample += ' (${Git.gimmeSuffix()})';
+		suffix += ' (${Git.gimmeSuffix()})';
 		#end
 
-		var template = new haxe.Template(suffixSample);
-		return template.execute(values);
+		return suffix;
 	}
 
 	public static var WINDOW_TITLE(get, never):String;
