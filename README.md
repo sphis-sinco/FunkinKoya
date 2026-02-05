@@ -12,6 +12,7 @@ https://forms.gle/mtppAAy6DdrZSjBH9
 ## Credits
 
 - Macohi : Lead Programmer, Artist, and Animator
+- Funniboi : Assistant Programmer
 
 ## Blogs
 

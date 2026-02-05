@@ -2,6 +2,13 @@
 
 From 0.4.1 and beyond the mod will be more focused on the technical side, if anything is to be added song or week wise it'll be by popular demand or just me being in the mood.
 
+## Misc
+- Added "funniboi" to README credits
+- Updated README to adapt to the new direction
+
+## Technical
+- Removed `update_name.txt` : Update names are unrequired and can just be a community method of refering to an update
+
 # [0.4.0] - 2/4/2026
 
 ## Added

@@ -153,6 +153,4 @@
 		<define name="ONE_ENDSONG_KEY" />
 		<define name="DEBUG_ASTERISK" unless="DISABLE_DEBUG_ASTERISK"/>
 	</section>
-
-	<assets path="update_name.txt" embed="true"/>
 </project>
