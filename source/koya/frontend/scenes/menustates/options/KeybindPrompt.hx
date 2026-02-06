@@ -32,17 +32,17 @@ class KeybindPrompt extends MusicBeatSubstate
 		add(bg);
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 
-		var yellowBG:FunkinSprite = new FunkinSprite();
-		yellowBG.makeGraphic(Math.round(FlxG.width / 2), Math.round(FlxG.height / 2), FlxColor.fromString('#FF99CC'));
-		yellowBG.alpha = 0;
-		yellowBG.scrollFactor.set();
-		yellowBG.screenCenter();
-		add(yellowBG);
-		FlxTween.tween(yellowBG, {alpha: 1}, 0.6, {ease: FlxEase.quartInOut});
+		var colorBit:FunkinSprite = new FunkinSprite();
+		colorBit.makeGraphic(Math.round(FlxG.width / 2), Math.round(FlxG.height / 2), FlxColor.fromString('#FF99CC'));
+		colorBit.alpha = 0;
+		colorBit.scrollFactor.set();
+		colorBit.screenCenter();
+		add(colorBit);
+		FlxTween.tween(colorBit, {alpha: 1}, 0.6, {ease: FlxEase.quartInOut});
 
 		promptText = new AtlasText(0, 0, 'Press anything(*) to bind to\n' + '“$keybind”' + '\n\n(*) Except for: ENTER or ESCAPE');
 
-		promptText.setPosition(yellowBG.x, yellowBG.y);
+		promptText.setPosition(colorBit.x, colorBit.y);
 		add(promptText);
 
 		promptText.alpha = 0;
