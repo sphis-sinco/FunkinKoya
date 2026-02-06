@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import flixel.FlxG;
 import koya.backend.modding.ModCore;
 
 class ModsMenuState extends OptionsMenuState
@@ -13,6 +14,8 @@ class ModsMenuState extends OptionsMenuState
 				else
 					ModCore.enabledMods.push(mod);
 			});
+
+			FlxG.log.add('$mod : ${ModCore.modMetadatas.get(mod)}');
 		}
 	}
 
