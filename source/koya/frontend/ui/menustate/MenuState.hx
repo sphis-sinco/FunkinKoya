@@ -167,18 +167,34 @@ class MenuState extends MusicBeatState
 	public function select(change:Int = 0)
 	{
 		currentSelection += change;
-		if (change != 0) FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 		if (currentSelection < 0) currentSelection = 0;
 		if (currentSelection >= itemList.length) currentSelection = itemList.length - 1;
 
-		if (itemList[currentSelection] == '' || itemList[currentSelection] == null)
-		{
-			var positive:Bool = change > 0 && (itemList.length - 1) > currentSelection + change;
-			var negative:Bool = change < 0 && currentSelection + change > 0;
+		var aSplitterItem = function() {
+			var positive:Bool = (change > 0) && (itemList.length - 1) >= (currentSelection + change);
+			var negative:Bool = (change < 0) && (currentSelection + change) >= 0;
 
-			if (positive || negative) select(change);
+			trace(itemList[currentSelection]);
+
+			#if FLX_DEBUG
+			trace('positive : $positive');
+			trace(' * change: $change');
+			trace(' * itemList.length - 1: ${itemList.length - 1}');
+			trace(' * currentSelection + change: ${currentSelection + change}');
+			trace('negative : $negative');
+			trace(' * change: $change');
+			trace(' * currentSelection + change: ${currentSelection + change}');
+			#end
+
+			if (positive || negative)
+			{
+				select(change);
+				return;
+			}
 		}
+
+		if (itemList[currentSelection] == '' || itemList[currentSelection] == null) aSplitterItem();
 
 		if (!text) for (menuItem in itemsSpriteGroup.members)
 		{
@@ -188,11 +204,13 @@ class MenuState extends MusicBeatState
 
 			if (menuItem.ID == currentSelection) menuItem.playAnim('selected');
 		}
-		if (text) for (menuItem in itemsSpriteGroup.members)
+		if (text) for (menuItem in itemsTextGroup.members)
 		{
 			if (menuType == Horizontal) menuItem.screenCenter(Y);
 			if (menuType == Vertical) menuItem.screenCenter(X);
 		}
+
+		if (change != 0) FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 	}
 
 	public function accepted(item:String)
