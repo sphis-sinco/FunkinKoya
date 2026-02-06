@@ -4,6 +4,7 @@
 
 This is the modding stuff that's important to know
 
+- The append system only works with `songs/data/weekList.txt` / `koya.backend.AssetTextList` entries right now
 - A mod's `meta.json` file can have / require these fields:
 	- `name` (optional) : Display name of the mod
 	- `authors` (optional) : List of authors
