@@ -34,6 +34,7 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Yoinked `AtlasText` from base funkin and replaced `Alphabet`
 - Added `keybinds` to `koya.save.Save` (not a savefield, just a general field to help do things easy)
 - Added `-DMODMENU` define : Sends you to the mod menu if `-DMOD_SUPPORT` is enabled
 - Removed case-sensitivity for week JSON loading

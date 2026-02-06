@@ -11,6 +11,8 @@ import flixel.util.FlxColor;
 import flixel.FlxG;
 import koya.frontend.ui.menustate.MenuState;
 
+using StringTools;
+
 class OptionsMenuState extends MenuState
 {
 	public var itemListValues:Map<String, Dynamic> = [];

@@ -1,14 +1,16 @@
 package koya.frontend.scenes.menustates.options;
 
-import koya.frontend.ui.Alphabet;
+import koya.frontend.ui.AtlasText;
 import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.tweens.FlxTween;
 
+using StringTools;
+
 class KeybindPrompt extends MusicBeatSubstate
 {
-	var promptText:Alphabet;
+	var promptText:AtlasText;
 
 	var keybind:String;
 
@@ -30,8 +32,26 @@ class KeybindPrompt extends MusicBeatSubstate
 		add(bg);
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 
-		promptText = new Alphabet(0, 0, 'Press anything to bind "$keybind"');
+		var yellowBG:FunkinSprite = new FunkinSprite();
+		yellowBG.makeGraphic(Math.round(FlxG.width / 2), Math.round(FlxG.height / 2), FlxColor.YELLOW);
+		yellowBG.alpha = 0;
+		yellowBG.scrollFactor.set();
+		yellowBG.screenCenter();
+		// add(yellowBG);
+		FlxTween.tween(yellowBG, {alpha: 1}, 0.6, {ease: FlxEase.quartInOut});
+
+		promptText = new AtlasText(0, 0, 'Press anything* to bind to\n' + '"$keybind"' + '\n\n* Except for: ENTER or ESCAPE');
+		
+		promptText.scale.set(0.5,0.5);
+		promptText.updateHitbox();
+
 		promptText.screenCenter();
+		// promptText.x -= promptText.width;
 		add(promptText);
+		
+		promptText.alpha = 0;
+		promptText.color = FlxColor.WHITE;
+		
+		FlxTween.tween(promptText, {alpha: 1}, 0.8, {ease: FlxEase.quartInOut});
 	}
 }

@@ -26,7 +26,7 @@ class MenuState extends MusicBeatState
 
 	public var itemList:Array<String> = [];
 	public var itemsSpriteGroup:FlxTypedGroup<MenuItem>;
-	public var itemsTextGroup:FlxTypedGroup<Alphabet>;
+	public var itemsTextGroup:FlxTypedGroup<AtlasText>;
 
 	public var currentSelection:Int = 0;
 
@@ -62,7 +62,7 @@ class MenuState extends MusicBeatState
 		itemsSpriteGroup = new FlxTypedGroup<MenuItem>();
 		add(itemsSpriteGroup);
 
-		itemsTextGroup = new FlxTypedGroup<Alphabet>();
+		itemsTextGroup = new FlxTypedGroup<AtlasText>();
 		add(itemsTextGroup);
 
 		var i = 0;
@@ -79,7 +79,7 @@ class MenuState extends MusicBeatState
 
 	public function makeText(item:String, i:Int)
 	{
-		var menuItem = new Alphabet((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item, true);
+		var menuItem = new AtlasText((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item, BOLD);
 
 		if (menuType == Horizontal) menuItem.screenCenter(Y);
 		if (menuType == Vertical) menuItem.screenCenter(X);

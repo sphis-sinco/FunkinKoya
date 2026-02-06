@@ -45,25 +45,7 @@ class Save
 
 	public static var enabledMods:SaveField<Array<String>>;
 
-	public static var keybinds:Array<SaveField<String>> = [
-		keybind_reset,
-		keybind_ui_left_alt,
-		keybind_ui_down_alt,
-		keybind_ui_up_alt,
-		keybind_ui_right_alt,
-		keybind_ui_left,
-		keybind_ui_down,
-		keybind_ui_up,
-		keybind_ui_right,
-		keybind_note_left_alt,
-		keybind_note_down_alt,
-		keybind_note_up_alt,
-		keybind_note_right_alt,
-		keybind_note_left,
-		keybind_note_down,
-		keybind_note_up,
-		keybind_note_right,
-	];
+	public static var keybinds:Array<SaveField<String>> = [];
 
 	static function initFields()
 	{
@@ -96,6 +78,26 @@ class Save
 		keybind_note_down = new SaveField<String>('keybind_note_down', 'DOWN');
 		keybind_note_up = new SaveField<String>('keybind_note_up', 'UP');
 		keybind_note_right = new SaveField<String>('keybind_note_right', 'RIGHT');
+
+		keybinds = [
+			keybind_reset,
+			keybind_ui_left_alt,
+			keybind_ui_down_alt,
+			keybind_ui_up_alt,
+			keybind_ui_right_alt,
+			keybind_ui_left,
+			keybind_ui_down,
+			keybind_ui_up,
+			keybind_ui_right,
+			keybind_note_left_alt,
+			keybind_note_down_alt,
+			keybind_note_up_alt,
+			keybind_note_right_alt,
+			keybind_note_left,
+			keybind_note_down,
+			keybind_note_up,
+			keybind_note_right,
+		];
 
 		preferences = new SaveField<Preferences>('preferences',
 			{

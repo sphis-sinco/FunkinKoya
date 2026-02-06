@@ -8,7 +8,7 @@ import koya.frontend.scenes.play.songs.SongClass;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.text.FlxText;
-import koya.frontend.ui.Alphabet;
+import koya.frontend.ui.AtlasText;
 import koya.frontend.scenes.menustates.*;
 import koya.frontend.scenes.freeplay.FreeplayState;
 import koya.backend.AssetPaths;
@@ -22,7 +22,7 @@ using StringTools;
 
 class PauseSubState extends MusicBeatSubstate
 {
-	var grpMenuShit:FlxTypedGroup<Alphabet>;
+	var grpMenuShit:FlxTypedGroup<AtlasText>;
 
 	var menuItems:Array<String> = ['resume', 'restart song'];
 	var curSelected:Int = 0;
@@ -65,7 +65,7 @@ class PauseSubState extends MusicBeatSubstate
 		bg.scrollFactor.set();
 		add(bg);
 
-		grpMenuShit = new FlxTypedGroup<Alphabet>();
+		grpMenuShit = new FlxTypedGroup<AtlasText>();
 		add(grpMenuShit);
 
 		topText = new FlxTypedGroup<FlxText>();
@@ -73,9 +73,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...menuItems.length)
 		{
-			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
-			songText.isMenuItem = true;
-			songText.targetY = i;
+			var songText:AtlasText = new AtlasText(0, (70 * i) + 30, menuItems[i], BOLD);
 			grpMenuShit.add(songText);
 		}
 
@@ -184,12 +182,12 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (item in grpMenuShit.members)
 		{
-			item.targetY = bullShit - curSelected;
+			// item.targetY = bullShit - curSelected;
 			bullShit++;
 
 			item.alpha = 0.6;
 
-			if (item.targetY == 0) item.alpha = 1;
+			// if (item.targetY == 0) item.alpha = 1;
 		}
 	}
 }
