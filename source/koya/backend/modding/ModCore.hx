@@ -15,7 +15,7 @@ class ModCore
 	public static var enabledMods(get, never):Array<String>;
 
 	static function get_enabledMods():Array<String>
-		return Save.enabledMods.get();
+		return Save.enabledMods?.get() ?? [];
 
 	public static var modMetadatas:Map<String, ModMetadata> = [];
 

@@ -31,6 +31,7 @@ This is the modding stuff that's important to know
 
 - `koya.backend.CoolUtil` now has a `alert(title:String, msg:String)` function : Makes an alert obviously lol
 - Added `-DMOD_SUPPORT` define : Auto-enabled on desktop builds and enables mod support as the name suggests
+	- When disabled all it really does is disable the asset replacements and asset searches
 - Added `koya.backend.modding.ModCore` : Manages the backend mod stuff like initalization
 - Split apart MenuState flicker to its own function (Which includes the wait to run `accept` cause yes.)
 - Added `-DOPTIONSMENU` define
