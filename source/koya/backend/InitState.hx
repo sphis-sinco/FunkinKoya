@@ -10,7 +10,7 @@ import koya.frontend.scenes.*;
 import koya.frontend.scenes.web.*;
 import koya.frontend.scenes.play.*;
 import koya.frontend.scenes.play.scenes.*;
-import koya.frontend.scenes.play.scenes.menustates.*;
+import koya.frontend.scenes.menustates.*;
 import koya.frontend.scenes.play.scenes.freeplay.*;
 import koya.frontend.scenes.play.scenes.editors.*;
 import koya.backend.tasks.*;
