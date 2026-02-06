@@ -4,7 +4,7 @@ class WeekList extends AssetTextList
 {
 	public function new()
 	{
-		super('data/weekList.txt', 'songs');
+		super(AssetPaths.txt('data/weekList', 'songs'));
 	}
 
 	override function getEntryFilePath(entry:String):String
