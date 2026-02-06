@@ -45,6 +45,26 @@ class Save
 
 	public static var enabledMods:SaveField<Array<String>>;
 
+	public static var keybinds:Array<SaveField<String>> = [
+		keybind_reset,
+		keybind_ui_left_alt,
+		keybind_ui_down_alt,
+		keybind_ui_up_alt,
+		keybind_ui_right_alt,
+		keybind_ui_left,
+		keybind_ui_down,
+		keybind_ui_up,
+		keybind_ui_right,
+		keybind_note_left_alt,
+		keybind_note_down_alt,
+		keybind_note_up_alt,
+		keybind_note_right_alt,
+		keybind_note_left,
+		keybind_note_down,
+		keybind_note_up,
+		keybind_note_right,
+	];
+
 	static function initFields()
 	{
 		version = new SaveField<Null<Int>>('version', SAVE_VERSION);

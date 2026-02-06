@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import koya.frontend.scenes.menustates.options.KeybindPrompt;
 import flixel.util.FlxTimer;
 import flixel.effects.FlxFlicker;
 import flixel.sound.FlxSound;
@@ -99,6 +100,15 @@ class OptionsMenuState extends MenuState
 		addItem('Chart Editor Autosave', Save.preferences.get().chartEditorAutosave, function() {
 			Save.preferences.get().chartEditorAutosave = !Save.preferences.get().chartEditorAutosave;
 		});
+
+		addItem(null, null, null);
+
+		for (keybind in Save.keybinds)
+		{
+			addItem(keybind.field, keybind.get(), function() {
+				openSubState(new KeybindPrompt(keybind.field));
+			});
+		}
 	}
 
 	override function acceptedFlicker(confirmMenu:FlxSound, item:String)

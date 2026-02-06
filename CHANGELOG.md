@@ -23,6 +23,7 @@ This is the modding stuff that's important to know
 
 ## General
 
+- ADDED KEYBIND CHANGING! (via options menu!)
 - Added Mods Menu
 - The Chart Editor autosave is now toggleable via the `Chart Editor Autosave` option
 - Added `enabledMods` save field
@@ -33,6 +34,7 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Added `keybinds` to `koya.save.Save` (not a savefield, just a general field to help do things easy)
 - Added `-DMODMENU` define : Sends you to the mod menu if `-DMOD_SUPPORT` is enabled
 - Removed case-sensitivity for week JSON loading
 - Added alert for when a week could not be loaded
