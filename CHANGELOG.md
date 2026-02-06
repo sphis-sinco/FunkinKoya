@@ -19,6 +19,7 @@ From 0.4.1 and beyond the mod will be more focused on the technical side, if any
 
 ## Technical
 
+- Fixed notes passing by not being counted as misses
 - `-Dindev` now enables `FLX_DEBUG`
 - Crash Handler code has been moved to `koya.backend.CrashHandler`
 - Removed `update_name.txt` and support for it : Update names are unrequired and can just be a community method of refering to an update
