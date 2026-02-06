@@ -58,7 +58,7 @@ class InitState extends FlxState
 			{
 				throw 'F3 + C';
 			}
-			if (FlxG.keys.pressed.F3 && FlxG.keys.pressed.R)
+			if (FlxG.keys.pressed.F3 && FlxG.keys.justReleased.R)
 			{
 				ModCore.reloadMods();
 			}
