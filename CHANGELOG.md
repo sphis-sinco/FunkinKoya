@@ -2,7 +2,7 @@
 
 ## Technical
 
-- Added support for "Text Menu States" ()
+- Added support for "Text Menu States" : Menus using the Alphabet Text
 - `MainMenuState` and `StoryModeState` have been moved to `koya.frontend.scenes.menustates`
 - Removed `FlxG.log.add` from `koya.frontend.scenes.play.ComboNumbers`
 - Added `koya.backend.KoyaAssets` : Assets class to help do `lime.utils.Assets` functions but support the filesystem for mods
