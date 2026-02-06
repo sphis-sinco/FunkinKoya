@@ -2,39 +2,44 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app 
-		title="Funkin' Koya" 
-		file="Koya" 
-		packageName="com.macohi.koya" 
-		main="Main" 
-		version="0.5.0" 
-		company="Macohi" 
+	<app
+		title="Funkin' Koya"
+		file="Koya"
+		packageName="com.macohi.koya"
+		main="Main"
+		version="0.5.0"
+		company="Macohi"
 	/>
 
-	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
+	<!--The
+	flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a
+	html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
 	<!-- <app preloader="Preloader" resizable="true" /> -->
 	<app preloader="koya.frontend.scenes.PreloaderScene" />
 
-	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
+	<!--Minimum
+	without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
 	<set name="SWF_VERSION" value="11.8" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
-	<!--These window settings apply to all targets-->
+	<!--These
+	window settings apply to all targets-->
 	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
 
 	<!--Desktop-specific-->
-	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false" />
 
 	<!--Mobile-specific-->
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
 
 	<!--Switch-specific-->
-	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
+	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0"
+		resizable="true" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
@@ -47,25 +52,39 @@
 
 	<assets path='dev/readme.txt' rename='do NOT readme.txt' />
 
-	<assets path="assets/main" rename="assets" exclude="*.ogg" if="web"/>
-	<assets path="assets/main" rename="assets" exclude="*.mp3" unless="web"/>
+	<section label="assets/**">
 
-	<assets path="assets/ui" exclude="*.ogg" if="web"/>
-	<assets path="assets/ui" exclude="*.mp3" unless="web"/>
+		<assets path="assets/main" rename="assets" exclude="*.ogg" if="web" />
+		<assets path="assets/main" rename="assets" exclude="*.mp3" unless="web" />
 
-	<assets path="assets/touchhere" exclude="*.ogg" if="web"/>
-	<assets path="assets/touchhere" exclude="*.mp3" unless="web"/>
+		<assets path="assets/ui" exclude="*.ogg" if="web" />
+		<assets path="assets/ui" exclude="*.mp3" unless="web" />
 
-	<assets path="assets/songs" exclude="*.ogg" if="web"/>
-	<assets path="assets/songs" exclude="*.mp3" unless="web"/>
-	
-	<assets path="assets/characters" exclude="*.ogg" if="web"/>
-	<assets path="assets/characters" exclude="*.mp3" unless="web"/>
-	
-	<assets path="assets/backgrounds" exclude="*.ogg" if="web"/>
-	<assets path="assets/backgrounds" exclude="*.mp3" unless="web"/>
+		<assets path="assets/touchhere" exclude="*.ogg" if="web" />
+		<assets path="assets/touchhere" exclude="*.mp3" unless="web" />
 
-	<assets path="CHANGELOG.md"/>
+		<assets path="assets/songs" exclude="*.ogg" if="web" />
+		<assets path="assets/songs" exclude="*.mp3" unless="web" />
+
+		<assets path="assets/characters" exclude="*.ogg" if="web" />
+		<assets path="assets/characters" exclude="*.mp3" unless="web" />
+
+		<assets path="assets/backgrounds" exclude="*.ogg" if="web" />
+		<assets path="assets/backgrounds" exclude="*.mp3" unless="web" />
+
+	</section>
+
+	<section label="mods">
+		<assets path="mods" exclude="*.ogg" if="web" />
+		<assets path="mods" exclude="*.mp3" unless="web" />
+
+		<section if="debug || indev">
+			<assets path="example_mods" rename="mods" exclude="*.ogg" if="web" />
+			<assets path="example_mods" rename="mods" exclude="*.mp3" unless="web" />
+		</section>
+	</section>
+
+	<assets path="CHANGELOG.md" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -73,61 +92,80 @@
 	<haxelib name="flixel-animate" />
 	<haxedev set='webgl' />
 
-	<!--In case you want to use the addons package-->
+	<!--In
+	case you want to use the addons package-->
 	<haxelib name="flixel-addons" />
 	<haxelib name="hscript" />
 
-	<!--In case you want to use the ui package-->
+	<!--In
+	case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
 
-	<!--In case you want to use nape with flixel-->
-	<!--<haxelib name="nape-haxe4" />-->
+	<!--In
+	case you want to use nape with flixel-->
+	<!--<haxelib
+	name="nape-haxe4" />-->
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
-	<!--Enable the Flixel core recording system-->
-	<!--<haxedef name="FLX_RECORD" />-->
+	<!--Enable
+	the Flixel core recording system-->
+	<!--<haxedef
+	name="FLX_RECORD" />-->
 
-	<!--Disable the right and middle mouse buttons-->
+	<!--Disable
+	the right and middle mouse buttons-->
 	<!-- <haxedef name="FLX_NO_MOUSE_ADVANCED" /> -->
 
-	<!--Disable the native cursor API on Flash-->
-	<!--<haxedef name="FLX_NO_NATIVE_CURSOR" />-->
+	<!--Disable
+	the native cursor API on Flash-->
+	<!--<haxedef
+	name="FLX_NO_NATIVE_CURSOR" />-->
 
-	<!--Optimise inputs, be careful you will get null errors if you don't use conditionals in your game-->
+	<!--Optimise
+	inputs, be careful you will get null errors if you don't use conditionals in your game-->
 	<haxedef name="FLX_NO_MOUSE" if="mobile" />
 	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
 	<haxedef name="FLX_NO_TOUCH" if="desktop" />
-	<!--<haxedef name="FLX_NO_GAMEPAD" />-->
+	<!--<haxedef
+	name="FLX_NO_GAMEPAD" />-->
 
-	<!--Disable the Flixel core sound tray-->
-	<!--<haxedef name="FLX_NO_SOUND_TRAY" />-->
+	<!--Disable
+	the Flixel core sound tray-->
+	<!--<haxedef
+	name="FLX_NO_SOUND_TRAY" />-->
 
-	<!--Disable the Flixel sound management code-->
-	<!--<haxedef name="FLX_NO_SOUND_SYSTEM" />-->
+	<!--Disable
+	the Flixel sound management code-->
+	<!--<haxedef
+	name="FLX_NO_SOUND_SYSTEM" />-->
 
-	<!--Disable the Flixel core focus lost screen-->
+	<!--Disable
+	the Flixel core focus lost screen-->
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 
-	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
+	<!--Disable
+	the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug || indev" />
 
-	<!--Enable this for Nape release builds for a serious peformance improvement-->
+	<!--Enable
+	this for Nape release builds for a serious peformance improvement-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
 	<!-- _________________________________ Custom _______________________________ -->
 
-	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
-	
-	<icon path="dev/icon16.png" size='16'/>
-	<icon path="dev/icon32.png" size='32'/>
-	<icon path="dev/icon64.png" size='64'/>
-	<icon path="dev/iconOG.png"/>
+	<!--Place
+	custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
 
-	<haxeflag name="--dce full" if="release"/>
+	<icon path="dev/icon16.png" size='16' />
+	<icon path="dev/icon32.png" size='32' />
+	<icon path="dev/icon64.png" size='64' />
+	<icon path="dev/iconOG.png" />
+
+	<haxeflag name="--dce full" if="release" />
 
 	<!-- <define name="FREEPLAY_BG_GRID" if="debug" unless="DISABLE_FREEPLAY_BG_GRID"/> -->
 
@@ -140,10 +178,10 @@
 		<!-- <define name="DISABLE_DEBUG_ASTERISK" /> -->
 	</section>
 
-	<define name="FIXSWAGVERSION_TRACES" unless="DIABLE_FIXSWAGVERSION_TRACES"/>
-	
+	<define name="FIXSWAGVERSION_TRACES" unless="DIABLE_FIXSWAGVERSION_TRACES" />
+
 	<define name="CRASH_HANDLER" if="desktop" />
-	
+
 	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_TRACE" if="CRASH_HANDLER" />
@@ -151,6 +189,6 @@
 	<section if="debug || indev">
 		<define name="INCLUDE_GIT" />
 		<define name="ONE_ENDSONG_KEY" />
-		<define name="DEBUG_ASTERISK" unless="DISABLE_DEBUG_ASTERISK"/>
+		<define name="DEBUG_ASTERISK" unless="DISABLE_DEBUG_ASTERISK" />
 	</section>
 </project>

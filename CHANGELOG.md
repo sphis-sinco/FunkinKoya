@@ -2,6 +2,8 @@
 
 ## Misc
 
+- Added `mods` folder
+- [DEBUG] Added `example_mods` folder
 - Some fixes and tweaks to the README were made
 
 # [0.4.1] - 2/5/2026
