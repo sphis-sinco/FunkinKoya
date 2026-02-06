@@ -5,6 +5,7 @@ From 0.4.1 and beyond the mod will be more focused on the technical side, if any
 ## Visual
 - [WEB] Fixed Watermark Font (its not VCR but its better then the _sans font (I think that's what it is?))
 <!-- It being web only makes me mad -->
+<!-- WEB DOESNT EVEN FUCKING WORK PROPERLY! -->
 - [WEB] Added Custom Preloader state (`koya.frontend.scenes.PreloaderScene`)
 
 ## Misc
