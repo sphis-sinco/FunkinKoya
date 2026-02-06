@@ -3,16 +3,16 @@
 From 0.4.1 and beyond the mod will be more focused on the technical side, if anything is to be added song or week wise it'll be by popular demand or just me being in the mood.
 
 ## Visual
+
 - Freeplay now displays the song rank
 - Fixed Monster's Composer field being Kawai Sprite
 - Added "Combo breaks" section to score text
-	- It shows you the total combo breaks in story mode
+  - It shows you the total combo breaks in story mode
 - Added Pico health icon
-- [WEB] Fixed Watermark Font (its not VCR but its better then the _sans font (I think that's what it is?))
-<!-- It being web only makes me mad -->
-<!-- WEB DOESNT EVEN FUCKING WORK PROPERLY! -->
+- [WEB] Fixed Watermark Font (its not VCR but its better then the \_sans font (I think that's what it is?))
+  <!-- It being web only makes me mad -->
+  <!-- WEB DOESNT EVEN FUCKING WORK PROPERLY! -->
 - [WEB] Added Custom Preloader state (`koya.frontend.scenes.PreloaderScene`)
-
 
 ## Misc
 
