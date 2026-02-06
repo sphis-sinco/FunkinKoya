@@ -79,5 +79,8 @@ class ModCore
 
 			trace(' * $name$version for api : ${meta.api_version}');
 		}
+
+		for (mod in enabledMods)
+			if (!allMods.contains(mod)) enabledMods.remove(mod);
 	}
 }
