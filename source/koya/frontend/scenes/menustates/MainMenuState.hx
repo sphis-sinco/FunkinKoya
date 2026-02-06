@@ -10,7 +10,6 @@ class MainMenuState extends MenuState
 	{
 		super('mainmenu/', Vertical);
 
-		this.text = true;
 		itemList = [
 			'story mode',
 			'freeplay',
