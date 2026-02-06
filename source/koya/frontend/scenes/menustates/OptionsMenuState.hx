@@ -1,19 +1,24 @@
 package koya.frontend.scenes.menustates;
 
+import koya.backend.save.Preferences;
+import koya.backend.save.Save;
+import koya.backend.AssetPaths;
+import flixel.text.FlxText;
+import flixel.util.FlxColor;
+import flixel.FlxG;
 import koya.frontend.ui.menustate.MenuState;
 
 class OptionsMenuState extends MenuState
 {
-	public var values(get, never):Map<String, Dynamic>;
+	public var itemListValues:Map<String, Dynamic> = [];
+	public var itemListFunctions:Map<String, Dynamic> = [];
 
-	function get_values():Map<String, Dynamic>
+	public function addItem(item:String, value:Dynamic, method:Dynamic)
 	{
-		var vals:Map<String, Dynamic> = [];
+		this.itemList.push(item);
 
-		vals.set('fpsCounter', true);
-		vals.set('chart editor autosave', true);
-
-		return vals;
+		if (item != null && value != null) this.itemListValues.set(item, value);
+		if (item != null && method != null) this.itemListFunctions.set(item, method);
 	}
 
 	override public function new()
@@ -21,17 +26,62 @@ class OptionsMenuState extends MenuState
 		super('', Vertical);
 
 		this.itemIncOffset = 80;
-		this.itemList = ['fpsCounter', null, 'chart editor autosave'];
+
+		reloadItems();
+
 		this.text = true;
 	}
 
-	override function select(change:Int = 0)
-	{
-		super.select(change);
+	var valueBG:FunkinSprite;
+	var valueText:FlxText;
 
-		if (text) for (item in itemsTextGroup.members)
-		{
-			item.text = '${this.itemList[item.ID]} | ${this.values.get(this.itemList[item.ID])}';
-		}
+	override function create()
+	{
+		super.create();
+
+		valueBG = new FunkinSprite();
+		valueBG.makeGraphic(FlxG.width, Math.round(FlxG.height / 4), FlxColor.BLACK);
+		add(valueBG);
+
+		valueBG.screenCenter();
+		valueBG.y = FlxG.height - valueBG.height;
+
+		valueBG.alpha = 0.6;
+
+		valueText = new FlxText(valueBG.x, valueBG.y, valueBG.width, 'Lorem', 32);
+		add(valueText);
+		valueText.setFormat(AssetPaths.font('vcr.ttf'), 32, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		valueText.borderSize = 3;
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		valueText.text = '${this.itemList[currentSelection]} : ${this.itemListValues.get(this.itemList[currentSelection])}';
+		valueText.y = valueBG.getGraphicMidpoint().y - (valueText.height / 2);
+	}
+
+	override function accept(item:String)
+	{
+		super.accept(item);
+
+		if (itemListFunctions.exists(item)) itemListFunctions.get(item)();
+	}
+
+	public function reloadItems()
+	{
+		this.itemList = [];
+		this.itemListValues = [];
+
+		addItem('FPS Counter', Save.preferences.get().fpsCounter, function() {
+			Save.preferences.get().fpsCounter = !Save.preferences.get().fpsCounter;
+		});
+		
+		addItem(null, null, null);
+
+		addItem('Chart Editor Autosave', Save.preferences.get().chartEditorAutosave, function() {
+			Save.preferences.get().chartEditorAutosave = !Save.preferences.get().chartEditorAutosave;
+		});
 	}
 }

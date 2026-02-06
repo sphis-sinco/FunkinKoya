@@ -2,6 +2,9 @@
 
 ## General
 
+- Added `preferences` save field with the following fields
+	- `fpsCounter` : Toggles the fps counter
+	- `chartEditorAutosave` : Toggles the chart editor autosaving
 - Added Options Menu
 
 ## Technical

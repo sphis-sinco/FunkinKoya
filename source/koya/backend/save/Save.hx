@@ -9,7 +9,7 @@ import koya.backend.songs.Song.ChartSwagSong;
 
 class Save
 {
-	public static var SAVE_VERSION:Null<Int> = 3;
+	public static var SAVE_VERSION:Null<Int> = 4;
 
 	public static var version:SaveField<Null<Int>>;
 
@@ -40,6 +40,8 @@ class Save
 	public static var keybind_note_down:SaveField<String>;
 	public static var keybind_note_up:SaveField<String>;
 	public static var keybind_note_right:SaveField<String>;
+
+	public static var preferences:SaveField<Preferences>;
 
 	static function initFields()
 	{
@@ -72,6 +74,11 @@ class Save
 		keybind_note_down = new SaveField<String>('keybind_note_down', 'DOWN');
 		keybind_note_up = new SaveField<String>('keybind_note_up', 'UP');
 		keybind_note_right = new SaveField<String>('keybind_note_right', 'RIGHT');
+
+		preferences = new SaveField<Preferences>('preferences', {
+			fpsCounter: true,
+			chartEditorAutosave: true,
+		});
 	}
 
 	public static function init()

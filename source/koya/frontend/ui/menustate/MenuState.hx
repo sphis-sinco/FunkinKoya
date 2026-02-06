@@ -177,16 +177,6 @@ class MenuState extends MusicBeatState
 
 			trace(itemList[currentSelection]);
 
-			#if FLX_DEBUG
-			trace('positive : $positive');
-			trace(' * change: $change');
-			trace(' * itemList.length - 1: ${itemList.length - 1}');
-			trace(' * currentSelection + change: ${currentSelection + change}');
-			trace('negative : $negative');
-			trace(' * change: $change');
-			trace(' * currentSelection + change: ${currentSelection + change}');
-			#end
-
 			if (positive || negative)
 			{
 				select(change);
