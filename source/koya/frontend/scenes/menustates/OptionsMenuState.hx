@@ -105,6 +105,8 @@ class OptionsMenuState extends MenuState
 
 		for (keybind in Save.keybinds)
 		{
+			if (keybind == null) continue;
+
 			addItem(keybind.field, keybind.get(), function() {
 				openSubState(new KeybindPrompt(keybind.field));
 			});
