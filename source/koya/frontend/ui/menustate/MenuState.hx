@@ -175,11 +175,11 @@ class MenuState extends MusicBeatState
 			var positive:Bool = (change > 0) && (itemList.length - 1) >= (currentSelection + change);
 			var negative:Bool = (change < 0) && (currentSelection + change) >= 0;
 
-			trace(itemList[currentSelection]);
+			// trace(itemList[currentSelection]);
 
 			if (positive || negative)
 			{
-				trace('skip');
+				// trace('skip');
 				select(change);
 				return;
 			}
