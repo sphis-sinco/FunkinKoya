@@ -5,7 +5,7 @@ import koya.frontend.scenes.play.scenes.*;
 import koya.frontend.scenes.play.scenes.editors.*;
 import haxe.Json;
 import koya.backend.songs.Week;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import koya.frontend.scenes.play.songs.SongClass;
 import koya.frontend.scenes.freeplay.FreeplayState;
 import koya.backend.play.*;
@@ -43,7 +43,7 @@ class PlayState extends MusicBeatState
 	{
 		STORYMODE_PLAYLIST = [];
 
-		if (!Assets.exists(weekPath))
+		if (!KoyaAssets.exists(weekPath))
 		{
 			trace('Missing week: ' + weekPath);
 			return;
@@ -53,7 +53,7 @@ class PlayState extends MusicBeatState
 
 		try
 		{
-			var weekFile:Week = Json.parse(Assets.getText(weekPath));
+			var weekFile:Week = Json.parse(KoyaAssets.getText(weekPath));
 
 			for (song in weekFile.songs)
 			{
@@ -246,9 +246,9 @@ class PlayState extends MusicBeatState
 			songScript.countdownTick(swagCounter);
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ready', "set", "go"]);
+			introKoyaAssets.set('default', ['ready', "set", "go"]);
 
-			var introAlts:Array<String> = introAssets.get('default');
+			var introAlts:Array<String> = introKoyaAssets.get('default');
 			var altSuffix:String = "";
 
 			switch (swagCounter)

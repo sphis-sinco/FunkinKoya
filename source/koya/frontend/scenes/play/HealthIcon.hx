@@ -1,6 +1,6 @@
 package koya.frontend.scenes.play;
 
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import koya.backend.AssetPaths;
 import flixel.FlxSprite;
 
@@ -28,7 +28,7 @@ class HealthIcon extends FunkinSprite
 
 	function set_char(char:String):String
 	{
-		if (!Assets.exists(AssetPaths.image('healthIcons/$char', 'characters'))) char = 'face';
+		if (!KoyaAssets.exists(AssetPaths.image('healthIcons/$char', 'characters'))) char = 'face';
 
 		frames = AssetPaths.fromSparrow('healthIcons/$char', 'characters');
 

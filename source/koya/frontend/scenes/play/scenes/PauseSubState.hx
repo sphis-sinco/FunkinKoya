@@ -1,7 +1,7 @@
 package koya.frontend.scenes.play.scenes;
 
 import koya.backend.songs.Song;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import koya.backend.Highscore;
 import koya.backend.play.Difficulty;
 import koya.frontend.scenes.play.songs.SongClass;
@@ -48,7 +48,7 @@ class PauseSubState extends MusicBeatSubstate
 			var song = PlayState.SONG.song.toLowerCase();
 			var chart = Highscore.formatToDifficulty(song, difficulty);
 
-			if (Assets.exists(AssetPaths.chart(song, chart))) menuItems.push('change to ${difficulty.toString()}');
+			if (KoyaAssets.exists(AssetPaths.chart(song, chart))) menuItems.push('change to ${difficulty.toString()}');
 		}
 
 		menuItems.push('exit to menu');

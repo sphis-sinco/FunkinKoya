@@ -1,6 +1,6 @@
 package koya.backend;
 
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import koya.backend.songs.Song;
 #if INCLUDE_GIT
 import koya.backend.macros.Git;

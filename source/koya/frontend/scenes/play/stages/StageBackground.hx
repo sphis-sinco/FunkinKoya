@@ -2,7 +2,7 @@ package koya.frontend.scenes.play.stages;
 
 import lime.app.Application;
 import haxe.Json;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import flixel.graphics.frames.FlxAtlasFrames;
 import koya.backend.AssetPaths;
 import koya.frontend.scenes.play.characters.CharacterGetter;
@@ -18,14 +18,14 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	{
 		var offsetPath = getStagePropOffsetPath();
 
-		if (!Assets.exists(offsetPath)) return;
+		if (!KoyaAssets.exists(offsetPath)) return;
 
 		trace('found stage prop value file: $offsetPath');
 
 		var offsetfile:Dynamic = {};
 		try
 		{
-			offsetfile = Json.parse(Assets.getText(offsetPath));
+			offsetfile = Json.parse(KoyaAssets.getText(offsetPath));
 		}
 		catch (e)
 		{

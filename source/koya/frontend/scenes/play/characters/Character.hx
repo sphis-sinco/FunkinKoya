@@ -3,7 +3,7 @@ package koya.frontend.scenes.play.characters;
 import flixel.math.FlxPoint;
 import flixel.util.typeLimit.OneOfTwo;
 import animate.FlxAnimate;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
 import flixel.FlxSprite;
@@ -143,10 +143,10 @@ class Character extends FunkinSprite
 	{
 		var offsetPath = getCharacterOffsetsPath();
 
-		if (!Assets.exists(offsetPath)) return;
+		if (!KoyaAssets.exists(offsetPath)) return;
 
 		trace(' * found character offset file: $offsetPath');
-		var offsetfile = Assets.getText(offsetPath).split('\n');
+		var offsetfile = KoyaAssets.getText(offsetPath).split('\n');
 
 		generalOffsets = [];
 		for (line in offsetfile)
@@ -159,10 +159,10 @@ class Character extends FunkinSprite
 	{
 		var offsetPath = getCameraOffsetsPath();
 
-		if (!Assets.exists(offsetPath)) return;
+		if (!KoyaAssets.exists(offsetPath)) return;
 
 		trace(' * found camera offset file: $offsetPath');
-		var offsetfile = Assets.getText(offsetPath).split('\n');
+		var offsetfile = KoyaAssets.getText(offsetPath).split('\n');
 
 		cameraOffsets = [];
 		for (line in offsetfile)
@@ -173,10 +173,10 @@ class Character extends FunkinSprite
 	{
 		var offsetPath = getAnimationOffsetsPath();
 
-		if (!Assets.exists(offsetPath)) return;
+		if (!KoyaAssets.exists(offsetPath)) return;
 
 		trace(' * found animation offset file: $offsetPath');
-		var offsetfile = Assets.getText(offsetPath).split('\n');
+		var offsetfile = KoyaAssets.getText(offsetPath).split('\n');
 
 		parseAnimationOffsetFile(offsetfile);
 	}

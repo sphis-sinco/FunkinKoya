@@ -1,6 +1,6 @@
 package koya.backend;
 
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import animate.FlxAnimateFrames;
 import flixel.graphics.frames.FlxAtlasFrames;
 
@@ -69,7 +69,7 @@ class AssetPaths
 	{
 		var graphicKey:String = animateAtlas(key, library);
 
-		if (!Assets.exists('${graphicKey}/Animation.json')) throw 'No Animation.json file exists at the specified path (${graphicKey})';
+		if (!KoyaAssets.exists('${graphicKey}/Animation.json')) throw 'No Animation.json file exists at the specified path (${graphicKey})';
 
 		return FlxAnimateFrames.fromAnimate(graphicKey);
 	}

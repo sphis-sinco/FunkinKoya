@@ -4,7 +4,7 @@ import koya.backend.play.Rank;
 import koya.frontend.scenes.play.characters.Character;
 import koya.backend.songs.SongList;
 import koya.frontend.scenes.play.HealthIcon;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import koya.backend.save.Save;
 import koya.frontend.ui.DifficultySprite;
 import koya.backend.play.Difficulty;
@@ -162,7 +162,7 @@ class FreeplayState extends MusicBeatState
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
 
 		songText.alpha = 1;
-		if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) songText.alpha = .5;
+		if (!KoyaAssets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) songText.alpha = .5;
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -225,7 +225,7 @@ class FreeplayState extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
-			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return;
+			if (!KoyaAssets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return;
 
 			transitioning = true;
 			FlxG.sound.music.stop();

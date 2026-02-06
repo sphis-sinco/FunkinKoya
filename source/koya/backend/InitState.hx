@@ -4,7 +4,7 @@ import koya.backend.plugins.Cursor;
 import flixel.util.*;
 import koya.backend.songs.Song;
 import koya.backend.play.Difficulty;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import haxe.macro.Compiler;
 import koya.frontend.scenes.*;
 import koya.frontend.scenes.web.*;
@@ -92,7 +92,7 @@ class InitState extends FlxState
 
 			var currentSongChart:String = Highscore.formatToDifficulty(currentSongName.toLowerCase(), currentDifficulty);
 
-			if (!Assets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return () -> new TitleState();
+			if (!KoyaAssets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) return () -> new TitleState();
 
 			PlayState.loadSong(currentSongChart, currentSongName, currentDifficulty);
 			return () -> new PlayState();

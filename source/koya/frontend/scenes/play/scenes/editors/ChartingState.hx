@@ -31,7 +31,7 @@ import flixel.ui.FlxButton;
 import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import haxe.Json;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import openfl.events.Event;
 import openfl.events.IOErrorEvent;
 import openfl.events.IOErrorEvent;
@@ -1005,9 +1005,9 @@ class ChartingState extends MusicBeatState
 			var event:FunkinSprite = new FunkinSprite();
 			var loadedImg:Bool = true;
 
-			if (Assets.exists(curEventValuePath)) event.loadGraphic(curEventValuePath);
-			else if (Assets.exists(curEventPath)) event.loadGraphic(curEventPath);
-			else if (Assets.exists(defaultPath)) event.loadGraphic(defaultPath);
+			if (KoyaAssets.exists(curEventValuePath)) event.loadGraphic(curEventValuePath);
+			else if (KoyaAssets.exists(curEventPath)) event.loadGraphic(curEventPath);
+			else if (KoyaAssets.exists(defaultPath)) event.loadGraphic(defaultPath);
 			else
 			{
 				loadedImg = false;

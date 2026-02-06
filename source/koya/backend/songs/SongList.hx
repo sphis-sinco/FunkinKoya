@@ -1,6 +1,6 @@
 package koya.backend.songs;
 
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import koya.backend.songs.Song.SwagSong;
 import haxe.Json;
 
@@ -20,7 +20,7 @@ class SongList
 
 			try
 			{
-				weekJSON = Json.parse(Assets.getText(weekList.getEntryFilePath(entry)));
+				weekJSON = Json.parse(KoyaAssets.getText(weekList.getEntryFilePath(entry)));
 			}
 			catch (e)
 			{

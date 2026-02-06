@@ -1,6 +1,6 @@
 package koya.backend;
 
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 
 using StringTools;
 
@@ -10,9 +10,9 @@ class AssetTextList
 
 	function get_text():String
 	{
-		if (!Assets.exists(filepath)) return '';
+		if (!KoyaAssets.exists(filepath)) return '';
 
-		return Assets.getText(filepath);
+		return KoyaAssets.getText(filepath);
 	}
 
 	public var textList(get, never):Array<String>;

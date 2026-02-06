@@ -1,5 +1,9 @@
 # [0.5.0] - 2/6/2026
 
+## Technical
+
+- Added `koya.backend.KoyaAssets` : Assets class to help do `lime.utils.Assets` functions but support the filesystem for mods
+
 ## Misc
 
 - Added `mods` folder

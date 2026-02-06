@@ -7,7 +7,7 @@ import koya.backend.AssetPaths;
 import koya.backend.songs.Section.SwagSection;
 import haxe.Json;
 import haxe.format.JsonParser;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 
 using StringTools;
 
@@ -61,7 +61,7 @@ class Song
 		var rawJson:String = '';
 		try
 		{
-			rawJson = Assets.getText(AssetPaths.chart(folder, jsonInput)).trim();
+			rawJson = KoyaAssets.getText(AssetPaths.chart(folder, jsonInput)).trim();
 		}
 		catch (e)
 		{

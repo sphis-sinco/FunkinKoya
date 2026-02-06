@@ -1,7 +1,7 @@
 package koya.frontend.shaders;
 
 import koya.backend.AssetPaths;
-import lime.utils.Assets;
+import koya.backend.KoyaAssets;
 import flixel.addons.display.FlxRuntimeShader;
 
 @:nullSafety
@@ -14,7 +14,7 @@ class AdjustColorShader extends FlxRuntimeShader
 
 	public function new()
 	{
-		super(Assets.getText(AssetPaths.frag('adjustColor')));
+		super(KoyaAssets.getText(AssetPaths.frag('adjustColor')));
 		hue = 0;
 		saturation = 0;
 		brightness = 0;
