@@ -1,5 +1,6 @@
 package koya.frontend.ui;
 
+import flixel.system.FlxAssets;
 import flixel.FlxG;
 import koya.backend.Constants;
 import koya.backend.AssetPaths;
@@ -12,7 +13,7 @@ class Watermark extends FPS
 	{
 		super(x, y, 0xFFFFFF);
 
-		defaultTextFormat = new TextFormat(AssetPaths.font('vcr.ttf'), 16, 0xFFFFFF);
+		defaultTextFormat = new TextFormat(#if web FlxAssets.FONT_DEFAULT #else AssetPaths.font('vcr.ttf') #end, 16, 0xFFFFFF);
 		width = defaultTextFormat.size * ((FlxG.width - (x * 2)) / defaultTextFormat.size);
 	}
 

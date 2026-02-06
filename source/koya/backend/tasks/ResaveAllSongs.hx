@@ -21,51 +21,13 @@ class ResaveAllSongs
 
 			for (difficulty in Difficulty.list)
 			{
-				// trace('song: ${song.song} | difficulty: $difficulty');
 				var myJSON = Song.loadFromJson(Highscore.formatToDifficulty(song.song.toLowerCase(), difficulty), song.song.toLowerCase());
-				var myJSONnofix = Song.loadFromJson(Highscore.formatToDifficulty(song.song.toLowerCase(), difficulty), song.song.toLowerCase(), false);
-
-				// if (myJSON == null) continue;
-				// if (myJSONnofix == null || myJSONnofix.version != null) continue;
-
+				
 				myJSON.difficulty = difficulty;
 
 				// songList.push(myJSON);
 				var curSong = myJSON.song.toLowerCase();
 				var path = '../../../../' + AssetPaths.chart(curSong, '$curSong${difficulty.chartSuffix()}');
-
-				myJSON.authors = 'Kawai Sprite';
-				switch (curSong)
-				{
-					case 'winter-horrorland':
-						myJSON.authors = 'Bassetfilms';
-
-						myJSON.player1 = 'bf';
-						myJSON.player2 = 'monster';
-						myJSON.gfVersion = 'gf';
-						myJSON.stage = 'christmasEvil';
-
-					case 'cocoa', 'eggnog':
-						myJSON.player1 = 'bf';
-						myJSON.player2 = 'dad';
-						myJSON.gfVersion = 'gf';
-
-						myJSON.stage = 'christmas';
-
-					case 'milf', 'satin-panties', 'high':
-						myJSON.player1 = 'bf';
-						myJSON.player2 = 'mom';
-						myJSON.gfVersion = 'gf';
-
-						myJSON.stage = 'limo';
-
-					case 'blammed', 'pico', 'philly':
-						myJSON.player1 = 'bf';
-						myJSON.player2 = 'pico';
-						myJSON.gfVersion = 'gf';
-
-						myJSON.stage = 'philly';
-				}
 
 				myJSON.generatedBy = '${Constants.SONG_GENERATED_BY_PREFIX}Task: Resave All Songs';
 

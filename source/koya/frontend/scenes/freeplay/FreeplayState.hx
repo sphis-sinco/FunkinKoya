@@ -1,5 +1,6 @@
 package koya.frontend.scenes.freeplay;
 
+import koya.backend.play.Rank;
 import koya.frontend.scenes.play.characters.Character;
 import koya.backend.songs.SongList;
 import koya.frontend.scenes.play.HealthIcon;
@@ -58,6 +59,16 @@ class FreeplayState extends MusicBeatState
 		if (!Save.songScores.get().exists(currentSongChart)) return 0;
 
 		return Save.songScores.get().get(currentSongChart);
+	}
+
+	public var currentRank(get, never):String;
+
+	function get_currentRank():String
+	{
+		if (Save.songRanks.get() == null) return null;
+		if (!Save.songRanks.get().exists(currentSongChart)) return null;
+
+		return Save.songRanks.get().get(currentSongChart);
 	}
 
 	public var currentDifficulty:Int = Difficulty.NORMAL;
@@ -139,6 +150,8 @@ class FreeplayState extends MusicBeatState
 		arrow_RIGHT.alpha = (currentDifficulty == Difficulty.list[Difficulty.list.length - 1].toInt()) ? 0.5 : 1;
 
 		songText.text = currentSongName;
+		if (currentRank != null)
+			songText.text += ' ($currentRank)';
 		songText.screenCenter(Y);
 
 		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}):\n';

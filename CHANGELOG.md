@@ -1,10 +1,42 @@
-# [0.4.0] - 2/2026
+# [0.4.1] - 2/5/2026
+
+From 0.4.1 and beyond the mod will be more focused on the technical side, if anything is to be added song or week wise it'll be by popular demand or just me being in the mood.
+
+## Visual
+
+- Freeplay now displays the song rank
+- Fixed Monster's Composer field being Kawai Sprite
+- Added "Combo breaks" section to score text
+  - It shows you the total combo breaks in story mode
+- Added Pico health icon
+- [WEB] Fixed Watermark Font (its not VCR but its better then the \_sans font (I think that's what it is?))
+  <!-- It being web only makes me mad -->
+  <!-- WEB DOESNT EVEN FUCKING WORK PROPERLY! -->
+- [WEB] Added Custom Preloader state (`koya.frontend.scenes.PreloaderScene`)
+
+## Misc
+
+- Removed week 4 and 5 assets
+- `CHANGELOG.md` is no longer renamed to `changelog.txt` on compiled builds
+- Added "funniboi" to README credits
+- Updated README to adapt to the new direction
+
+## Technical
+
+- Song scores are now always saved, not just only when playing through freeplay
+- `koya.backend.tasks.ResaveAllSongs` no longer contains special changes for songs
+- Fixed notes passing by not being counted as misses
+- `-Dindev` now enables `FLX_DEBUG`
+- Crash Handler code has been moved to `koya.backend.CrashHandler`
+- Removed `update_name.txt` and support for it : Update names are unrequired and can just be a community method of refering to an update
+
+# [0.4.0] - 2/4/2026
 
 ## Added
 
 - week 3
 - EVENTS (press P to make one in the chart editor, you must have a name and a value)
-	- The only event is playanim
+  - The only event is playanim
 - Added events UI... window? whatever to the chart editor
 - Beats and Step to chart editor "info text"
 - New assets for Daddy Dearest
@@ -30,7 +62,7 @@
 - When entering the Chart editor the song time will always be reset to 0
 - You can no longer to BEFORE the song in the chart editor
 - The Chart Editor Strumline is now the correct width
-	- UI Layout had to be changed because of it but it's whatev lol
+  - UI Layout had to be changed because of it but it's whatev lol
 - A song or week with a blank name will not save a score or rank
 
 # [0.3.1] - 2/2/2026

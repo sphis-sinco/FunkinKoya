@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="pico.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="pico lose0000" x="4" y="4" width="127" height="138"/>
+	<SubTexture name="pico normal0000" x="139" y="4" width="126" height="126"/>
+</TextureAtlas>

@@ -145,11 +145,16 @@ class PlayState extends MusicBeatState
 
 	public var local_resultsData:ResultsData = null;
 
+	public static var globalComboBreaks:Int = 0;
+
+	public var localComboBreaks:Int = 0;
+
 	override public function create()
 	{
 		if (instance != null) instance = null;
 		instance = this;
 
+		if (!IS_STORYMODE) globalComboBreaks = 0;
 		if (!IS_STORYMODE || global_resultsData == null) global_resultsData = new ResultsData();
 		local_resultsData = new ResultsData();
 
@@ -183,7 +188,7 @@ class PlayState extends MusicBeatState
 		add(currentStage);
 
 		songScript = SongClass.getSongClass(SONG.song.toLowerCase());
-		
+
 		Conductor.songPosition = 0;
 		Conductor.songPosition -= Conductor.crochet * 5;
 
@@ -204,7 +209,7 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 
 		// FlxG.fixedTimestep = false;
-		
+
 		initUI();
 
 		EventParser.init();
@@ -498,7 +503,7 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		scoreTxt.text = "Score:" + songScore;
+		scoreTxt.text = 'Score: $songScore | Combo Breaks: ${globalComboBreaks + localComboBreaks}';
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -659,11 +664,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (daNote.tooLate || !daNote.wasGoodHit)
-						{
-							health -= 0.0475;
-							vocals.volume = 0;
-						}
+						if (daNote.tooLate || !daNote.wasGoodHit) badNoteHit(daNote.noteID);
 
 						daNote.active = false;
 						daNote.visible = false;
@@ -712,6 +713,7 @@ class PlayState extends MusicBeatState
 		trace('global results data: ${global_resultsData}');
 
 		globalScore += songScore;
+		globalComboBreaks += localComboBreaks;
 
 		persistentUpdate = false;
 		persistentDraw = true;
@@ -726,6 +728,7 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
+		Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 		if (IS_STORYMODE)
 		{
 			if (STORYMODE_PLAYLIST.length > 0) STORYMODE_PLAYLIST.remove(SONG.song);
@@ -743,6 +746,7 @@ class PlayState extends MusicBeatState
 
 				STORYMODE_PLAYLIST_NUMBER++;
 				trace('Moving to next song: ${nextSong}');
+
 				FlxG.switchState(() -> new PlayState());
 			}
 			else
@@ -756,10 +760,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		else
-		{
-			Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 			openSubState(new ResultsSubState((() -> new FreeplayState())));
-		}
 	}
 
 	var endingSong:Bool = false;
@@ -961,7 +962,12 @@ class PlayState extends MusicBeatState
 		songScore -= 10;
 
 		if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
-		combo = 0;
+
+		if (combo > 0)
+		{
+			combo = 0;
+			localComboBreaks++;
+		}
 		local_resultsData.notesMissed++;
 
 		vocals.volume = 0;
