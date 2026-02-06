@@ -61,7 +61,7 @@ class OptionsMenuState extends MenuState
 		super.update(elapsed);
 
 		valueText.text = '${this.itemList[currentSelection]} : ${this.itemListValues.get(this.itemList[currentSelection])}';
-		valueText.y = valueBG.getGraphicMidpoint().y + (valueText.height / 2);
+		valueText.y = valueBG.y;
 	}
 
 	override function accept(item:String)
