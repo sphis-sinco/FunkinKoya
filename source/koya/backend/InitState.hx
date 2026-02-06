@@ -103,6 +103,10 @@ class InitState extends FlxState
 		return () -> new StoryModeState();
 		#end
 
+		#if OPTIONSMENU
+		return () -> new OptionsMenuState();
+		#end
+
 		return () -> new TitleState();
 	}
 

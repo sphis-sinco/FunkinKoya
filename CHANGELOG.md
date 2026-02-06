@@ -6,6 +6,8 @@
 
 ## Technical
 
+- Added `-DOPTIONSMENU` define
+
 - Added support for "Text Menu States" : Menus using the Alphabet Text
 - `null` or `""` in `MenuState.accept` or `MenuState.accepted` will now `return;`
 - `null` or `""` in `MenuState.itemList` will now perform `change` again with the same value in `MenuState.select`

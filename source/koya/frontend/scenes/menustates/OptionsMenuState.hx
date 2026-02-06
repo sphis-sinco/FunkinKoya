@@ -20,8 +20,8 @@ class OptionsMenuState extends MenuState
 	{
 		super('', Vertical);
 
-		this.itemIncOffset = 160;
-		this.itemList = ['fpsCounter', '', 'chart editor autosave'];
+		this.itemIncOffset = 80;
+		this.itemList = ['fpsCounter', null, 'chart editor autosave'];
 		this.text = true;
 	}
 
@@ -29,7 +29,7 @@ class OptionsMenuState extends MenuState
 	{
 		super.select(change);
 
-		if (text) for (item in itemsTextGroup)
+		if (text) for (item in itemsTextGroup.members)
 		{
 			item.text = '${this.itemList[item.ID]} | ${this.values.get(this.itemList[item.ID])}';
 		}
