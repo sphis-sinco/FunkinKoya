@@ -32,6 +32,14 @@ class KeybindPrompt extends MusicBeatSubstate
 		add(bg);
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 
+		var colorShit:FunkinSprite = new FunkinSprite();
+		colorShit.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		colorShit.scale.set(0.8,0.8);
+		colorShit.alpha = 0;
+		colorShit.scrollFactor.set();
+		add(colorShit);
+		FlxTween.tween(colorShit, {alpha: 0.8}, 0.6, {ease: FlxEase.quartInOut});
+
 		promptText = new AtlasText(10, 10, 'Binding: ' + '“$keybind”' + '\n\nESCAPE TO CANCEL', BOLD);
 		promptText.screenCenter();
 		add(promptText);
