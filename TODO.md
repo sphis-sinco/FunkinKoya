@@ -1,7 +1,5 @@
 # No real label:
 
-- Options Menu
-
 - Medals
 - Outdated State
 
