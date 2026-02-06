@@ -179,6 +179,7 @@ class MenuState extends MusicBeatState
 
 			if (positive || negative)
 			{
+				trace('skip');
 				select(change);
 				return;
 			}
@@ -214,6 +215,11 @@ class MenuState extends MusicBeatState
 		var confirmMenu = new FlxSound().loadEmbedded(AssetPaths.sound('confirmMenu', 'ui'));
 		confirmMenu.play();
 
+		acceptedFlicker(confirmMenu, item);
+	}
+
+	public function acceptedFlicker(confirmMenu:FlxSound, item:String)
+	{
 		FlxFlicker.flicker(pinkBG, (confirmMenu.length / 2) / 1000, .1);
 		if (!text) FlxFlicker.flicker(itemsSpriteGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
 		if (text) FlxFlicker.flicker(itemsTextGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);

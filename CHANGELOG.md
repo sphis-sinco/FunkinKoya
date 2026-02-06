@@ -9,6 +9,8 @@
 
 ## Technical
 
+- Split apart MenuState flicker to its own function (Which includes the wait to run `accept` cause yes.)
+
 - Added `-DOPTIONSMENU` define
 
 - Added support for "Text Menu States" : Menus using the Alphabet Text

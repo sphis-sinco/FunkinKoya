@@ -1,5 +1,8 @@
 package koya.frontend.scenes.menustates;
 
+import flixel.util.FlxTimer;
+import flixel.effects.FlxFlicker;
+import flixel.sound.FlxSound;
 import koya.backend.save.Preferences;
 import koya.backend.save.Save;
 import koya.backend.AssetPaths;
@@ -86,6 +89,18 @@ class OptionsMenuState extends MenuState
 
 		addItem('Chart Editor Autosave', Save.preferences.get().chartEditorAutosave, function() {
 			Save.preferences.get().chartEditorAutosave = !Save.preferences.get().chartEditorAutosave;
+		});
+	}
+
+	override function acceptedFlicker(confirmMenu:FlxSound, item:String)
+	{
+		FlxFlicker.flicker(pinkBG, (confirmMenu.length / 4) / 1000, .1);
+		if (!text) FlxFlicker.flicker(itemsSpriteGroup.members[currentSelection], (confirmMenu.length / 4) / 500, .05);
+		if (text) FlxFlicker.flicker(itemsTextGroup.members[currentSelection], (confirmMenu.length / 4) / 500, .05);
+		
+		FlxTimer.wait((confirmMenu.length / 4) / 1000, function() {
+			transitioning = false;
+			accept(item);
 		});
 	}
 }
