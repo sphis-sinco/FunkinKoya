@@ -338,7 +338,7 @@ class ChartingState extends MusicBeatState
 		});
 
 		var reloadSongJson:FlxButton = new FlxButton(reloadSong.x, saveButton.y + 30, "Reload JSON", function() {
-			loadJson(curSong.toLowerCase(), curSong.toLowerCase());
+			loadJson(_song.song.toLowerCase(), Highscore.formatToDifficulty(_song.song.toLowerCase(), _song.difficulty));
 		});
 
 		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, 'load autosave', loadAutosave);

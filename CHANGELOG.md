@@ -32,6 +32,8 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Fixed ChartingState `Reload JSON` reloading to the normal version of the song and not the current selected difficulty
+- Fixed ChartingState `Reload JSON` button not reloading the desired JSON properly (It was attempting to load the JSON of `curSong`)
 - Fixed ChartingState `Reload Audio` button not reloading audio properly (It was attempting to load the audio of `curSong`)
 - Added `koya.backend.AssetPaths.tempDisableModCheck` : will disable the mod check stuff for one use of `koya.backend.AssetPaths.getPath`
 - Removed `koya.backend.AssetPaths.pixelZoom`
