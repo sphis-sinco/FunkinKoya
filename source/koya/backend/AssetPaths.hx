@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.backend.modding.ModCore;
 import koya.backend.KoyaAssets;
 import animate.FlxAnimateFrames;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -15,6 +16,14 @@ class AssetPaths
 	public static function getPath(path:String, ?library:String):String
 	{
 		if (library != null) return getLibraryPath(path, library);
+
+		for (mod in ModCore.mods)
+		{
+			var modPath:String = 'mods/$mod/$path';
+
+			// First come first serve
+			if (KoyaAssets.exists(modPath)) return modPath;
+		}
 
 		return 'assets/$path';
 	}

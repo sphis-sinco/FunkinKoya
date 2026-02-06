@@ -4,6 +4,8 @@
 
 This is the modding stuff that's important to know
 
+- Mod assets are loaded in a first come first serve system
+	- The first mod found to have an asset that's being searched for will have that asset used
 - `F3 + R` reloads mods
 
 ## Visual
