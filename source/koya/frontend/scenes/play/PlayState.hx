@@ -145,11 +145,14 @@ class PlayState extends MusicBeatState
 
 	public var local_resultsData:ResultsData = null;
 
+	public static var comboBreaks:Int = 0;
+
 	override public function create()
 	{
 		if (instance != null) instance = null;
 		instance = this;
 
+		if (!IS_STORYMODE) comboBreaks = 0;
 		if (!IS_STORYMODE || global_resultsData == null) global_resultsData = new ResultsData();
 		local_resultsData = new ResultsData();
 
@@ -183,7 +186,7 @@ class PlayState extends MusicBeatState
 		add(currentStage);
 
 		songScript = SongClass.getSongClass(SONG.song.toLowerCase());
-		
+
 		Conductor.songPosition = 0;
 		Conductor.songPosition -= Conductor.crochet * 5;
 
@@ -204,7 +207,7 @@ class PlayState extends MusicBeatState
 		FlxG.worldBounds.set(0, 0, FlxG.width, FlxG.height);
 
 		// FlxG.fixedTimestep = false;
-		
+
 		initUI();
 
 		EventParser.init();
@@ -498,7 +501,7 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		scoreTxt.text = 'Score: $songScore | Combo Breaks: ${global_resultsData.notesMissed + local_resultsData.notesMissed}';
+		scoreTxt.text = 'Score: $songScore | Combo Breaks: ${comboBreaks}';
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -961,7 +964,12 @@ class PlayState extends MusicBeatState
 		songScore -= 10;
 
 		if (currentStage.gf != null) if (combo > 5) currentStage.gf.playAnim('sad');
-		combo = 0;
+
+		if (combo > 0)
+		{
+			combo = 0;
+			comboBreaks++;
+		}
 		local_resultsData.notesMissed++;
 
 		vocals.volume = 0;
