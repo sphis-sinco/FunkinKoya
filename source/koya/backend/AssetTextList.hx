@@ -1,5 +1,6 @@
 package koya.backend;
 
+import flixel.FlxG;
 import koya.backend.KoyaAssets;
 
 using StringTools;
@@ -12,14 +13,25 @@ class AssetTextList
 	{
 		if (!KoyaAssets.exists(filepath)) return '';
 
-		return KoyaAssets.getText(filepath);
+		var txt = KoyaAssets.getText(filepath);
+
+		for (append in getAppends())
+			txt += '\n' + KoyaAssets.getText(append);
+
+		return txt;
 	}
 
 	public var textList(get, never):Array<String>;
 
 	function get_textList():Array<String>
 	{
-		return CoolUtil.coolTextFile(filepath);
+		var txts:Array<String> = CoolUtil.coolTextFile(filepath);
+
+		for (append in getAppends())
+			for (v in CoolUtil.coolTextFile(append))
+				txts.push(v);
+
+		return txts;
 	}
 
 	public var filepath:String = '';
@@ -28,6 +40,9 @@ class AssetTextList
 	{
 		this.filepath = filepath;
 		trace('Made AssetTextList($filepath)!');
+
+		FlxG.log.add(text);
+		FlxG.log.add(textList);
 	}
 
 	public function has(entry:String):Bool
@@ -43,5 +58,14 @@ class AssetTextList
 	public function getEntryFilePath(entry:String):String
 	{
 		return '';
+	}
+
+	public function getAppends():Array<String>
+	{
+		var paths = AssetPaths.getAllModPaths(filepath.replace('assets/', '_append/'));
+
+		trace(paths);
+
+		return paths;
 	}
 }

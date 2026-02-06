@@ -6,6 +6,7 @@ import animate.FlxAnimateFrames;
 import flixel.graphics.frames.FlxAtlasFrames;
 
 using haxe.io.Path;
+using StringTools;
 
 class AssetPaths
 {
@@ -20,7 +21,7 @@ class AssetPaths
 		#if MOD_SUPPORT
 		if (!tempDisableModCheck) for (mod in ModCore.enabledMods)
 		{
-			var modPath:String = 'mods/$mod/$path';
+			var modPath:String = '${ModCore.MOD_DIRECTORY}/$mod/$path';
 
 			// First come first serve
 			if (KoyaAssets.exists(modPath)) return modPath;
@@ -29,6 +30,23 @@ class AssetPaths
 
 		tempDisableModCheck = false;
 		return 'assets/$path';
+	}
+
+	public static function getAllModPaths(path:String, ?library:String):Array<String>
+	{
+		var modPaths:Array<String> = [];
+
+		#if MOD_SUPPORT
+		for (mod in ModCore.enabledMods)
+		{
+			var modPath:String = '${ModCore.MOD_DIRECTORY}/$mod/${path.replace('assets/', '')}';
+			trace(modPath);
+
+			if (KoyaAssets.exists(modPath)) modPaths.push(modPath);
+		}
+		#end
+
+		return modPaths;
 	}
 
 	public static function getLibraryPath(path:String, ?library:String):String
