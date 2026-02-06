@@ -57,7 +57,7 @@ class ModCore
 		}
 		#end
 
-		trace('Reloaded with ${mods.length} mods found');
+		trace('Reloaded with ${mods.length} mod(s) found');
 		for (mod in mods)
 		{
 			var meta = modMetadatas.get(mod);
