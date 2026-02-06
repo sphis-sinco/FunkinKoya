@@ -9,10 +9,10 @@
 - Video Cutscenes support
 - In-game Cutscenes support
 
-# Softcode stuff:
+# Mod stuff:
 
+- Scriptin'
 - JSON Characters
-- Mod support
 
 # Builds:
 
