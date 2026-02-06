@@ -1,7 +1,12 @@
 # [0.5.0] - 2/6/2026
 
+## Visual
+
+- The FPS part of `koya.frontend.ui.Watermark` is now toggleable via the `FPS Counter` option
+
 ## General
 
+- The Chart Editor autosave is now toggleable via the `Chart Editor Autosave` option
 - Added `preferences` save field with the following fields
 	- `fpsCounter` : Toggles the fps counter
 	- `chartEditorAutosave` : Toggles the chart editor autosaving

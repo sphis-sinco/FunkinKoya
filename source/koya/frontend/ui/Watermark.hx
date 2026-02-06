@@ -1,5 +1,6 @@
 package koya.frontend.ui;
 
+import koya.backend.save.Save;
 import flixel.system.FlxAssets;
 import flixel.FlxG;
 import koya.backend.Constants;
@@ -34,7 +35,7 @@ class Watermark extends FPS
 		{
 			var newText = '';
 
-			newText += 'FPS: $currentFPS\n';
+			if (Save.preferences.get().fpsCounter) newText += 'FPS: $currentFPS\n';
 			newText += 'Koya ${Constants.VERSION}\n';
 
 			#if CONTEXT3DSTATS

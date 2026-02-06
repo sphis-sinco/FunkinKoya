@@ -1123,7 +1123,7 @@ class ChartingState extends MusicBeatState
 		updateGrid();
 		updateNoteUI();
 
-		autosaveSong();
+		if (Save.preferences.get().chartEditorAutosave) autosaveSong();
 	}
 
 	function getStrumTime(yPos:Float):Float
