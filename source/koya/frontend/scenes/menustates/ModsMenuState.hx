@@ -8,7 +8,7 @@ class ModsMenuState extends OptionsMenuState
 	{
 		for (mod in ModCore.allMods)
 		{
-			addItem('$mod', ModCore.enabledMods.contains(mod), function() {
+			addItem(ModCore.getModName(mod), ModCore.enabledMods.contains(mod), function() {
 				if (ModCore.enabledMods.contains(mod)) ModCore.enabledMods.remove(mod);
 				else
 					ModCore.enabledMods.push(mod);
@@ -20,6 +20,9 @@ class ModsMenuState extends OptionsMenuState
 	{
 		super.update(elapsed);
 
-		valueText.text = 'Mod: ${this.itemList[currentSelection]}\n' + 'Enabled: ${this.itemListValues.get(this.itemList[currentSelection])}';
+		var mod = this.itemList[currentSelection];
+		valueText.text = 'Mod: ${ModCore.getModName(mod)}${(ModCore.modMetadatas.get(mod)?.name != null) ? ' (${mod})' : ''}\n'
+			+ 'Description: ${ModCore.modMetadatas.get(mod)?.description ?? 'N / A'}\n'
+			+ 'Enabled: ${this.itemListValues.get(mod)}';
 	}
 }

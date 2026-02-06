@@ -1,6 +1,7 @@
 {
 	"name": "SongMod",
+	"description": "Youre a smart boy, figure it out hehe",
 	"authors": ["Macohi"],
-	"api_version": 0.0,
+	"api_version": 0.1,
 	"mod_version": 1
 }

@@ -19,6 +19,11 @@ class ModCore
 
 	public static var modMetadatas:Map<String, ModMetadata> = [];
 
+	public static function getModName(mod:String)
+	{
+		return modMetadatas.get(mod)?.name ?? mod;
+	}
+
 	public static function init()
 	{
 		reloadMods();
@@ -69,7 +74,7 @@ class ModCore
 		{
 			var meta = modMetadatas.get(mod);
 
-			var name = meta.name ?? mod;
+			var name = getModName(mod);
 			var version = (meta.mod_version != null) ? ' ${meta.mod_version}' : '';
 
 			trace(' * $name$version for api : ${meta.api_version}');
