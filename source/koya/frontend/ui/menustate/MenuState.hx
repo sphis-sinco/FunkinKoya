@@ -113,18 +113,18 @@ class MenuState extends MusicBeatState
 
 		if (menuType == Vertical)
 		{
-			if (controls.UI_UP_R) select(-1);
-			if (controls.UI_DOWN_R) select(1);
+			if (subState == null && controls.UI_UP_R) select(-1);
+			if (subState == null && controls.UI_DOWN_R) select(1);
 		}
 
 		if (menuType == Horizontal)
 		{
-			if (controls.UI_LEFT_R) select(-1);
-			if (controls.UI_RIGHT_R) select(1);
+			if (subState == null && controls.UI_LEFT_R) select(-1);
+			if (subState == null && controls.UI_RIGHT_R) select(1);
 		}
 
-		if (controls.ACCEPT) accepted((text) ? itemsTextGroup.members[currentSelection].text : itemsSpriteGroup.members[currentSelection].item);
-		if (controls.BACK) back();
+		if (subState == null && controls.ACCEPT) accepted((text) ? itemsTextGroup.members[currentSelection].text : itemsSpriteGroup.members[currentSelection].item);
+		if (subState == null && controls.BACK) back();
 
 		if (menuType == Vertical)
 		{

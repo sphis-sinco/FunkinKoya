@@ -7,12 +7,12 @@ This is the modding stuff that's important to know
 - MINIMUM SUPPORTED MOD API VERSION: `0.0`
 - The append system only works with `songs/data/weekList.txt` / `koya.backend.AssetTextList` entries right now
 - A mod's `meta.json` file can have / require these fields:
-	- `name` (optional) : Display name of the mod
-	- `authors` (optional) : List of authors
-	- `api_version` : The api version the mod's built for
-	- `mod_version` (optional) : The mod version
+  - `name` (optional) : Display name of the mod
+  - `authors` (optional) : List of authors
+  - `api_version` : The api version the mod's built for
+  - `mod_version` (optional) : The mod version
 - Mod assets are loaded in a first come first serve system
-	- The first mod found to have an asset that's being searched for will have that asset used
+  - The first mod found to have an asset that's being searched for will have that asset used
 - `F3 + R` reloads mods
 - Mods require a `meta.json` file in their root (`mods/themod/`) for it to be loaded properly
 
@@ -36,6 +36,7 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- `koya.frontend.ui.menustate.MenuState` no longer allows controls when `subState` isn't null
 - Yoinked `AtlasText` from base funkin and replaced `Alphabet`
 - Added `keybinds` to `koya.save.Save` (not a savefield, just a general field to help do things easy)
 - Added `-DMODMENU` define : Sends you to the mod menu if `-DMOD_SUPPORT` is enabled
@@ -49,7 +50,7 @@ This is the modding stuff that's important to know
 - Removed `koya.backend.AssetPaths.pixelZoom`
 - `koya.backend.CoolUtil` now has a `alert(title:String, msg:String)` function : Makes an alert obviously lol
 - Added `-DMOD_SUPPORT` define : Auto-enabled on desktop builds and enables mod support as the name suggests
-	- When disabled all it really does is disable the asset replacements and asset searches
+  - When disabled all it really does is disable the asset replacements and asset searches
 - Added `koya.backend.modding.ModCore` : Manages the backend mod stuff like initalization
 - Split apart MenuState flicker to its own function (Which includes the wait to run `accept` cause yes.)
 - Added `-DOPTIONSMENU` define
@@ -64,7 +65,7 @@ This is the modding stuff that's important to know
 
 - Added `mods` folder
 - [DEBUG] Added `example_mods` folder
-	- Added `backdropMod`
+  - Added `backdropMod`
 - Some fixes and tweaks to the README were made
 
 # [0.4.1] - 2/5/2026
