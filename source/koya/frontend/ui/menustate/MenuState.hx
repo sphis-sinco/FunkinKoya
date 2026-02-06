@@ -11,6 +11,8 @@ import flixel.FlxG;
 import koya.frontend.scenes.*;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
+using StringTools;
+
 enum MenuType
 {
 	Vertical;
@@ -77,7 +79,7 @@ class MenuState extends MusicBeatState
 
 	public function makeText(item:String, i:Int)
 	{
-		var menuItem = new Alphabet((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item.toLowerCase(), true);
+		var menuItem = new Alphabet((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item, true);
 
 		if (menuType == Horizontal) menuItem.screenCenter(Y);
 		if (menuType == Vertical) menuItem.screenCenter(X);
@@ -170,6 +172,14 @@ class MenuState extends MusicBeatState
 		if (currentSelection < 0) currentSelection = 0;
 		if (currentSelection >= itemList.length) currentSelection = itemList.length - 1;
 
+		if (itemList[currentSelection] == '' || itemList[currentSelection] == null)
+		{
+			var positive:Bool = change > 0 && (itemList.length - 1) > currentSelection + change;
+			var negative:Bool = change < 0 && currentSelection + change > 0;
+
+			if (positive || negative) select(change);
+		}
+
 		if (!text) for (menuItem in itemsSpriteGroup.members)
 		{
 			if (menuType == Horizontal) menuItem.screenCenter(Y);
@@ -187,6 +197,8 @@ class MenuState extends MusicBeatState
 
 	public function accepted(item:String)
 	{
+		if (item.trim() == '' || item == null) return;
+
 		trace('selected: $item');
 
 		transitioning = true;
@@ -204,5 +216,8 @@ class MenuState extends MusicBeatState
 		});
 	}
 
-	public function accept(item:String) {}
+	public function accept(item:String)
+	{
+		if (item.trim() == '' || item == null) return;
+	}
 }
