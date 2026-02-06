@@ -75,7 +75,7 @@ class KeybindPrompt extends MusicBeatSubstate
 
 			if (invalids.contains(key))
 			{
-				promptText.text = 'Not bound\n\nInvalid Key.';
+				promptText.text = 'Not bound\n\nKey already bound';
 				deny();
 				return;
 			}
@@ -85,7 +85,7 @@ class KeybindPrompt extends MusicBeatSubstate
 			var keybindField:SaveField<String> = Reflect.getProperty(Save, keybind);
 			if (keybindField == null)
 			{
-				promptText.text = 'Not bound\n\nInvalid Keybind';
+				promptText.text = 'Not bound\n\nKeybind save field not found';
 				deny();
 				return;
 			}
@@ -108,18 +108,18 @@ class KeybindPrompt extends MusicBeatSubstate
 	{
 		FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
 
-		fade();
+		fade(1.0);
 	}
 
-	function fade()
+	function fade(longer:Float = 0)
 	{
 		if (leaveMethod != null) leaveMethod();
 
-		FlxTween.tween(bg, {alpha: 0}, 0.75, {ease: FlxEase.quartInOut});
-		FlxTween.tween(colorShit, {alpha: 0}, 0.5, {ease: FlxEase.quartInOut});
-		FlxTween.tween(promptText, {alpha: 0}, 0.25, {ease: FlxEase.quartInOut});
+		FlxTween.tween(bg, {alpha: 0}, 0.75 + longer, {ease: FlxEase.quartInOut});
+		FlxTween.tween(colorShit, {alpha: 0}, 0.5 + longer, {ease: FlxEase.quartInOut});
+		FlxTween.tween(promptText, {alpha: 0}, 0.25 + longer, {ease: FlxEase.quartInOut});
 
-		FlxTimer.wait(1.0, () -> {
+		FlxTimer.wait(1.0 + longer, () -> {
 			close();
 		});
 	}
