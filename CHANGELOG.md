@@ -20,6 +20,7 @@ This is the modding stuff that's important to know
 
 ## General
 
+- Added Mods Menu
 - The Chart Editor autosave is now toggleable via the `Chart Editor Autosave` option
 - Added `enabledMods` save field
 - Added `preferences` save field with the following fields
