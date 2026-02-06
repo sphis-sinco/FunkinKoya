@@ -498,7 +498,7 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		scoreTxt.text = "Score:" + songScore;
+		scoreTxt.text = 'Score: $songScore | Combo Breaks: ${global_resultsData.notesMissed + local_resultsData.notesMissed}';
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
