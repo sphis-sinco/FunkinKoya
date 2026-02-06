@@ -1,23 +1,13 @@
 package koya.frontend.scenes;
 
+import koya.frontend.scenes.menustates.MainMenuState;
 import koya.frontend.scenes.play.stages.basegame.MainStage;
-import koya.frontend.scenes.freeplay.FreeplayState;
-import koya.frontend.scenes.play.PlayState;
-import koya.backend.Highscore;
-import koya.backend.controls.PlayerSettings;
 import koya.backend.Conductor;
-import lime.app.Application;
-import koya.backend.Constants;
-import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import koya.backend.AssetPaths;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.addons.transition.FlxTransitionableState;
-import flixel.addons.transition.TransitionData;
-import flixel.math.FlxPoint;
-import flixel.math.FlxRect;
 import flixel.util.FlxColor;
 
 using StringTools;

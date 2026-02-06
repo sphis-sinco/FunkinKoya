@@ -1,4 +1,4 @@
-package koya.frontend.scenes;
+package koya.frontend.scenes.menustates;
 
 import flixel.tweens.FlxTween;
 import koya.backend.AssetPaths;
