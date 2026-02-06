@@ -1,4 +1,10 @@
-# [0.5.0] - 2/6/2026
+# [0.5.0] - 2/2026
+
+## Modding
+
+This is the modding stuff that's important to know
+
+- `F3 + R` reloads mods
 
 ## Visual
 
