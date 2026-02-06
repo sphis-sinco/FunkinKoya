@@ -1,6 +1,6 @@
 package koya.backend;
 
-import koya.backend.KoyaAssets;
+import lime.utils.Assets;
 
 class KoyaAssets
 {

@@ -2,6 +2,7 @@
 
 ## Technical
 
+- Removed `FlxG.log.add` from `koya.frontend.scenes.play.ComboNumbers`
 - Added `koya.backend.KoyaAssets` : Assets class to help do `lime.utils.Assets` functions but support the filesystem for mods
 
 ## Misc

@@ -246,9 +246,9 @@ class PlayState extends MusicBeatState
 			songScript.countdownTick(swagCounter);
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introKoyaAssets.set('default', ['ready', "set", "go"]);
+			introAssets.set('default', ['ready', "set", "go"]);
 
-			var introAlts:Array<String> = introKoyaAssets.get('default');
+			var introAlts:Array<String> = introAssets.get('default');
 			var altSuffix:String = "";
 
 			switch (swagCounter)

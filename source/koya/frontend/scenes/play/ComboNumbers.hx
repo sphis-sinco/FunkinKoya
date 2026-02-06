@@ -39,7 +39,7 @@ class ComboNumbers extends FlxTypedGroup<FunkinSprite>
 		this.comboLength = seperatedScore.length;
 
 		var daLoop:Int = 0;
-		FlxG.log.add(seperatedScore);
+		// FlxG.log.add(seperatedScore);
 		for (i in seperatedScore)
 		{
 			var numScore:FunkinSprite = new FunkinSprite();
