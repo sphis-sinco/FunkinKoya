@@ -146,6 +146,7 @@ class PlayState extends MusicBeatState
 	public var local_resultsData:ResultsData = null;
 
 	public static var globalComboBreaks:Int = 0;
+
 	public var localComboBreaks:Int = 0;
 
 	override public function create()
@@ -663,8 +664,7 @@ class PlayState extends MusicBeatState
 					}
 					else
 					{
-						if (daNote.tooLate || !daNote.wasGoodHit)
-							badNoteHit(daNote.noteID);
+						if (daNote.tooLate || !daNote.wasGoodHit) badNoteHit(daNote.noteID);
 
 						daNote.active = false;
 						daNote.visible = false;
@@ -728,6 +728,7 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
+		Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 		if (IS_STORYMODE)
 		{
 			if (STORYMODE_PLAYLIST.length > 0) STORYMODE_PLAYLIST.remove(SONG.song);
@@ -745,6 +746,7 @@ class PlayState extends MusicBeatState
 
 				STORYMODE_PLAYLIST_NUMBER++;
 				trace('Moving to next song: ${nextSong}');
+
 				FlxG.switchState(() -> new PlayState());
 			}
 			else
@@ -758,10 +760,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 		else
-		{
-			Highscore.saveScore(curSong.toLowerCase(), songScore, SONG_DIFFICULTY);
 			openSubState(new ResultsSubState((() -> new FreeplayState())));
-		}
 	}
 
 	var endingSong:Bool = false;

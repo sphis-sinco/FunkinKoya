@@ -3,6 +3,7 @@
 From 0.4.1 and beyond the mod will be more focused on the technical side, if anything is to be added song or week wise it'll be by popular demand or just me being in the mood.
 
 ## Visual
+- Freeplay now displays the song rank
 - Fixed Monster's Composer field being Kawai Sprite
 - Added "Combo breaks" section to score text
 	- It shows you the total combo breaks in story mode
@@ -22,6 +23,7 @@ From 0.4.1 and beyond the mod will be more focused on the technical side, if any
 
 ## Technical
 
+- Song scores are now always saved, not just only when playing through freeplay
 - `koya.backend.tasks.ResaveAllSongs` no longer contains special changes for songs
 - Fixed notes passing by not being counted as misses
 - `-Dindev` now enables `FLX_DEBUG`
