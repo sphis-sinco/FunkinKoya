@@ -21,4 +21,14 @@ class KoyaAssets
 
 		return Assets.getText(path);
 	}
+
+	public static function readDirectory(path:String):Array<String>
+	{
+		#if sys
+		return sys.FileSystem.readDirectory(path);
+		#end
+
+		trace('Unsupported');
+		return [];
+	}
 }
