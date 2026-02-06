@@ -1,5 +1,6 @@
 package koya.backend.songs;
 
+import koya.backend.play.Difficulty;
 import koya.backend.KoyaAssets;
 import koya.backend.songs.Song.SwagSong;
 import haxe.Json;
@@ -32,10 +33,15 @@ class SongList
 
 			for (song in weekJSON.songs)
 			{
-				var songJSON:SwagSong = Song.loadFromJson(song.toLowerCase(), song.toLowerCase(), false);
-				if (songJSON == null) continue;
+				var songJSON:SwagSong = null;
 
-				list.push(songJSON);
+				for (diff in Difficulty.list)
+				{
+					songJSON = Song.loadFromJson(song.toLowerCase(), Highscore.formatToDifficulty(song.toLowerCase(), diff), false);
+					if (songJSON != null) continue;
+				}
+
+				if (songJSON != null) list.push(songJSON);
 			}
 		}
 
