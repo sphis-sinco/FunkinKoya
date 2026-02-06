@@ -45,7 +45,7 @@ class FreeplayState extends MusicBeatState
 	public var currentSongName(get, never):String;
 
 	function get_currentSongName():String
-		return currentSong.song;
+		return currentSong?.song ?? 'Unknown';
 
 	public var currentSongChart(get, never):String;
 
@@ -244,8 +244,8 @@ class FreeplayState extends MusicBeatState
 		if (currentSelection < 0) currentSelection = 0;
 		if (currentSelection >= songList.length) currentSelection = songList.length - 1;
 
-		opponentIcon.char = Character.getCharacter(currentSong.player2).iconChar ?? currentSong.player2;
-		playerIcon.char = Character.getCharacter(currentSong.player1).iconChar ?? currentSong.player1;
+		opponentIcon.char = Character.getCharacter(currentSong?.player2 ?? 'unknown').iconChar ?? currentSong.player2;
+		playerIcon.char = Character.getCharacter(currentSong?.player1 ?? 'unknown').iconChar ?? currentSong.player1;
 
 		opponentIcon.screenCenter();
 		playerIcon.screenCenter();
