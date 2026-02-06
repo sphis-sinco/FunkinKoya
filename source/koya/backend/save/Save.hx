@@ -43,6 +43,8 @@ class Save
 
 	public static var preferences:SaveField<Preferences>;
 
+	public static var enabledMods:SaveField<Array<String>>;
+
 	static function initFields()
 	{
 		version = new SaveField<Null<Int>>('version', SAVE_VERSION);
@@ -75,10 +77,13 @@ class Save
 		keybind_note_up = new SaveField<String>('keybind_note_up', 'UP');
 		keybind_note_right = new SaveField<String>('keybind_note_right', 'RIGHT');
 
-		preferences = new SaveField<Preferences>('preferences', {
-			fpsCounter: true,
-			chartEditorAutosave: true,
-		});
+		preferences = new SaveField<Preferences>('preferences',
+			{
+				fpsCounter: true,
+				chartEditorAutosave: true,
+			});
+
+		enabledMods = new SaveField<Array<String>>('enabledMods', []);
 	}
 
 	public static function init()

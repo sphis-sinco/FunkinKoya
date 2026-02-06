@@ -17,7 +17,7 @@ class AssetPaths
 	{
 		if (library != null) return getLibraryPath(path, library);
 
-		for (mod in ModCore.mods)
+		for (mod in ModCore.enabledMods)
 		{
 			var modPath:String = 'mods/$mod/$path';
 

@@ -1,5 +1,6 @@
 package koya.backend.modding;
 
+import koya.backend.save.Save;
 import haxe.Json;
 
 class ModCore
@@ -9,7 +10,13 @@ class ModCore
 	public static final MOD_DIRECTORY:String = 'mods';
 	public static final MOD_METADATA_FILE:String = 'meta.json';
 
-	public static var mods:Array<String> = [];
+	public static var allMods:Array<String> = [];
+
+	public static var enabledMods(get, never):Array<String>;
+
+	static function get_enabledMods():Array<String>
+		return Save.enabledMods.get();
+
 	public static var modMetadatas:Map<String, ModMetadata> = [];
 
 	public static function init()
@@ -24,7 +31,7 @@ class ModCore
 
 	public static function reloadModList()
 	{
-		mods = [];
+		allMods = [];
 		modMetadatas.clear();
 
 		#if MOD_SUPPORT
@@ -52,18 +59,18 @@ class ModCore
 					continue;
 				}
 
-				mods.push(mod);
+				allMods.push(mod);
 			}
 		}
 		#end
 
-		trace('Reloaded with ${mods.length} mod(s) found');
-		for (mod in mods)
+		trace('Reloaded with ${allMods.length} mod(s) found');
+		for (mod in allMods)
 		{
 			var meta = modMetadatas.get(mod);
 
 			var name = meta.name ?? mod;
-			var version = (meta.mod_version != null) ? ' ${meta.mod_version}': '';
+			var version = (meta.mod_version != null) ? ' ${meta.mod_version}' : '';
 
 			trace(' * $name$version for api : ${meta.api_version}');
 		}
