@@ -44,6 +44,7 @@ This is the modding stuff that's important to know
 
 - Added `mods` folder
 - [DEBUG] Added `example_mods` folder
+	- Added `backdropMod`
 - Some fixes and tweaks to the README were made
 
 # [0.4.1] - 2/5/2026
