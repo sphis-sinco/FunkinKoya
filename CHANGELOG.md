@@ -23,7 +23,8 @@ This is the modding stuff that's important to know
 
 ## General
 
-- Z and P are no longer valid Pause keybinds
+- Z is no longer a valid Accept keybind
+- P is no longer a valid Pause keybind
 - ADDED KEYBIND CHANGING! (via options menu!)
 - Added Mods Menu
 - The Chart Editor autosave is now toggleable via the `Chart Editor Autosave` option
