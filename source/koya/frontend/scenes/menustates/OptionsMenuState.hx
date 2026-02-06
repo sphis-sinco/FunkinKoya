@@ -66,7 +66,11 @@ class OptionsMenuState extends MenuState
 	{
 		super.accept(item);
 
-		if (itemListFunctions.exists(item)) itemListFunctions.get(item)();
+		if (itemListFunctions.exists(item))
+		{
+			itemListFunctions.get(item)();
+			reloadItems();
+		}
 	}
 
 	public function reloadItems()
@@ -77,7 +81,7 @@ class OptionsMenuState extends MenuState
 		addItem('FPS Counter', Save.preferences.get().fpsCounter, function() {
 			Save.preferences.get().fpsCounter = !Save.preferences.get().fpsCounter;
 		});
-		
+
 		addItem(null, null, null);
 
 		addItem('Chart Editor Autosave', Save.preferences.get().chartEditorAutosave, function() {
