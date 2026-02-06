@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates.options;
 
+import flixel.sound.FlxSound;
 import flixel.util.FlxTimer;
 import koya.backend.AssetPaths;
 import koya.backend.save.SaveField;
@@ -99,17 +100,20 @@ class KeybindPrompt extends MusicBeatSubstate
 
 	function accept()
 	{
-		FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
+		confirmMenu.play(true);
 
 		fade();
 	}
 
 	function deny()
 	{
-		FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
+		cancelMenu.play(true);
 
 		fade(1.0);
 	}
+
+	var cancelMenu = new FlxSound().loadEmbedded(AssetPaths.sound('cancelMenu', 'ui'));
+	var confirmMenu = new FlxSound().loadEmbedded(AssetPaths.sound('confirmMenu', 'ui'));
 
 	function fade(longer:Float = 0)
 	{
@@ -120,6 +124,8 @@ class KeybindPrompt extends MusicBeatSubstate
 		FlxTween.tween(promptText, {alpha: 0}, 0.25 + longer, {ease: FlxEase.quartInOut});
 
 		FlxTimer.wait(1.0 + longer, () -> {
+			confirmMenu.stop();
+			cancelMenu.stop();
 			close();
 		});
 	}
