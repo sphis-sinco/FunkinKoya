@@ -32,6 +32,7 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Added alert for when a week could not be loaded
 - Fixed songs not being able to be added by `koya.backend.songs.SongList` because they were missing a normal chart (all chart files are checked for now)
 - Fixed ChartingState `Reload JSON` reloading to the normal version of the song and not the current selected difficulty
 - Fixed ChartingState `Reload JSON` button not reloading the desired JSON properly (It was attempting to load the JSON of `curSong`)

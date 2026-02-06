@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import koya.backend.CoolUtil;
 import flixel.tweens.FlxTween;
 import koya.backend.AssetPaths;
 import koya.frontend.ui.DifficultySprite;
@@ -72,6 +73,14 @@ class StoryModeState extends MenuState
 			FlxG.sound.music.stop();
 
 			FlxG.switchState(() -> new PlayState());
+		}
+		else
+		{
+			CoolUtil.alert('Could not load week',
+				'Error loading week, check for these possibilities:\n\n'
+				+ '- Missing difficulty file for the first song\n'
+				+ '- Missing week JSON\n'
+				+ '- Missing week JSON "songs" field\n');
 		}
 	}
 
