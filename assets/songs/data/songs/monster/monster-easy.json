@@ -2679,8 +2679,8 @@
 		],
 		"gfVersion": "gf-spooky-monster",
 		"stage": "halloween",
-		"authors": "Kawai Sprite",
-		"generatedBy": "Funkin' Koya* 0.4.0 : Week Pack Update 1 (dev/content:2659a1d) | Task: Resave All Songs",
+		"authors": "Bassetfilms",
+		"generatedBy": "Funkin' Koya* 0.4.1  | Fix Authors",
 		"bpm": 95,
 		"difficulty": 0,
 		"version": 8

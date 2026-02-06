@@ -3,6 +3,7 @@
 From 0.4.1 and beyond the mod will be more focused on the technical side, if anything is to be added song or week wise it'll be by popular demand or just me being in the mood.
 
 ## Visual
+- Fixed Monster's Composer field being Kawai Sprite
 - Added "Combo breaks" section to score text
 	- It shows you the total combo breaks in story mode
 - Added Pico health icon
@@ -11,14 +12,17 @@ From 0.4.1 and beyond the mod will be more focused on the technical side, if any
 <!-- WEB DOESNT EVEN FUCKING WORK PROPERLY! -->
 - [WEB] Added Custom Preloader state (`koya.frontend.scenes.PreloaderScene`)
 
+
 ## Misc
 
+- Removed week 4 and 5 assets
 - `CHANGELOG.md` is no longer renamed to `changelog.txt` on compiled builds
 - Added "funniboi" to README credits
 - Updated README to adapt to the new direction
 
 ## Technical
 
+- `koya.backend.tasks.ResaveAllSongs` no longer contains special changes for songs
 - Fixed notes passing by not being counted as misses
 - `-Dindev` now enables `FLX_DEBUG`
 - Crash Handler code has been moved to `koya.backend.CrashHandler`
