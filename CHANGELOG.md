@@ -30,6 +30,8 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Added `koya.backend.AssetPaths.tempDisableModCheck` : will disable the mod check stuff for one use of `koya.backend.AssetPaths.getPath`
+- Removed `koya.backend.AssetPaths.pixelZoom`
 - `koya.backend.CoolUtil` now has a `alert(title:String, msg:String)` function : Makes an alert obviously lol
 - Added `-DMOD_SUPPORT` define : Auto-enabled on desktop builds and enables mod support as the name suggests
 	- When disabled all it really does is disable the asset replacements and asset searches

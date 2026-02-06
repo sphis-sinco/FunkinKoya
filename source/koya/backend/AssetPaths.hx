@@ -9,16 +9,16 @@ using haxe.io.Path;
 
 class AssetPaths
 {
-	public static var pixelZoom:Float = 6;
-
 	public static var soundExt:String = #if web 'mp3' #else 'ogg' #end;
+
+	public static var tempDisableModCheck:Bool = false;
 
 	public static function getPath(path:String, ?library:String):String
 	{
 		if (library != null) return getLibraryPath(path, library);
 
 		#if MOD_SUPPORT
-		for (mod in ModCore.enabledMods)
+		if (!tempDisableModCheck) for (mod in ModCore.enabledMods)
 		{
 			var modPath:String = 'mods/$mod/$path';
 
@@ -27,6 +27,7 @@ class AssetPaths
 		}
 		#end
 
+		tempDisableModCheck = false;
 		return 'assets/$path';
 	}
 
