@@ -14,7 +14,7 @@ class MainMenuState extends MenuState
 			'story mode',
 			'freeplay',
 			'support',
-			// 'options',
+			'options',
 		];
 	}
 

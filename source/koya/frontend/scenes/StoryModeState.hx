@@ -119,7 +119,7 @@ class StoryModeState extends MenuState
 	{
 		super.select(change);
 
-		for (menuItem in itemsGroup.members)
+		for (menuItem in itemsSpriteGroup.members)
 			menuItem.y -= menuItem.height * 1.3;
 	}
 

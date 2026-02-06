@@ -1,5 +1,6 @@
 package koya.frontend.ui.menustate;
 
+import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 import flixel.sound.FlxSound;
 import flixel.effects.FlxFlicker;
@@ -22,12 +23,14 @@ class MenuState extends MusicBeatState
 	public var flashBG:MenuBG = new MenuBG(false);
 
 	public var itemList:Array<String> = [];
-	public var itemsGroup:FlxTypedGroup<MenuItem>;
+	public var itemsSpriteGroup:FlxTypedGroup<MenuItem>;
+	public var itemsTextGroup:FlxTypedGroup<Alphabet>;
 
 	public var currentSelection:Int = 0;
 
 	public var menuType:MenuType = Vertical;
 	public var menuItemPathPrefix:String = '';
+	public var text:Bool = false;
 
 	public var itemStartingPos:Float = 240;
 	public var itemIncOffset:Float = 320;
@@ -54,30 +57,50 @@ class MenuState extends MusicBeatState
 		flashBG.updateHitbox();
 		pinkBG.updateHitbox();
 
-		itemsGroup = new FlxTypedGroup<MenuItem>();
-		add(itemsGroup);
+		itemsSpriteGroup = new FlxTypedGroup<MenuItem>();
+		add(itemsSpriteGroup);
+
+		itemsTextGroup = new FlxTypedGroup<Alphabet>();
+		add(itemsTextGroup);
 
 		var i = 0;
 		for (item in itemList)
 		{
-			var menuItem = new MenuItem(item, menuItemPathPrefix, (menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0);
-
-			menuItem.scale.set(.5, .5);
-			menuItem.updateHitbox();
-			menuItem.makeOffsets();
-
-			menuItem.playAnim('idle');
-
-			if (menuType == Horizontal) menuItem.screenCenter(Y);
-			if (menuType == Vertical) menuItem.screenCenter(X);
-
-			menuItem.ID = i;
-			itemsGroup.add(menuItem);
+			if (!text) makeSprite(item, i);
+			if (text) makeText(item, i);
 
 			i++;
 		}
 
 		select();
+	}
+
+	public function makeText(item:String, i:Int)
+	{
+		var menuItem = new Alphabet((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item, true);
+
+		if (menuType == Horizontal) menuItem.screenCenter(Y);
+		if (menuType == Vertical) menuItem.screenCenter(X);
+
+		menuItem.ID = i;
+		itemsTextGroup.add(menuItem);
+	}
+
+	public function makeSprite(item:String, i:Int)
+	{
+		var menuItem = new MenuItem(item, menuItemPathPrefix, (menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0);
+
+		menuItem.scale.set(.5, .5);
+		menuItem.updateHitbox();
+		menuItem.makeOffsets();
+
+		menuItem.playAnim('idle');
+
+		if (menuType == Horizontal) menuItem.screenCenter(Y);
+		if (menuType == Vertical) menuItem.screenCenter(X);
+
+		menuItem.ID = i;
+		itemsSpriteGroup.add(menuItem);
 	}
 
 	public var transitioning:Bool = false;
@@ -98,13 +121,13 @@ class MenuState extends MusicBeatState
 			if (controls.UI_RIGHT_R) select(1);
 		}
 
-		if (controls.ACCEPT) accepted(itemsGroup.members[currentSelection].item);
+		if (controls.ACCEPT) accepted(itemsSpriteGroup.members[currentSelection].item);
 		if (controls.BACK) back();
 
 		if (menuType == Vertical)
 		{
 			pinkBG.screenCenter(X);
-			pinkBG.y = FlxMath.lerp(pinkBG.y, (FlxG.height - pinkBG.height) / 2 - (currentSelection * 2),.1);
+			pinkBG.y = FlxMath.lerp(pinkBG.y, (FlxG.height - pinkBG.height) / 2 - (currentSelection * 2), .1);
 		}
 		else
 		{
@@ -113,7 +136,13 @@ class MenuState extends MusicBeatState
 		}
 		flashBG.setPosition(pinkBG.x, pinkBG.y);
 
-		for (menuItem in itemsGroup.members)
+		if (!text) for (menuItem in itemsSpriteGroup.members)
+		{
+			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(menuItem.x, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
+			if (menuType == Vertical) menuItem.y = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
+		}
+
+		if (text) for (menuItem in itemsTextGroup.members)
 		{
 			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(menuItem.x, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
 			if (menuType == Vertical) menuItem.y = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
@@ -141,13 +170,18 @@ class MenuState extends MusicBeatState
 		if (currentSelection < 0) currentSelection = 0;
 		if (currentSelection >= itemList.length) currentSelection = itemList.length - 1;
 
-		for (menuItem in itemsGroup.members)
+		if (!text) for (menuItem in itemsSpriteGroup.members)
 		{
 			if (menuType == Horizontal) menuItem.screenCenter(Y);
 			if (menuType == Vertical) menuItem.screenCenter(X);
 			menuItem.playAnim('idle');
 
 			if (menuItem.ID == currentSelection) menuItem.playAnim('selected');
+		}
+		if (text) for (menuItem in itemsSpriteGroup.members)
+		{
+			if (menuType == Horizontal) menuItem.screenCenter(Y);
+			if (menuType == Vertical) menuItem.screenCenter(X);
 		}
 	}
 
@@ -161,7 +195,8 @@ class MenuState extends MusicBeatState
 		confirmMenu.play();
 
 		FlxFlicker.flicker(pinkBG, (confirmMenu.length / 2) / 1000, .1);
-		FlxFlicker.flicker(itemsGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
+		if (!text) FlxFlicker.flicker(itemsSpriteGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
+		if (text) FlxFlicker.flicker(itemsTextGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
 
 		FlxTimer.wait((confirmMenu.length / 2) / 1000, function() {
 			transitioning = false;
