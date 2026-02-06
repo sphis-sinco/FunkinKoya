@@ -199,6 +199,8 @@ class MenuState extends MusicBeatState
 		{
 			if (menuType == Horizontal) menuItem.screenCenter(Y);
 			if (menuType == Vertical) menuItem.screenCenter(X);
+
+			menuItem.alpha = (menuItem.ID == currentSelection) ? 1.0 : 0.6;
 		}
 
 		if (change != 0) FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));

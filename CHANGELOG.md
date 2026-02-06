@@ -18,6 +18,7 @@ This is the modding stuff that's important to know
 
 ## Visual
 
+- Text Menu Items have an alpha change instead of an animation when selected
 - The FPS part of `koya.frontend.ui.Watermark` is now toggleable via the `FPS Counter` option
 
 ## General
