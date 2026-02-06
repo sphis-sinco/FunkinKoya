@@ -16,6 +16,7 @@ class ModsMenuState extends OptionsMenuState
 			});
 
 			FlxG.log.add('$mod : ${ModCore.modMetadatas.get(mod)}');
+			FlxG.log.add('$mod.description : ${ModCore.modMetadatas.get(mod).description}');
 		}
 	}
 
@@ -24,8 +25,9 @@ class ModsMenuState extends OptionsMenuState
 		super.update(elapsed);
 
 		var mod = this.itemList[currentSelection];
+
 		valueText.text = 'Mod: ${ModCore.getModName(mod)}${(ModCore.modMetadatas.get(mod)?.name != null) ? ' (${mod})' : ''}\n'
-			+ 'Description: ${ModCore.modMetadatas.get(mod)?.description ?? 'N / A'}\n'
+			+ 'Description: ${ModCore.modMetadatas.get(mod)?.description}\n'
 			+ 'Enabled: ${this.itemListValues.get(mod)}';
 	}
 }

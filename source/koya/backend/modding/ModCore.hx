@@ -56,6 +56,10 @@ class ModCore
 							'The mod "$mod" is running on an unsupported version : ${modMeta.api_version}\n\n' +
 							'Minimum supported version ${MOD_MIN_API_VERSION}\n' + 'The mod will still be added but if things go wrong don\'t be surprised');
 					}
+					
+					modMeta.authors ??= [];
+					modMeta.description ??= 'N / A';
+
 					modMetadatas.set(mod, modMeta);
 				}
 				catch (e)
