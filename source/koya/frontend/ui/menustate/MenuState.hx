@@ -77,7 +77,7 @@ class MenuState extends MusicBeatState
 
 	public function makeText(item:String, i:Int)
 	{
-		var menuItem = new Alphabet((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item, true);
+		var menuItem = new Alphabet((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item.toLowerCase(), true);
 
 		if (menuType == Horizontal) menuItem.screenCenter(Y);
 		if (menuType == Vertical) menuItem.screenCenter(X);
@@ -121,7 +121,7 @@ class MenuState extends MusicBeatState
 			if (controls.UI_RIGHT_R) select(1);
 		}
 
-		if (controls.ACCEPT) accepted(itemsSpriteGroup.members[currentSelection].item);
+		if (controls.ACCEPT) accepted((text) ? itemsTextGroup.members[currentSelection].text : itemsSpriteGroup.members[currentSelection].item);
 		if (controls.BACK) back();
 
 		if (menuType == Vertical)
