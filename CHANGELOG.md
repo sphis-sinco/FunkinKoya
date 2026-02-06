@@ -1,3 +1,5 @@
+# [0.5.0] - 2/6/2026
+
 # [0.4.1] - 2/5/2026
 
 From 0.4.1 and beyond the mod will be more focused on the technical side, if anything is to be added song or week wise it'll be by popular demand or just me being in the mood.
