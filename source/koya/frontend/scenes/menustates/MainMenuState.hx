@@ -10,12 +10,7 @@ class MainMenuState extends MenuState
 	{
 		super('mainmenu/', Vertical);
 
-		itemList = [
-			'story mode',
-			'freeplay',
-			'support',
-			'options',
-		];
+		itemList = ['story mode', 'freeplay', 'support', 'options', #if MOD_SUPPORT 'mods' #end];
 	}
 
 	override function accept(item:String)
@@ -38,6 +33,10 @@ class MainMenuState extends MenuState
 			case 'options':
 				trace('change is supported');
 				FlxG.switchState(() -> new OptionsMenuState());
+				transitioning = true;
+			case 'mods':
+				trace('change is supported');
+				FlxG.switchState(() -> new ModsMenuState());
 				transitioning = true;
 		}
 	}

@@ -17,6 +17,7 @@ class AssetPaths
 	{
 		if (library != null) return getLibraryPath(path, library);
 
+		#if MOD_SUPPORT
 		for (mod in ModCore.enabledMods)
 		{
 			var modPath:String = 'mods/$mod/$path';
@@ -24,6 +25,7 @@ class AssetPaths
 			// First come first serve
 			if (KoyaAssets.exists(modPath)) return modPath;
 		}
+		#end
 
 		return 'assets/$path';
 	}

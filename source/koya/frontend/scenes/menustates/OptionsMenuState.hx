@@ -3,7 +3,6 @@ package koya.frontend.scenes.menustates;
 import flixel.util.FlxTimer;
 import flixel.effects.FlxFlicker;
 import flixel.sound.FlxSound;
-import koya.backend.save.Preferences;
 import koya.backend.save.Save;
 import koya.backend.AssetPaths;
 import flixel.text.FlxText;
@@ -69,6 +68,11 @@ class OptionsMenuState extends MenuState
 	{
 		super.accept(item);
 
+		runMethods(item);
+	}
+
+	function runMethods(item:String)
+	{
 		if (itemListFunctions.exists(item))
 		{
 			itemListFunctions.get(item)();
@@ -76,11 +80,16 @@ class OptionsMenuState extends MenuState
 		}
 	}
 
-	public function reloadItems()
+	function reloadItems()
 	{
 		this.itemList = [];
 		this.itemListValues = [];
 
+		addItems();
+	}
+
+	function addItems()
+	{
 		addItem('FPS Counter', Save.preferences.get().fpsCounter, function() {
 			Save.preferences.get().fpsCounter = !Save.preferences.get().fpsCounter;
 		});
