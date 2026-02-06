@@ -4,9 +4,15 @@
 
 This is the modding stuff that's important to know
 
+- A mod's `meta.json` file can have / require these fields:
+	- `name` (optional) : Display name of the mod
+	- `authors` (optional) : List of authors
+	- `api_version` : The api version the mod's built for
+	- `mod_version` (optional) : The mod version
 - Mod assets are loaded in a first come first serve system
 	- The first mod found to have an asset that's being searched for will have that asset used
 - `F3 + R` reloads mods
+- Mods require a `meta.json` file in their root (`mods/themod/`) for it to be loaded properly
 
 ## Visual
 
@@ -22,6 +28,7 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- `koya.backend.CoolUtil` now has a `alert(title:String, msg:String)` function : Makes an alert obviously lol
 - Added `-DMOD_SUPPORT` define : Auto-enabled on desktop builds and enables mod support as the name suggests
 - Added `koya.backend.modding.ModCore` : Manages the backend mod stuff like initalization
 - Split apart MenuState flicker to its own function (Which includes the wait to run `accept` cause yes.)

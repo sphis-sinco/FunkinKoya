@@ -1,5 +1,6 @@
 package koya.backend;
 
+import lime.app.Application;
 import koya.backend.KoyaAssets;
 
 using StringTools;
@@ -38,4 +39,7 @@ class CoolUtil
 		// Don't use Math.min because it returns a Float.
 		return value < min ? min : value > max ? max : value;
 	}
+
+	public static function alert(title:String, msg:String)
+		Application.current.window.alert(msg, title);
 }
