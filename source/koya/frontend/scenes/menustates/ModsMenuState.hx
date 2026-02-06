@@ -9,7 +9,7 @@ class ModsMenuState extends OptionsMenuState
 	{
 		for (mod in ModCore.allMods)
 		{
-			addItem(ModCore.getModName(mod), ModCore.enabledMods.contains(mod), function() {
+			addItem(mod, ModCore.enabledMods.contains(mod), function() {
 				if (ModCore.enabledMods.contains(mod)) ModCore.enabledMods.remove(mod);
 				else
 					ModCore.enabledMods.push(mod);
