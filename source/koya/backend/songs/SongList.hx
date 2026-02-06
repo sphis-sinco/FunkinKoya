@@ -37,7 +37,7 @@ class SongList
 
 				for (diff in Difficulty.list)
 				{
-					songJSON = Song.loadFromJson(Highscore.formatToDifficulty(song.toLowerCase(), diff), song.toLowerCase() false);
+					songJSON = Song.loadFromJson(Highscore.formatToDifficulty(song.toLowerCase(), diff), song.toLowerCase(), false);
 					if (songJSON != null) continue;
 				}
 
