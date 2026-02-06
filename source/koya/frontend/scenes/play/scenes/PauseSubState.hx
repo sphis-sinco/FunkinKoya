@@ -9,6 +9,7 @@ import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import flixel.text.FlxText;
 import koya.frontend.ui.Alphabet;
+import koya.frontend.scenes.menustates.*;
 import koya.frontend.scenes.freeplay.FreeplayState;
 import koya.backend.AssetPaths;
 import flixel.FlxG;
