@@ -20,12 +20,14 @@ class KeybindPrompt extends MusicBeatSubstate
 	var colorShit:FunkinSprite = new FunkinSprite();
 
 	var keybind:String;
+	var leaveMethod:Void->Void;
 
-	override public function new(keybind:String)
+	override public function new(keybind:String, ?leaveMethod:Void->Void)
 	{
 		super();
 
 		this.keybind = keybind;
+		this.leaveMethod = leaveMethod;
 	}
 
 	override function create()
@@ -64,7 +66,7 @@ class KeybindPrompt extends MusicBeatSubstate
 		{
 			if (!FlxG.keys.justReleased.ANY) return;
 
-			var invalids:Array<FlxKey> = [Z, ENTER, BACKSPACE, ESCAPE, P, ENTER];
+			var invalids:Array<FlxKey> = [ENTER, BACKSPACE, ESCAPE];
 
 			for (keybind in Save.keybinds)
 				invalids.push(FlxKey.fromString(keybind.get()));
@@ -74,7 +76,7 @@ class KeybindPrompt extends MusicBeatSubstate
 			if (invalids.contains(key))
 			{
 				promptText.text = 'Not bound\n\nInvalid Key.';
-				close();
+				deny();
 				return;
 			}
 
@@ -84,22 +86,41 @@ class KeybindPrompt extends MusicBeatSubstate
 			if (keybindField == null)
 			{
 				promptText.text = 'Not bound\n\nInvalid Keybind';
-				close();
+				deny();
 				return;
 			}
 
 			keybindField.set(keyString);
 			promptText.text = 'Bound to “$keyString';
 
-			FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
-
-			FlxTween.tween(bg, {alpha: 0}, 0.8, {ease: FlxEase.quartInOut});
-			FlxTween.tween(colorShit, {alpha: 0}, 0.6, {ease: FlxEase.quartInOut});
-			FlxTween.tween(promptText, {alpha: 0}, 0.4, {ease: FlxEase.quartInOut});
-
-			FlxTimer.wait(1, () -> {
-				close();
-			});
+			accept();
 		}
+	}
+
+	function accept()
+	{
+		FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
+
+		fade();
+	}
+
+	function deny()
+	{
+		FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
+
+		fade();
+	}
+
+	function fade()
+	{
+		if (leaveMethod != null) leaveMethod();
+
+		FlxTween.tween(bg, {alpha: 0}, 0.75, {ease: FlxEase.quartInOut});
+		FlxTween.tween(colorShit, {alpha: 0}, 0.5, {ease: FlxEase.quartInOut});
+		FlxTween.tween(promptText, {alpha: 0}, 0.25, {ease: FlxEase.quartInOut});
+
+		FlxTimer.wait(1.0, () -> {
+			close();
+		});
 	}
 }
