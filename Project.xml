@@ -191,4 +191,6 @@
 		<define name="ONE_ENDSONG_KEY" />
 		<define name="DEBUG_ASTERISK" unless="DISABLE_DEBUG_ASTERISK" />
 	</section>
+
+	<define name="MOD_SUPPORT" if="desktop"/>
 </project>

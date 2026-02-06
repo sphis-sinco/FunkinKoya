@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.backend.modding.ModCore;
 import koya.backend.plugins.Cursor;
 import flixel.util.*;
 import koya.backend.songs.Song;
@@ -58,6 +59,8 @@ class InitState extends FlxState
 				throw 'F3 + C';
 			}
 		});
+
+		ModCore.init();
 
 		new FlxTimer().start(1, function(t) {
 			FlxG.switchState(startingState);

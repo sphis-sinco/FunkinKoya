@@ -8,20 +8,19 @@
 
 - The Chart Editor autosave is now toggleable via the `Chart Editor Autosave` option
 - Added `preferences` save field with the following fields
-	- `fpsCounter` : Toggles the fps counter
-	- `chartEditorAutosave` : Toggles the chart editor autosaving
+  - `fpsCounter` : Toggles the fps counter
+  - `chartEditorAutosave` : Toggles the chart editor autosaving
 - Added Options Menu
 
 ## Technical
 
+- Added `-DMOD_SUPPORT` define : Auto-enabled on desktop builds and enables mod support as the name suggests
+- Added `koya.backend.modding.ModCore` : Manages the backend mod stuff like initalization
 - Split apart MenuState flicker to its own function (Which includes the wait to run `accept` cause yes.)
-
 - Added `-DOPTIONSMENU` define
-
 - Added support for "Text Menu States" : Menus using the Alphabet Text
 - `null` or `""` in `MenuState.accept` or `MenuState.accepted` will now `return;`
 - `null` or `""` in `MenuState.itemList` will now perform `change` again with the same value in `MenuState.select`
-
 - `MainMenuState` and `StoryModeState` have been moved to `koya.frontend.scenes.menustates`
 - Removed `FlxG.log.add` from `koya.frontend.scenes.play.ComboNumbers`
 - Added `koya.backend.KoyaAssets` : Assets class to help do `lime.utils.Assets` functions but support the filesystem for mods
