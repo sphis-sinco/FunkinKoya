@@ -33,8 +33,8 @@ class KeybindPrompt extends MusicBeatSubstate
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 
 		var colorShit:FunkinSprite = new FunkinSprite();
-		colorShit.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		colorShit.scale.set(0.8,0.8);
+		colorShit.makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#FF99CC'));
+		colorShit.scale.set(0.9,0.9);
 		colorShit.alpha = 0;
 		colorShit.scrollFactor.set();
 		add(colorShit);
