@@ -60,7 +60,7 @@ class StoryModeState extends MenuState
 	{
 		super.accept(item);
 
-		loadWeek(item.toLowerCase());
+		loadWeek(item);
 	}
 
 	public function loadWeek(week:String)
