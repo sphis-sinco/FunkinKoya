@@ -114,6 +114,14 @@ class InitState extends FlxState
 		return () -> new OptionsMenuState();
 		#end
 
+		#if MODMENU
+		#if MOD_SUPPORT
+		return () -> new ModsMenuState();
+		#else
+		return () -> new MainMenuState();
+		#end
+		#end
+
 		return () -> new TitleState();
 	}
 
