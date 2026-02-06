@@ -1,6 +1,11 @@
 export/
+
 .vscode/
 .haxelib/
-RECOVER_**.fla
+
 Backup/
+
+example_mods/
+
+RECOVER_**.fla
 **.swf
