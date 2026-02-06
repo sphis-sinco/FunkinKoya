@@ -42,6 +42,9 @@ class KeybindPrompt extends MusicBeatSubstate
 
 		promptText = new AtlasText(0, 0, 'Press anything(*) to bind to\n' + '“$keybind”' + '\n\n(*) Except for: ENTER or ESCAPE');
 
+		promptText.scale.set(0.5,0.5);
+		promptText.updateHitbox();
+
 		promptText.setPosition(colorBit.x, colorBit.y);
 		add(promptText);
 
