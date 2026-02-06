@@ -145,14 +145,15 @@ class PlayState extends MusicBeatState
 
 	public var local_resultsData:ResultsData = null;
 
-	public static var comboBreaks:Int = 0;
+	public static var globalComboBreaks:Int = 0;
+	public var localComboBreaks:Int = 0;
 
 	override public function create()
 	{
 		if (instance != null) instance = null;
 		instance = this;
 
-		if (!IS_STORYMODE) comboBreaks = 0;
+		if (!IS_STORYMODE) globalComboBreaks = 0;
 		if (!IS_STORYMODE || global_resultsData == null) global_resultsData = new ResultsData();
 		local_resultsData = new ResultsData();
 
@@ -501,7 +502,7 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-		scoreTxt.text = 'Score: $songScore | Combo Breaks: ${comboBreaks}';
+		scoreTxt.text = 'Score: $songScore | Combo Breaks: ${globalComboBreaks + localComboBreaks}';
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -712,6 +713,7 @@ class PlayState extends MusicBeatState
 		trace('global results data: ${global_resultsData}');
 
 		globalScore += songScore;
+		globalComboBreaks += localComboBreaks;
 
 		persistentUpdate = false;
 		persistentDraw = true;
@@ -965,7 +967,7 @@ class PlayState extends MusicBeatState
 		if (combo > 0)
 		{
 			combo = 0;
-			comboBreaks++;
+			localComboBreaks++;
 		}
 		local_resultsData.notesMissed++;
 
