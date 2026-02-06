@@ -110,6 +110,7 @@ class OptionsMenuState extends MenuState
 			if (keybind == null) continue;
 
 			addItem(keybind.field, keybind.get(), function() {
+				persistentUpdate = true;
 				openSubState(new KeybindPrompt(keybind.field, reloadItems));
 			});
 		}
