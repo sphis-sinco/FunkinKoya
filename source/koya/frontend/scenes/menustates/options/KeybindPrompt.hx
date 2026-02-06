@@ -91,7 +91,7 @@ class KeybindPrompt extends MusicBeatSubstate
 			}
 
 			keybindField.set(keyString);
-			promptText.text = 'Bound to “$keyString';
+			promptText.text = 'Bound to “$keyString”';
 
 			accept();
 		}
