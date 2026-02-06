@@ -12,13 +12,14 @@ class AssetPaths
 	public static var soundExt:String = #if web 'mp3' #else 'ogg' #end;
 
 	public static var tempDisableModCheck:Bool = false;
+	public static var tempForcedModCheck:Bool = false;
 
 	public static function getPath(path:String, ?library:String):String
 	{
 		if (library != null) return getLibraryPath(path, library);
 
 		#if MOD_SUPPORT
-		if (!tempDisableModCheck) for (mod in ModCore.enabledMods)
+		if (!tempDisableModCheck || tempForcedModCheck) for (mod in ModCore.enabledMods)
 		{
 			var modPath:String = 'mods/$mod/$path';
 
@@ -28,6 +29,7 @@ class AssetPaths
 		#end
 
 		tempDisableModCheck = false;
+		tempForcedModCheck = false;
 		return 'assets/$path';
 	}
 

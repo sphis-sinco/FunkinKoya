@@ -24,9 +24,10 @@ class AssetTextList
 
 	public var filepath:String = '';
 
-	public function new(filepath:String)
+	public function new(filepath:String, ?library:String)
 	{
-		this.filepath = filepath;
+		this.filepath = AssetPaths.getPath(filepath, library);
+		
 		trace('Made AssetTextList($filepath)!');
 	}
 
