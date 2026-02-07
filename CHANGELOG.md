@@ -37,6 +37,11 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.scenes.menustates.StoryModeState` FOR DIFFICULTIES
+- OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.scenes.freeplay.FreeplayState`
+	- Applies to difficulties too!
+- OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.ui.menustate.MenuState`
+	- YOU ARE NO LONGER CAPPED
 - Added `-DOPTIONSMENU_CONTROLS` define
 - Added full menu clearing support in `koya.frontend.ui.menustate.MenuState` via `reloadMenuItems`
 - Added optional `display` variable and param to `koya.backend.save.SaveField` and it's `new` function (Used in options menu for the keybinds)
@@ -61,7 +66,7 @@ This is the modding stuff that's important to know
 - Added `-DOPTIONSMENU` define
 - Added support for "Text Menu States" : Menus using the Alphabet Text
 - `null` or `""` in `MenuState.accept` or `MenuState.accepted` will now `return;`
-- `null` or `""` in `MenuState.itemList` will now perform `change` again with the same value or opposite in `MenuState.select`
+- `null` or `""` in `MenuState.itemList` will now perform `change` again with the same value in `MenuState.select`
 - `MainMenuState` and `StoryModeState` have been moved to `koya.frontend.scenes.menustates`
 - Removed `FlxG.log.add` from `koya.frontend.scenes.play.ComboNumbers`
 - Added `koya.backend.KoyaAssets` : Assets class to help do `lime.utils.Assets` functions but support the filesystem for mods

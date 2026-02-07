@@ -111,8 +111,8 @@ class StoryModeState extends MenuState
 			FlxTween.tween(arrow_DOWN, {y: aD_y}, .1);
 		}
 
-		if (currentDifficulty < 0) currentDifficulty = 0;
-		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = Difficulty.list.length - 1;
+		if (currentDifficulty < 0) currentDifficulty = Difficulty.list.length - 1;
+		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = 0;
 
 		arrow_UP.alpha = (currentDifficulty == Difficulty.list[0].toInt()) ? 0.5 : 1;
 		arrow_DOWN.alpha = (currentDifficulty == Difficulty.list[Difficulty.list.length - 1].toInt()) ? 0.5 : 1;

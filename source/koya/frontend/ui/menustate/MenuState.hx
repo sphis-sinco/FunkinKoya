@@ -177,30 +177,11 @@ class MenuState extends MusicBeatState
 	{
 		currentSelection += change;
 
-		if (currentSelection < 0) currentSelection = 0;
-		if (currentSelection >= itemList.length) currentSelection = itemList.length - 1;
+		if (currentSelection < 0) currentSelection = itemList.length - 1;
+		if (currentSelection >= itemList.length) currentSelection = 0;
 
 		var aSplitterItem = function() {
-			var goForwardPositive:Bool = (change > 0) && (itemList.length - 1) >= (currentSelection + change);
-			var goForwardNegative:Bool = (change < 0) && (currentSelection + change) >= 0;
-
-			var goBackwardPositive:Bool = (change < 0) && (itemList.length - 1) >= (currentSelection - change);
-			var goBackwardNegative:Bool = (change > 0) && (currentSelection - change) >= 0;
-
-			// trace(itemList[currentSelection]);
-
-			if (goForwardPositive || goForwardNegative)
-			{
-				// trace('skip');
-				select(change);
-				return;
-			}
-			if (goBackwardPositive || goBackwardNegative)
-			{
-				// trace('skip');
-				select(-change);
-				return;
-			}
+			select(change);
 		}
 
 		if (itemList[currentSelection] == '' || itemList[currentSelection] == null) aSplitterItem();

@@ -236,13 +236,13 @@ class FreeplayState extends MusicBeatState
 			FlxG.switchState(() -> new PlayState());
 		}
 
-		if (currentDifficulty < 0) currentDifficulty = 0;
-		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = Difficulty.list.length - 1;
+		if (currentDifficulty < 0) currentDifficulty = Difficulty.list.length - 1;
+		if (currentDifficulty > Difficulty.list.length - 1) currentDifficulty = 0;
 
 		currentDifficultyEnum = currentDifficulty;
 
-		if (currentSelection < 0) currentSelection = 0;
-		if (currentSelection >= songList.length) currentSelection = songList.length - 1;
+		if (currentSelection < 0) currentSelection = songList.length - 1;
+		if (currentSelection >= songList.length) currentSelection = 0;
 
 		opponentIcon.char = Character.getCharacter(currentSong?.player2 ?? 'unknown').iconChar ?? currentSong.player2;
 		playerIcon.char = Character.getCharacter(currentSong?.player1 ?? 'unknown').iconChar ?? currentSong.player1;
