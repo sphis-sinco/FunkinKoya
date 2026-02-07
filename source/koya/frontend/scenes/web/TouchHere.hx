@@ -16,10 +16,10 @@ class TouchHere extends MusicBeatState
 		super.create();
 
 		add(new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.fromString('#121317')));
-		add(new FlxSprite(320, -80).loadGraphic(AssetPaths.image('touch_bg', 'touchhere')));
+		add(new FlxSprite(320, -80).loadGraphic(AssetPaths.image('touch_bg', 'extra')));
 
 		button = new FlxSprite();
-		button.frames = AssetPaths.fromSparrow('touch_button', 'touchhere');
+		button.frames = AssetPaths.fromSparrow('touch_button', 'extra');
 		button.animation.addByPrefix('idle', 'button idle');
 		button.animation.addByPrefix('overlap', 'button overlap');
 		add(button);

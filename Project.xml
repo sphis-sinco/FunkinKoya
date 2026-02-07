@@ -61,8 +61,8 @@
 		<assets path="assets/ui" exclude="*.ogg" if="web" />
 		<assets path="assets/ui" exclude="*.mp3" unless="web" />
 
-		<assets path="assets/touchhere" exclude="*.ogg" if="web" />
-		<assets path="assets/touchhere" exclude="*.mp3" unless="web" />
+		<assets path="assets/extra" exclude="*.ogg" if="web" />
+		<assets path="assets/extra" exclude="*.mp3" unless="web" />
 
 		<assets path="assets/songs" exclude="*.ogg" if="web" />
 		<assets path="assets/songs" exclude="*.mp3" unless="web" />
