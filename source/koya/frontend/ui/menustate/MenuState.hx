@@ -1,5 +1,6 @@
 package koya.frontend.ui.menustate;
 
+import flixel.util.FlxColor;
 import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 import flixel.sound.FlxSound;
@@ -26,13 +27,15 @@ class MenuState extends MusicBeatState
 
 	public var itemList:Array<String> = [];
 	public var itemsSpriteGroup:FlxTypedGroup<MenuItem>;
-	public var itemsTextGroup:FlxTypedGroup<AtlasText>;
+	public var itemsAtlasTextGroup:FlxTypedGroup<AtlasText>;
+	public var itemsFlxTextGroup:FlxTypedGroup<FlxText>;
 
 	public var currentSelection:Int = 0;
 
 	public var menuType:MenuType = Vertical;
 	public var menuItemPathPrefix:String = '';
 	public var text:Bool = false;
+	public var atlasText:Bool = false;
 
 	public var itemStartingPos:Float = 240;
 	public var itemIncOffset:Float = 320;
@@ -62,22 +65,23 @@ class MenuState extends MusicBeatState
 		itemsSpriteGroup = new FlxTypedGroup<MenuItem>();
 		add(itemsSpriteGroup);
 
-		itemsTextGroup = new FlxTypedGroup<AtlasText>();
-		add(itemsTextGroup);
+		itemsAtlasTextGroup = new FlxTypedGroup<AtlasText>();
+		add(itemsAtlasTextGroup);
 
 		reloadMenuItems();
 	}
 
 	public function reloadMenuItems()
 	{
-		itemsTextGroup.clear();
+		itemsAtlasTextGroup.clear();
 		itemsSpriteGroup.clear();
 
 		var i = 0;
 		for (item in itemList)
 		{
 			if (!text) makeSprite(item, i);
-			if (text) makeText(item, i);
+			if (text && atlasText) makeAtlasText(item, i);
+			if (text && !atlasText) makeFlxText(item, i);
 
 			i++;
 		}
@@ -85,7 +89,7 @@ class MenuState extends MusicBeatState
 		select();
 	}
 
-	public function makeText(item:String, i:Int)
+	public function makeAtlasText(item:String, i:Int)
 	{
 		var menuItem = new AtlasText((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, item, BOLD);
 
@@ -93,7 +97,20 @@ class MenuState extends MusicBeatState
 		if (menuType == Vertical) menuItem.screenCenter(X);
 
 		menuItem.ID = i;
-		itemsTextGroup.add(menuItem);
+		itemsAtlasTextGroup.add(menuItem);
+	}
+
+	public function makeFlxText(item:String, i:Int)
+	{
+		var menuItem = new FlxText((menuType == Horizontal) ? -640 : 0, (menuType == Vertical) ? -640 : 0, 0, item, 16);
+		menuItem.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, LEFT, OUTLINE, FlxColor.BLACK);
+		menuItem.setBorderStyle(OUTLINE, FlxColor.BLACK, 2);
+
+		if (menuType == Horizontal) menuItem.screenCenter(Y);
+		if (menuType == Vertical) menuItem.screenCenter(X);
+
+		menuItem.ID = i;
+		itemsFlxTextGroup.add(menuItem);
 	}
 
 	public function makeSprite(item:String, i:Int)
@@ -132,7 +149,7 @@ class MenuState extends MusicBeatState
 		}
 
 		if (subState == null && controls.ACCEPT)
-			accepted((text) ? itemsTextGroup.members[currentSelection].text : itemsSpriteGroup.members[currentSelection].item);
+			accepted((text) ? ((atlasText) ? itemsAtlasTextGroup.members[currentSelection].text : itemsFlxTextGroup.members[currentSelection].text) : itemsSpriteGroup.members[currentSelection].item);
 		if (subState == null && controls.BACK) back();
 
 		if (menuType == Vertical)
@@ -153,7 +170,13 @@ class MenuState extends MusicBeatState
 			if (menuType == Vertical) menuItem.y = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
 		}
 
-		if (text) for (menuItem in itemsTextGroup.members)
+		if (text && atlasText) for (menuItem in itemsAtlasTextGroup.members)
+		{
+			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(menuItem.x, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
+			if (menuType == Vertical) menuItem.y = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
+		}
+
+		if (text && !atlasText) for (menuItem in itemsFlxTextGroup.members)
 		{
 			if (menuType == Horizontal) menuItem.x = FlxMath.lerp(menuItem.x, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
 			if (menuType == Vertical) menuItem.y = FlxMath.lerp(menuItem.y, itemStartingPos + (itemIncOffset * (menuItem.ID - currentSelection)), .1);
@@ -194,7 +217,14 @@ class MenuState extends MusicBeatState
 
 			if (menuItem.ID == currentSelection) menuItem.playAnim('selected');
 		}
-		if (text) for (menuItem in itemsTextGroup.members)
+		if (text && atlasText) for (menuItem in itemsAtlasTextGroup.members)
+		{
+			if (menuType == Horizontal) menuItem.screenCenter(Y);
+			if (menuType == Vertical) menuItem.screenCenter(X);
+
+			menuItem.alpha = (menuItem.ID == currentSelection) ? 1.0 : 0.6;
+		}
+		if (text && !atlasText) for (menuItem in itemsFlxTextGroup.members)
 		{
 			if (menuType == Horizontal) menuItem.screenCenter(Y);
 			if (menuType == Vertical) menuItem.screenCenter(X);
@@ -223,7 +253,8 @@ class MenuState extends MusicBeatState
 	{
 		FlxFlicker.flicker(pinkBG, (confirmMenu.length / 2) / 1000, .1);
 		if (!text) FlxFlicker.flicker(itemsSpriteGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
-		if (text) FlxFlicker.flicker(itemsTextGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
+		if (text && atlasText) FlxFlicker.flicker(itemsAtlasTextGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
+		if (text && !atlasText) FlxFlicker.flicker(itemsFlxTextGroup.members[currentSelection], (confirmMenu.length / 2) / 500, .05);
 
 		FlxTimer.wait((confirmMenu.length / 2) / 1000, function() {
 			transitioning = false;

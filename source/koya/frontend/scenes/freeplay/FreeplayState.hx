@@ -93,14 +93,14 @@ class FreeplayState extends MenuState
 	{
 		super.create();
 
-		remove(itemsTextGroup);
+		remove(itemsFlxTextGroup);
 
 		remove(pinkBG);
 		remove(flashBG);
 
 		initBordersAndArrows();
 
-		add(itemsTextGroup);
+		add(itemsFlxTextGroup);
 
 		songScoreText.fieldWidth = upBorder.innerSprite.width;
 		songScoreText.alignment = CENTER;
@@ -221,7 +221,7 @@ class FreeplayState extends MenuState
 
 	public function applyChartCheck()
 	{
-		for (menuItem in itemsTextGroup)
+		for (menuItem in itemsFlxTextGroup)
 		{
 			var song:String = menuItem.text;
 			var chart:String = Highscore.formatToDifficulty(menuItem.text, currentDifficulty);
@@ -236,7 +236,7 @@ class FreeplayState extends MenuState
 
 		applyChartCheck();
 
-		for (menuItem in itemsTextGroup.members)
+		for (menuItem in itemsFlxTextGroup.members)
 			menuItem.x = 30;
 	}
 

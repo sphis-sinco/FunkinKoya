@@ -37,6 +37,7 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Added support for "FlxText Menu States" : Menus using FlxText
 - Removed `-DFREEPLAY_BG_GRID` define for good
 - `koya.frontend.scenes.freeplay.FreeplayState` has been converted into a `MenuState`
 	- Song select arrows have been removed
@@ -68,7 +69,7 @@ This is the modding stuff that's important to know
 - Added `koya.backend.modding.ModCore` : Manages the backend mod stuff like initalization
 - Split apart MenuState flicker to its own function (Which includes the wait to run `accept` cause yes.)
 - Added `-DOPTIONSMENU` define
-- Added support for "Text Menu States" : Menus using the Alphabet Text
+- Added support for "Atlas Text Menu States" : Menus using the Alphabet Text
 - `null` or `""` in `MenuState.accept` or `MenuState.accepted` will now `return;`
 - `null` or `""` in `MenuState.itemList` will now perform `change` again with the same value in `MenuState.select`
 - `MainMenuState` and `StoryModeState` have been moved to `koya.frontend.scenes.menustates`
