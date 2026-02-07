@@ -36,6 +36,7 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Added optional `display` variable and param to `koya.backend.save.SaveField` and it's `new` function (Used in options menu for the keybinds)
 - `koya.frontend.ui.menustate.MenuState` no longer allows controls when `subState` isn't null
 - Yoinked `AtlasText` from base funkin and replaced `Alphabet`
 	- `koya.frontend.scenes.play.scenes.PauseSubState` has been updated to adapt

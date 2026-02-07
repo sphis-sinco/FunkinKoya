@@ -114,7 +114,7 @@ class OptionsMenuState extends MenuState
 				continue;
 			}
 
-			addItem(keybind.field, keybind.get(), function() {
+			addItem(keybind.display ?? keybind.field, keybind.get(), function() {
 				persistentUpdate = true;
 				openSubState(new KeybindPrompt(keybind.field, function() {
 					reloadItems();

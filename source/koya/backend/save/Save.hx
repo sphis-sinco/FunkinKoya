@@ -57,27 +57,27 @@ class Save
 		autosave = new SaveField<ChartSwagSong>('autosave');
 		controls = new SaveField<Dynamic>('controls');
 
-		keybind_reset = new SaveField<String>('keybind_reset', 'R');
+		keybind_reset = new SaveField<String>('keybind_reset', 'R', 'Keybind: RESET');
 
-		keybind_ui_left_alt = new SaveField<String>('keybind_ui_left_alt', 'A');
-		keybind_ui_down_alt = new SaveField<String>('keybind_ui_down_alt', 'S');
-		keybind_ui_up_alt = new SaveField<String>('keybind_ui_up_alt', 'W');
-		keybind_ui_right_alt = new SaveField<String>('keybind_ui_right_alt', 'D');
+		keybind_ui_left_alt = new SaveField<String>('keybind_ui_left_alt', 'A', 'Keybind: UI_LEFT_ALT');
+		keybind_ui_down_alt = new SaveField<String>('keybind_ui_down_alt', 'S', 'Keybind: UI_DOWN_ALT');
+		keybind_ui_up_alt = new SaveField<String>('keybind_ui_up_alt', 'W', 'Keybind: UI_UP_ALT');
+		keybind_ui_right_alt = new SaveField<String>('keybind_ui_right_alt', 'D', 'Keybind: UI_RIGHT_ALT');
 
-		keybind_ui_left = new SaveField<String>('keybind_ui_left', 'LEFT');
-		keybind_ui_down = new SaveField<String>('keybind_ui_down', 'DOWN');
-		keybind_ui_up = new SaveField<String>('keybind_ui_up', 'UP');
-		keybind_ui_right = new SaveField<String>('keybind_ui_right', 'RIGHT');
+		keybind_ui_left = new SaveField<String>('keybind_ui_left', 'LEFT', 'Keybind: UI_LEFT');
+		keybind_ui_down = new SaveField<String>('keybind_ui_down', 'DOWN', 'Keybind: UI_DOWN');
+		keybind_ui_up = new SaveField<String>('keybind_ui_up', 'UP', 'Keybind: UI_UP');
+		keybind_ui_right = new SaveField<String>('keybind_ui_right', 'RIGHT', 'Keybind: UI_RIGHT');
 
-		keybind_note_left_alt = new SaveField<String>('keybind_note_left_alt', 'A');
-		keybind_note_down_alt = new SaveField<String>('keybind_note_down_alt', 'S');
-		keybind_note_up_alt = new SaveField<String>('keybind_note_up_alt', 'W');
-		keybind_note_right_alt = new SaveField<String>('keybind_note_right_alt', 'D');
+		keybind_note_left_alt = new SaveField<String>('keybind_note_left_alt', 'A', 'Keybind: NOTE_LEFT_ALT');
+		keybind_note_down_alt = new SaveField<String>('keybind_note_down_alt', 'S', 'Keybind: NOTE_DOWN_ALT');
+		keybind_note_up_alt = new SaveField<String>('keybind_note_up_alt', 'W', 'Keybind: NOTE_UP_ALT');
+		keybind_note_right_alt = new SaveField<String>('keybind_note_right_alt', 'D', 'Keybind: NOTE_RIGHT_ALT');
 
-		keybind_note_left = new SaveField<String>('keybind_note_left', 'LEFT');
-		keybind_note_down = new SaveField<String>('keybind_note_down', 'DOWN');
-		keybind_note_up = new SaveField<String>('keybind_note_up', 'UP');
-		keybind_note_right = new SaveField<String>('keybind_note_right', 'RIGHT');
+		keybind_note_left = new SaveField<String>('keybind_note_left', 'LEFT', 'Keybind: NOTE_LEFT');
+		keybind_note_down = new SaveField<String>('keybind_note_down', 'DOWN', 'Keybind: NOTE_DOWN');
+		keybind_note_up = new SaveField<String>('keybind_note_up', 'UP', 'Keybind: NOTE_UP');
+		keybind_note_right = new SaveField<String>('keybind_note_right', 'RIGHT', 'Keybind: NOTE_RIGHT');
 
 		keybinds = [
 			keybind_reset,
@@ -100,7 +100,7 @@ class Save
 			keybind_note_up,
 			keybind_note_right,
 			null,
-			
+
 			keybind_note_up_alt,
 			keybind_note_left_alt,
 			keybind_note_down_alt,
