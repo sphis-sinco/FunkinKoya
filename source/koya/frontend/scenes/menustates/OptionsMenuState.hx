@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import koya.frontend.scenes.menustates.options.ConfirmPrompt;
 import koya.frontend.scenes.play.PlayState;
 import koya.frontend.scenes.menustates.options.ControlRemap;
 import koya.backend.controls.Controls;
@@ -98,6 +99,17 @@ class OptionsMenuState extends MenuState
 
 	function addItems()
 	{
+		addItem('Clear Save', 'Select to clear your save', function() {
+			openSubState(new ConfirmPrompt('\n\nThis will erase EVERYTHING.', function() {
+				FlxG.save.close();
+				Save.init();
+
+				FlxG.resetGame();
+			}));
+		});
+
+		addItem(null, null, null);
+
 		addItem('FPS Counter', Save.preferences.get().fpsCounter, function() {
 			Save.preferences.get().fpsCounter = !Save.preferences.get().fpsCounter;
 		});
