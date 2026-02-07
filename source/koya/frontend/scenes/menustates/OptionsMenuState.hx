@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import koya.frontend.scenes.play.PlayState;
 import koya.frontend.scenes.menustates.options.ControlRemap;
 import koya.backend.controls.Controls;
 import koya.frontend.scenes.menustates.options.KeybindPrompt;
@@ -17,6 +18,8 @@ using StringTools;
 
 class OptionsMenuState extends MenuState
 {
+	public static var inGameplay:Bool = false;
+
 	public var itemListValues:Map<String, Dynamic> = [];
 	public var itemListFunctions:Map<String, Dynamic> = [];
 
@@ -126,6 +129,8 @@ class OptionsMenuState extends MenuState
 
 	override function back()
 	{
-		FlxG.switchState(() -> new MainMenuState());
+		if (inGameplay) FlxG.switchState(() -> new PlayState());
+		else
+			FlxG.switchState(() -> new MainMenuState());
 	}
 }

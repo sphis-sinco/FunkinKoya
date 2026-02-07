@@ -32,6 +32,7 @@ class MainMenuState extends MenuState
 				FlxG.openURL('https://ko-fi.com/sphis');
 			case 'options':
 				trace('change is supported');
+				OptionsMenuState.inGameplay = false;
 				FlxG.switchState(() -> new OptionsMenuState());
 				transitioning = true;
 			case 'mods':

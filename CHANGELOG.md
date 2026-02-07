@@ -23,6 +23,7 @@ This is the modding stuff that's important to know
 
 ## General
 
+- Added "Options" pause sub state item
 - Z is no longer a valid Accept keybind
 - P is no longer a valid Pause keybind
 - ADDED KEYBIND CHANGING! (via options menu!)

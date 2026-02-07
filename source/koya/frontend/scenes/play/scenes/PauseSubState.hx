@@ -25,7 +25,7 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<AtlasText>;
 
-	var menuItems:Array<String> = ['resume', 'restart song'];
+	var menuItems:Array<String> = ['resume', 'restart song', 'options'];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
@@ -149,6 +149,9 @@ class PauseSubState extends MusicBeatSubstate
 					if (PlayState.IS_STORYMODE) FlxG.switchState(() -> new StoryModeState());
 					else
 						FlxG.switchState(() -> new FreeplayState());
+				case 'options':
+					OptionsMenuState.inGameplay = true;
+					FlxG.switchState(() -> new OptionsMenuState());
 			}
 
 			if (daSelected.toLowerCase().startsWith('change to '))
