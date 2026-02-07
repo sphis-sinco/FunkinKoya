@@ -53,7 +53,7 @@ class ControlRemap extends OptionsMenuState
 
 			addItem(keybind.display ?? keybind.field, keybind.get(), function() {
 				persistentUpdate = true;
-				openSubState(new KeybindPrompt(keybind.field, function() {
+				openSubState(new KeybindPrompt(keybind.field, function(confirm:Bool) {
 					reloadItems();
 					controls.setKeyboardScheme(Custom);
 				}));

@@ -2,7 +2,7 @@ package koya.frontend.scenes.menustates.options;
 
 class ConfirmPrompt extends Prompt
 {
-	override public function new(?additionalInfo:String, ?leaveMethod:Void->Void)
+	override public function new(?additionalInfo:String, ?leaveMethod:Bool->Void)
 	{
 		super(leaveMethod);
 

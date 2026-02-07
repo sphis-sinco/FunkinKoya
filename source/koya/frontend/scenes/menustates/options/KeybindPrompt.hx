@@ -11,7 +11,7 @@ class KeybindPrompt extends Prompt
 {
 	var keybind:String;
 
-	override public function new(keybind:String, ?leaveMethod:Void->Void)
+	override public function new(keybind:String, ?leaveMethod:Bool->Void)
 	{
 		super(leaveMethod);
 

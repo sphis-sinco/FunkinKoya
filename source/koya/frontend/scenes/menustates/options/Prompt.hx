@@ -16,15 +16,15 @@ using StringTools;
 
 class Prompt extends MusicBeatSubstate
 {
-	var promptText:AtlasText;
-	var bg:FunkinSprite = new FunkinSprite();
-	var colorShit:FunkinSprite = new FunkinSprite();
+	public var promptText:AtlasText;
+	public var bg:FunkinSprite = new FunkinSprite();
+	public var colorShit:FunkinSprite = new FunkinSprite();
 
-	var leaveMethod:Void->Void;
+	public var leaveMethod:Bool->Void;
 
-	var prompt:String = 'Unknown Prompt';
+	public var prompt:String = 'Unknown Prompt';
 
-	override public function new(?leaveMethod:Void->Void)
+	override public function new(?leaveMethod:Bool->Void)
 	{
 		super();
 
@@ -77,22 +77,23 @@ class Prompt extends MusicBeatSubstate
 	{
 		confirmMenu.play(true);
 
-		fade();
+		// this working feels wrong
+		fade(true);
 	}
 
 	function deny()
 	{
 		cancelMenu.play(true);
 
-		fade(1.0);
+		fade(1.0, false);
 	}
 
 	var cancelMenu = new FlxSound().loadEmbedded(AssetPaths.sound('cancelMenu', 'ui'));
 	var confirmMenu = new FlxSound().loadEmbedded(AssetPaths.sound('confirmMenu', 'ui'));
 
-	function fade(longer:Float = 0)
+	function fade(longer:Float = 0, ?confirm:Bool = false)
 	{
-		if (leaveMethod != null) leaveMethod();
+		if (leaveMethod != null) leaveMethod(confirm);
 
 		FlxTween.tween(bg, {alpha: 0}, 0.75 + longer, {ease: FlxEase.quartInOut});
 		FlxTween.tween(colorShit, {alpha: 0}, 0.5 + longer, {ease: FlxEase.quartInOut});
