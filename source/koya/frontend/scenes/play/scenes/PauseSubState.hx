@@ -25,7 +25,7 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<AtlasText>;
 
-	var menuItems:Array<String> = ['resume', 'restart song', 'options'];
+	var menuItems:Array<String> = [];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
@@ -43,6 +43,10 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		super();
 
+		menuItems = [];
+		menuItems.push('resume');
+		menuItems.push('restart song');
+
 		for (difficulty in Difficulty.list)
 		{
 			if (PlayState.SONG_DIFFICULTY == difficulty) continue;
@@ -53,6 +57,7 @@ class PauseSubState extends MusicBeatSubstate
 			if (KoyaAssets.exists(AssetPaths.chart(song, chart))) menuItems.push('change to ${difficulty.toString()}');
 		}
 
+		menuItems.push('options');
 		menuItems.push('exit to menu');
 
 		pauseMusic = new FlxSound().loadEmbedded(AssetPaths.music('breakfast'), true, true);
