@@ -34,7 +34,6 @@ class KoyaAssets
 		return Assets.getText(path);
 	}
 
-
 	/**
 		Use sys to read `directory` and return the contents
 

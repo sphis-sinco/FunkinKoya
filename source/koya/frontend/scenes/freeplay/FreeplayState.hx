@@ -256,8 +256,8 @@ class FreeplayState extends MenuState
 		add(leftBorder);
 		leftBorder.innerSprite.x -= FreeplayBorderSprite.INNER_PADDING / 2;
 
-		rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + FreeplayBorderSprite.INNER_PADDING),
-			FlxG.width - sideBorderWidths, -FreeplayBorderSprite.INNER_PADDING / 2);
+		rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + FreeplayBorderSprite.INNER_PADDING), FlxG.width - sideBorderWidths,
+			-FreeplayBorderSprite.INNER_PADDING / 2);
 		add(rightBorder);
 		rightBorder.innerSprite.x += FreeplayBorderSprite.INNER_PADDING / 2;
 

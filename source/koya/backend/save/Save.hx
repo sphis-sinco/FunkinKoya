@@ -17,6 +17,7 @@ class Save
 
 	/** Save Field: songScores : Map of your song scores (Check out `koya.backend.Highscore` for more info) **/
 	public static var songScores:SaveField<Map<String, Int>>;
+
 	/** Save Field: songScores : Map of your song ranks (Check out `koya.backend.Highscore` for more info) **/
 	public static var songRanks:SaveField<Map<String, Rank>>;
 
@@ -28,37 +29,49 @@ class Save
 
 	/** Save Field: keybind_reset : Keybind for UI Left **/
 	public static var keybind_ui_left:SaveField<String>;
+
 	/** Save Field: keybind_reset : Keybind for UI Down **/
 	public static var keybind_ui_down:SaveField<String>;
+
 	/** Save Field: keybind_reset : Keybind for UI Up **/
 	public static var keybind_ui_up:SaveField<String>;
+
 	/** Save Field: keybind_reset : Keybind for UI Right **/
 	public static var keybind_ui_right:SaveField<String>;
 
 	/** Save Field: keybind_reset : Alt Keybind for UI Left **/
 	public static var keybind_ui_left_alt:SaveField<String>;
+
 	/** Save Field: keybind_reset : Alt Keybind for UI Down **/
 	public static var keybind_ui_down_alt:SaveField<String>;
+
 	/** Save Field: keybind_reset : Alt Keybind for UI Up **/
 	public static var keybind_ui_up_alt:SaveField<String>;
+
 	/** Save Field: keybind_reset : Alt Keybind for UI Right **/
 	public static var keybind_ui_right_alt:SaveField<String>;
 
 	/** Save Field: keybind_reset : Keybind for Note Left **/
 	public static var keybind_note_left:SaveField<String>;
+
 	/** Save Field: keybind_reset : Keybind for Note Down **/
 	public static var keybind_note_down:SaveField<String>;
+
 	/** Save Field: keybind_reset : Keybind for Note Up **/
 	public static var keybind_note_up:SaveField<String>;
+
 	/** Save Field: keybind_reset : Keybind for Note Right **/
 	public static var keybind_note_right:SaveField<String>;
 
 	/** Save Field: keybind_reset : Alt Keybind for Note Left **/
 	public static var keybind_note_left_alt:SaveField<String>;
+
 	/** Save Field: keybind_reset : Alt Keybind for Note Down **/
 	public static var keybind_note_down_alt:SaveField<String>;
+
 	/** Save Field: keybind_reset : Alt Keybind for Note Up **/
 	public static var keybind_note_up_alt:SaveField<String>;
+
 	/** Save Field: keybind_reset : Alt Keybind for Note Right **/
 	public static var keybind_note_right_alt:SaveField<String>;
 
@@ -185,7 +198,7 @@ class Save
 				preferences.get().ghostTapping ??= true;
 
 				preferences.get().flashingLights ??= true;
-			
+
 			case 5:
 				Reflect.deleteField(FlxG.save.data, 'controls');
 

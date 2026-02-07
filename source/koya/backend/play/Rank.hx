@@ -13,12 +13,16 @@ enum abstract Rank(String) from String to String
 
 	/** Percent for AMAZING rank **/
 	public static final RANK_AMAZING_THRESHOLD:Float = 1.00;
+
 	/** Percent for EXCELLENT rank **/
 	public static final RANK_EXCELLENT_THRESHOLD:Float = 0.80;
+
 	/** Percent for GREAT rank **/
 	public static final RANK_GREAT_THRESHOLD:Float = 0.60;
+
 	/** Percent for GOOD rank **/
 	public static final RANK_GOOD_THRESHOLD:Float = 0.40;
+
 	/** Percent for OK rank **/
 	public static final RANK_OK_THRESHOLD:Float = 0.20;
 

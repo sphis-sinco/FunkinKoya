@@ -4,6 +4,7 @@ class SaveField<T>
 {
 	/** Save Field name **/
 	public var field:String = '';
+
 	/** Display name **/
 	public var display:String = null;
 

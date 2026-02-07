@@ -10,6 +10,7 @@ class ModCore
 
 	/** Directory for mods to be looked for **/
 	public static final MOD_DIRECTORY:String = 'mods';
+
 	/** Mod metadata filename **/
 	public static final MOD_METADATA_FILE:String = 'meta.json';
 
