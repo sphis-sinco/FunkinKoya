@@ -33,6 +33,10 @@ class Constants
 		suffix += ' (${Git.gimmeSuffix()})';
 		#end
 
+		#if playtest
+		suffix += ' [PLAYTEST]';
+		#end
+
 		return suffix;
 	}
 

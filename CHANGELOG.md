@@ -44,6 +44,9 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Added `-Dplaytesting` define
+	- Adds " [PLAYTEST]" to the version suffix
+	- Changed the export directory
 - Added `props` map to `koya.frontend.scenes.play.stages`
 - Added support for "FlxText Menu States" : Menus using FlxText
 - Removed `-DFREEPLAY_BG_GRID` define for good
