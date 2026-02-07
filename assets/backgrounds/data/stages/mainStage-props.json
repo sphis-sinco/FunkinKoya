@@ -1,0 +1,39 @@
+{
+	"stageBack": {
+		"img": "stageBack",
+
+		"scrollFactor": [0.9, 0.9],
+
+		"layerType": "back",
+		"layer": 0
+	},
+	"stageFloor": {
+		"img": "stageFloor",
+
+		"scrollFactor": [0.9, 0.9],
+		"scale": [1.25, 1.25],
+		
+		"layerType": "back",
+		"layer": 1
+	},
+	"stageCurtains": {
+		"sparrow": "stageCurtain",
+		"animations": [
+			{
+				"type": "prefix",
+				"name": "closed",
+				"prefix": "curtain closed"
+			},
+			{
+				"type": "prefix",
+				"name": "open",
+				"prefix": "curtain open"
+			}
+		],
+
+		"scrollFactor": [0, 0],
+		
+		"layerType": "front",
+		"layer": 0
+	}
+}
