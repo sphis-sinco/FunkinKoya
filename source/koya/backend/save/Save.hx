@@ -152,7 +152,9 @@ class Save
 			case 4:
 				preferences.get().downScroll ??= false;
 				preferences.get().ghostTapping ??= true;
-			
+
+				preferences.get().flashingLights ??= true;
+				
 			case 5:
 				preferences.get().flashingLights ??= true;
 
