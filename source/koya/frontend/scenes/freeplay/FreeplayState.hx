@@ -141,12 +141,6 @@ class FreeplayState extends MenuState
 		songDifficultySprite.screenCenter(Y);
 		songDifficultySprite.x = rightBorder.innerSprite.getGraphicMidpoint().x - (songDifficultySprite.width / 2);
 
-		arrow_UP.alpha = (currentSelection == 0) ? 0.5 : 1;
-		arrow_DOWN.alpha = (currentSelection == songList.length - 1) ? 0.5 : 1;
-
-		arrow_LEFT.alpha = (currentDifficulty == Difficulty.list[0].toInt()) ? 0.5 : 1;
-		arrow_RIGHT.alpha = (currentDifficulty == Difficulty.list[Difficulty.list.length - 1].toInt()) ? 0.5 : 1;
-
 		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}):\n';
 		if (currentScore < 0) songScoreText.text += '-';
 		songScoreText.text += '${Math.abs(currentScore)}'.lpad('0', 8);
@@ -170,6 +164,7 @@ class FreeplayState extends MenuState
 			arrow_UP.y -= 10;
 			FlxTween.cancelTweensOf(arrow_UP);
 			FlxTween.tween(arrow_UP, {y: aU_y}, .1);
+			applyChartCheck();
 		}
 		if (controls.UI_DOWN_R)
 		{
@@ -177,6 +172,7 @@ class FreeplayState extends MenuState
 
 			FlxTween.cancelTweensOf(arrow_DOWN);
 			FlxTween.tween(arrow_DOWN, {y: aD_y}, .1);
+			applyChartCheck();
 		}
 
 		if (controls.UI_LEFT_R)
@@ -187,6 +183,7 @@ class FreeplayState extends MenuState
 			arrow_LEFT.x -= 10;
 			FlxTween.cancelTweensOf(arrow_LEFT);
 			FlxTween.tween(arrow_LEFT, {x: aL_x}, .1);
+			applyChartCheck();
 		}
 		if (controls.UI_RIGHT_R)
 		{
@@ -196,6 +193,7 @@ class FreeplayState extends MenuState
 			arrow_RIGHT.x += 10;
 			FlxTween.cancelTweensOf(arrow_RIGHT);
 			FlxTween.tween(arrow_RIGHT, {x: aR_x}, .1);
+			applyChartCheck();
 		}
 
 		if (controls.ACCEPT)
@@ -238,10 +236,8 @@ class FreeplayState extends MenuState
 		FlxG.switchState(() -> new MainMenuState());
 	}
 
-	override function select(change:Int = 0)
+	public function applyChartCheck()
 	{
-		super.select(change);
-
 		for (menuItem in itemsTextGroup)
 		{
 			var song:String = menuItem.text;
