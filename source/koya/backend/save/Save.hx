@@ -126,9 +126,6 @@ class Save
 
 		initFields();
 
-		PlayerSettings.init();
-		Highscore.load();
-
 		upgradeVersion(() -> {
 			flush();
 			for (field in Reflect.fields(FlxG.save.data))
@@ -143,6 +140,9 @@ class Save
 		Application.current.onExit.add(function(l) {
 			flush();
 		});
+
+		PlayerSettings.init();
+		Highscore.load();
 	}
 
 	public static function upgradeVersion(?onComplete:Void->Void)

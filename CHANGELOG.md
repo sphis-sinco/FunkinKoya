@@ -2,8 +2,10 @@
 
 ## Technical
 
+- Highscore and PlayerSettings loading and initalization are now after upgrading the version
+- Added `getRank` to `koya.backend.Highscore`
 - `koya.backend.CrashHandler` has been updated to use `koya.backend.CoolUtil.alert`
-- All code has been documented
+- All code has been documented and tweaks have been made
 
 # [0.5.1] - 2/7/2026
 

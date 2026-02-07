@@ -56,20 +56,14 @@ class FreeplayState extends MenuState
 
 	function get_currentScore():Int
 	{
-		if (Save.songScores.get() == null) return 0;
-		if (!Save.songScores.get().exists(currentSongChart)) return 0;
-
-		return Save.songScores.get().get(currentSongChart);
+		return Highscore.getScore(currentSongName.toLowerCase(), currentDifficulty);
 	}
 
 	public var currentRank(get, never):String;
 
 	function get_currentRank():String
 	{
-		if (Save.songRanks.get() == null) return null;
-		if (!Save.songRanks.get().exists(currentSongChart)) return null;
-
-		return Save.songRanks.get().get(currentSongChart);
+		return Highscore.getRank(currentSongName.toLowerCase(), currentDifficulty);
 	}
 
 	public var currentDifficulty:Int = Difficulty.NORMAL;
