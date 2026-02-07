@@ -1,0 +1,23 @@
+-# KOYA
+-# KYO
+
+-# Comments are only single line
+-# Sorwy
+
+-# OBJECT FUNCTIONS AND VARIABLES
+
+-# object		function	?params
+character.dad	load		spooky
+
+-# object		variable	newvalue
+character.dad	dadVar		6
+
+-# CONDITIONALS
+
+-# if+ : has to be true
+-# if- : has to be false
+
+-# if	object	value		:	script to goto (or maybe a line to go to like its BASIC?)
+if+		stage	mainStage	:	mainStage_kyo
+
+if-		stage	philly		:	nonPhillyStuff
