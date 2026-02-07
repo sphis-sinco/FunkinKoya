@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play;
 
+import koya.backend.save.Save;
 import koya.backend.songs.Song.SwagSong;
 import koya.backend.Conductor;
 import koya.backend.AssetPaths;
@@ -20,6 +21,7 @@ class Note extends FunkinSprite
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
 	public var prevNote:Note;
+	var willMiss:Bool = false;
 
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
@@ -104,6 +106,8 @@ class Note extends FunkinSprite
 			noteScore * 0.2;
 			alpha = 0.6;
 
+			if (Save.preferences.get().downScroll) angle = 180;
+
 			x += width / 1.8;
 
 			switch (noteID)
@@ -149,13 +153,24 @@ class Note extends FunkinSprite
 
 		if (mustPress)
 		{
-			// The * 0.5 us so that its easier to hit them too late, instead of too early
-			if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset
-				&& strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5)) canBeHit = true;
-			else
+			// miss on the NEXT frame so lag doesnt make u miss notes
+			if (willMiss && !wasGoodHit)
+			{
+				tooLate = true;
 				canBeHit = false;
-
-			if (strumTime < Conductor.songPosition - Conductor.safeZoneOffset) tooLate = true;
+			}
+			else
+			{
+				if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset)
+				{ // The * 0.5 is so that it's easier to hit them too late, instead of too early
+					if (strumTime < Conductor.songPosition + (Conductor.safeZoneOffset * 0.5)) canBeHit = true;
+				}
+				else
+				{
+					canBeHit = true;
+					willMiss = true;
+				}
+			}
 		}
 		else
 		{
@@ -164,7 +179,10 @@ class Note extends FunkinSprite
 			if (strumTime <= Conductor.songPosition) wasGoodHit = true;
 		}
 
-		if (tooLate) if (alpha > 0.3) alpha = 0.3;
+		if (tooLate)
+		{
+			if (alpha > 0.3) alpha = 0.3;
+		}
 	}
 
 	public function getDirectionName():String

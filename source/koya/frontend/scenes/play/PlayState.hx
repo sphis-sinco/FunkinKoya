@@ -621,16 +621,9 @@ class PlayState extends MusicBeatState
 		{
 			notes.forEachAlive(function(daNote:Note) {
 				if ((Save.preferences.get().downScroll && daNote.y < -daNote.height)
-					|| (!Save.preferences.get().downScroll && daNote.y > FlxG.height))
-				{
-					daNote.active = false;
-					daNote.visible = false;
-				}
+					|| (!Save.preferences.get().downScroll && daNote.y > FlxG.height)) daNote.visible = false;
 				else
-				{
-					daNote.visible = true;
 					daNote.active = true;
-				}
 
 				var strumLineMid = STRUMLINE_Y + Note.swagWidth / 2;
 
@@ -703,14 +696,14 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.isSustainNote && daNote.wasGoodHit)
 					{
-						endNote(daNote);
+						if ((!Save.preferences.get().downScroll && daNote.y < -daNote.height)
+							|| (Save.preferences.get().downScroll && daNote.y > FlxG.height)) endNote(daNote);
 					}
 					else
 					{
 						if (daNote.tooLate || !daNote.wasGoodHit) badNoteHit(daNote.noteID);
 
 						daNote.active = false;
-						daNote.visible = false;
 
 						endNote(daNote);
 					}
