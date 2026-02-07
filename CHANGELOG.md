@@ -1,3 +1,10 @@
+# [0.5.2] - 2/7/2026
+
+## Technical
+
+- `koya.backend.CrashHandler` has been updated to use `koya.backend.CoolUtil.alert`
+- All code has been documented
+
 # [0.5.1] - 2/7/2026
 
 ## Visual

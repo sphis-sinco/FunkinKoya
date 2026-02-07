@@ -15,14 +15,27 @@ using StringTools;
 
 class CrashHandler
 {
+	/**
+		Prefix for the crash file
+	**/
 	public static final FILE_PREFIX:String = 'KoyaCrash_';
 
+	/**
+		Target place to report bugs
+	**/
 	public static final REPORT_PAGE:String = 'https://github.com/sphis-sinco/FunkinKoya/issues';
 
+	/**
+		File location for crash files
+	**/
 	public static final FILE_LOCATION:String = 'crash';
 
-	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
-	// very cool person for real they don't get enough credit for their work
+	/**
+		The crash handler function that creates the log and displays the crash.
+
+		Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
+		Very cool person for real they don't get enough credit for their work
+	**/
 	#if CRASH_HANDLER
 	public static function onCrash(e:UncaughtErrorEvent):Void
 	{
@@ -64,7 +77,7 @@ class CrashHandler
 		Sys.println(errMsg);
 		Sys.println("Crash dump saved in " + Path.normalize(path));
 
-		Application.current.window.alert(errMsg, "Error!");
+		CoolUtil.alert("Error!", errMsg);
 		Sys.exit(1);
 	}
 	#end
