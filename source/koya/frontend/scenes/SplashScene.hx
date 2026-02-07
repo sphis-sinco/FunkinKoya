@@ -1,5 +1,6 @@
 package koya.frontend.scenes;
 
+import flixel.util.FlxTimer;
 import koya.backend.AssetPaths;
 import flixel.FlxG;
 import flixel.util.typeLimit.NextState;
@@ -19,6 +20,10 @@ class SplashScene extends MusicBeatState
 	{
 		super.create();
 
-		FlxG.sound.play(AssetPaths.music('TitleJingle'));
+		FlxG.sound.play(AssetPaths.music('TitleJingle'), 1.0, false, null, true, function() {
+			FlxTimer.wait(1, function() {
+				FlxG.switchState(nextScene);
+			});
+		});
 	}
 }
