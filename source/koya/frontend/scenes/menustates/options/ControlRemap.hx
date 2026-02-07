@@ -20,8 +20,8 @@ class ControlRemap extends OptionsMenuState
 
 			altMod = !altMod;
 
-			reloadMenuItems();
 			reloadItems();
+			reloadMenuItems();
 		}
 
 		valueText.text += '\n\n( Toggle alts via UI_LEFT or UI_RIGHT )';
