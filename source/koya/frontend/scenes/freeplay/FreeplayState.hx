@@ -92,7 +92,7 @@ class FreeplayState extends MenuState
 		super.create();
 
 		remove(itemsTextGroup);
-		
+
 		remove(pinkBG);
 		remove(flashBG);
 
@@ -153,9 +153,6 @@ class FreeplayState extends MenuState
 
 		songAuthorText.text = 'Composer(s):\n${currentSong.authors}';
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
-
-		itemsTextGroup.members[currentSelection].alpha = 1;
-		if (!KoyaAssets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) itemsTextGroup.members[currentSelection].alpha = .5;
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -239,6 +236,19 @@ class FreeplayState extends MenuState
 		transitioning = true;
 		FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
 		FlxG.switchState(() -> new MainMenuState());
+	}
+
+	override function select(change:Int = 0)
+	{
+		super.select(change);
+
+		for (menuItem in itemsTextGroup)
+		{
+			var song:String = menuItem.text;
+			var chart:String = Highscore.formatToDifficulty(menuItem.text, currentDifficulty);
+
+			if (!KoyaAssets.exists(AssetPaths.chart(song.toLowerCase(), chart))) menuItem.alpha -= .4;
+		}
 	}
 
 	public var sideBorderWidths = 320 + 64;
