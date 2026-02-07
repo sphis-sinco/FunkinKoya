@@ -148,6 +148,9 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	public function getStagePropOffsetPath():String
 		return AssetPaths.json(getJSONPathBase() + '-propvalues', 'backgrounds');
 
+	public function getStagePropsPath():String
+		return AssetPaths.json(getJSONPathBase() + '-props', 'backgrounds');
+
 	public function getBGImg(path:String):String
 		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
