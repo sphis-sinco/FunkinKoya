@@ -131,6 +131,24 @@ class FreeplayState extends MenuState
 		songAuthorText.font = AssetPaths.font('vcr.ttf');
 	}
 
+	override function reloadMenuItems()
+	{
+		super.reloadMenuItems();
+
+		for (menuItem in itemsTextGroup.members)
+		{
+			menuItem.scale.set(0.5, 0.5);
+			menuItem.updateHitbox();
+			for (letter in menuItem)
+			{
+				letter.width /= 2;
+				letter.height /= 2;
+
+				letter.updateHitbox();
+			}
+		}
+	}
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -161,7 +179,6 @@ class FreeplayState extends MenuState
 			arrow_LEFT.x -= 10;
 			FlxTween.cancelTweensOf(arrow_LEFT);
 			FlxTween.tween(arrow_LEFT, {x: aL_x}, .1);
-			applyChartCheck();
 		}
 		if (controls.UI_RIGHT_R)
 		{
@@ -171,7 +188,6 @@ class FreeplayState extends MenuState
 			arrow_RIGHT.x += 10;
 			FlxTween.cancelTweensOf(arrow_RIGHT);
 			FlxTween.tween(arrow_RIGHT, {x: aR_x}, .1);
-			applyChartCheck();
 		}
 
 		if (controls.ACCEPT)
@@ -205,6 +221,8 @@ class FreeplayState extends MenuState
 
 		opponentIcon.visible = opponentIcon.frames != null;
 		playerIcon.visible = playerIcon.frames != null;
+
+		if (controls.UI_LEFT_R || controls.UI_RIGHT_R || controls.UI_UP_R || controls.UI_DOWN_R) applyChartCheck();
 	}
 
 	override function back()
@@ -232,10 +250,7 @@ class FreeplayState extends MenuState
 		applyChartCheck();
 
 		for (menuItem in itemsTextGroup.members)
-		{
-			menuItem.scale.set(0.5, 0.5);
 			menuItem.x = 30;
-		}
 	}
 
 	public var sideBorderWidths = 320 + 64;
