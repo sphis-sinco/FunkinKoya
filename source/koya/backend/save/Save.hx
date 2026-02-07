@@ -87,7 +87,6 @@ class Save
 			keybind_ui_down,
 			keybind_ui_up,
 			keybind_ui_right,
-			null,
 
 			keybind_ui_left_alt,
 			keybind_ui_down_alt,
@@ -99,7 +98,6 @@ class Save
 			keybind_note_down,
 			keybind_note_up,
 			keybind_note_right,
-			null,
 
 			keybind_note_up_alt,
 			keybind_note_left_alt,

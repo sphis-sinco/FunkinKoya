@@ -66,8 +66,6 @@ class MenuState extends MusicBeatState
 		add(itemsTextGroup);
 
 		reloadMenuItems();
-
-		select();
 	}
 
 	public function reloadMenuItems()
@@ -83,6 +81,8 @@ class MenuState extends MusicBeatState
 
 			i++;
 		}
+		
+		select();
 	}
 
 	public function makeText(item:String, i:Int)
