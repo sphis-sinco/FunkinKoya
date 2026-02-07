@@ -1,5 +1,6 @@
 package koya.frontend.scenes;
 
+import flixel.sound.FlxSound;
 import koya.frontend.ui.AtlasText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import koya.backend.CoolUtil;
@@ -18,6 +19,8 @@ class SplashScene extends MusicBeatState
 	public var splashText:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/splash'));
 	public var splashTexts:FlxTypedGroup<AtlasText> = new FlxTypedGroup<AtlasText>();
 
+	public var jingle:FlxSound;
+
 	override public function new(nextScene:NextState)
 	{
 		super();
@@ -29,7 +32,7 @@ class SplashScene extends MusicBeatState
 	{
 		super.create();
 
-		FlxG.sound.play(AssetPaths.music('TitleJingle'), 1.0, false, null, true, function() {
+		jingle = new FlxSound().loadEmbedded(AssetPaths.music('TitleJingle'), false, null, function() {
 			FlxTimer.wait(1, function() {
 				FlxG.switchState(nextScene);
 			});
@@ -37,6 +40,13 @@ class SplashScene extends MusicBeatState
 		Conductor.changeBPM(120.0);
 
 		add(splashTexts);
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		Conductor.songPosition = jingle.time;
 	}
 
 	override function stepHit()
