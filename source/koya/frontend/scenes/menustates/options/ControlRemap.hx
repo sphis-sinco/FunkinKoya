@@ -45,13 +45,13 @@ class ControlRemap extends OptionsMenuState
 			}
 
 			if (stringKeybinds.contains('${keybind.field}_alt')
-				|| stringKeybinds.contains(keybind.field.substr(0, keybind.field.length - 5)))
+				|| stringKeybinds.contains(keybind.field.substr(0, keybind.field.length - 4)))
 			{
 				if (keybind.field.endsWith('_alt') && !altMod) continue;
 				if (!keybind.field.endsWith('_alt') && altMod) continue;
 			}
 
-			addItem((keybind.display ?? keybind.field), keybind.get(), function() {
+			addItem(keybind.display ?? keybind.field, keybind.get(), function() {
 				persistentUpdate = true;
 				openSubState(new KeybindPrompt(keybind.field, function() {
 					reloadItems();

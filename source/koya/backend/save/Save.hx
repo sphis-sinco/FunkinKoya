@@ -99,9 +99,9 @@ class Save
 			keybind_note_up,
 			keybind_note_right,
 
-			keybind_note_up_alt,
 			keybind_note_left_alt,
 			keybind_note_down_alt,
+			keybind_note_up_alt,
 			keybind_note_right_alt,
 			null,
 		];
