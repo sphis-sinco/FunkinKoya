@@ -85,6 +85,8 @@ class FreeplayState extends MenuState
 		this.text = true;
 		this.itemList = SongList.stringSongList;
 		this.songList = SongList.songList;
+
+		this.itemIncOffset /= 2;
 	}
 
 	override function create()
@@ -230,7 +232,7 @@ class FreeplayState extends MenuState
 		applyChartCheck();
 
 		for (menuItem in itemsTextGroup.members)
-			menuItem.x -= menuItem.width * 2;
+			menuItem.x = 30;
 	}
 
 	public var sideBorderWidths = 320 + 64;
