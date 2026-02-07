@@ -1,5 +1,6 @@
 {
-	"datapath_prefix": "data/characters/parents/::curCharacter::",
+	"datapath_prefix": "data/characters/parents/::curCharacter::-",
+	"dadVar": 6.1,
 
 	"atlas": "characters/daddy_dearest",
 	"animations": [
