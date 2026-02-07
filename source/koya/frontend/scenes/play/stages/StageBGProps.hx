@@ -36,9 +36,8 @@ class StageBGProps
 
 		if (propField.animations != null) for (anim in propField.animations)
 		{
-			if (anim.type == PREFIX && anim.prefix != null) propSprite.addPrefixAnim(anim.name, anim.prefix, anim?.fps ?? 24, anim?.looped ?? false);
-			if (anim.type == FRAME_LABEL && anim.frame_label != null) propSprite.addFrameLabelAnim(anim.name, anim.frame_label, anim?.fps ?? 24,
-				anim?.looped ?? false);
+			if (anim.type == PREFIX) propSprite.addPrefixAnim(anim.name, anim.prefix, anim?.fps ?? 24, anim?.looped ?? false);
+			if (anim.type == FRAME_LABEL) propSprite.addFrameLabelAnim(anim.name, anim.prefix, anim?.fps ?? 24, anim?.looped ?? false);
 		}
 
 		if (propField == null) return null;
