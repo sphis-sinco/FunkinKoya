@@ -37,7 +37,7 @@ class TouchHere extends MusicBeatState
 		{
 			if (button.animation.name != 'overlap') button.animation.play('overlap');
 
-			if (FlxG.mouse.justPressed) FlxG.switchState(InitState.getStartingState());
+			if (FlxG.mouse.justPressed) FlxG.switchState(() -> new SplashScene(InitState.getStartingState()));
 		}
 		else if (button.animation.name != 'idle') button.animation.play('idle');
 	}

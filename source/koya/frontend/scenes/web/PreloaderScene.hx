@@ -1,4 +1,4 @@
-package koya.frontend.scenes;
+package koya.frontend.scenes.web;
 
 import koya.backend.AssetPaths;
 import flixel.util.FlxColor;

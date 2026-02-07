@@ -16,7 +16,7 @@
 	html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
 	<!-- <app preloader="Preloader" resizable="true" /> -->
-	<app preloader="koya.frontend.scenes.PreloaderScene" />
+	<app preloader="koya.frontend.scenes.web.PreloaderScene" />
 
 	<!--Minimum
 	without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->

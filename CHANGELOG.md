@@ -1,6 +1,13 @@
 # [0.5.1] - 2/7/2026
 
+## General
+
+- Added `koya.frontend.scenes.SplashScene` : Replacement of the default haxeflixel splash scene
+
 ## Technical
+
+- `koya.frontend.scenes.web.TouchHere` has been updated to adapt to the new Splash Scene
+- `PreloaderScene` has been moved to `koya.frontend.scenes.web`
 - The default Flixel splash is skipped now
 
 # [0.5.0] - 2/7/2026

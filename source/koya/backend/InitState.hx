@@ -69,7 +69,7 @@ class InitState extends FlxState
 		ModCore.init();
 
 		new FlxTimer().start(1, function(t) {
-			FlxG.switchState(startingState);
+			FlxG.switchState(() -> new SplashScene(startingState));
 		});
 	}
 
