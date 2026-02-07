@@ -620,22 +620,56 @@ class PlayState extends MusicBeatState
 		if (generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note) {
-				if (daNote.y > FlxG.height) daNote.active = daNote.visible = false;
-				else
-					daNote.visible = daNote.active = true;
-
-				daNote.y = (STRUMLINE_Y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
-
-				// i am so fucking sorry for this if condition
-				if (daNote.isSustainNote
-					&& daNote.y + daNote.offset.y <= STRUMLINE_Y + Note.swagWidth / 2
-					&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit))))
+				if ((Save.preferences.get().downScroll && daNote.y < -daNote.height)
+					|| (!Save.preferences.get().downScroll && daNote.y > FlxG.height))
 				{
-					var swagRect = new FlxRect(0, STRUMLINE_Y + Note.swagWidth / 2 - daNote.y, daNote.width * 2, daNote.height * 2);
-					swagRect.y /= daNote.scale.y;
-					swagRect.height -= swagRect.y;
+					daNote.active = false;
+					daNote.visible = false;
+				}
+				else
+				{
+					daNote.visible = true;
+					daNote.active = true;
+				}
 
-					daNote.clipRect = swagRect;
+				var strumLineMid = STRUMLINE_Y + Note.swagWidth / 2;
+
+				if (Save.preferences.get().downScroll)
+				{
+					daNote.y = (STRUMLINE_Y + (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+
+					if (daNote.isSustainNote)
+					{
+						if (daNote.animation.curAnim.name.endsWith("end") && daNote.prevNote != null) daNote.y += daNote.prevNote.height;
+						else
+							daNote.y += daNote.height / 2;
+
+						if ((!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit)))
+							&& daNote.y - daNote.offset.y * daNote.scale.y + daNote.height >= strumLineMid)
+						{
+							// clipRect is applied to graphic itself so use frame Heights
+							var swagRect:FlxRect = new FlxRect(0, 0, daNote.frameWidth, daNote.frameHeight);
+
+							swagRect.height = (strumLineMid - daNote.y) / daNote.scale.y;
+							swagRect.y = daNote.frameHeight - swagRect.height;
+							daNote.clipRect = swagRect;
+						}
+					}
+				}
+				else
+				{
+					daNote.y = (STRUMLINE_Y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+
+					if (daNote.isSustainNote
+						&& (!daNote.mustPress || (daNote.wasGoodHit || (daNote.prevNote.wasGoodHit && !daNote.canBeHit)))
+						&& daNote.y + daNote.offset.y * daNote.scale.y <= strumLineMid)
+					{
+						var swagRect:FlxRect = new FlxRect(0, 0, daNote.width / daNote.scale.x, daNote.height / daNote.scale.y);
+
+						swagRect.y = (strumLineMid - daNote.y) / daNote.scale.y;
+						swagRect.height -= swagRect.y;
+						daNote.clipRect = swagRect;
+					}
 				}
 
 				if (!daNote.mustPress && daNote.wasGoodHit)
