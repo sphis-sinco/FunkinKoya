@@ -114,11 +114,17 @@ class OptionsMenuState extends MenuState
 
 		addItem(null, null, null);
 
+		addItem('Downscroll', Save.preferences.get().downScroll, function() {
+			Save.preferences.get().downScroll = !Save.preferences.get().downScroll;
+		});
+
+		addItem('Ghost Tapping', Save.preferences.get().ghostTapping, function() {
+			Save.preferences.get().ghostTapping = !Save.preferences.get().ghostTapping;
+		});
+
 		addItem('FPS Counter', Save.preferences.get().fpsCounter, function() {
 			Save.preferences.get().fpsCounter = !Save.preferences.get().fpsCounter;
 		});
-
-		addItem(null, null, null);
 
 		addItem('Chart Editor Autosave', Save.preferences.get().chartEditorAutosave, function() {
 			Save.preferences.get().chartEditorAutosave = !Save.preferences.get().chartEditorAutosave;
