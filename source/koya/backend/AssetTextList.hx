@@ -64,7 +64,7 @@ class AssetTextList
 	{
 		var paths = AssetPaths.getAllModPaths(filepath.replace('assets/', '_append/'));
 
-		trace(paths);
+		// trace(paths);
 
 		return paths;
 	}

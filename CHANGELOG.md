@@ -37,9 +37,10 @@ This is the modding stuff that's important to know
 
 ## Technical
 
+- Removed `-DFREEPLAY_BG_GRID` define for good
+- `koya.frontend.scenes.freeplay.FreeplayState` has been converted into a `MenuState`
 - OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.scenes.menustates.StoryModeState` FOR DIFFICULTIES
-- OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.scenes.freeplay.FreeplayState`
-	- Applies to difficulties too!
+- OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.scenes.freeplay.FreeplayState` FOR DIFFICULTIES
 - OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.ui.menustate.MenuState`
 	- YOU ARE NO LONGER CAPPED
 - Added `-DOPTIONSMENU_CONTROLS` define

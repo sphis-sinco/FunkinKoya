@@ -40,7 +40,7 @@ class FreeplayState extends MenuState
 	public var currentSong(get, never):SwagSong;
 
 	function get_currentSong():SwagSong
-		return SongList.songList[currentSelection];
+		return songList[currentSelection];
 
 	public var currentSongName(get, never):String;
 
@@ -89,12 +89,7 @@ class FreeplayState extends MenuState
 
 	override function create()
 	{
-		#if FREEPLAY_BG_GRID
-		var GRID_SIZE = 32;
-		var gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, (GRID_SIZE * Std.int(FlxG.width / GRID_SIZE)) + 10,
-			(GRID_SIZE * Std.int(FlxG.height / GRID_SIZE)) + 10);
-		add(gridBG);
-		#end
+		super.create();
 
 		initBordersAndArrows();
 
@@ -125,8 +120,6 @@ class FreeplayState extends MenuState
 
 		songScoreText.font = AssetPaths.font('vcr.ttf');
 		songAuthorText.font = AssetPaths.font('vcr.ttf');
-
-		super.create();
 	}
 
 	override function update(elapsed:Float)
