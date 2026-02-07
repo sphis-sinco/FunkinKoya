@@ -27,6 +27,7 @@ This is the modding stuff that's important to know
 
 ## General
 
+- Fixed song info (score or combo breaks) being saved from a freeplay song playing session to a story mode playing session
 - Added "Options" pause sub state item
 - Z is no longer a valid Accept keybind
 - P is no longer a valid Pause keybind
@@ -42,7 +43,6 @@ This is the modding stuff that's important to know
 ## Technical
 
 - Added `props` map to `koya.frontend.scenes.play.stages`
-	- In `getThing` props are checked for `thing` first before using Reflect
 - Added support for "FlxText Menu States" : Menus using FlxText
 - Removed `-DFREEPLAY_BG_GRID` define for good
 - `koya.frontend.scenes.freeplay.FreeplayState` has been converted into a `MenuState`

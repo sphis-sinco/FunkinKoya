@@ -155,11 +155,11 @@ class PlayState extends MusicBeatState
 		if (instance != null) instance = null;
 		instance = this;
 
-		if (!IS_STORYMODE) globalComboBreaks = 0;
-		if (!IS_STORYMODE || global_resultsData == null) global_resultsData = new ResultsData();
+		if (!IS_STORYMODE || STORYMODE_PLAYLIST_NUMBER == 0) globalComboBreaks = 0;
+		if (!IS_STORYMODE || (global_resultsData == null || STORYMODE_PLAYLIST_NUMBER == 0)) global_resultsData = new ResultsData();
 		local_resultsData = new ResultsData();
 
-		if (!IS_STORYMODE) globalScore = 0;
+		if (!IS_STORYMODE || STORYMODE_PLAYLIST_NUMBER == 0) globalScore = 0;
 		songScore += globalScore;
 
 		strums = new StrumsGroup();

@@ -9,15 +9,27 @@ class MainStage extends StageBackground
 		super(song, 'mainStage', performInit);
 	}
 
-	override function initFG()
+	var stageCurtains:FunkinSprite;
+
+	override function init()
 	{
-		super.initFG();
+		super.init();
+
+		stageCurtains = cast getThing('stageCurtains');
+		if (stageCurtains != null) if (PlayState.IS_STORYMODE && PlayState.STORYMODE_PLAYLIST_NUMBER != 0) remove(stageCurtains);
 	}
 
 	override function countdownTick(tick:Int = 0)
 	{
 		super.countdownTick(tick);
 
-		if (tick == 2) getThing('stageCurtains')?.playAnim('open');
+		if (tick == 2) try
+		{
+			stageCurtains?.playAnim('open');
+		}
+		catch (e)
+		{
+			trace(e.message);
+		}
 	}
 }
