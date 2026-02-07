@@ -47,7 +47,7 @@ class SplashScene extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		Conductor.songPosition = jingle.time;
+		if (jingle != null) Conductor.songPosition = jingle.time;
 	}
 
 	override function stepHit()
@@ -55,10 +55,9 @@ class SplashScene extends MusicBeatState
 		super.stepHit();
 
 		var splash:String = splashText[curStep] ?? '';
+		trace('$curStep: ' + splash);
 
 		if (splash == '') return;
-
-		trace('$curStep: ' + splash);
 
 		if (splash.startsWith('-'))
 		{
