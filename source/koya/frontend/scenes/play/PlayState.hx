@@ -77,7 +77,14 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	public static var STRUMLINE_Y:Float = 50.0;
+	public static var STRUMLINE_Y(get, never):Float;
+
+	static function get_STRUMLINE_Y():Float
+	{
+		if (Save.preferences.get().downScroll) return FlxG.height * 0.75;
+
+		return 50.0;
+	}
 
 	public static var instance:PlayState = null;
 
@@ -1128,7 +1135,7 @@ class PlayState extends MusicBeatState
 			p1Adjust = -p1Adjust;
 			p2Adjust = -p2Adjust;
 		}
-		
+
 		iconP1.y = healthBar.y - p1Adjust;
 		iconP2.y = healthBar.y - p2Adjust;
 

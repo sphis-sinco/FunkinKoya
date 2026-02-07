@@ -148,9 +148,9 @@ class Save
 		switch (version.get())
 		{
 			case 4:
-				preferences.get().downScroll ??= true;
+				preferences.get().downScroll ??= false;
 				preferences.get().ghostTapping ??= true;
-				
+
 			default:
 				trace('unimplemented upgrade from version: ${version.get()}');
 		}
