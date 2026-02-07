@@ -1,5 +1,6 @@
 package koya.frontend.scenes;
 
+import koya.backend.Conductor;
 import flixel.util.FlxTimer;
 import koya.backend.AssetPaths;
 import flixel.FlxG;
@@ -25,5 +26,6 @@ class SplashScene extends MusicBeatState
 				FlxG.switchState(nextScene);
 			});
 		});
+		Conductor.changeBPM(120.0);
 	}
 }
