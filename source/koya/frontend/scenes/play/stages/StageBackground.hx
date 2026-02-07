@@ -5,7 +5,6 @@ import haxe.Json;
 import koya.backend.KoyaAssets;
 import flixel.graphics.frames.FlxAtlasFrames;
 import koya.backend.AssetPaths;
-import koya.frontend.scenes.play.characters.CharacterGetter;
 import koya.backend.songs.Song.SwagSong;
 import flixel.math.FlxPoint;
 import koya.frontend.scenes.play.characters.Character;
@@ -14,71 +13,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 
 class StageBackground extends FlxTypedGroup<FlxBasic>
 {
-	public function getPropOffsets()
-	{
-		var offsetPath = getStagePropOffsetPath();
-
-		if (!KoyaAssets.exists(offsetPath)) return;
-
-		trace('found stage prop value file: $offsetPath');
-
-		var offsetfile:Dynamic = {};
-		try
-		{
-			offsetfile = Json.parse(KoyaAssets.getText(offsetPath));
-		}
-		catch (e)
-		{
-			Application.current.window.alert('Error while reading Stage Prop Offsets file: $offsetPath:\n\n${e.message}', 'Invalid Stage Prop Offsets File!');
-			return;
-		}
-
-		for (prop in Reflect.fields(offsetfile))
-		{
-			if (getThing(prop) == null)
-			{
-				trace('skipped $prop : null');
-				continue;
-			}
-
-			var propNam:String = prop;
-			var propData:Dynamic = Reflect.field(offsetfile, prop);
-			var propChangedFields = Reflect.fields(propData);
-
-			for (field in propChangedFields)
-			{
-				try
-				{
-					Reflect.setField(getThing(propNam), field, Reflect.field(propData, field));
-					trace('set $field of $propNam to ${Reflect.field(propData, field)} (og value: ${Reflect.field(getThing(propNam), field)})');
-				}
-				catch (e)
-				{
-					trace('error setting $field of $propNam to ${Reflect.field(propData, field)} : ${e.message}');
-				}
-			}
-		};
-	}
-
-	public function getJSONPathBase():String
-		return 'data/stages/$BG_NAME';
-
-	public function getStagePropOffsetPath():String
-		return AssetPaths.json(getJSONPathBase() + '-propvalues', 'backgrounds');
-
-	public function getBGImg(path:String):String
-		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
-
-	public function getBGSparrowImg(path:String):FlxAtlasFrames
-		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
-
 	private var songData:SwagSong;
-
-	public function getThing(thing:String)
-		return Reflect.field(this, thing);
-
-	public static function getStage(song:SwagSong):StageBackground
-		return StageBackgroundGetter.getStage(song, song.stage ?? 'mainStage');
 
 	public var BG_NAME:String = null;
 
@@ -204,4 +139,68 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	};
 
 	public function sendEvent(name:String, values:Array<String>) {}
+
+	public function getJSONPathBase():String
+		return 'data/stages/$BG_NAME';
+
+	public function getStagePropOffsetPath():String
+		return AssetPaths.json(getJSONPathBase() + '-propvalues', 'backgrounds');
+
+	public function getBGImg(path:String):String
+		return AssetPaths.image('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
+
+	public function getBGSparrowImg(path:String):FlxAtlasFrames
+		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
+
+	public function getThing(thing:String)
+		return Reflect.field(this, thing);
+
+	public static function getStage(song:SwagSong):StageBackground
+		return StageBackgroundGetter.getStage(song, song.stage ?? 'mainStage');
+
+	public function getPropOffsets()
+	{
+		var offsetPath = getStagePropOffsetPath();
+
+		if (!KoyaAssets.exists(offsetPath)) return;
+
+		trace('found stage prop value file: $offsetPath');
+
+		var offsetfile:Dynamic = {};
+		try
+		{
+			offsetfile = Json.parse(KoyaAssets.getText(offsetPath));
+		}
+		catch (e)
+		{
+			Application.current.window.alert('Error while reading Stage Prop Offsets file: $offsetPath:\n\n${e.message}', 'Invalid Stage Prop Offsets File!');
+			return;
+		}
+
+		for (prop in Reflect.fields(offsetfile))
+		{
+			if (getThing(prop) == null)
+			{
+				trace('skipped $prop : null');
+				continue;
+			}
+
+			var propNam:String = prop;
+			var propData:Dynamic = Reflect.field(offsetfile, prop);
+			var propChangedFields = Reflect.fields(propData);
+
+			for (field in propChangedFields)
+			{
+				try
+				{
+					Reflect.setField(getThing(propNam), field, Reflect.field(propData, field));
+					trace('set $field of $propNam to ${Reflect.field(propData, field)} (og value: ${Reflect.field(getThing(propNam), field)})');
+				}
+				catch (e)
+				{
+					trace('error setting $field of $propNam to ${Reflect.field(propData, field)} : ${e.message}');
+				}
+			}
+		};
+	}
 }
