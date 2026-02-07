@@ -91,7 +91,14 @@ class FreeplayState extends MenuState
 	{
 		super.create();
 
+		remove(itemsTextGroup);
+		
+		remove(pinkBG);
+		remove(flashBG);
+
 		initBordersAndArrows();
+
+		add(itemsTextGroup);
 
 		songScoreText.fieldWidth = upBorder.innerSprite.width;
 		songScoreText.alignment = CENTER;
