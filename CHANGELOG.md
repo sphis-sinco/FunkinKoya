@@ -38,6 +38,8 @@ This is the modding stuff that's important to know
 - Added `preferences` save field with the following fields
   - `fpsCounter` : Toggles the fps counter
   - `chartEditorAutosave` : Toggles the chart editor autosaving
+  - `downScroll` : Toggles Downscroll (DISABLED, YOU SHOULD NEVER HAVE THIS ENABLED ITS BROKEN)
+  - `ghostTapping` : Toggles Ghost tapping : ghost note hits wont take any health or score at all
 - Added Options Menu
 
 ## Technical
