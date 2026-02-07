@@ -1,5 +1,7 @@
 package koya.frontend.scenes.play.characters;
 
+import koya.backend.CoolUtil;
+import koya.backend.play.CharacterData;
 import koya.backend.play.stages.StageProp;
 import haxe.Json;
 import koya.frontend.scenes.play.stages.StageBGProps;
@@ -208,8 +210,51 @@ class Character extends FunkinSprite
 
 	public function sendEvent(name:String, values:Array<String>) {}
 
-	public function initChar() {}
-	
-	public function getFrames() {};
+	public function initChar()
+	{
+		var charJSON = getCharacterJSON();
 
+		if (KoyaAssets.exists(charJSON))
+		{
+			var parsedCharJSON:CharacterData = null;
+
+			try
+			{
+				parsedCharJSON = Json.parse(KoyaAssets.getText(charJSON));
+			}
+			catch (e)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', e.toString());
+				trace(e.message);
+				parsedCharJSON = null;
+
+				return;
+			}
+
+			if (parsedCharJSON == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Null / Not parsed correctly?');
+				return;
+			}
+			if (parsedCharJSON.animations == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Missing Animations');
+				return;
+			}
+			if (parsedCharJSON.type == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Missing Character Type');
+				return;
+			}
+			if (parsedCharJSON.imagePath == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Missing Character Image Path');
+				return;
+			}
+
+			switch (parsedCharJSON.type) {}
+		}
+	}
+
+	public function getFrames() {};
 }
