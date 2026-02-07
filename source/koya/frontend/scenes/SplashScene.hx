@@ -15,6 +15,8 @@ using StringTools;
 class SplashScene extends MusicBeatState
 {
 	public var nextScene:NextState;
+	
+	public var splash:FunkinSprite;
 
 	override public function new(nextScene:NextState)
 	{
@@ -35,6 +37,12 @@ class SplashScene extends MusicBeatState
 		};
 
 		Conductor.changeBPM(120.0);
+
+		splash = new FunkinSprite();
+		splash.frames = AssetPaths.getAnimateAtlas('splash', 'extra');
+		splash.addFrameLabelAnim('main', 'all');
+		add(splash);
+		splash.playAnim('main');
 	}
 
 	override function update(elapsed:Float)
