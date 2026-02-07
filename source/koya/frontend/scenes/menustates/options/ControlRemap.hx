@@ -19,6 +19,8 @@ class ControlRemap extends OptionsMenuState
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
 
 			altMod = !altMod;
+
+			reloadMenuItems();
 			reloadItems();
 		}
 

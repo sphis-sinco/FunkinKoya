@@ -65,6 +65,16 @@ class MenuState extends MusicBeatState
 		itemsTextGroup = new FlxTypedGroup<AtlasText>();
 		add(itemsTextGroup);
 
+		reloadMenuItems();
+
+		select();
+	}
+
+	public function reloadMenuItems()
+	{
+		itemsTextGroup.clear();
+		itemsSpriteGroup.clear();
+
 		var i = 0;
 		for (item in itemList)
 		{
@@ -73,8 +83,6 @@ class MenuState extends MusicBeatState
 
 			i++;
 		}
-
-		select();
 	}
 
 	public function makeText(item:String, i:Int)
@@ -123,7 +131,8 @@ class MenuState extends MusicBeatState
 			if (subState == null && controls.UI_RIGHT_R) select(1);
 		}
 
-		if (subState == null && controls.ACCEPT) accepted((text) ? itemsTextGroup.members[currentSelection].text : itemsSpriteGroup.members[currentSelection].item);
+		if (subState == null && controls.ACCEPT)
+			accepted((text) ? itemsTextGroup.members[currentSelection].text : itemsSpriteGroup.members[currentSelection].item);
 		if (subState == null && controls.BACK) back();
 
 		if (menuType == Vertical)
