@@ -16,6 +16,7 @@
 
 ## Technical
 
+- `bf-spooky` Camera offsets have been moved to `bf-spooky-camera_offsets.txt`
 - Renamed `touchhere` library folder to `extra`
 - `koya.frontend.scenes.web.TouchHere` has been updated to adapt to the new Splash Scene
 - `PreloaderScene` has been moved to `koya.frontend.scenes.web`

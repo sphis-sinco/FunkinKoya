@@ -23,11 +23,4 @@ class Halloween extends StageBackground
 		var halloweenBack:FunkinSprite = cast getThing('halloweenBack');
 		if (halloweenBack != null) halloweenBack.scale.set(2462.3 / halloweenBack.width, 1589.95 / halloweenBack.height);
 	}
-
-	override function moveCamera(bf:Bool)
-	{
-		super.moveCamera(bf);
-
-		if (bf) PlayState.instance.camFollow.x -= 120;
-	}
 }
