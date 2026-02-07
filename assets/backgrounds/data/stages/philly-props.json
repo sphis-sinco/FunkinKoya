@@ -1,0 +1,38 @@
+{
+	"gradient": {
+		"position": [-250, 0],
+		"scrollFactor": [0, 0],
+		"img": "gradient.png",
+
+		"layerType": "back",
+		"layer": 0
+	},
+	"buildings": {
+		"position": [0, 200],
+		"img": "buildings",
+		"alpha": 0.25,
+
+		"layerType": "back",
+		"layer": 1
+	},
+	"bridge": {
+		"position": [-250, -50],
+
+		"img": "bridge ws",
+
+		"scale": [2, 2],
+
+		"layerType": "back",
+		"layer": 2
+	},
+	"floor": {
+		"position": [0, 400],
+
+		"img": "floor",
+
+		"scale": [2, 2],
+
+		"layerType": "back",
+		"layer": 3
+	}
+}

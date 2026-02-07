@@ -12,34 +12,40 @@ class StageBGProps
 	{
 		if (propField == null) return null;
 
-		var propSprite:FunkinSprite = null;
+		var propSprite:FunkinSprite = new FunkinSprite();
 
-		if (propField.sparrow != null)
-		{
-			propSprite = new FunkinSprite();
+		var loadSparrow = function() {
 			propSprite.frames = methods.getSparrowImg(propField.sparrow);
 		}
 
-		if (propField.atlas != null)
-		{
-			propSprite = new FunkinSprite();
+		var loadAtlas = function() {
 			propSprite.frames = methods.getAtlasImg(propField.atlas);
 		}
 
-		if (propField.img != null)
-		{
-			propSprite = new FunkinSprite();
+		var loadImg = function() {
 			propSprite.loadGraphic(methods.getImg(propField.img));
 		}
 
+		if (propField.sparrow != null) loadSparrow();
+		if (propField.atlas != null) loadAtlas();
+		if (propField.img != null) loadImg();
+
 		if (propField.animations != null) for (anim in propField.animations)
 		{
-			if (anim.type == PREFIX && anim.prefix != null) propSprite.addPrefixAnim(anim.name, anim.prefix, anim?.fps ?? 24, anim?.looped ?? false);
-			if (anim.type == FRAME_LABEL && anim.frame_label != null) propSprite.addFrameLabelAnim(anim.name, anim.frame_label, anim?.fps ?? 24,
-				anim?.looped ?? false);
+			if (anim.type == PREFIX && anim.prefix != null)
+			{
+				loadSparrow();
+				propSprite.addPrefixAnim(anim.name, anim.prefix, anim?.fps ?? 24, anim?.looped ?? false);
+			}
+
+			if (anim.type == FRAME_LABEL && anim.frame_label != null)
+			{
+				loadAtlas();
+				propSprite.addFrameLabelAnim(anim.name, anim.frame_label, anim?.fps ?? 24, anim?.looped ?? false);
+			}
 		}
 
-		if (propField == null) return null;
+		if (propSprite.graphic == null) return null;
 
 		if (propField.layer != null) propSprite.ID = propField.layer;
 
@@ -59,7 +65,10 @@ class StageBGProps
 		{
 			propSprite.scale.x = propField.scale[0];
 			propSprite.scale.y = propField.scale[1];
+			if (propField.scaleUpdateHitbox) propSprite.updateHitbox();
 		}
+
+		propSprite.alpha = propField.alpha ?? 1.0;
 
 		return propSprite;
 	}
