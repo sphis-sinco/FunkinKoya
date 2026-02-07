@@ -12,11 +12,13 @@
 
 ## General
 
+- Added "Flashing Lights" option
 - Added `koya.frontend.scenes.SplashScene` : Replacement of the default haxeflixel splash scene
 	- [DESKTOP] This also removes / replaces the 1 second wait before loading the starting state
 
 ## Technical
 
+- Fixed downScroll being initalized as `true`
 - Added a Stage Camera Offset system (check out `assets/backgrounds/data/stages/philly-camoffsets.json` for an example)
 - `bf-spooky` Camera offsets have been moved to `bf-spooky-camera_offsets.txt`
 - Renamed `touchhere` library folder to `extra`

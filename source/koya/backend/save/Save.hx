@@ -9,7 +9,7 @@ import koya.backend.songs.Song.ChartSwagSong;
 
 class Save
 {
-	public static var SAVE_VERSION:Null<Int> = 4;
+	public static var SAVE_VERSION:Null<Int> = 5;
 
 	public static var version:SaveField<Null<Int>>;
 
@@ -112,7 +112,9 @@ class Save
 				chartEditorAutosave: true,
 
 				ghostTapping: true,
-				downScroll: true
+				downScroll: false,
+
+				flashingLights: true,
 			});
 
 		enabledMods = new SaveField<Array<String>>('enabledMods', []);
@@ -150,6 +152,9 @@ class Save
 			case 4:
 				preferences.get().downScroll ??= false;
 				preferences.get().ghostTapping ??= true;
+			
+			case 5:
+				preferences.get().flashingLights ??= true;
 
 			default:
 				trace('unimplemented upgrade from version: ${version.get()}');

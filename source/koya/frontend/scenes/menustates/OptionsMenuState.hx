@@ -130,6 +130,10 @@ class OptionsMenuState extends MenuState
 			Save.preferences.get().chartEditorAutosave = !Save.preferences.get().chartEditorAutosave;
 		});
 
+		addItem('Flashing Lights', Save.preferences.get().flashingLights, function() {
+			Save.preferences.get().flashingLights = !Save.preferences.get().flashingLights;
+		});
+
 		addItem(null, null, null);
 
 		addItem('Control Remapping', 'Select to go remap your controls', function() {

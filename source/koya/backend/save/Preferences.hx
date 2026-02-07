@@ -7,4 +7,6 @@ typedef Preferences =
 
 	ghostTapping:Null<Bool>,
 	downScroll:Null<Bool>,
+
+	flashingLights:Null<Bool>,
 }
