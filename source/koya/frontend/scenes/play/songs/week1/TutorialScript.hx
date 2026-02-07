@@ -7,7 +7,8 @@ import flixel.tweens.FlxTween;
 
 class TutorialScript extends SongClass
 {
-	override function opNoteHit(note:Note):Bool {
+	override function opNoteHit(note:Note):Bool
+	{
 		PlayState.instance.camZooming = false;
 
 		return super.opNoteHit(note);

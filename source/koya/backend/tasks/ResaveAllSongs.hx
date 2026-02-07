@@ -22,7 +22,7 @@ class ResaveAllSongs
 			for (difficulty in Difficulty.list)
 			{
 				var myJSON = Song.loadFromJson(Highscore.formatToDifficulty(song.song.toLowerCase(), difficulty), song.song.toLowerCase());
-				
+
 				myJSON.difficulty = difficulty;
 
 				// songList.push(myJSON);

@@ -26,17 +26,17 @@ class Philly extends StageBackground
 		super.initBG();
 
 		bridge.loadGraphic(getBGImg('bridge ws'));
-		bridge.scale.set(2,2);
+		bridge.scale.set(2, 2);
 		bridge.updateHitbox();
-		
+
 		buildings.loadGraphic(getBGImg('buildings'));
-		
+
 		floor.loadGraphic(getBGImg('floor'));
-		floor.scale.set(2,2);
+		floor.scale.set(2, 2);
 		floor.updateHitbox();
 
 		gradient.loadGraphic(getBGImg('gradient.png'));
-		gradient.scrollFactor.set(0,0);
+		gradient.scrollFactor.set(0, 0);
 
 		add(gradient);
 		add(buildings);

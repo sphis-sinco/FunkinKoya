@@ -23,13 +23,12 @@ class Highscore
 		}
 		else
 			setRank(formattedField, rank);
-
 	}
 
 	static function setRank(song:String, rank:Rank):Void
 	{
 		if (song.trim() == '') return;
-		
+
 		songRanks.set(song, rank);
 
 		Save.songRanks.set(songRanks);

@@ -42,8 +42,7 @@ class MainStage extends StageBackground
 
 		stageCurtains.scrollFactor.set();
 
-		if (PlayState.IS_STORYMODE && PlayState.STORYMODE_PLAYLIST_NUMBER == 0 || !PlayState.IS_STORYMODE)
-			add(stageCurtains);
+		if (PlayState.IS_STORYMODE && PlayState.STORYMODE_PLAYLIST_NUMBER == 0 || !PlayState.IS_STORYMODE) add(stageCurtains);
 	}
 
 	override function countdownTick(tick:Int = 0)

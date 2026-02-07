@@ -29,7 +29,6 @@ class MusicBeatState extends FlxUIState
 
 		super.create();
 
-		
 		Cursor.cursorVisible = false;
 		sectionHit();
 		controls.setKeyboardScheme(Custom);

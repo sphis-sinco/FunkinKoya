@@ -1,6 +1,7 @@
 package koya.backend.modding;
 
-typedef ModMetadata = {
+typedef ModMetadata =
+{
 	?name:String,
 	?description:String,
 	?authors:Array<String>,
