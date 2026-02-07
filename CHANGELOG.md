@@ -1,5 +1,14 @@
 # [0.5.1] - 2/7/2026
 
+## Visual
+
+- Pico stuff have been fixed
+	- His idle dances.
+	- He has actual SINGING ANIMATIONS NOW LMAO!
+		- His arm doesn't look broken in his right anymore lmao!
+		- His down has its own body and he's not just tilted!
+		- His mouth actually moves in his singing
+
 ## General
 
 - Added `koya.frontend.scenes.SplashScene` : Replacement of the default haxeflixel splash scene
