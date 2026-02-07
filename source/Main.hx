@@ -19,7 +19,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		addChild(new FlxGame(0, 0, InitState, FPS, FPS));
+		addChild(new FlxGame(0, 0, InitState, FPS, FPS, false));
 
 		WATERMARK = new Watermark(2);
 		#if !mobile
