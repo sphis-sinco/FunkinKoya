@@ -1,18 +1,16 @@
 package koya.frontend.scenes.play.stages;
 
+import animate.FlxAnimateFrames;
 import flixel.graphics.frames.FlxAtlasFrames;
 import koya.backend.play.stages.StageProp;
 import flixel.FlxBasic;
 
 class StageBGProps
 {
-	public static function parseProp(jsonFile:StageProp, propName:String, layer:StagePropLayerType,
-			methods:{getImg:String->String, getSparrowImg:String->FlxAtlasFrames, getAtlasImg:String->FlxAtlasFrames}):FlxBasic
+	public static function parseProp(propField:StageProp,
+			methods:{getImg:String->String, getSparrowImg:String->FlxAtlasFrames, getAtlasImg:String->FlxAnimateFrames}):FlxBasic
 	{
-		var propField:StageProp = cast Reflect.field(jsonFile, propName);
-
 		if (propField == null) return null;
-		if (propField.layerType != layer) return null;
 
 		var propSprite:FunkinSprite = null;
 

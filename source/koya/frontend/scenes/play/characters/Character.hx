@@ -1,5 +1,9 @@
 package koya.frontend.scenes.play.characters;
 
+import koya.backend.play.stages.StageProp;
+import haxe.Json;
+import koya.frontend.scenes.play.stages.StageBGProps;
+import haxe.Template;
 import flixel.math.FlxPoint;
 import flixel.util.typeLimit.OneOfTwo;
 import animate.FlxAnimate;
@@ -119,16 +123,19 @@ class Character extends FunkinSprite
 		if (!debugMode) playAnim('idle');
 	}
 
-	public function initChar()
-	{
-		switch (curCharacter) {}
-	}
+	public var datapathprefix:String = 'data/characters/::curCharacter::/';
 
 	public function getDataPathPrefix():String
-		return 'data/characters/$curCharacter/';
+		return new Template(datapathprefix).execute(
+			{
+				curCharacter: curCharacter
+			});
 
 	public function getDataPathLibrary():String
 		return 'characters';
+
+	public function getCharacterJSON():String
+		return AssetPaths.json('characters/$curCharacter', getDataPathLibrary());
 
 	public function getAnimationOffsetsPath():String
 		return AssetPaths.txt('${getDataPathPrefix()}anim_offsets', getDataPathLibrary());
@@ -200,4 +207,6 @@ class Character extends FunkinSprite
 	public function onNoteHit(note:Note) {};
 
 	public function sendEvent(name:String, values:Array<String>) {}
+
+	public function initChar() {}
 }
