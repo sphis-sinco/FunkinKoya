@@ -151,7 +151,12 @@ class OptionsMenuState extends MenuState
 
 	override function back()
 	{
-		if (inGameplay) FlxG.switchState(() -> new PlayState());
+		transitioning = true;
+		if (inGameplay)
+		{
+			FlxG.sound.music.stop();
+			FlxG.switchState(() -> new PlayState());
+		}
 		else
 			FlxG.switchState(() -> new MainMenuState());
 	}
