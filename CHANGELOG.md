@@ -85,6 +85,7 @@ This is the modding stuff that's important to know
 
 ## Misc
 
+- Removed week 4 and 5 stages from the stageList
 - Added `mods` folder
 - [DEBUG] Added `example_mods` folder
   - Added `backdropMod`
