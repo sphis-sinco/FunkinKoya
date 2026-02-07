@@ -16,12 +16,12 @@ class Halloween extends StageBackground
 		PlayState.instance.defaultCamZoom = 0.8;
 	}
 
-	override function initBG()
+	override function init()
 	{
-		super.initBG();
+		super.init();
 
 		var halloweenBack:FunkinSprite = cast getThing('halloweenBack');
-		halloweenBack?.scale.set(2462.3 / halloweenBack?.width, 1589.95 / halloweenBack?.height);
+		if (halloweenBack != null) halloweenBack.scale.set(2462.3 / halloweenBack.width, 1589.95 / halloweenBack.height);
 	}
 
 	override function moveCamera(bf:Bool)
