@@ -1,5 +1,8 @@
 # [0.5.1] - 2/7/2026
 
+## Technical
+- The default Flixel splash is skipped now
+
 # [0.5.0] - 2/7/2026
 
 ## Modding
