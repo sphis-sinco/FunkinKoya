@@ -167,17 +167,54 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 		for (propName in Reflect.fields(jsonFile))
 		{
-			var propBasic:FlxBasic = StageBGProps.parseProp(jsonFile, propName, layer,
+			var propField:StageProp = cast Reflect.field(jsonFile, propName);
+
+			if (propField == null) continue;
+			if (propField.layerType != layer) continue;
+
+			var propSprite:FunkinSprite = null;
+
+			if (propField.sparrow != null)
+			{
+				propSprite = new FunkinSprite();
+				propSprite.frames = getBGSparrowImg(propField.sparrow);
+
+				if (propField.animations != null) for (anim in propField.animations)
 				{
-					getImg: getBGImg,
-					getSparrowImg: getBGSparrowImg,
-					getAtlasImg: getBGAtlasImg,
-				});
+					if (anim.type == PREFIX) propSprite.addPrefixAnim(anim.name, anim.prefix, anim?.fps ?? 24, anim?.looped ?? false);
+				}
+			}
 
-			if (propBasic == null) continue;
+			if (propField.img != null)
+			{
+				propSprite = new FunkinSprite();
+				propSprite.loadGraphic(getBGImg(propField.img));
+			}
 
-			props.set(propName, propBasic);
-			toAdd.push(propBasic);
+			if (propField == null) continue;
+
+			if (propField.layer != null) propSprite.ID = propField.layer;
+
+			if (propField.position != null)
+			{
+				propSprite.x = propField.position[0];
+				propSprite.y = propField.position[1];
+			}
+
+			if (propField.scrollFactor != null)
+			{
+				propSprite.scrollFactor.x = propField.scrollFactor[0];
+				propSprite.scrollFactor.y = propField.scrollFactor[1];
+			}
+
+			if (propField.scale != null)
+			{
+				propSprite.scale.x = propField.scale[0];
+				propSprite.scale.y = propField.scale[1];
+			}
+
+			props.set(propName, propSprite);
+			toAdd.push(propSprite);
 		}
 
 		toAdd.sort((b1, b2) -> return FlxSort.byValues(FlxSort.ASCENDING, b1.ID, b2.ID));
@@ -199,9 +236,6 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function getBGSparrowImg(path:String):FlxAtlasFrames
 		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
-
-	public function getBGAtlasImg(path:String):FlxAtlasFrames
-		return AssetPaths.getAnimateAtlas('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
 	public function getThing(thing:String)
 		return props.get(thing) ?? Reflect.field(this, thing);
