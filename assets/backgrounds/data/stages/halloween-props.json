@@ -1,0 +1,16 @@
+{
+	"halloweenBack": {
+		"position": [-240, 0],
+
+		"img": "halloweenBack",
+
+		"layerType": "front",
+		"layer": 0
+	},
+	"stairs": {
+		"position": [380, -80],
+		"img": "stairs",
+
+		"scrollFactor": [0.6, 0.6]
+	}
+}

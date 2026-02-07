@@ -9,9 +9,6 @@ class Halloween extends StageBackground
 		super(song, 'halloween', performInit);
 	}
 
-	public var halloweenBack:FunkinSprite = new FunkinSprite();
-	public var stairs:FunkinSprite = new FunkinSprite();
-
 	override function initInfo()
 	{
 		super.initInfo();
@@ -23,18 +20,8 @@ class Halloween extends StageBackground
 	{
 		super.initBG();
 
-		halloweenBack.loadGraphic(getBGImg('halloweenBack'));
-		add(halloweenBack);
-		halloweenBack.scale.set(2462.3 / halloweenBack.width, 1589.95 / halloweenBack.height);
-	}
-
-	override function initFG()
-	{
-		super.initFG();
-
-		stairs.loadGraphic(getBGImg('stairs'));
-		stairs.scrollFactor.set(0.6, 0.6);
-		add(stairs);
+		var halloweenBack:FunkinSprite = cast getThing('halloweenBack');
+		halloweenBack?.scale.set(2462.3 / halloweenBack?.width, 1589.95 / halloweenBack?.height);
 	}
 
 	override function moveCamera(bf:Bool)
