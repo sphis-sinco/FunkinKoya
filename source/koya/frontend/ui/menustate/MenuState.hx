@@ -70,8 +70,16 @@ class MenuState extends MusicBeatState
 
 	public function reloadMenuItems()
 	{
-		itemsTextGroup.clear();
-		itemsSpriteGroup.clear();
+		for (item in itemsTextGroup.members)
+		{
+			itemsTextGroup.members.remove(item);
+			item.destroy();
+		}
+		for (item in itemsSpriteGroup.members)
+		{
+			itemsSpriteGroup.members.remove(item);
+			item.destroy();
+		}
 
 		var i = 0;
 		for (item in itemList)
@@ -81,7 +89,7 @@ class MenuState extends MusicBeatState
 
 			i++;
 		}
-		
+
 		select();
 	}
 
