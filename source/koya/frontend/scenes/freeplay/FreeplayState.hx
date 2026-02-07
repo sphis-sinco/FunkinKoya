@@ -147,14 +147,6 @@ class FreeplayState extends MenuState
 
 		songAuthorText.text = 'Composer(s):\n${currentSong.authors}';
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
-
-		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
-		{
-			FlxG.sound.playMusic(AssetPaths.music('freakyMenu'), 0.7, false);
-			Conductor.changeBPM(102);
-		}
-
-		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
 	}
 
 	public function performControls()
