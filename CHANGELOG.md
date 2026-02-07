@@ -40,6 +40,7 @@ This is the modding stuff that's important to know
 - Added support for "FlxText Menu States" : Menus using FlxText
 - Removed `-DFREEPLAY_BG_GRID` define for good
 - `koya.frontend.scenes.freeplay.FreeplayState` has been converted into a `MenuState`
+	- All songs are now visible on freeplay (technically)
 	- Song select arrows have been removed
 	- Arrow alpha changes depending on conditions have been removed
 	- All songs missing a chart for the current difficulty will have a -0.4 applied to their alpha
