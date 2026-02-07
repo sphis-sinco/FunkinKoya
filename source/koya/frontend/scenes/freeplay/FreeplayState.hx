@@ -32,7 +32,6 @@ class FreeplayState extends MenuState
 {
 	public var songList:Array<SwagSong> = [];
 
-	public var songText:FlxText = new FlxText();
 	public var songScoreText:FlxText = new FlxText();
 	public var songAuthorText:FlxText = new FlxText();
 
@@ -41,7 +40,7 @@ class FreeplayState extends MenuState
 	public var currentSong(get, never):SwagSong;
 
 	function get_currentSong():SwagSong
-		return songList[currentSelection];
+		return SongList.songList[currentSelection];
 
 	public var currentSongName(get, never):String;
 
@@ -75,17 +74,21 @@ class FreeplayState extends MenuState
 
 	public var currentDifficulty:Int = Difficulty.NORMAL;
 	public var currentDifficultyEnum:Difficulty;
-	public var currentSelection:Int = 0;
 
 	public var opponentIcon:HealthIcon;
 	public var playerIcon:HealthIcon;
 
+	override public function new()
+	{
+		super('', Vertical);
+
+		this.text = true;
+		this.itemList = SongList.stringSongList;
+		this.songList = SongList.songList;
+	}
+
 	override function create()
 	{
-		super.create();
-
-		songList = SongList.songList;
-
 		#if FREEPLAY_BG_GRID
 		var GRID_SIZE = 32;
 		var gridBG = FlxGridOverlay.create(GRID_SIZE, GRID_SIZE, (GRID_SIZE * Std.int(FlxG.width / GRID_SIZE)) + 10,
@@ -94,14 +97,6 @@ class FreeplayState extends MenuState
 		#end
 
 		initBordersAndArrows();
-
-		songText.fieldWidth = sideBorderWidths;
-		songText.alignment = CENTER;
-		songText.size = 48;
-
-		songText.setBorderStyle(OUTLINE, FlxColor.BLACK, 8);
-
-		add(songText);
 
 		songScoreText.fieldWidth = upBorder.innerSprite.width;
 		songScoreText.alignment = CENTER;
@@ -127,10 +122,11 @@ class FreeplayState extends MenuState
 		playerIcon = new HealthIcon('bf', true);
 		add(opponentIcon);
 		add(playerIcon);
-		
-		songText.font = AssetPaths.font('vcr.ttf');
+
 		songScoreText.font = AssetPaths.font('vcr.ttf');
 		songAuthorText.font = AssetPaths.font('vcr.ttf');
+
+		super.create();
 	}
 
 	override function update(elapsed:Float)
@@ -151,11 +147,6 @@ class FreeplayState extends MenuState
 		arrow_LEFT.alpha = (currentDifficulty == Difficulty.list[0].toInt()) ? 0.5 : 1;
 		arrow_RIGHT.alpha = (currentDifficulty == Difficulty.list[Difficulty.list.length - 1].toInt()) ? 0.5 : 1;
 
-		songText.text = currentSongName;
-		if (currentRank != null)
-			songText.text += ' ($currentRank)';
-		songText.screenCenter(Y);
-
 		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}):\n';
 		if (currentScore < 0) songScoreText.text += '-';
 		songScoreText.text += '${Math.abs(currentScore)}'.lpad('0', 8);
@@ -163,8 +154,8 @@ class FreeplayState extends MenuState
 		songAuthorText.text = 'Composer(s):\n${currentSong.authors}';
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
 
-		songText.alpha = 1;
-		if (!KoyaAssets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) songText.alpha = .5;
+		itemsTextGroup.members[currentSelection].alpha = 1;
+		if (!KoyaAssets.exists(AssetPaths.chart(currentSongName.toLowerCase(), currentSongChart))) itemsTextGroup.members[currentSelection].alpha = .5;
 
 		if ((FlxG.sound.music == null || !FlxG.sound.music.playing) && !transitioning)
 		{
@@ -175,24 +166,16 @@ class FreeplayState extends MenuState
 		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
 	}
 
-	public var transitioning:Bool = false;
-
 	public function performControls()
 	{
 		if (controls.UI_UP_R)
 		{
-			currentSelection--;
-			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
-
 			arrow_UP.y -= 10;
 			FlxTween.cancelTweensOf(arrow_UP);
 			FlxTween.tween(arrow_UP, {y: aU_y}, .1);
 		}
 		if (controls.UI_DOWN_R)
 		{
-			currentSelection++;
-			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
-
 			arrow_DOWN.y += 10;
 
 			FlxTween.cancelTweensOf(arrow_DOWN);
@@ -216,13 +199,6 @@ class FreeplayState extends MenuState
 			arrow_RIGHT.x += 10;
 			FlxTween.cancelTweensOf(arrow_RIGHT);
 			FlxTween.tween(arrow_RIGHT, {x: aR_x}, .1);
-		}
-
-		if (controls.BACK)
-		{
-			transitioning = true;
-			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
-			FlxG.switchState(() -> new MainMenuState());
 		}
 
 		if (controls.ACCEPT)
@@ -256,6 +232,13 @@ class FreeplayState extends MenuState
 
 		opponentIcon.visible = opponentIcon.frames != null;
 		playerIcon.visible = playerIcon.frames != null;
+	}
+
+	override function back()
+	{
+		transitioning = true;
+		FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
+		FlxG.switchState(() -> new MainMenuState());
 	}
 
 	public var sideBorderWidths = 320 + 64;
