@@ -32,12 +32,13 @@ class SplashScene extends MusicBeatState
 	{
 		super.create();
 
-		jingle = new FlxSound().loadEmbedded(AssetPaths.music('TitleJingle'), false, null, function() {
+		jingle = new FlxSound().loadEmbedded(AssetPaths.music('TitleJingle'), false, false, function() {
 			FlxTimer.wait(1, function() {
 				FlxG.switchState(nextScene);
 			});
 		});
 		Conductor.changeBPM(120.0);
+		jingle.play();
 
 		add(splashTexts);
 	}
