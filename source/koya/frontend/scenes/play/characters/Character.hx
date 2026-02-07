@@ -209,4 +209,7 @@ class Character extends FunkinSprite
 	public function sendEvent(name:String, values:Array<String>) {}
 
 	public function initChar() {}
+	
+	public function getFrames() {};
+
 }

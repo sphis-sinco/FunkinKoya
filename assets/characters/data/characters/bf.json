@@ -4,6 +4,11 @@
 	"type": "atlas",
 	"imagePath": "characters/boyfriend-regular",
 
+	"flipX": true,
+	"flipAnimationsAsPlayer": false,
+
+	"dataPathPrefix": "data/characters/bf/::curCharacter::-",
+
 	"animations": [
 		{
 			"type": "frame_label",
