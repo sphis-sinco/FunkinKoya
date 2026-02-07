@@ -110,6 +110,9 @@ class Save
 			{
 				fpsCounter: true,
 				chartEditorAutosave: true,
+
+				ghostTapping: true,
+				downScroll: true
 			});
 
 		enabledMods = new SaveField<Array<String>>('enabledMods', []);
@@ -144,6 +147,10 @@ class Save
 	{
 		switch (version.get())
 		{
+			case 4:
+				preferences.get().downScroll ??= true;
+				preferences.get().ghostTapping ??= true;
+				
 			default:
 				trace('unimplemented upgrade from version: ${version.get()}');
 		}
