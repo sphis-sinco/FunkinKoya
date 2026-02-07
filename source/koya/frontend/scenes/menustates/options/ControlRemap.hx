@@ -15,8 +15,6 @@ class ControlRemap extends OptionsMenuState
 
 		if (subState == null && (controls.UI_LEFT_R || controls.UI_RIGHT_R)) altMod = !altMod;
 
-		
-
 		valueText.text += '\n\n( Toggle alts via UI_LEFT or UI_RIGHT )';
 		valueText.y = valueBG.getGraphicMidpoint().y - (valueText.height / 2);
 	}
@@ -27,7 +25,7 @@ class ControlRemap extends OptionsMenuState
 
 		var stringKeybinds:Array<String> = [];
 		for (keybind in Save.keybinds)
-			stringKeybinds.push(keybind.field);
+			if (keybind != null) stringKeybinds.push(keybind.field);
 
 		for (keybind in Save.keybinds)
 		{
