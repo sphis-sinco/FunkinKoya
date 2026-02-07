@@ -18,6 +18,8 @@ This is the modding stuff that's important to know
 
 ## Visual
 
+- Moved Song Rank display in freeplay to Song Score text
+- Added outlines to Song Score and Song Composer(s) texts to Freeplay
 - Text Menu Items have an alpha change instead of an animation when selected
 - The FPS part of `koya.frontend.ui.Watermark` is now toggleable via the `FPS Counter` option
 

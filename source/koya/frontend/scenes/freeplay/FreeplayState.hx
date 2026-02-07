@@ -131,6 +131,9 @@ class FreeplayState extends MenuState
 
 		songScoreText.font = AssetPaths.font('vcr.ttf');
 		songAuthorText.font = AssetPaths.font('vcr.ttf');
+
+		songScoreText.setBorderStyle(OUTLINE, FlxColor.BLACK, 3);
+		songAuthorText.setBorderStyle(OUTLINE, FlxColor.BLACK, 3);
 	}
 
 	override function update(elapsed:Float)
@@ -145,9 +148,11 @@ class FreeplayState extends MenuState
 		songDifficultySprite.screenCenter(Y);
 		songDifficultySprite.x = rightBorder.innerSprite.getGraphicMidpoint().x - (songDifficultySprite.width / 2);
 
-		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}):\n';
+		songScoreText.text = '\nScore (${currentDifficultyEnum.toString()}): ';
 		if (currentScore < 0) songScoreText.text += '-';
 		songScoreText.text += '${Math.abs(currentScore)}'.lpad('0', 8);
+
+		songScoreText.text += '\nRank: ${currentRank ?? 'Unknown'}';
 
 		songAuthorText.text = 'Composer(s):\n${currentSong.authors}';
 		songAuthorText.y = downBorder.innerSprite.getGraphicMidpoint().y - (songAuthorText.height / 2);
@@ -163,7 +168,7 @@ class FreeplayState extends MenuState
 			arrow_LEFT.x -= 10;
 			FlxTween.cancelTweensOf(arrow_LEFT);
 			FlxTween.tween(arrow_LEFT, {x: aL_x}, .1);
-			
+
 			select();
 		}
 		if (controls.UI_RIGHT_R)
