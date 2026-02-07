@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import koya.frontend.scenes.menustates.options.ControlRemap;
 import koya.backend.controls.Controls;
 import koya.frontend.scenes.menustates.options.KeybindPrompt;
 import flixel.util.FlxTimer;
@@ -106,22 +107,9 @@ class OptionsMenuState extends MenuState
 
 		addItem(null, null, null);
 
-		for (keybind in Save.keybinds)
-		{
-			if (keybind == null)
-			{
-				addItem(null, null, null);
-				continue;
-			}
-
-			addItem(keybind.display ?? keybind.field, keybind.get(), function() {
-				persistentUpdate = true;
-				openSubState(new KeybindPrompt(keybind.field, function() {
-					reloadItems();
-					controls.setKeyboardScheme(Custom);
-				}));
-			});
-		}
+		addItem('Control Remapping', 'Select to go remap your controls', function() {
+			FlxG.switchState(() -> new ControlRemap());
+		});
 	}
 
 	override function acceptedFlicker(confirmMenu:FlxSound, item:String)
