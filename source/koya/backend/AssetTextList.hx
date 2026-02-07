@@ -39,9 +39,6 @@ class AssetTextList
 	{
 		this.filepath = filepath;
 		trace('Made AssetTextList($filepath)!');
-
-		FlxG.log.add(text);
-		FlxG.log.add(textList);
 	}
 
 	/** 

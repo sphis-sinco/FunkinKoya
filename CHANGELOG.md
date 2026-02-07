@@ -2,6 +2,7 @@
 
 ## Technical
 
+- Removed `FlxG.log.add`'s from `koya.backend.AssetTextList`
 - Removed `controls` save data
 - Removed shit from `koya.backend.songs.Song` that would've allowed a variable to use it as a type (but it never got used that way so we chill)
 - Renamed `koya.backend.songs.Section` to `koya.backend.songs.SwagSection`
