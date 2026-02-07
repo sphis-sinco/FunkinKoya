@@ -1,5 +1,7 @@
 package koya.frontend.scenes;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.FlxState;
 import flixel.sound.FlxSound;
 import koya.frontend.ui.AtlasText;
@@ -32,6 +34,10 @@ class SplashScene extends FlxState
 
 		FlxG.sound.playMusic(AssetPaths.music('TitleJingle'), 1.0, false, null);
 		FlxG.sound.music.onComplete = function() {
+			FlxTween.tween(splash, {alpha: 0}, 0.75,
+				{
+					ease: FlxEase.quadInOut
+				});
 			FlxTimer.wait(1, function() {
 				FlxG.switchState(nextScene);
 			});
