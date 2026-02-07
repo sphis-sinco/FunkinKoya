@@ -1130,12 +1130,6 @@ class PlayState extends MusicBeatState
 		var p1Adjust = (iconP1.height / 2);
 		var p2Adjust = (iconP2.height / 2);
 
-		if (Save.preferences.get().downScroll)
-		{
-			p1Adjust = -p1Adjust;
-			p2Adjust = -p2Adjust;
-		}
-
 		iconP1.y = healthBar.y - p1Adjust;
 		iconP2.y = healthBar.y - p2Adjust;
 
