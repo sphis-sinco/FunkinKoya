@@ -110,6 +110,7 @@ class VarTween extends FlxTween
 	override function isTweenOf(object:Dynamic, ?field:String):Bool
 	{
 		if (object == _object && field == null) return true;
+		if (_propertyInfos == null) return false;
 
 		for (property in _propertyInfos)
 		{

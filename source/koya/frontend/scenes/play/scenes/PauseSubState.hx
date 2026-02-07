@@ -208,7 +208,7 @@ class PauseSubState extends MusicBeatSubstate
 
 			var targetX = FlxMath.remapToRange((item.ID - curSelected), 0, 1, 0, 1.3) * 20 + (90);
 			var targetY = FlxMath.remapToRange((item.ID - curSelected), 0, 1, 0, 1.3) * 120 + (camera.height * 0.48);
-			FlxTween.globalManager.cancelTweensOf(item);
+			FlxTween.cancelTweensOf(item);
 			FlxTween.tween(item, {x: targetX, y: targetY}, 0.33, {ease: FlxEase.quartOut});
 		}
 	}
