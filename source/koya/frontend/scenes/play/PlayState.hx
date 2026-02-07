@@ -620,8 +620,7 @@ class PlayState extends MusicBeatState
 		if (generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note) {
-				if (!Save.preferences.get().downScroll && daNote.y > FlxG.height) daNote.active = daNote.visible = false;
-				else if (Save.preferences.get().downScroll && daNote.y < daNote.height * 2) daNote.active = daNote.visible = false;
+				if (daNote.y > FlxG.height) daNote.active = daNote.visible = false;
 				else
 					daNote.visible = daNote.active = true;
 
