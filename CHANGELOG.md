@@ -38,6 +38,7 @@ This is the modding stuff that's important to know
 
 - `koya.frontend.ui.menustate.MenuState` no longer allows controls when `subState` isn't null
 - Yoinked `AtlasText` from base funkin and replaced `Alphabet`
+	- `koya.frontend.scenes.play.scenes.PauseSubState` has been updated to adapt
 - Added `keybinds` to `koya.save.Save` (not a savefield, just a general field to help do things easy)
 - Added `-DMODMENU` define : Sends you to the mod menu if `-DMOD_SUPPORT` is enabled
 - Removed case-sensitivity for week JSON loading

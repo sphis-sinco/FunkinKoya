@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.scenes;
 
+import flixel.math.FlxMath;
 import koya.backend.songs.Song;
 import koya.backend.KoyaAssets;
 import koya.backend.Highscore;
@@ -73,8 +74,17 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...menuItems.length)
 		{
-			var songText:AtlasText = new AtlasText(0, (70 * i) + 30, menuItems[i], BOLD);
-			grpMenuShit.add(songText);
+			var yPos:Float = 70 * i + 30;
+			var text:AtlasText = new AtlasText(0, yPos, menuItems[i], AtlasFont.BOLD);
+			text.scrollFactor.set(0, 0);
+			text.alpha = 0;
+			text.ID = i;
+			for (letter in text)
+			{
+				letter.width *= 2;
+				letter.height *= 2;
+			}
+			grpMenuShit.add(text);
 		}
 
 		var delat:Float = 0.3;
@@ -182,12 +192,16 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (item in grpMenuShit.members)
 		{
-			// item.targetY = bullShit - curSelected;
 			bullShit++;
 
 			item.alpha = 0.6;
 
-			// if (item.targetY == 0) item.alpha = 1;
+			if (item.ID == curSelected) item.alpha = 1;
+
+			var targetX = FlxMath.remapToRange((item.ID - curSelected), 0, 1, 0, 1.3) * 20 + (90);
+			var targetY = FlxMath.remapToRange((item.ID - curSelected), 0, 1, 0, 1.3) * 120 + (camera.height * 0.48);
+			FlxTween.globalManager.cancelTweensOf(item);
+			FlxTween.tween(item, {x: targetX, y: targetY}, 0.33, {ease: FlxEase.quartOut});
 		}
 	}
 }
