@@ -620,11 +620,15 @@ class PlayState extends MusicBeatState
 		if (generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note) {
-				if (daNote.y > FlxG.height) daNote.active = daNote.visible = false;
+				if (!Save.preferences.get().downScroll && daNote.y > FlxG.height) daNote.active = daNote.visible = false;
+				else if (Save.preferences.get().downScroll && daNote.y < daNote.height * 2) daNote.active = daNote.visible = false;
 				else
 					daNote.visible = daNote.active = true;
 
-				daNote.y = (STRUMLINE_Y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2)));
+				var strumlineModif:Float = (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2));
+
+				if (!Save.preferences.get().downScroll) daNote.y = (STRUMLINE_Y - strumlineModif);
+				if (Save.preferences.get().downScroll) daNote.y = (STRUMLINE_Y + strumlineModif);
 
 				// i am so fucking sorry for this if condition
 				if (daNote.isSustainNote
