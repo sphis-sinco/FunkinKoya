@@ -232,7 +232,10 @@ class FreeplayState extends MenuState
 		applyChartCheck();
 
 		for (menuItem in itemsTextGroup.members)
+		{
+			menuItem.scale.set(0.5, 0.5);
 			menuItem.x = 30;
+		}
 	}
 
 	public var sideBorderWidths = 320 + 64;
