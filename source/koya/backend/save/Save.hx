@@ -155,6 +155,8 @@ class Save
 				trace('unimplemented upgrade from version: ${version.get()}');
 		}
 
+		preferences.get().downScroll = false;
+
 		version.set(version.get() + 1);
 		if (version.get() < SAVE_VERSION)
 		{

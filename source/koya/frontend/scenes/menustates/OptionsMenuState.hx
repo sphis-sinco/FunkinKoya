@@ -114,9 +114,9 @@ class OptionsMenuState extends MenuState
 
 		addItem(null, null, null);
 
-		addItem('Downscroll', Save.preferences.get().downScroll, function() {
-			Save.preferences.get().downScroll = !Save.preferences.get().downScroll;
-		});
+		// addItem('Downscroll', Save.preferences.get().downScroll, function() {
+		// Save.preferences.get().downScroll = !Save.preferences.get().downScroll;
+		// });
 
 		addItem('Ghost Tapping', Save.preferences.get().ghostTapping, function() {
 			Save.preferences.get().ghostTapping = !Save.preferences.get().ghostTapping;
