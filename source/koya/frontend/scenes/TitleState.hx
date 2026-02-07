@@ -47,7 +47,7 @@ class TitleState extends MusicBeatState
 		}
 
 		var mainStage = new MainStage(null, true);
-		add(mainStage.stageBack);
+		add(cast mainStage.getThing('stageBack'));
 
 		logo = new FlxSprite();
 		logo.frames = AssetPaths.fromSparrow('logoBumpin');
