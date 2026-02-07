@@ -8,6 +8,7 @@ package koya.backend.macros;
 **/
 class Git
 {
+	/** Get the git version suffix **/
 	public static macro function gimmeSuffix():haxe.macro.Expr.ExprOf<String>
 	{
 		#if !display

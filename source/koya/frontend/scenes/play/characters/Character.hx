@@ -1,5 +1,8 @@
 package koya.frontend.scenes.play.characters;
 
+import koya.backend.play.ObjectManager;
+import koya.backend.CoolUtil;
+import koya.backend.play.CharacterData;
 import koya.backend.play.stages.StageProp;
 import haxe.Json;
 import koya.frontend.scenes.play.stages.StageBGProps;
@@ -21,6 +24,7 @@ class Character extends FunkinSprite
 
 	public var stunned:Bool = false;
 
+	/** For character editor **/
 	public var debugMode:Bool = false;
 
 	public var isPlayer:Bool = false;
@@ -36,8 +40,10 @@ class Character extends FunkinSprite
 
 		setCharacter(character);
 		this.isPlayer = isPlayer;
+		datapathprefix = DEFAULT_DATAPATHPREFIX;
 	}
 
+	/** Set `curCharacter` and `iconChar` **/
 	public function setCharacter(character:String = 'bf')
 	{
 		curCharacter = character;
@@ -46,9 +52,11 @@ class Character extends FunkinSprite
 
 	public var flipAnimationsAsPlayer:Bool = true;
 
+	/** Load character assets, Animations, Offsets, etc **/
 	public function loadAssets()
 	{
 		trace('Loading character: $curCharacter');
+		initCharJSON();
 		getCharacterOffsets();
 		getAnimationOffsets();
 		getCameraOffsets();
@@ -64,21 +72,28 @@ class Character extends FunkinSprite
 			if (flipAnimationsAsPlayer)
 			{
 				// var animArray
-				var oldRight = anim.getByName('singRIGHT').frames;
-				anim.getByName('singRIGHT').frames = anim.getByName('singLEFT').frames;
-				anim.getByName('singLEFT').frames = oldRight;
+				var oldRight = anim.getByName('singRIGHT')?.frames;
+				if (oldRight != null)
+				{
+					anim.getByName('singRIGHT').frames = anim.getByName('singLEFT').frames;
+					anim.getByName('singLEFT').frames = oldRight;
+				}
 
 				// IF THEY HAVE MISS ANIMATIONS??
 				if (anim.getByName('singRIGHTmiss') != null)
 				{
-					var oldMiss = anim.getByName('singRIGHTmiss').frames;
-					anim.getByName('singRIGHTmiss').frames = anim.getByName('singLEFTmiss').frames;
-					anim.getByName('singLEFTmiss').frames = oldMiss;
+					var oldMiss = anim.getByName('singRIGHTmiss')?.frames;
+					if (oldMiss != null)
+					{
+						anim.getByName('singRIGHTmiss').frames = anim.getByName('singLEFTmiss').frames;
+						anim.getByName('singLEFTmiss').frames = oldMiss;
+					}
 				}
 			}
 		}
 	}
 
+	/** For opponents this is the hold timer stuff until next idle **/
 	public var dadVar(get, never):Float;
 
 	function get_dadVar():Float
@@ -116,14 +131,17 @@ class Character extends FunkinSprite
 		super.update(elapsed);
 	}
 
+	/** Mainly for characters with `danceLeft` and `danceRight` animations : This will tell which direction you're on **/
 	public var danced:Bool = false;
 
+	/** Play idle animations **/
 	public function dance()
 	{
 		if (!debugMode) playAnim('idle');
 	}
 
-	public var datapathprefix:String = 'data/characters/::curCharacter::/';
+	public final DEFAULT_DATAPATHPREFIX:String = 'data/characters/::curCharacter::/';
+	public var datapathprefix:String = null;
 
 	public function getDataPathPrefix():String
 		return new Template(datapathprefix).execute(
@@ -135,7 +153,7 @@ class Character extends FunkinSprite
 		return 'characters';
 
 	public function getCharacterJSON():String
-		return AssetPaths.json('characters/$curCharacter', getDataPathLibrary());
+		return AssetPaths.json('data/characters/$curCharacter', getDataPathLibrary());
 
 	public function getAnimationOffsetsPath():String
 		return AssetPaths.txt('${getDataPathPrefix()}anim_offsets', getDataPathLibrary());
@@ -146,6 +164,7 @@ class Character extends FunkinSprite
 	public function getCameraOffsetsPath():String
 		return AssetPaths.txt('${getDataPathPrefix()}camera_offsets', getDataPathLibrary());
 
+	/** Load Character Offsets from the `.txt` file **/
 	public function getCharacterOffsets()
 	{
 		var offsetPath = getCharacterOffsetsPath();
@@ -160,8 +179,10 @@ class Character extends FunkinSprite
 			generalOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
 	}
 
+	/** For when the camera moves to this character during gameplay **/
 	public function cameraMoveToMe() {}
 
+	/** Load Camera Offsets from the `.txt` file **/
 	public function getCameraOffsets()
 	{
 		var offsetPath = getCameraOffsetsPath();
@@ -176,6 +197,7 @@ class Character extends FunkinSprite
 			cameraOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
 	}
 
+	/** Load Animation Offsets from the `.txt` file **/
 	public function getAnimationOffsets()
 	{
 		var offsetPath = getAnimationOffsetsPath();
@@ -188,6 +210,7 @@ class Character extends FunkinSprite
 		parseAnimationOffsetFile(offsetfile);
 	}
 
+	/** Add singing animations via `addAnimationFunction` and will include misses if `includeMiss` is true **/
 	public function addSingingAnimations(includeMiss:Bool = false, addAnimationFunction:(name:String, prefix:String) -> Void)
 	{
 		var directions = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
@@ -199,14 +222,88 @@ class Character extends FunkinSprite
 		}
 	}
 
+	/** Get the starting camera position for the start of the song **/
 	public function getStartingCamPos(startingCamPos:FlxPoint)
 	{
 		if (startingCamPos == null) return;
 	}
 
+	/** When a character hits a note **/
 	public function onNoteHit(note:Note) {};
 
+	/** Character Event **/
 	public function sendEvent(name:String, values:Array<String>) {}
 
+	/** The Character JSON data **/
+	var parsedCharJSON:CharacterData = null;
+
+	/** Initalizes character through code **/
 	public function initChar() {}
+
+	/** Initalizes character through JSON **/
+	public function initCharJSON()
+	{
+		var charJSON = getCharacterJSON();
+
+		if (KoyaAssets.exists(charJSON))
+		{
+			try
+			{
+				parsedCharJSON = Json.parse(KoyaAssets.getText(charJSON));
+			}
+			catch (e)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', e.toString());
+				trace(e.message);
+				parsedCharJSON = null;
+
+				return;
+			}
+
+			if (parsedCharJSON == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Null / Not parsed correctly?');
+				return;
+			}
+			if (parsedCharJSON.animations == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Missing Animations');
+				return;
+			}
+			if (parsedCharJSON.type == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Missing Character Type');
+				return;
+			}
+			if (parsedCharJSON.imagePath == null)
+			{
+				CoolUtil.alert('Error Parsing Character JSON : $curCharacter!', 'Missing Character Image Path');
+				return;
+			}
+
+			loadCharacterJSONType(parsedCharJSON.type);
+
+			ObjectManager.addObjectAnimationsToSprite(this, parsedCharJSON.animations);
+
+			datapathprefix = parsedCharJSON?.dataPathPrefix ?? DEFAULT_DATAPATHPREFIX;
+			iconChar = parsedCharJSON?.iconChar ?? curCharacter;
+			flipX = parsedCharJSON?.flipX ?? false;
+			flipAnimationsAsPlayer = parsedCharJSON?.flipAnimationsAsPlayer ?? true;
+		}
+		else
+		{
+			trace(' * $charJSON doesn\'t exist');
+		}
+	}
+
+	/** Load Character frames for type of `type` **/
+	public function loadCharacterJSONType(type:CharacterType)
+	{
+		trace(' * type: $type');
+		if (type == SPARROW) frames = AssetPaths.fromSparrow(parsedCharJSON.imagePath, 'characters');
+		if (type == ATLAS) frames = AssetPaths.getAnimateAtlas(parsedCharJSON.imagePath, 'characters');
+	}
+
+	/** For classes extending this, this is where the sparrow or atlas are loaded **/
+	public function getFrames() {};
 }

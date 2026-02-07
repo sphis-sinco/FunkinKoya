@@ -99,7 +99,7 @@ class ResultsSubState extends MusicBeatSubstate
 
 				FlxTimer.wait(1, () -> {
 					FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
-					
+
 					if (Save.preferences.get().flashingLights) resultsCam.flash(FlxColor.WHITE, .2);
 
 					rankSpr.playAnim('rank');
