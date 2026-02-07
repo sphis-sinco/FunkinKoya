@@ -35,7 +35,7 @@ class MenuState extends MusicBeatState
 	public var menuType:MenuType = Vertical;
 	public var menuItemPathPrefix:String = '';
 	public var text:Bool = false;
-	public var atlasText:Bool = false;
+	public var atlasText:Bool = true;
 
 	public var itemStartingPos:Float = 240;
 	public var itemIncOffset:Float = 320;
