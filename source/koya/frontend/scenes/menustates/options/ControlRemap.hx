@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates.options;
 
+import koya.backend.AssetPaths;
 import flixel.FlxG;
 import koya.backend.save.Save;
 
@@ -13,7 +14,13 @@ class ControlRemap extends OptionsMenuState
 	{
 		super.update(elapsed);
 
-		if (subState == null && (controls.UI_LEFT_R || controls.UI_RIGHT_R)) altMod = !altMod;
+		if (subState == null && (controls.UI_LEFT_R || controls.UI_RIGHT_R))
+		{
+			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
+
+			altMod = !altMod;
+			reloadItems();
+		}
 
 		valueText.text += '\n\n( Toggle alts via UI_LEFT or UI_RIGHT )';
 		valueText.y = valueBG.getGraphicMidpoint().y - (valueText.height / 2);
