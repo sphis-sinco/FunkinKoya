@@ -13,7 +13,7 @@
 - Added `getRank` to `koya.backend.Highscore`
 	- Used now in Freeplay along with `getScore`
 - `koya.backend.CrashHandler` has been updated to use `koya.backend.CoolUtil.alert`
-- All code has been documented and tweaks have been made
+- Alot of code has been documented and tweaks have been made
 
 # [0.5.1] - 2/7/2026
 
