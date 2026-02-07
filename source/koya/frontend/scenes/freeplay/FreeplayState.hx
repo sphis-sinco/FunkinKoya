@@ -83,6 +83,8 @@ class FreeplayState extends MenuState
 		super('', Vertical);
 
 		this.text = true;
+		this.atlasText = false;
+
 		this.itemList = SongList.stringSongList;
 		this.songList = SongList.songList;
 
@@ -131,11 +133,6 @@ class FreeplayState extends MenuState
 		songAuthorText.font = AssetPaths.font('vcr.ttf');
 	}
 
-	override function reloadMenuItems()
-	{
-		super.reloadMenuItems();
-	}
-
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -166,6 +163,8 @@ class FreeplayState extends MenuState
 			arrow_LEFT.x -= 10;
 			FlxTween.cancelTweensOf(arrow_LEFT);
 			FlxTween.tween(arrow_LEFT, {x: aL_x}, .1);
+			
+			select();
 		}
 		if (controls.UI_RIGHT_R)
 		{
@@ -175,6 +174,8 @@ class FreeplayState extends MenuState
 			arrow_RIGHT.x += 10;
 			FlxTween.cancelTweensOf(arrow_RIGHT);
 			FlxTween.tween(arrow_RIGHT, {x: aR_x}, .1);
+
+			select();
 		}
 
 		if (controls.ACCEPT)
@@ -208,8 +209,6 @@ class FreeplayState extends MenuState
 
 		opponentIcon.visible = opponentIcon.frames != null;
 		playerIcon.visible = playerIcon.frames != null;
-
-		if (controls.UI_LEFT_R || controls.UI_RIGHT_R || controls.UI_UP_R || controls.UI_DOWN_R) applyChartCheck();
 	}
 
 	override function back()
