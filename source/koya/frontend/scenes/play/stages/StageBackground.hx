@@ -194,7 +194,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 			if (propField == null) continue;
 
 			if (propField.layer != null) propSprite.ID = propField.layer;
-			
+
 			if (propField.position != null)
 			{
 				propSprite.x = propField.position[0];
@@ -213,6 +213,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 				propSprite.scale.y = propField.scale[1];
 			}
 
+			props.set(propName, propSprite);
 			toAdd.push(propSprite);
 		}
 
