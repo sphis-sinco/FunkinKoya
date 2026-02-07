@@ -2,6 +2,7 @@ export/
 
 .vscode/
 .haxelib/
+dump/
 
 Backup/
 

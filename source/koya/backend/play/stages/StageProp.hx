@@ -9,6 +9,7 @@ enum abstract StagePropLayerType(String) from String to String
 enum abstract StagePropAnimationType(String) from String to String
 {
 	var PREFIX = 'prefix';
+	var FRAME_LABEL = 'frame_label';
 }
 
 typedef StageProp =
@@ -16,6 +17,7 @@ typedef StageProp =
 	?img:String,
 
 	?sparrow:String,
+	?atlas:String,
 	?animations:Array<StagePropAnimations>,
 	
 	?position:Array<Float>,
@@ -30,7 +32,10 @@ typedef StagePropAnimations =
 {
 	type:StagePropAnimationType,
 	name:String,
-	prefix:String,
+	
+	?prefix:String,
+	?frame_label:String,
+	
 	?looped:Bool,
 	?fps:Int,
 }
