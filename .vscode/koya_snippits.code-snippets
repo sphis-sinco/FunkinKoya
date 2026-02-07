@@ -18,7 +18,7 @@
 
 	"New Stage": {
 		"scope": "haxe",
-		"prefix": "new.stage",
+		"prefix": "stage.new",
 		"body": [
 			"package koya.frontend.scenes.play.stages.basegame;\n",
 
@@ -32,6 +32,19 @@
 			"\t}",
 			"}",
 		],
-		"description": "A basic class for a new Stage",
+		"description": "New Stage Script",
+	},
+
+	"New Scene": {
+		"scope": "haxe",
+		"prefix": "scene.new",
+		"body": [
+			"package koya.frontend.scenes;\n",
+
+			"class $1 extends MusicBeatState",
+			"{",
+			"}",
+		],
+		"description": "New Scene",
 	},
 }
