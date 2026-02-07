@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.stages;
 
+import koya.backend.play.stages.StageCameraOffsets;
 import animate.FlxAnimateFrames;
 import flixel.util.FlxSort;
 import koya.backend.play.stages.StageProp;
@@ -30,16 +31,6 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		this.songData = song;
 		this.BG_NAME = BG_NAME;
 
-		try
-		{
-			jsonFile = Json.parse(KoyaAssets.getText(getStagePropsPath()));
-		}
-		catch (e)
-		{
-			trace(e.message);
-			jsonFile = null;
-		}
-
 		if (performInit) init();
 	}
 
@@ -48,6 +39,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	public function init()
 	{
 		initInfo();
+		initJSONS();
 
 		trace('Loading stage: $BG_NAME');
 
@@ -154,11 +146,42 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 			char.cameraMoveToMe();
 		}
+
+		if (camoffsetsFile == null) return;
+
+		var offsets:StageCharacterCameraOffsets = (bf) ? camoffsetsFile?.player : camoffsetsFile?.opponent;
+
+		PlayState.instance.camFollow.x += offsets?.x ?? 0;
+		PlayState.instance.camFollow.y += offsets?.y ?? 0;
 	};
 
 	public function sendEvent(name:String, values:Array<String>) {}
 
 	public var jsonFile:Dynamic = null;
+	public var camoffsetsFile:StageCameraOffsets = null;
+
+	public function initJSONS()
+	{
+		try
+		{
+			jsonFile = Json.parse(KoyaAssets.getText(getStagePropsPath()));
+		}
+		catch (e)
+		{
+			trace(e.message);
+			jsonFile = null;
+		}
+
+		try
+		{
+			camoffsetsFile = Json.parse(KoyaAssets.getText(getStageCamOffsetsPath()));
+		}
+		catch (e)
+		{
+			trace(e.message);
+			camoffsetsFile = null;
+		}
+	}
 
 	public function initJSONProps(layer:StagePropLayerType)
 	{
@@ -196,6 +219,9 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public function getStagePropOffsetPath():String
 		return AssetPaths.json(getJSONPathBase() + '-propvalues', 'backgrounds');
+
+	public function getStageCamOffsetsPath():String
+		return AssetPaths.json(getJSONPathBase() + '-camoffsets', 'backgrounds');
 
 	public function getStagePropsPath():String
 		return AssetPaths.json(getJSONPathBase() + '-props', 'backgrounds');
