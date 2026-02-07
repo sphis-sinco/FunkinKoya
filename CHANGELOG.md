@@ -3,6 +3,7 @@
 ## Visual
 
 - Pico stuff have been fixed
+	- Camera offsets have been applied to the stage
 	- His idle dances.
 	- He has actual SINGING ANIMATIONS NOW LMAO!
 		- His arm doesn't look broken in his right anymore lmao!
