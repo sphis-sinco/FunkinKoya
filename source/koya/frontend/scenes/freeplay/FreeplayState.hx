@@ -1,5 +1,6 @@
 package koya.frontend.scenes.freeplay;
 
+import koya.frontend.ui.menustate.MenuState;
 import koya.frontend.scenes.menustates.*;
 import koya.backend.play.Rank;
 import koya.frontend.scenes.play.characters.Character;
@@ -27,7 +28,7 @@ import koya.backend.CoolUtil;
 
 using StringTools;
 
-class FreeplayState extends MusicBeatState
+class FreeplayState extends MenuState
 {
 	public var songList:Array<SwagSong> = [];
 
