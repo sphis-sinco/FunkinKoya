@@ -1,6 +1,5 @@
 package koya.frontend.scenes.play.stages;
 
-import animate.FlxAnimateFrames;
 import flixel.util.FlxSort;
 import koya.backend.play.stages.StageProp;
 import koya.backend.play.stages.StageProp.StagePropLayerType;
@@ -168,12 +167,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 		for (propName in Reflect.fields(jsonFile))
 		{
-			var propField:StageProp = cast Reflect.field(jsonFile, propName);
-
-			if (propField == null) continue;
-			if (propField.layerType != layer) continue;
-
-			var propBasic:FlxBasic = StageBGProps.parseProp(propField,
+			var propBasic:FlxBasic = StageBGProps.parseProp(jsonFile, propName, layer,
 				{
 					getImg: getBGImg,
 					getSparrowImg: getBGSparrowImg,
@@ -206,7 +200,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 	public function getBGSparrowImg(path:String):FlxAtlasFrames
 		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
-	public function getBGAtlasImg(path:String):FlxAnimateFrames
+	public function getBGAtlasImg(path:String):FlxAtlasFrames
 		return AssetPaths.getAnimateAtlas('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
 	public function getThing(thing:String)
