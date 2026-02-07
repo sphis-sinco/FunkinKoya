@@ -620,9 +620,9 @@ class PlayState extends MusicBeatState
 		if (generatedMusic)
 		{
 			notes.forEachAlive(function(daNote:Note) {
-				if (daNote.y > FlxG.height) daNote.active = daNote.visible = false;
-				else
-					daNote.visible = daNote.active = true;
+				// if (daNote.y > FlxG.height) daNote.active = daNote.visible = false;
+				// else
+					// daNote.visible = daNote.active = true;
 
 				var strumlineModif:Float = (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(SONG.speed, 2));
 
