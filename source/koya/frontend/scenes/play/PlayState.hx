@@ -1106,6 +1106,8 @@ class PlayState extends MusicBeatState
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
 
+		if (Save.preferences.get().downScroll) healthBarBG.y = FlxG.height - healthBarBG.y;
+
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
 		healthBar.scrollFactor.set();
@@ -1113,12 +1115,22 @@ class PlayState extends MusicBeatState
 		add(healthBar);
 
 		iconP1 = new HealthIcon(currentStage?.boyfriend?.iconChar, true);
-		iconP1.y = healthBar.y - (iconP1.height / 2);
 		if (currentStage.boyfriend != null) add(iconP1);
 
 		iconP2 = new HealthIcon(currentStage?.dad?.iconChar, false);
-		iconP2.y = healthBar.y - (iconP2.height / 2);
 		if (currentStage.dad != null) add(iconP2);
+
+		var p1Adjust = (iconP1.height / 2);
+		var p2Adjust = (iconP2.height / 2);
+
+		if (Save.preferences.get().downScroll)
+		{
+			p1Adjust = -p1Adjust;
+			p2Adjust = -p2Adjust;
+		}
+		
+		iconP1.y = healthBar.y - p1Adjust;
+		iconP2.y = healthBar.y - p2Adjust;
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 16);
 		scoreTxt.setFormat(AssetPaths.font('vcr.ttf'), 16, FlxColor.WHITE, RIGHT);
