@@ -27,8 +27,8 @@ class CharacterGetter
 				return new GFRegular(x, y, isPlayer);
 			case 'gf-spooky', 'gf-spooky-monster':
 				return new GFSpooky(x, y, isPlayer, char.contains('monster'));
-			// case 'dad':
-				// return new DaddyDearest(x, y, isPlayer);
+			case 'dad':
+				return new DaddyDearest(x, y, isPlayer);
 			case 'spooky':
 				return new Spooky(x, y, isPlayer);
 			case 'pico':
@@ -38,34 +38,6 @@ class CharacterGetter
 		}
 
 		var char = new Character(x, y, char, isPlayer);
-
-		if (!KoyaAssets.exists(char.getCharacterJSON())) return char;
-
-		var charJSON:StageProp = null;
-
-		try
-		{
-			charJSON = Json.parse(KoyaAssets.getText(char.getCharacterJSON()));
-		}
-		catch (e)
-		{
-			trace(e.message);
-			charJSON = null;
-		}
-
-		char = cast StageBGProps.parseProp(charJSON,
-			{
-				getAtlasImg: s -> {
-					return AssetPaths.getAnimateAtlas(s, char.getDataPathLibrary());
-				},
-				getSparrowImg: s -> {
-					return AssetPaths.fromSparrow(s, char.getDataPathLibrary());
-				},
-				getImg: s -> {
-					return AssetPaths.image(s, char.getDataPathLibrary());
-				},
-			});
-
 		return char;
 	}
 }
