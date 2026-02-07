@@ -100,7 +100,7 @@ class OptionsMenuState extends MenuState
 	function addItems()
 	{
 		addItem('Clear Save', 'Select to clear your save', function() {
-			openSubState(new ConfirmPrompt('\n\nThis will erase EVERYTHING.', function() {
+			openSubState(new ConfirmPrompt('\n\nThis will erase\nABSOLUTELY EVERYTHING.', function() {
 				FlxG.save.close();
 				Save.init();
 
