@@ -39,6 +39,7 @@ This is the modding stuff that's important to know
 
 - Removed `-DFREEPLAY_BG_GRID` define for good
 - `koya.frontend.scenes.freeplay.FreeplayState` has been converted into a `MenuState`
+	- Song select arrows have been removed
 	- Arrow alpha changes depending on conditions have been removed
 	- All songs missing a chart for the current difficulty will have a -0.4 applied to their alpha
 - OPTION LOOPING HAS BEEN ADDED TO `koya.frontend.scenes.menustates.StoryModeState` FOR DIFFICULTIES

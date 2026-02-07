@@ -159,22 +159,6 @@ class FreeplayState extends MenuState
 
 	public function performControls()
 	{
-		if (controls.UI_UP_R)
-		{
-			arrow_UP.y -= 10;
-			FlxTween.cancelTweensOf(arrow_UP);
-			FlxTween.tween(arrow_UP, {y: aU_y}, .1);
-			applyChartCheck();
-		}
-		if (controls.UI_DOWN_R)
-		{
-			arrow_DOWN.y += 10;
-
-			FlxTween.cancelTweensOf(arrow_DOWN);
-			FlxTween.tween(arrow_DOWN, {y: aD_y}, .1);
-			applyChartCheck();
-		}
-
 		if (controls.UI_LEFT_R)
 		{
 			FlxG.sound.play(AssetPaths.sound('scrollMenu', 'ui'));
@@ -247,6 +231,16 @@ class FreeplayState extends MenuState
 		}
 	}
 
+	override function select(change:Int = 0)
+	{
+		super.select(change);
+
+		applyChartCheck();
+
+		for (menuItem in itemsTextGroup.members)
+			menuItem.x -= menuItem.width * 2;
+	}
+
 	public var sideBorderWidths = 320 + 64;
 
 	public function initBordersAndArrows()
@@ -270,23 +264,14 @@ class FreeplayState extends MenuState
 		add(rightBorder);
 		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		for (arrow in [arrow_DOWN, arrow_LEFT, arrow_RIGHT, arrow_UP])
+		for (arrow in [arrow_LEFT, arrow_RIGHT])
 		{
 			arrow.screenCenter();
 			add(arrow);
 		}
 
-		arrow_DOWN.x = leftBorder.outerSprite.getGraphicMidpoint().x - arrow_DOWN.width;
-		arrow_UP.x = leftBorder.outerSprite.getGraphicMidpoint().x - arrow_UP.width;
-
 		arrow_LEFT.x = rightBorder.outerSprite.getGraphicMidpoint().x - arrow_LEFT.width * 4;
 		arrow_RIGHT.x = rightBorder.outerSprite.getGraphicMidpoint().x + arrow_RIGHT.width * 4;
-
-		arrow_UP.y -= arrow_UP.height * 2;
-		arrow_DOWN.y += arrow_DOWN.height * 2;
-
-		aU_y = arrow_UP.y;
-		aD_y = arrow_DOWN.y;
 
 		aL_x = arrow_LEFT.x;
 		aR_x = arrow_RIGHT.x;
@@ -297,14 +282,8 @@ class FreeplayState extends MenuState
 	var upBorder:FreeplayBorderSprite;
 	var rightBorder:FreeplayBorderSprite;
 
-	var arrow_UP:ArrowUI = new ArrowUI(UP);
-	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN);
-
 	var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 	var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
-
-	var aU_y:Float = 0.0;
-	var aD_y:Float = 0.0;
 
 	var aL_x:Float = 0.0;
 	var aR_x:Float = 0.0;
