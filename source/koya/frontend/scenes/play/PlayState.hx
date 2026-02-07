@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play;
 
+import koya.backend.save.Save;
 import koya.frontend.scenes.menustates.*;
 import koya.backend.songs.EventParser;
 import koya.frontend.scenes.play.scenes.*;
@@ -944,6 +945,8 @@ class PlayState extends MusicBeatState
 	**/
 	function ghostNoteHit(direction:Int):Void
 	{
+		if (Save.preferences.get().ghostTapping) return;
+
 		health -= 0.08;
 		songScore -= 5;
 
