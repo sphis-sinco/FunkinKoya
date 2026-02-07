@@ -31,6 +31,7 @@
 		"img": "floor",
 
 		"scale": [2, 2],
+		"scaleUpdateHitbox": true,
 
 		"layerType": "back",
 		"layer": 3
