@@ -1,11 +1,13 @@
 package koya.backend.play.stages;
 
+/** Prop Layer **/
 enum abstract StagePropLayerType(String) from String to String
 {
 	var BACK = 'back';
 	var FRONT = 'front';
 }
 
+/** Prop Animation Types **/
 enum abstract StagePropAnimationType(String) from String to String
 {
 	var PREFIX = 'prefix';
@@ -32,6 +34,7 @@ typedef StageProp =
 	?layer:Int,
 }
 
+/** Prop Animation Variables **/
 typedef StagePropAnimations =
 {
 	type:StagePropAnimationType,

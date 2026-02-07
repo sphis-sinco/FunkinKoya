@@ -2,8 +2,15 @@
 
 ## Technical
 
+- Removed `controls` save data
+- Removed shit from `koya.backend.songs.Song` that would've allowed a variable to use it as a type (but it never got used that way so we chill)
+- Renamed `koya.backend.songs.Section` to `koya.backend.songs.SwagSection`
+- `koya.backend.AssetTextList.textList` is made using `koya.backend.AssetTextList.text`
+- Removed `koya.backend.Constants` variables for FreeplayBorderSprite variables and variables for ArrowUI skins
+- Renamed `coolTextFile` to `splitTextFile` in `koya.backend.CoolUtil`
 - Highscore and PlayerSettings loading and initalization are now after upgrading the version
 - Added `getRank` to `koya.backend.Highscore`
+	- Used now in Freeplay along with `getScore`
 - `koya.backend.CrashHandler` has been updated to use `koya.backend.CoolUtil.alert`
 - All code has been documented and tweaks have been made
 

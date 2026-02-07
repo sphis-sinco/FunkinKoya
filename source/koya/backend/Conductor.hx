@@ -3,9 +3,8 @@ package koya.backend;
 import koya.backend.songs.Song.SwagSong;
 
 /**
- * ...
- * @author
- */
+	Event for BPM change to new bpm
+**/
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;
@@ -15,20 +14,40 @@ typedef BPMChangeEvent =
 
 class Conductor
 {
+	/** Current BPM **/
 	public static var bpm:Float = 100;
-	public static var crochet:Float = ((60 / bpm) * 1000); // beats in milliseconds
-	public static var stepCrochet:Float = crochet / 4; // steps in milliseconds
+
+	/** Beats in milliseconds **/
+	public static var crochet:Float = ((60 / bpm) * 1000);
+
+	/** Steps in milliseconds **/
+	public static var stepCrochet:Float = crochet / 4;
+
+	/** Current Song Position **/
 	public static var songPosition:Float;
+
+	/** Last Song Position **/
 	public static var lastSongPos:Float;
+
+	/** Song Position Offset **/
 	public static var offset:Float = 0;
 
+	/** Frames for the safe zone offset so `safeZoneOffset` can be calculated **/
 	public static var safeFrames:Int = 10;
-	public static var safeZoneOffset:Float = (safeFrames / 60) * 1000; // is calculated in create(), is safeFrames in milliseconds
 
+	/**  `safeFrames` in milliseconds **/
+	public static var safeZoneOffset:Float = (safeFrames / 60) * 1000;
+
+	/** A map of all the BPM change events **/
 	public static var bpmChangeMap:Array<BPMChangeEvent> = [];
 
 	public function new() {}
 
+	/** 
+		Create a map of all BPM changes in `song`
+
+		@param song The song you're maping the BPM changes for
+	**/
 	public static function mapBPMChanges(song:SwagSong)
 	{
 		bpmChangeMap = [];
@@ -57,6 +76,11 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
+	/**
+		Change the BPM to `newBpm`
+
+		@param newBpm new bpm
+	**/
 	public static function changeBPM(newBpm:Float)
 	{
 		bpm = newBpm;

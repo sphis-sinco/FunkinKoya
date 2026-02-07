@@ -242,24 +242,24 @@ class FreeplayState extends MenuState
 
 	public function initBordersAndArrows()
 	{
-		upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
+		upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - FreeplayBorderSprite.INNER_PADDING), 160, sideBorderWidths, 0);
 		add(upBorder);
-		upBorder.innerSprite.y -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
+		upBorder.innerSprite.y -= FreeplayBorderSprite.INNER_PADDING / 2;
 
-		downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths,
+		downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - FreeplayBorderSprite.INNER_PADDING), 160, sideBorderWidths,
 			FlxG.height - 160);
 		add(downBorder);
-		downBorder.innerSprite.y += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
+		downBorder.innerSprite.y += FreeplayBorderSprite.INNER_PADDING / 2;
 
-		leftBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), 0,
-			-Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
+		leftBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + FreeplayBorderSprite.INNER_PADDING), 0,
+			-FreeplayBorderSprite.INNER_PADDING / 2);
 		add(leftBorder);
-		leftBorder.innerSprite.x -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
+		leftBorder.innerSprite.x -= FreeplayBorderSprite.INNER_PADDING / 2;
 
-		rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING),
-			FlxG.width - sideBorderWidths, -Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
+		rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + FreeplayBorderSprite.INNER_PADDING),
+			FlxG.width - sideBorderWidths, -FreeplayBorderSprite.INNER_PADDING / 2);
 		add(rightBorder);
-		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
+		rightBorder.innerSprite.x += FreeplayBorderSprite.INNER_PADDING / 2;
 
 		for (arrow in [arrow_LEFT, arrow_RIGHT])
 		{
@@ -279,8 +279,8 @@ class FreeplayState extends MenuState
 	var upBorder:FreeplayBorderSprite;
 	var rightBorder:FreeplayBorderSprite;
 
-	var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
-	var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
+	var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, ArrowUI.SKIN_DIFFICULTY_SELECT);
+	var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, ArrowUI.SKIN_DIFFICULTY_SELECT);
 
 	var aL_x:Float = 0.0;
 	var aR_x:Float = 0.0;
