@@ -46,7 +46,9 @@ class SplashScene extends MusicBeatState
 		var splash:String = splashText[curStep] ?? '';
 
 		if (splash == '') return;
-		
+
+		trace('$curStep: ' + splash);
+
 		if (splash.startsWith('-'))
 		{
 			if (splashTexts.members[splashTexts.length - 1] != null) splashTexts.members[splashTexts.length - 1].text += splash.substring(1);
