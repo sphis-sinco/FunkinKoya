@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.scenes;
 
+import koya.backend.save.Save;
 import koya.backend.Highscore;
 import koya.backend.AssetPaths;
 import flixel.math.FlxMath;
@@ -98,7 +99,8 @@ class ResultsSubState extends MusicBeatSubstate
 
 				FlxTimer.wait(1, () -> {
 					FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
-					resultsCam.flash(FlxColor.WHITE, .2);
+					
+					if (Save.preferences.get().flashingLights) resultsCam.flash(FlxColor.WHITE, .2);
 
 					rankSpr.playAnim('rank');
 					rankSpr.visible = true;

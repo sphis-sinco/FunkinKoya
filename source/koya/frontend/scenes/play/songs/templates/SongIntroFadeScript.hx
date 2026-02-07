@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.songs.templates;
 
+import koya.backend.save.Save;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
@@ -97,7 +98,7 @@ class SongIntroFadeScript extends SongClass
 		dadFade.destroy();
 		bfFade.destroy();
 
-		FlxG.camera.flash(FlxColor.WHITE, (Conductor.crochet / 1000) * endingFlashBeats);
+		if (Save.preferences.get().flashingLights) FlxG.camera.flash(FlxColor.WHITE, (Conductor.crochet / 1000) * endingFlashBeats);
 	}
 
 	override function pause()

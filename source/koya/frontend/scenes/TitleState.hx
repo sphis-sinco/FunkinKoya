@@ -1,5 +1,7 @@
 package koya.frontend.scenes;
 
+import flixel.util.FlxTimer;
+import koya.backend.save.Save;
 import koya.frontend.scenes.menustates.MainMenuState;
 import koya.frontend.scenes.play.stages.basegame.MainStage;
 import koya.backend.Conductor;
@@ -110,12 +112,16 @@ class TitleState extends MusicBeatState
 				FlxTween.tween(logoDRK, {y: centerLogoY}, Conductor.crochet / 1000 * 2, {ease: FlxEase.quadIn, startDelay: .1});
 
 				FlxG.sound.play(AssetPaths.music('titleShoot'));
-				FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, finish);
+				
+				if (Save.preferences.get().flashingLights) FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, finish);
+				if (!Save.preferences.get().flashingLights) FlxTimer.wait(Conductor.crochet / 1000 * 4, finish);
 			}
 			else
 			{
 				FlxG.sound.play(AssetPaths.sound('confirmMenu', 'ui'));
-				FlxG.camera.flash(FlxColor.WHITE, 1, finish);
+
+				if (Save.preferences.get().flashingLights) FlxG.camera.flash(FlxColor.WHITE, 1, finish);
+				if (!Save.preferences.get().flashingLights) FlxTimer.wait(Conductor.crochet / 1000 * 4, finish);
 			}
 		}
 
