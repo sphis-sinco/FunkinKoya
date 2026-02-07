@@ -108,7 +108,11 @@ class OptionsMenuState extends MenuState
 
 		for (keybind in Save.keybinds)
 		{
-			if (keybind == null) continue;
+			if (keybind == null)
+			{
+				addItem(null, null, null);
+				continue;
+			}
 
 			addItem(keybind.field, keybind.get(), function() {
 				persistentUpdate = true;
