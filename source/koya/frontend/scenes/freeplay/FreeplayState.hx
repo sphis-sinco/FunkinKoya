@@ -134,19 +134,6 @@ class FreeplayState extends MenuState
 	override function reloadMenuItems()
 	{
 		super.reloadMenuItems();
-
-		for (menuItem in itemsTextGroup.members)
-		{
-			menuItem.scale.set(0.5, 0.5);
-			menuItem.updateHitbox();
-			for (letter in menuItem)
-			{
-				letter.width /= 2;
-				letter.height /= 2;
-
-				letter.updateHitbox();
-			}
-		}
 	}
 
 	override function update(elapsed:Float)
