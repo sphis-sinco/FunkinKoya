@@ -35,7 +35,7 @@ class Watermark extends FPS
 		{
 			var newText = '';
 
-			if (Save.preferences.get().fpsCounter) newText += 'FPS: $currentFPS\n';
+			if (Save.preferences.get()?.fpsCounter ?? true) newText += 'FPS: $currentFPS\n';
 			newText += 'Koya ${Constants.VERSION}\n';
 
 			#if CONTEXT3DSTATS
