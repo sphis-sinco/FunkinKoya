@@ -68,11 +68,15 @@ class MenuState extends MusicBeatState
 		itemsAtlasTextGroup = new FlxTypedGroup<AtlasText>();
 		add(itemsAtlasTextGroup);
 
+		itemsFlxTextGroup = new FlxTypedGroup<FlxText>();
+		add(itemsFlxTextGroup);
+
 		reloadMenuItems();
 	}
 
 	public function reloadMenuItems()
 	{
+		itemsFlxTextGroup.clear();
 		itemsAtlasTextGroup.clear();
 		itemsSpriteGroup.clear();
 
