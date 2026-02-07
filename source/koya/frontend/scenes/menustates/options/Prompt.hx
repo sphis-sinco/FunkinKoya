@@ -64,11 +64,7 @@ class Prompt extends MusicBeatSubstate
 
 		if (controls.BACK) close();
 		else
-		{
-			if (!FlxG.keys.justReleased.ANY) return;
-
 			handleControls();
-		}
 	}
 
 	function handleControls() {}

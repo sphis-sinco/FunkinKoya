@@ -103,10 +103,11 @@ class OptionsMenuState extends MenuState
 			openSubState(new ConfirmPrompt('\n\nThis will erase\nABSOLUTELY EVERYTHING.', function(confirm:Bool) {
 				if (confirm)
 				{
+					FlxG.save.erase();
 					FlxG.save.close();
 					Save.init();
 
-					FlxG.resetGame();
+					FlxG.resetState();
 				}
 			}));
 		});

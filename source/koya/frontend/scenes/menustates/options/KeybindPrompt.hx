@@ -24,6 +24,8 @@ class KeybindPrompt extends Prompt
 	{
 		super.handleControls();
 
+		if (!FlxG.keys.justReleased.ANY) return;
+
 		var invalids:Array<FlxKey> = [ENTER, BACKSPACE, ESCAPE];
 
 		for (keybind in Save.keybinds)
