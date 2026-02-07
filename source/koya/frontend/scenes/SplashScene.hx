@@ -58,5 +58,16 @@ class SplashScene extends FlxState
 		super.update(elapsed);
 
 		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
+
+		if (FlxG.keys.justReleased.ANY)
+		{
+			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
+			
+			FlxG.sound.music.onComplete();
+			FlxG.sound.music.stop();
+
+			splash.anim.pause();
+			splash.anim.frameIndex = splash.anim.curAnim.numFrames - 1;
+		}
 	}
 }

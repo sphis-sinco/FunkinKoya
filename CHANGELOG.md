@@ -14,6 +14,7 @@
 
 - Added "Flashing Lights" option
 - Added `koya.frontend.scenes.SplashScene` : Replacement of the default haxeflixel splash scene
+	- Skippable by pressing anything
 	- [DESKTOP] This also removes / replaces the 1 second wait before loading the starting state
 
 ## Technical
