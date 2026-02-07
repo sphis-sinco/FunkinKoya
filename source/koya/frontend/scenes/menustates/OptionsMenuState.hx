@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import koya.backend.controls.Controls;
 import koya.frontend.scenes.menustates.options.KeybindPrompt;
 import flixel.util.FlxTimer;
 import flixel.effects.FlxFlicker;
@@ -111,7 +112,10 @@ class OptionsMenuState extends MenuState
 
 			addItem(keybind.field, keybind.get(), function() {
 				persistentUpdate = true;
-				openSubState(new KeybindPrompt(keybind.field, reloadItems));
+				openSubState(new KeybindPrompt(keybind.field, function() {
+					reloadItems();
+					controls.setKeyboardScheme(Custom);
+				}));
 			});
 		}
 	}

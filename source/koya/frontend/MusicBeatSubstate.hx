@@ -30,6 +30,7 @@ class MusicBeatSubstate extends FlxSubState
 
 		Cursor.cursorVisible = false;
 		sectionHit();
+		controls.setKeyboardScheme(Custom);
 	}
 
 	override function update(elapsed:Float)
