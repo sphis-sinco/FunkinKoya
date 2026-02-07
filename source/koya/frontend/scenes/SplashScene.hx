@@ -1,5 +1,6 @@
 package koya.frontend.scenes;
 
+import flixel.FlxState;
 import flixel.sound.FlxSound;
 import koya.frontend.ui.AtlasText;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -12,10 +13,10 @@ import flixel.util.typeLimit.NextState;
 
 using StringTools;
 
-class SplashScene extends MusicBeatState
+class SplashScene extends FlxState
 {
 	public var nextScene:NextState;
-	
+
 	public var splash:FunkinSprite;
 
 	override public function new(nextScene:NextState)
@@ -41,6 +42,7 @@ class SplashScene extends MusicBeatState
 		splash = new FunkinSprite();
 		splash.frames = AssetPaths.getAnimateAtlas('splash', 'extra');
 		splash.addFrameLabelAnim('main', 'all');
+		splash.screenCenter();
 		add(splash);
 		splash.playAnim('main');
 	}
@@ -50,8 +52,5 @@ class SplashScene extends MusicBeatState
 		super.update(elapsed);
 
 		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
-
-		FlxG.watch.addQuick("beatShit", curBeat);
-		FlxG.watch.addQuick("stepShit", curStep);
 	}
 }
