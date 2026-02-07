@@ -16,8 +16,6 @@ class SplashScene extends MusicBeatState
 {
 	public var nextScene:NextState;
 
-	public var jingle:FlxSound;
-
 	override public function new(nextScene:NextState)
 	{
 		super();
@@ -29,20 +27,21 @@ class SplashScene extends MusicBeatState
 	{
 		super.create();
 
-		jingle = new FlxSound().loadEmbedded(AssetPaths.music('TitleJingle'), false, false, function() {
+		FlxG.sound.playMusic(AssetPaths.music('TitleJingle'), 1.0, false, null);
+		FlxG.sound.music.onComplete = function() {
 			FlxTimer.wait(1, function() {
 				FlxG.switchState(nextScene);
 			});
-		});
+		};
+
 		Conductor.changeBPM(120.0);
-		jingle.play();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-		if (jingle != null) Conductor.songPosition = jingle.time;
+		if (FlxG.sound.music != null) Conductor.songPosition = FlxG.sound.music.time;
 
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
