@@ -17,6 +17,8 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 
 	public var BG_NAME:String = null;
 
+	public var props:Map<String, Dynamic> = [];
+
 	override public function new(song:SwagSong, ?BG_NAME:String = 'Unknown', ?performInit:Bool = true)
 	{
 		super();
@@ -153,7 +155,7 @@ class StageBackground extends FlxTypedGroup<FlxBasic>
 		return AssetPaths.fromSparrow('bg/${BG_NAME != null ? '$BG_NAME/' : ''}$path', 'backgrounds');
 
 	public function getThing(thing:String)
-		return Reflect.field(this, thing);
+		return props.get(thing) ?? Reflect.field(this, thing);
 
 	public static function getStage(song:SwagSong):StageBackground
 		return StageBackgroundGetter.getStage(song, song.stage ?? 'mainStage');
