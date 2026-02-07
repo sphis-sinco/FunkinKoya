@@ -1,5 +1,6 @@
 package koya.backend;
 
+import koya.frontend.scenes.menustates.options.ControlRemap;
 import koya.backend.modding.ModCore;
 import koya.backend.plugins.Cursor;
 import flixel.util.*;
@@ -10,6 +11,7 @@ import haxe.macro.Compiler;
 import koya.frontend.scenes.*;
 import koya.frontend.scenes.web.*;
 import koya.frontend.scenes.play.*;
+import koya.frontend.scenes.freeplay.*;
 import koya.frontend.scenes.play.scenes.*;
 import koya.frontend.scenes.menustates.*;
 import koya.frontend.scenes.play.scenes.freeplay.*;
@@ -112,6 +114,10 @@ class InitState extends FlxState
 
 		#if OPTIONSMENU
 		return () -> new OptionsMenuState();
+		#end
+
+		#if OPTIONSMENU_CONTROLS
+		return () -> new ControlRemap();
 		#end
 
 		#if MODMENU
