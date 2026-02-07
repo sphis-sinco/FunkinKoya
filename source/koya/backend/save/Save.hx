@@ -154,9 +154,6 @@ class Save
 				preferences.get().ghostTapping ??= true;
 
 				preferences.get().flashingLights ??= true;
-				
-			case 5:
-				preferences.get().flashingLights ??= true;
 
 			default:
 				trace('unimplemented upgrade from version: ${version.get()}');
