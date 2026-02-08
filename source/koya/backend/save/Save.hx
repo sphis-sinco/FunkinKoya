@@ -9,44 +9,82 @@ import koya.backend.songs.Song.ChartSwagSong;
 
 class Save
 {
-	public static var SAVE_VERSION:Null<Int> = 5;
+	/** Save Version **/
+	public static var SAVE_VERSION:Null<Int> = 6;
 
+	/** Save Field: version : this is the last save version you had and will be used to check if you need to upgrade **/
 	public static var version:SaveField<Null<Int>>;
 
+	/** Save Field: songScores : Map of your song scores (Check out `koya.backend.Highscore` for more info) **/
 	public static var songScores:SaveField<Map<String, Int>>;
+
+	/** Save Field: songScores : Map of your song ranks (Check out `koya.backend.Highscore` for more info) **/
 	public static var songRanks:SaveField<Map<String, Rank>>;
 
+	/** Save Field: autosave : chart editor autosave **/
 	public static var autosave:SaveField<ChartSwagSong>;
-	public static var controls:SaveField<Dynamic>;
 
+	/** Save Field: keybind_reset : Keybind for RESET **/
 	public static var keybind_reset:SaveField<String>;
 
-	public static var keybind_ui_left_alt:SaveField<String>;
-	public static var keybind_ui_down_alt:SaveField<String>;
-	public static var keybind_ui_up_alt:SaveField<String>;
-	public static var keybind_ui_right_alt:SaveField<String>;
-
+	/** Save Field: keybind_reset : Keybind for UI Left **/
 	public static var keybind_ui_left:SaveField<String>;
+
+	/** Save Field: keybind_reset : Keybind for UI Down **/
 	public static var keybind_ui_down:SaveField<String>;
+
+	/** Save Field: keybind_reset : Keybind for UI Up **/
 	public static var keybind_ui_up:SaveField<String>;
+
+	/** Save Field: keybind_reset : Keybind for UI Right **/
 	public static var keybind_ui_right:SaveField<String>;
 
-	public static var keybind_note_left_alt:SaveField<String>;
-	public static var keybind_note_down_alt:SaveField<String>;
-	public static var keybind_note_up_alt:SaveField<String>;
-	public static var keybind_note_right_alt:SaveField<String>;
+	/** Save Field: keybind_reset : Alt Keybind for UI Left **/
+	public static var keybind_ui_left_alt:SaveField<String>;
 
+	/** Save Field: keybind_reset : Alt Keybind for UI Down **/
+	public static var keybind_ui_down_alt:SaveField<String>;
+
+	/** Save Field: keybind_reset : Alt Keybind for UI Up **/
+	public static var keybind_ui_up_alt:SaveField<String>;
+
+	/** Save Field: keybind_reset : Alt Keybind for UI Right **/
+	public static var keybind_ui_right_alt:SaveField<String>;
+
+	/** Save Field: keybind_reset : Keybind for Note Left **/
 	public static var keybind_note_left:SaveField<String>;
+
+	/** Save Field: keybind_reset : Keybind for Note Down **/
 	public static var keybind_note_down:SaveField<String>;
+
+	/** Save Field: keybind_reset : Keybind for Note Up **/
 	public static var keybind_note_up:SaveField<String>;
+
+	/** Save Field: keybind_reset : Keybind for Note Right **/
 	public static var keybind_note_right:SaveField<String>;
 
+	/** Save Field: keybind_reset : Alt Keybind for Note Left **/
+	public static var keybind_note_left_alt:SaveField<String>;
+
+	/** Save Field: keybind_reset : Alt Keybind for Note Down **/
+	public static var keybind_note_down_alt:SaveField<String>;
+
+	/** Save Field: keybind_reset : Alt Keybind for Note Up **/
+	public static var keybind_note_up_alt:SaveField<String>;
+
+	/** Save Field: keybind_reset : Alt Keybind for Note Right **/
+	public static var keybind_note_right_alt:SaveField<String>;
+
+	/** Save Field: preferences : Options data **/
 	public static var preferences:SaveField<Preferences>;
 
+	/** Save Field: enabledMods : Array of enabled mods **/
 	public static var enabledMods:SaveField<Array<String>>;
 
+	/** List of keybinds to make making their lists easier **/
 	public static var keybinds:Array<SaveField<String>> = [];
 
+	/** Initalize all save fields and variables associating with them **/
 	static function initFields()
 	{
 		version = new SaveField<Null<Int>>('version', SAVE_VERSION);
@@ -55,7 +93,6 @@ class Save
 		songRanks = new SaveField<Map<String, Rank>>('songRanks');
 
 		autosave = new SaveField<ChartSwagSong>('autosave');
-		controls = new SaveField<Dynamic>('controls');
 
 		keybind_reset = new SaveField<String>('keybind_reset', 'R', 'Keybind: RESET');
 
@@ -120,14 +157,12 @@ class Save
 		enabledMods = new SaveField<Array<String>>('enabledMods', []);
 	}
 
+	/** Initalize save data, attempt upgrading, and then load save data for classes that have functions for it **/
 	public static function init()
 	{
 		FlxG.save.bind('koya', 'Macohi');
 
 		initFields();
-
-		PlayerSettings.init();
-		Highscore.load();
 
 		upgradeVersion(() -> {
 			flush();
@@ -143,8 +178,17 @@ class Save
 		Application.current.onExit.add(function(l) {
 			flush();
 		});
+
+		// Technically unrequired now but just in case
+		PlayerSettings.init();
+		Highscore.load();
 	}
 
+	/**
+		Attempt upgrading to the latest save version
+
+		@param onComplete function for when upgrading is complete
+	**/
 	public static function upgradeVersion(?onComplete:Void->Void)
 	{
 		switch (version.get())
@@ -154,6 +198,9 @@ class Save
 				preferences.get().ghostTapping ??= true;
 
 				preferences.get().flashingLights ??= true;
+
+			case 5:
+				Reflect.deleteField(FlxG.save.data, 'controls');
 
 			default:
 				trace('unimplemented upgrade from version: ${version.get()}');
@@ -172,6 +219,7 @@ class Save
 		}
 	}
 
+	/** Set the version and run `FlxG.save.flush()` **/
 	public static function flush()
 	{
 		version.set(SAVE_VERSION);

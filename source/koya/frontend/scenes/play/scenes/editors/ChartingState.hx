@@ -5,7 +5,7 @@ import koya.backend.plugins.Cursor;
 import koya.backend.songs.SongList;
 import koya.backend.play.Difficulty;
 import koya.backend.save.Save;
-import koya.backend.songs.Section;
+import koya.backend.songs.SwagSection;
 import koya.backend.songs.Song;
 import koya.backend.*;
 import koya.backend.Conductor;
@@ -302,8 +302,8 @@ class ChartingState extends MusicBeatState
 		updateGrid();
 	}
 
-	var characters:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/characterList', 'characters'));
-	var stages:Array<String> = CoolUtil.coolTextFile(AssetPaths.txt('data/stageList', 'backgrounds'));
+	var characters:Array<String> = CoolUtil.splitTextFile(AssetPaths.txt('data/characterList', 'characters'));
+	var stages:Array<String> = CoolUtil.splitTextFile(AssetPaths.txt('data/stageList', 'backgrounds'));
 
 	function addSongUI():Void
 	{

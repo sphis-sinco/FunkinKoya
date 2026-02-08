@@ -62,7 +62,7 @@ class SplashScene extends FlxState
 		if (FlxG.keys.justReleased.ANY)
 		{
 			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
-			
+
 			FlxG.sound.music.onComplete();
 			FlxG.sound.music.stop();
 

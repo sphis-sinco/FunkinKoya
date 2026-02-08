@@ -112,7 +112,7 @@ class TitleState extends MusicBeatState
 				FlxTween.tween(logoDRK, {y: centerLogoY}, Conductor.crochet / 1000 * 2, {ease: FlxEase.quadIn, startDelay: .1});
 
 				FlxG.sound.play(AssetPaths.music('titleShoot'));
-				
+
 				if (Save.preferences.get().flashingLights) FlxG.camera.flash(FlxColor.WHITE, Conductor.crochet / 1000 * 4, finish);
 				if (!Save.preferences.get().flashingLights) FlxTimer.wait(Conductor.crochet / 1000 * 4, finish);
 			}

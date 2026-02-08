@@ -8,6 +8,10 @@ import flixel.FlxBasic;
 
 class StageBGProps
 {
+	/**
+		@param propField Stage Prop Data
+		@param methods JSON of methods
+	**/
 	public static function parseProp(propField:StageProp,
 			methods:{getImg:String->String, getSparrowImg:String->FlxAtlasFrames, getAtlasImg:String->FlxAnimateFrames}):FlxBasic
 	{
@@ -16,15 +20,15 @@ class StageBGProps
 		var propSprite:FunkinSprite = new FunkinSprite();
 
 		var loadSparrow = function() {
-			propSprite.frames = methods.getSparrowImg(propField.sparrow);
+			propSprite.frames = methods?.getSparrowImg(propField.sparrow) ?? null;
 		}
 
 		var loadAtlas = function() {
-			propSprite.frames = methods.getAtlasImg(propField.atlas);
+			propSprite.frames = methods?.getAtlasImg(propField.sparrow) ?? null;
 		}
 
 		var loadImg = function() {
-			propSprite.loadGraphic(methods.getImg(propField.img));
+			if (methods.getImg != null) propSprite.loadGraphic(methods.getImg(propField.img));
 		}
 
 		if (propField.sparrow != null) loadSparrow();

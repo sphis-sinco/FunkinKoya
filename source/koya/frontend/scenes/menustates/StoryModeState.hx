@@ -23,8 +23,8 @@ class StoryModeState extends MenuState
 		this.itemIncOffset += 100;
 	}
 
-	var arrow_UP:ArrowUI = new ArrowUI(UP, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
-	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
+	var arrow_UP:ArrowUI = new ArrowUI(UP, ArrowUI.SKIN_DIFFICULTY_SELECT);
+	var arrow_DOWN:ArrowUI = new ArrowUI(DOWN, ArrowUI.SKIN_DIFFICULTY_SELECT);
 
 	var aU_y:Float = 0;
 	var aD_y:Float = 0;

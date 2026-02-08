@@ -6,10 +6,17 @@ enum abstract Difficulty(Int) from Int to Int
 	var NORMAL = 1;
 	var HARD = 2;
 
+	/** List of difficultys **/
 	public static var list:Array<Difficulty> = [EASY, NORMAL, HARD];
 
+	/** List of difficultys as a string **/
 	public static var stringList:Array<String> = [EASY.toString(), NORMAL.toString(), HARD.toString()];
 
+	/** 
+		Change difficulty by `amount`
+
+		@param amount Change amoung
+	**/
 	public function change(amount:Int):Difficulty
 	{
 		var diffInt = toInt();
@@ -28,14 +35,15 @@ enum abstract Difficulty(Int) from Int to Int
 	public function toInt():Int
 		return this;
 
+	/** Get chart suffix of difficulty **/
 	public function chartSuffix():String
 	{
-		if (this == EASY) return '-${toString()}';
-		if (this == HARD) return '-${toString()}';
+		if (this == NORMAL) return '';
 
-		return '';
+		return '-${toString()}';
 	}
 
+	/** Return string version of difficulty name **/
 	public function toString():String
 	{
 		if (this == EASY) return 'easy';
