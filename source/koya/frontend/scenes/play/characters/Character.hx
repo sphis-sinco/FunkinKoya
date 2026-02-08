@@ -1,5 +1,6 @@
 package koya.frontend.scenes.play.characters;
 
+import koya.backend.play.ObjectManager;
 import koya.backend.CoolUtil;
 import koya.backend.play.CharacterData;
 import koya.backend.play.stages.StageProp;
@@ -125,7 +126,8 @@ class Character extends FunkinSprite
 		if (!debugMode) playAnim('idle');
 	}
 
-	public var datapathprefix:String = 'data/characters/::curCharacter::/';
+	public final DEFAULT_DATAPATHPREFIX:String = 'data/characters/::curCharacter::/';
+	public var datapathprefix:String = null;
 
 	public function getDataPathPrefix():String
 		return new Template(datapathprefix).execute(
@@ -210,14 +212,15 @@ class Character extends FunkinSprite
 
 	public function sendEvent(name:String, values:Array<String>) {}
 
+	var parsedCharJSON:CharacterData = null;
+
 	public function initChar()
 	{
 		var charJSON = getCharacterJSON();
+		datapathprefix = DEFAULT_DATAPATHPREFIX;
 
 		if (KoyaAssets.exists(charJSON))
 		{
-			var parsedCharJSON:CharacterData = null;
-
 			try
 			{
 				parsedCharJSON = Json.parse(KoyaAssets.getText(charJSON));
@@ -252,8 +255,19 @@ class Character extends FunkinSprite
 				return;
 			}
 
-			switch (parsedCharJSON.type) {}
+			loadCharacterJSONType(parsedCharJSON.type);
+			ObjectManager.addObjectAnimationsToSprite(this, parsedCharJSON.animations);
+			datapathprefix = parsedCharJSON?.dataPathPrefix ?? DEFAULT_DATAPATHPREFIX;
+			iconChar = parsedCharJSON?.iconChar ?? curCharacter;
+			flipX = parsedCharJSON?.flipX ?? false;
+			flipAnimationsAsPlayer = parsedCharJSON?.flipAnimationsAsPlayer ?? true;
 		}
+	}
+
+	public function loadCharacterJSONType(type:CharacterType)
+	{
+		if (type == SPARROW) frames = AssetPaths.fromSparrow(parsedCharJSON.imagePath, 'characters');
+		if (type == ATLAS) frames = AssetPaths.getAnimateAtlas(parsedCharJSON.imagePath, 'characters');
 	}
 
 	public function getFrames() {};
