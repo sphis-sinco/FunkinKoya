@@ -1,15 +1,158 @@
 {
 	"song": {
 		"authors": "Macohi",
-		"bpm": 200,
-		"difficulty": 2,
-		"generatedBy": "Funkin' Koya 0.6.0 | Chart Editor (koyta_8)",
+		"generatedBy": "Funkin' Koya* 0.6.0 (dev/runaway:6e50a93) | Chart Editor (koyta_8)",
 		"gfVersion": "gf",
 		"needsVoices": true,
 		"notes": [
 			{
 				"altAnim": false,
-				"bpm": 150,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": false,
+				"sectionEvents": [],
+				"sectionNotes": [
+					[
+						0,
+						2,
+						0,
+						""
+					],
+					[
+						150,
+						0,
+						0,
+						""
+					],
+					[
+						300,
+						3,
+						0,
+						""
+					],
+					[
+						450,
+						1,
+						0,
+						""
+					],
+					[
+						600,
+						2,
+						0,
+						""
+					],
+					[
+						750,
+						1,
+						0,
+						""
+					],
+					[
+						900,
+						2,
+						0,
+						""
+					],
+					[
+						1050,
+						3,
+						0,
+						""
+					],
+					[
+						975,
+						1,
+						0,
+						""
+					],
+					[
+						825,
+						3,
+						0,
+						""
+					],
+					[
+						675,
+						0,
+						0,
+						""
+					],
+					[
+						525,
+						3,
+						0,
+						""
+					],
+					[
+						375,
+						0,
+						0,
+						""
+					],
+					[
+						225,
+						2,
+						0,
+						""
+					],
+					[
+						75,
+						1,
+						0,
+						""
+					]
+				],
+				"bpm": 150
+			},
+			{
+				"altAnim": false,
+				"bpm": 200,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": false,
+				"sectionEvents": [],
+				"sectionNotes": []
+			},
+			{
+				"altAnim": false,
+				"bpm": 200,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": false,
+				"sectionEvents": [],
+				"sectionNotes": []
+			},
+			{
+				"altAnim": false,
+				"bpm": 200,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": false,
+				"sectionEvents": [],
+				"sectionNotes": []
+			},
+			{
+				"altAnim": false,
+				"bpm": 200,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionEvents": [],
+				"sectionNotes": []
+			},
+			{
+				"altAnim": false,
+				"bpm": 200,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": false,
+				"sectionEvents": [],
+				"sectionNotes": []
+			},
+			{
+				"altAnim": false,
+				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": true,
@@ -20,8 +163,10 @@
 		"player1": "bf",
 		"player2": "dad",
 		"song": "Nuwar",
-		"speed": 2.3,
 		"stage": "mainStage",
+		"bpm": 200,
+		"difficulty": 2,
+		"speed": 2,
 		"version": 8
 	}
 }
