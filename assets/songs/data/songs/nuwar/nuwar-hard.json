@@ -1,7 +1,7 @@
 {
 	"song": {
 		"authors": "Macohi",
-		"generatedBy": "Funkin' Koya* 0.6.0 (dev/runaway:6e50a93) | Chart Editor (koyta_8)",
+		"generatedBy": "Funkin' Koya* 0.6.0 (dev/runaway:9d97653) | Chart Editor (koyta_8)",
 		"gfVersion": "gf",
 		"needsVoices": true,
 		"notes": [
@@ -107,7 +107,6 @@
 			},
 			{
 				"altAnim": false,
-				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": false,
@@ -137,11 +136,11 @@
 						0,
 						""
 					]
-				]
+				],
+				"bpm": 200
 			},
 			{
 				"altAnim": false,
-				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": false,
@@ -164,53 +163,151 @@
 						2,
 						0,
 						""
+					],
+					[
+						3000,
+						2,
+						0,
+						""
+					],
+					[
+						3150,
+						3,
+						0,
+						""
+					],
+					[
+						3300,
+						2,
+						0,
+						""
 					]
-				]
+				],
+				"bpm": 200
 			},
 			{
 				"altAnim": false,
-				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": false,
 				"sectionEvents": [],
-				"sectionNotes": []
+				"sectionNotes": [
+					[
+						3600,
+						0,
+						0,
+						""
+					],
+					[
+						3750,
+						1,
+						0,
+						""
+					],
+					[
+						3900,
+						0,
+						0,
+						""
+					],
+					[
+						4500,
+						3,
+						0,
+						""
+					],
+					[
+						3600,
+						5,
+						0,
+						""
+					],
+					[
+						3900,
+						7,
+						0,
+						""
+					],
+					[
+						4200,
+						5,
+						0,
+						""
+					],
+					[
+						4200,
+						3,
+						0,
+						""
+					],
+					[
+						4350,
+						2,
+						0,
+						""
+					],
+					[
+						4500,
+						6,
+						0,
+						""
+					]
+				],
+				"bpm": 200
 			},
 			{
 				"altAnim": false,
-				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionEvents": [],
-				"sectionNotes": []
+				"sectionNotes": [],
+				"bpm": 200
 			},
 			{
 				"altAnim": false,
-				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": false,
 				"sectionEvents": [],
-				"sectionNotes": []
+				"sectionNotes": [],
+				"bpm": 200
 			},
 			{
 				"altAnim": false,
-				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionEvents": [],
-				"sectionNotes": []
+				"sectionNotes": [],
+				"bpm": 200
 			},
 			{
 				"altAnim": false,
-				"bpm": 200,
 				"changeBPM": false,
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionEvents": [],
-				"sectionNotes": []
+				"sectionNotes": [],
+				"bpm": 200
+			},
+			{
+				"altAnim": false,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionEvents": [],
+				"sectionNotes": [],
+				"bpm": 200
+			},
+			{
+				"altAnim": false,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionEvents": [],
+				"sectionNotes": [],
+				"bpm": 200
 			},
 			{
 				"altAnim": false,
