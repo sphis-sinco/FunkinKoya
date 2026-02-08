@@ -5,50 +5,35 @@ import haxe.Json;
 
 class ModCore
 {
-	/** Minimum supported mod API **/
 	public static var MOD_MIN_API_VERSION:Float = 0.0;
 
-	/** Directory for mods to be looked for **/
 	public static final MOD_DIRECTORY:String = 'mods';
-
-	/** Mod metadata filename **/
 	public static final MOD_METADATA_FILE:String = 'meta.json';
 
-	/** Array of all mods that exists **/
 	public static var allMods:Array<String> = [];
 
-	/** Array of enabled mods, just returns the save data `enabledMods` **/
 	public static var enabledMods(get, never):Array<String>;
 
 	static function get_enabledMods():Array<String>
 		return Save.enabledMods?.get() ?? [];
 
-	/** Map of mod metadatas **/
 	public static var modMetadatas:Map<String, ModMetadata> = [];
 
-	/**
-		Get `mod` display name or ID
-
-		@param mod Desired mod
-	**/
 	public static function getModName(mod:String)
 	{
 		return modMetadatas.get(mod)?.name ?? mod;
 	}
 
-	/** Runs `reloadMods` **/
 	public static function init()
 	{
 		reloadMods();
 	}
 
-	/** Performs a reload on all things relating to modding **/
 	public static function reloadMods()
 	{
 		reloadModList();
 	}
 
-	/** Removes current mods and gets the new mods **/
 	public static function reloadModList()
 	{
 		allMods = [];

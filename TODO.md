@@ -12,6 +12,7 @@
 # Mod stuff:
 
 - Scriptin'
+- JSON Characters
 
 # Builds:
 

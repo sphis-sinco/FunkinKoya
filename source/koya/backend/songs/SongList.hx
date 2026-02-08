@@ -7,10 +7,8 @@ import haxe.Json;
 
 class SongList
 {
-	/** Weeks **/
 	public static var weekList:WeekList = new WeekList();
 
-	/** Song list of charts **/
 	public static var songList(get, never):Array<SwagSong>;
 
 	static function get_songList():Array<SwagSong>
@@ -50,7 +48,6 @@ class SongList
 		return list;
 	}
 
-	/** Song list of song names **/
 	public static var stringSongList(get, never):Array<String>;
 
 	static function get_stringSongList():Array<String>

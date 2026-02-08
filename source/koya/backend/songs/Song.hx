@@ -1,21 +1,21 @@
 package koya.backend.songs;
 
+import flixel.math.FlxMath;
 import koya.backend.play.Difficulty;
 import koya.frontend.scenes.play.stages.basegame.*;
 import koya.backend.AssetPaths;
+import koya.backend.songs.Section.SwagSection;
 import haxe.Json;
 import haxe.format.JsonParser;
 import koya.backend.KoyaAssets;
 
 using StringTools;
 
-/** Saved Chart File **/
 typedef ChartSwagSong =
 {
 	var song:SwagSong;
 }
 
-/** Song Data **/
 typedef SwagSong =
 {
 	var song:String;
@@ -27,6 +27,8 @@ typedef SwagSong =
 	var player1:String;
 	var player2:String;
 
+	// @:deprecated("Unused and unrequired")
+	// var validScore:Bool;
 	var ?gfVersion:String;
 	var ?stage:String;
 	var ?authors:String;
@@ -38,15 +40,23 @@ typedef SwagSong =
 
 class Song
 {
-	/**
-		Loads a song's JSON file and returns it
-		using `parseJSONshit`
+	public var song:String;
+	public var notes:Array<SwagSection>;
+	public var bpm:Float;
+	public var needsVoices:Bool = true;
+	public var speed:Float = 1;
 
-		@param jsonInput song chart file
-		@param folder song folder
-		@param fix This determines if `parseJSONshit` will upgrade the JSON to the latest chart format
-	**/
-	public static function loadFromJson(jsonInput:String, folder:String, fix:Bool = true):SwagSong
+	public var player1:String = 'bf';
+	public var player2:String = 'dad';
+
+	public function new(song, notes, bpm)
+	{
+		this.song = song;
+		this.notes = notes;
+		this.bpm = bpm;
+	}
+
+	public static function loadFromJson(jsonInput:String, ?folder:String, fix:Bool = true):SwagSong
 	{
 		var rawJson:String = '';
 		try
@@ -66,13 +76,6 @@ class Song
 		return parseJSONshit(Json.parse(rawJson), fix);
 	}
 
-	/**
-		Receives a Chart JSON and will send back the Song Chart JSON
-		with the optional ability of upgrading it to the latest chart format
-
-		@param rawJson song chart file
-		@param fix This determines the function will upgrade the JSON to the latest chart format
-	**/
 	public static function parseJSONshit(rawJson:ChartSwagSong, fix:Bool = true):SwagSong
 	{
 		if (rawJson == null) return null;
@@ -90,17 +93,9 @@ class Song
 		return swagShit;
 	}
 
-	/** Used in `fixSwagVersion` to see whats been added **/
 	static var addedStuff:Array<String> = [];
-
-	/** Used in `fixSwagVersion` to see whats been removed **/
 	static var removedStuff:Array<String> = [];
 
-	/**
-		Upgrades `swagShit` to the latest shit B)
-
-		@param swagShit song JSON
-	**/
 	public static function fixSwagVersion(swagShit:SwagSong)
 	{
 		switch (swagShit.version)
@@ -172,10 +167,8 @@ class Song
 		}
 	}
 
-	/** Chart Format Version **/
 	public static var SWAGVERSION:Int = 8;
 
-	/** Dummy Song : Test **/
 	public static var dummySong:SwagSong =
 		{
 			song: 'Test',

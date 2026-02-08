@@ -43,7 +43,6 @@ class Character extends FunkinSprite
 		datapathprefix = DEFAULT_DATAPATHPREFIX;
 	}
 
-	/** Set `curCharacter` and `iconChar` **/
 	public function setCharacter(character:String = 'bf')
 	{
 		curCharacter = character;
@@ -52,7 +51,6 @@ class Character extends FunkinSprite
 
 	public var flipAnimationsAsPlayer:Bool = true;
 
-	/** Load character assets, Animations, Offsets, etc **/
 	public function loadAssets()
 	{
 		trace('Loading character: $curCharacter');
@@ -93,7 +91,6 @@ class Character extends FunkinSprite
 		}
 	}
 
-	/** For opponents this is the hold timer stuff until next idle **/
 	public var dadVar(get, never):Float;
 
 	function get_dadVar():Float
@@ -131,10 +128,8 @@ class Character extends FunkinSprite
 		super.update(elapsed);
 	}
 
-	/** Mainly for characters with `danceLeft` and `danceRight` animations : This will tell which direction you're on **/
 	public var danced:Bool = false;
 
-	/** Play idle animations **/
 	public function dance()
 	{
 		if (!debugMode) playAnim('idle');
@@ -164,7 +159,6 @@ class Character extends FunkinSprite
 	public function getCameraOffsetsPath():String
 		return AssetPaths.txt('${getDataPathPrefix()}camera_offsets', getDataPathLibrary());
 
-	/** Load Character Offsets from the `.txt` file **/
 	public function getCharacterOffsets()
 	{
 		var offsetPath = getCharacterOffsetsPath();
@@ -179,10 +173,8 @@ class Character extends FunkinSprite
 			generalOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
 	}
 
-	/** For when the camera moves to this character during gameplay **/
 	public function cameraMoveToMe() {}
 
-	/** Load Camera Offsets from the `.txt` file **/
 	public function getCameraOffsets()
 	{
 		var offsetPath = getCameraOffsetsPath();
@@ -197,7 +189,6 @@ class Character extends FunkinSprite
 			cameraOffsets.push(Std.parseFloat(line ?? '0') ?? 0.0);
 	}
 
-	/** Load Animation Offsets from the `.txt` file **/
 	public function getAnimationOffsets()
 	{
 		var offsetPath = getAnimationOffsetsPath();
@@ -210,7 +201,6 @@ class Character extends FunkinSprite
 		parseAnimationOffsetFile(offsetfile);
 	}
 
-	/** Add singing animations via `addAnimationFunction` and will include misses if `includeMiss` is true **/
 	public function addSingingAnimations(includeMiss:Bool = false, addAnimationFunction:(name:String, prefix:String) -> Void)
 	{
 		var directions = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
@@ -222,16 +212,13 @@ class Character extends FunkinSprite
 		}
 	}
 
-	/** Get the starting camera position for the start of the song **/
 	public function getStartingCamPos(startingCamPos:FlxPoint)
 	{
 		if (startingCamPos == null) return;
 	}
 
-	/** When a character hits a note **/
 	public function onNoteHit(note:Note) {};
 
-	/** Character Event **/
 	public function sendEvent(name:String, values:Array<String>) {}
 
 	var parsedCharJSON:CharacterData = null;

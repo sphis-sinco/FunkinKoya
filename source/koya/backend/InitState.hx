@@ -28,11 +28,6 @@ import flixel.*;
 
 class InitState extends FlxState
 {
-	/**
-		Runs initalization functions
-		and then sends you to the starting state,
-		eventually.
-	**/
 	override function create()
 	{
 		super.create();
@@ -76,9 +71,6 @@ class InitState extends FlxState
 		FlxG.switchState(() -> new SplashScene(startingState));
 	}
 
-	/**
-		Receive the target state
-	**/
 	public static function getStartingState():NextState
 	{
 		#if FREEPLAY
@@ -135,5 +127,10 @@ class InitState extends FlxState
 		#end
 
 		return () -> new TitleState();
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
 	}
 }
