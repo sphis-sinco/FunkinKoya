@@ -832,12 +832,12 @@ class ChartingState extends MusicBeatState
 
 		super.update(elapsed);
 
-		hitSoundCheck(elapsed);
+		coolioPsychNoteStuffLmao(elapsed);
 	}
 
 	var colorSine:Float = 0;
 
-	function hitSoundCheck(elapsed:Float)
+	function coolioPsychNoteStuffLmao(elapsed:Float)
 	{
 		var playedSound:Array<Bool> = [false, false, false, false]; // Prevents ouchy GF sex sounds
 		curRenderedNotes.forEachAlive(function(note:Note) {
@@ -849,7 +849,8 @@ class ChartingState extends MusicBeatState
 
 				if (curSelectedNote[0] == note.strumTime
 					&& ((curSelectedNote[2] == null && noteDataToCheck < 0)
-						|| (curSelectedNote[2] != null && curSelectedNote[1] == noteDataToCheck)))
+						|| (curSelectedNote[2] != null && curSelectedNote[1] == noteDataToCheck))
+					&& (curSelectedNote[3] == note.noteData))
 				{
 					colorSine += elapsed;
 					var colorVal:Float = 0.7 + Math.sin(Math.PI * colorSine) * 0.3;
@@ -881,7 +882,7 @@ class ChartingState extends MusicBeatState
 							else
 								sectionPlayer = note.noteID < 4 ? _song.player2 : _song.player1;
 
-							if (sectionPlayer.contains('gf')) soundToPlay = 'GF_${note.noteID % 4}';
+							if (sectionPlayer.contains('gf')) soundToPlay = 'GF_${(note.noteID % 4) + 1}';
 
 							FlxG.sound.play(AssetPaths.sound(soundToPlay)).pan = note.noteID < 4 ? -0.3 : 0.3; // would be coolio
 							playedSound[data] = true;
