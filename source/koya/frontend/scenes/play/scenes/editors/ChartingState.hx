@@ -549,8 +549,10 @@ class ChartingState extends MusicBeatState
 
 		tab_group_note.add(new FlxText(stepperSusLength.x, stepperSusLength.y - 16, 0, 'Note Sustain Length', 8));
 		tab_group_note.add(stepperSusLength);
+
 		tab_group_note.add(new FlxText(UI_note.x, UI_note.y - 16, 0, 'Note Event:', 8));
 		tab_group_note.add(UI_note);
+
 		tab_group_note.add(playSoundBf);
 		tab_group_note.add(playSoundDad);
 
@@ -665,8 +667,8 @@ class ChartingState extends MusicBeatState
 		return daPos;
 	}
 
-	
 	var lastConductorPos:Float = 0;
+
 	override function update(elapsed:Float)
 	{
 		curStep = recalculateSteps();
@@ -834,6 +836,7 @@ class ChartingState extends MusicBeatState
 	}
 
 	var colorSine:Float = 0;
+
 	function hitSoundCheck(elapsed:Float)
 	{
 		var playedSound:Array<Bool> = [false, false, false, false]; // Prevents ouchy GF sex sounds
@@ -863,10 +866,10 @@ class ChartingState extends MusicBeatState
 					var data:Int = note.noteID % 4;
 					var noteDataToCheck:Int = note.noteID;
 					if (noteDataToCheck > -1 && note.mustPress != _song.notes[curSection].mustHitSection) noteDataToCheck += 4;
-					
+
 					// strumLineNotes.members[noteDataToCheck].playAnim('confirm', true);
 					// strumLineNotes.members[noteDataToCheck].resetAnim = (note.sustainLength / 1000) + 0.15;
-					
+
 					if (!playedSound[data])
 					{
 						if ((playSoundBf.checked && note.mustPress) || (playSoundDad.checked && !note.mustPress))
@@ -874,8 +877,7 @@ class ChartingState extends MusicBeatState
 							var soundToPlay = 'hitsound';
 							var sectionPlayer:String = '';
 
-							if (check_mustHitSection.checked)
-								sectionPlayer = note.noteID < 4 ? _song.player1 : _song.player2;
+							if (check_mustHitSection.checked) sectionPlayer = note.noteID < 4 ? _song.player1 : _song.player2;
 							else
 								sectionPlayer = note.noteID < 4 ? _song.player2 : _song.player1;
 
@@ -1152,12 +1154,12 @@ class ChartingState extends MusicBeatState
 
 	function deleteNote(note:Note):Void
 	{
+		var canErase = false;
+
 		for (i in _song.notes[curSection].sectionNotes)
 		{
 			if (i[0] == note.strumTime && i[1] % 4 == note.noteID)
 			{
-				var canErase = false;
-
 				var gridMid = gridBG.x + gridBG.width / 2;
 
 				if (FlxG.mouse.x < gridMid && i[1] < 4) canErase = true;
@@ -1175,6 +1177,12 @@ class ChartingState extends MusicBeatState
 					_song.notes[curSection].sectionNotes.remove(i);
 				}
 			}
+		}
+
+		if (!canErase)
+		{
+			trace('Note didn\'t wanna be nice and be found which should be impossible so it DIES');
+			curRenderedNotes.remove(note);
 		}
 
 		updateGrid();
