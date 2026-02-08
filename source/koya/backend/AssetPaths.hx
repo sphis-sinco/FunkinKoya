@@ -24,7 +24,10 @@ class AssetPaths
 	**/
 	public static function getPath(path:String, ?library:String):String
 	{
-		if (library != null) return getLibraryPath(path, library);
+		var targetLibrary:String = library;
+
+		if (targetLibrary == null) targetLibrary = 'main';
+		if (targetLibrary != null) return getLibraryPath(path, targetLibrary);
 
 		#if MOD_SUPPORT
 		if (!tempDisableModCheck) for (mod in ModCore.enabledMods)
