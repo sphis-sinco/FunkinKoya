@@ -71,9 +71,11 @@ class AssetPaths
 	**/
 	public static function getLibraryPath(path:String, ?library:String):String
 	{
-		if (library == null) library = 'main';
+		var targetFuckingLibrary = library;
 
-		return getPath('${library.length > 0 ? '$library/' : ''}$path');
+		if (targetFuckingLibrary == null) targetFuckingLibrary = 'main';
+
+		return getPath('${targetFuckingLibrary.length > 0 ? '$targetFuckingLibrary/' : ''}$path');
 	}
 
 	/** Get `.frag` file using `getPath` **/
