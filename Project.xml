@@ -194,4 +194,6 @@
 	</section>
 
 	<define name="MOD_SUPPORT" if="desktop"/>
+
+	<prebuild haxe="source/koya/backend/tasks/CreateCompiledChangelog.hx" />
 </project>
