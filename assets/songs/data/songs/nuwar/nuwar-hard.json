@@ -781,8 +781,8 @@
 						""
 					],
 					[
-						15150,
-						4,
+						15300,
+						0,
 						0,
 						""
 					]
@@ -1161,6 +1161,15 @@
 						"1"
 					]
 				],
+				"sectionNotes": [],
+				"bpm": 200
+			},
+			{
+				"altAnim": false,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionEvents": [],
 				"sectionNotes": [],
 				"bpm": 200
 			},
