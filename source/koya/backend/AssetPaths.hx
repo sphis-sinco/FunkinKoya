@@ -24,15 +24,10 @@ class AssetPaths
 	**/
 	public static function getPath(path:String, ?library:String):String
 	{
-		var targetLibrary:String = library;
-
-		if (targetLibrary == null) targetLibrary = 'main';
-		if (targetLibrary != null) return getLibraryPath(path, targetLibrary);
-
 		#if MOD_SUPPORT
 		if (!tempDisableModCheck) for (mod in ModCore.enabledMods)
 		{
-			var modPath:String = '${ModCore.MOD_DIRECTORY}/$mod/$path';
+			var modPath:String = getLibraryPath(path, library).replace('assets/', '${ModCore.MOD_DIRECTORY}/$mod/');
 
 			// First come first serve
 			if (KoyaAssets.exists(modPath)) return modPath;
@@ -40,7 +35,7 @@ class AssetPaths
 		#end
 
 		tempDisableModCheck = false;
-		return 'assets/$path';
+		return getLibraryPath(path, library);
 	}
 
 	/** 
@@ -75,10 +70,9 @@ class AssetPaths
 	public static function getLibraryPath(path:String, ?library:String):String
 	{
 		var targetFuckingLibrary = library;
-
 		if (targetFuckingLibrary == null) targetFuckingLibrary = 'main';
 
-		return getPath('${targetFuckingLibrary.length > 0 ? '$targetFuckingLibrary/' : ''}$path');
+		return 'assets/${targetFuckingLibrary.length > 0 ? '$targetFuckingLibrary/' : ''}$path';
 	}
 
 	/** Get `.frag` file using `getPath` **/
