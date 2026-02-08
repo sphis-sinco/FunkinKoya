@@ -26,7 +26,7 @@ class CreateCompiledChangelog
 
 			try
 			{
-				#if (indev || debug)
+				#if INCLUDE_CHANGELOG_FILEPATH
 				megaChangelog += '<!-- $path -->\n';
 				#end
 				megaChangelog += File.getContent(path);
