@@ -299,7 +299,7 @@ class Character extends FunkinSprite
 	/** Load Character frames for type of `type` **/
 	public function loadCharacterJSONType(type:CharacterType)
 	{
-		trace(type);
+		trace(' * type: $type');
 		if (type == SPARROW) frames = AssetPaths.fromSparrow(parsedCharJSON.imagePath, 'characters');
 		if (type == ATLAS) frames = AssetPaths.getAnimateAtlas(parsedCharJSON.imagePath, 'characters');
 	}

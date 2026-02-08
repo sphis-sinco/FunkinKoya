@@ -20,7 +20,7 @@ class ObjectManager
 			if (anim.type == FRAME_LABEL && anim.frame_label != null) sprite.addFrameLabelAnim(anim.name, anim.frame_label, anim?.fps ?? 24,
 				anim?.looped ?? false);
 
-			trace(anim);
+			// trace(anim);
 		}
 	}
 }
