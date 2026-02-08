@@ -1194,12 +1194,16 @@ class ChartingState extends MusicBeatState
 
 		if ((data != null) && (data.length > 0))
 		{
-			var path = AssetPaths.chart(curSong.toLowerCase(), '${curSong.toLowerCase()}${_song.difficulty.chartSuffix()}');
+			var path = AssetPaths.chart(curSong.toLowerCase(), Highscore.formatToDifficulty(curSong, _song.difficulty));
 			trace(path);
 
 			#if INSTA_SAVE
 			try
 			{
+				#if ROOT_SAVE
+				path += '../../../../';
+				#end
+
 				sys.io.File.saveContent(path, data);
 				return;
 			}

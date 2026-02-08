@@ -190,6 +190,7 @@
 	<section if="debug || indev">
 		<define name="INCLUDE_GIT" />
 		<define name="ONE_ENDSONG_KEY" />
+		<define name="ROOT_SAVE" />
 		<define name="DEBUG_ASTERISK" unless="DISABLE_DEBUG_ASTERISK" />
 		<define name="TASK_CREATE_COMPILED_CHANGELOG" />
 	</section>
