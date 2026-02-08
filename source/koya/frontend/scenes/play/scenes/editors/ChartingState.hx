@@ -497,7 +497,7 @@ class ChartingState extends MusicBeatState
 		var swapSection:FlxButton = new FlxButton(clearSectionButton.x, clearSectionButton.y + 20, "Swap section", function() {
 			for (i in 0..._song.notes[curSection].sectionNotes.length)
 			{
-				var note = _song.notes[curSection].sectionNotes[i];
+				var note:Array<Dynamic> = _song.notes[curSection].sectionNotes[i];
 				note[1] = (note[1] + 4) % 8;
 				_song.notes[curSection].sectionNotes[i] = note;
 				updateGrid();
