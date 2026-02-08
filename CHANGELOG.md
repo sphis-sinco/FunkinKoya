@@ -1,5 +1,9 @@
 # [0.5.2] - 2/7/2026
 
+## Modding
+
+- Added support for JSON CHARACTERS!
+
 ## Technical
 
 - Removed `FlxG.log.add`'s from `koya.backend.AssetTextList`
@@ -13,7 +17,7 @@
 - Added `getRank` to `koya.backend.Highscore`
 	- Used now in Freeplay along with `getScore`
 - `koya.backend.CrashHandler` has been updated to use `koya.backend.CoolUtil.alert`
-- Alot of code has been documented and tweaks have been made
+- Alot of code has been documented and tweaks have been made (mostly backend stuff)
 
 # [0.5.1] - 2/7/2026
 
