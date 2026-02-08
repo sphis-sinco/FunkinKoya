@@ -1,0 +1,78 @@
+{
+	"iconChar": "bf",
+
+	"type": "atlas",
+	"imagePath": "characters/boyfriend-regular",
+
+	"flipX": true,
+	"flipAnimationsAsPlayer": false,
+
+	"dataPathPrefix": "data/characters/bf/::curCharacter::-",
+
+	"animations": [
+		{
+			"type": "frame_label",
+			"name": "idle",
+			"frame_label": "idle"
+		},
+
+		{
+			"type": "frame_label",
+			"name": "singLEFT",
+			"frame_label": "singLEFT"
+		},
+		{
+			"type": "frame_label",
+			"name": "singDOWN",
+			"frame_label": "singDOWN"
+		},
+		{
+			"type": "frame_label",
+			"name": "singUP",
+			"frame_label": "singUP"
+		},
+		{
+			"type": "frame_label",
+			"name": "singRIGHT",
+			"frame_label": "singRIGHT"
+		},
+
+		{
+			"type": "frame_label",
+			"name": "singLEFTmiss",
+			"frame_label": "singLEFTmiss"
+		},
+		{
+			"type": "frame_label",
+			"name": "singDOWNmiss",
+			"frame_label": "singDOWNmiss"
+		},
+		{
+			"type": "frame_label",
+			"name": "singUPmiss",
+			"frame_label": "singUPmiss"
+		},
+		{
+			"type": "frame_label",
+			"name": "singRIGHTmiss",
+			"frame_label": "singRIGHTmiss"
+		},
+
+		{
+			"type": "frame_label",
+			"name": "firstDeath",
+			"frame_label": "firstDeath"
+		},
+		{
+			"type": "frame_label",
+			"name": "deathLoop",
+			"frame_label": "deathLoop",
+			"looped": true
+		},
+		{
+			"type": "frame_label",
+			"name": "deathConfirm",
+			"frame_label": "deathConfirm"
+		}
+	]
+}

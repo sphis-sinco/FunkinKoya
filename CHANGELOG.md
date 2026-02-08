@@ -1,3 +1,9 @@
+# [0.5.2] - 2/7/2026
+
+## Modding
+
+- ADDED CHARACTER JSON SUPPORT
+
 # [0.5.1] - 2/7/2026
 
 ## Visual

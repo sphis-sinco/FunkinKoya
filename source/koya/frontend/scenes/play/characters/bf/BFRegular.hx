@@ -1,7 +1,5 @@
 package koya.frontend.scenes.play.characters.bf;
 
-import koya.backend.AssetPaths;
-
 class BFRegular extends Character
 {
 	public var bfVersion:String = 'bf';
@@ -14,28 +12,4 @@ class BFRegular extends Character
 		setCharacter(bfVersion);
 		iconChar = 'bf';
 	}
-
-	public function getFrames()
-	{
-		frames = AssetPaths.getAnimateAtlas('characters/boyfriend-regular', 'characters');
-	}
-
-	override function initChar()
-	{
-		getFrames();
-
-		addFrameLabelAnim('idle', 'idle');
-
-		addSingingAnimations(true, (name, prefix) -> addFrameLabelAnim(name, prefix));
-
-		addFrameLabelAnim('firstDeath', 'firstDeath');
-		addFrameLabelAnim('deathLoop', 'deathLoop', 24, true);
-		addFrameLabelAnim('deathConfirm', 'deathConfirm');
-
-		flipX = true;
-		flipAnimationsAsPlayer = false;
-	}
-
-	override function getDataPathPrefix():String
-		return 'data/characters/bf/${curCharacter}-';
 }
