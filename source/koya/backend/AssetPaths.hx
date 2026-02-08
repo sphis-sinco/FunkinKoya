@@ -24,7 +24,6 @@ class AssetPaths
 	**/
 	public static function getPath(path:String, ?library:String):String
 	{
-		if (library == null) library = 'main';
 		if (library != null) return getLibraryPath(path, library);
 
 		#if MOD_SUPPORT
@@ -72,7 +71,7 @@ class AssetPaths
 	**/
 	public static function getLibraryPath(path:String, ?library:String):String
 	{
-		if (library == null) return getPath(path);
+		if (library == null) library = 'main';
 
 		return getPath('$library/$path');
 	}
