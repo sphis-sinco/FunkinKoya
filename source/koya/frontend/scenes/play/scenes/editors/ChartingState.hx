@@ -1178,12 +1178,6 @@ class ChartingState extends MusicBeatState
 			}
 		}
 
-		if (!canErase)
-		{
-			trace('Note didn\'t wanna be nice and be found which should be impossible so it DIES');
-			curRenderedNotes.remove(note);
-		}
-
 		updateGrid();
 	}
 
