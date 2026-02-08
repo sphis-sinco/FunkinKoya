@@ -21,6 +21,7 @@ class Note extends FunkinSprite
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
 	public var prevNote:Note;
+
 	var willMiss:Bool = false;
 
 	public var sustainLength:Float = 0;

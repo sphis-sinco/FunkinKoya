@@ -2,7 +2,7 @@
 
 ## Modding
 
-- ADDED CHARACTER JSON SUPPORT
+- Added support for JSON CHARACTERS!
 
 # [0.5.1] - 2/7/2026
 
