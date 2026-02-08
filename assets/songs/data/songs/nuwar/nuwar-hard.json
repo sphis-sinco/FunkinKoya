@@ -1,7 +1,7 @@
 {
 	"song": {
 		"authors": "Macohi",
-		"generatedBy": "Funkin' Koya* 0.6.0 (dev/runaway:46fbde8) | Chart Editor (koyta_8)",
+		"generatedBy": "Funkin' Koya* 0.6.0 (dev/runaway:90cf5c3) | Chart Editor (koyta_8)",
 		"gfVersion": "gf",
 		"needsVoices": true,
 		"notes": [
@@ -795,7 +795,56 @@
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionEvents": [],
-				"sectionNotes": [],
+				"sectionNotes": [
+					[
+						15600,
+						2,
+						0,
+						""
+					],
+					[
+						15600,
+						6,
+						0,
+						""
+					],
+					[
+						15900,
+						7,
+						0,
+						""
+					],
+					[
+						15900,
+						3,
+						0,
+						""
+					],
+					[
+						16200,
+						2,
+						0,
+						""
+					],
+					[
+						16200,
+						6,
+						0,
+						""
+					],
+					[
+						16500,
+						3,
+						0,
+						""
+					],
+					[
+						16500,
+						7,
+						0,
+						""
+					]
+				],
 				"bpm": 200
 			},
 			{
@@ -804,7 +853,56 @@
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionEvents": [],
-				"sectionNotes": [],
+				"sectionNotes": [
+					[
+						16800,
+						2,
+						0,
+						""
+					],
+					[
+						17100,
+						0,
+						0,
+						""
+					],
+					[
+						17400,
+						2,
+						0,
+						""
+					],
+					[
+						16800,
+						6,
+						0,
+						""
+					],
+					[
+						17100,
+						4,
+						0,
+						""
+					],
+					[
+						17400,
+						6,
+						0,
+						""
+					],
+					[
+						17700,
+						4,
+						0,
+						""
+					],
+					[
+						17700,
+						0,
+						0,
+						""
+					]
+				],
 				"bpm": 200
 			},
 			{
@@ -813,7 +911,104 @@
 				"lengthInSteps": 16,
 				"mustHitSection": true,
 				"sectionEvents": [],
-				"sectionNotes": [],
+				"sectionNotes": [
+					[
+						18000,
+						2,
+						0,
+						""
+					],
+					[
+						18000,
+						6,
+						0,
+						""
+					],
+					[
+						18300,
+						7,
+						0,
+						""
+					],
+					[
+						18300,
+						3,
+						0,
+						""
+					],
+					[
+						18600,
+						2,
+						0,
+						""
+					],
+					[
+						18600,
+						6,
+						0,
+						""
+					],
+					[
+						18900,
+						3,
+						0,
+						""
+					],
+					[
+						18900,
+						7,
+						0,
+						""
+					],
+					[
+						18750,
+						1,
+						0,
+						""
+					],
+					[
+						18750,
+						5,
+						0,
+						""
+					],
+					[
+						18075,
+						5,
+						0,
+						""
+					],
+					[
+						18075,
+						1,
+						0,
+						""
+					],
+					[
+						18225,
+						2,
+						0,
+						""
+					],
+					[
+						18225,
+						6,
+						0,
+						""
+					],
+					[
+						18525,
+						5,
+						0,
+						""
+					],
+					[
+						18525,
+						1,
+						0,
+						""
+					]
+				],
 				"bpm": 200
 			},
 			{
@@ -1161,6 +1356,15 @@
 						"1"
 					]
 				],
+				"sectionNotes": [],
+				"bpm": 200
+			},
+			{
+				"altAnim": false,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionEvents": [],
 				"sectionNotes": [],
 				"bpm": 200
 			},

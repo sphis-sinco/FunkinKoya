@@ -716,7 +716,8 @@ class ChartingState extends MusicBeatState
 						else
 						{
 							trace('tryin to delete note...');
-							deleteNote(note);
+							var rawData:Array<Dynamic> = [note.strumTime, note.noteID, note.sustainLength, note.noteData];
+							deleteNote(note, rawData);
 						}
 					}
 				});
@@ -1151,13 +1152,13 @@ class ChartingState extends MusicBeatState
 		updateNoteUI();
 	}
 
-	function deleteNote(note:Note):Void
+	function deleteNote(note:Note, ?rawData:Array<Dynamic>):Void
 	{
 		var canErase = false;
 
 		for (i in _song.notes[curSection].sectionNotes)
 		{
-			if (i[0] == note.strumTime && i[1] % 4 == note.noteID)
+			if (i[0] == note.strumTime && i[1] % 4 == note.noteID || i == rawData)
 			{
 				var gridMid = gridBG.x + gridBG.width / 2;
 
