@@ -1,7 +1,7 @@
 {
 	"song": {
 		"authors": "Macohi",
-		"generatedBy": "Funkin' Koya* 0.6.0 (dev/runaway:90cf5c3) | Chart Editor (koyta_8)",
+		"generatedBy": "Funkin' Koya* 0.6.0 (dev/runaway:3e1ec93) | Chart Editor (koyta_8)",
 		"gfVersion": "gf",
 		"needsVoices": true,
 		"notes": [
@@ -1007,6 +1007,12 @@
 						1,
 						0,
 						""
+					],
+					[
+						18450,
+						4,
+						0,
+						""
 					]
 				],
 				"bpm": 200
@@ -1356,6 +1362,15 @@
 						"1"
 					]
 				],
+				"sectionNotes": [],
+				"bpm": 200
+			},
+			{
+				"altAnim": false,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionEvents": [],
 				"sectionNotes": [],
 				"bpm": 200
 			},

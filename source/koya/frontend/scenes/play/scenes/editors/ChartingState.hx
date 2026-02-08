@@ -1155,10 +1155,15 @@ class ChartingState extends MusicBeatState
 	function deleteNote(note:Note, ?rawData:Array<Dynamic>):Void
 	{
 		var canErase = false;
+		trace(rawData);
 
 		for (i in _song.notes[curSection].sectionNotes)
 		{
-			if (i[0] == note.strumTime && i[1] % 4 == note.noteID || i == rawData)
+			var imoduloed:Array<Dynamic> = [i[0], i[1] % 4, i[2], i[3]];
+
+			if (canErase) continue;
+
+			if (i[0] == note.strumTime && i[1] % 4 == note.noteID || imoduloed == rawData)
 			{
 				var gridMid = gridBG.x + gridBG.width / 2;
 
