@@ -56,6 +56,7 @@ class Character extends FunkinSprite
 	public function loadAssets()
 	{
 		trace('Loading character: $curCharacter');
+		initCharJSON();
 		getCharacterOffsets();
 		getAnimationOffsets();
 		getCameraOffsets();
@@ -152,7 +153,7 @@ class Character extends FunkinSprite
 		return 'characters';
 
 	public function getCharacterJSON():String
-		return AssetPaths.json('characters/$curCharacter', getDataPathLibrary());
+		return AssetPaths.json('data/characters/$curCharacter', getDataPathLibrary());
 
 	public function getAnimationOffsetsPath():String
 		return AssetPaths.txt('${getDataPathPrefix()}anim_offsets', getDataPathLibrary());
@@ -236,8 +237,11 @@ class Character extends FunkinSprite
 	/** The Character JSON data **/
 	var parsedCharJSON:CharacterData = null;
 
-	/** Initalizes character through JSON or is overwritten to initalize through code **/
-	public function initChar()
+	/** Initalizes character through code **/
+	public function initChar() {}
+
+	/** Initalizes character through JSON **/
+	public function initCharJSON()
 	{
 		var charJSON = getCharacterJSON();
 
@@ -278,17 +282,24 @@ class Character extends FunkinSprite
 			}
 
 			loadCharacterJSONType(parsedCharJSON.type);
+
 			ObjectManager.addObjectAnimationsToSprite(this, parsedCharJSON.animations);
+
 			datapathprefix = parsedCharJSON?.dataPathPrefix ?? DEFAULT_DATAPATHPREFIX;
 			iconChar = parsedCharJSON?.iconChar ?? curCharacter;
 			flipX = parsedCharJSON?.flipX ?? false;
 			flipAnimationsAsPlayer = parsedCharJSON?.flipAnimationsAsPlayer ?? true;
+		}
+		else
+		{
+			trace(' * $charJSON doesn\'t exist');
 		}
 	}
 
 	/** Load Character frames for type of `type` **/
 	public function loadCharacterJSONType(type:CharacterType)
 	{
+		trace(type);
 		if (type == SPARROW) frames = AssetPaths.fromSparrow(parsedCharJSON.imagePath, 'characters');
 		if (type == ATLAS) frames = AssetPaths.getAnimateAtlas(parsedCharJSON.imagePath, 'characters');
 	}
