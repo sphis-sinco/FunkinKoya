@@ -1,6 +1,5 @@
 package koya.frontend.scenes.play.stages;
 
-import koya.backend.play.ObjectManager;
 import animate.FlxAnimateFrames;
 import flixel.graphics.frames.FlxAtlasFrames;
 import koya.backend.play.stages.StageProp;
@@ -8,10 +7,6 @@ import flixel.FlxBasic;
 
 class StageBGProps
 {
-	/**
-		@param propField Stage Prop Data
-		@param methods JSON of methods
-	**/
 	public static function parseProp(propField:StageProp,
 			methods:{getImg:String->String, getSparrowImg:String->FlxAtlasFrames, getAtlasImg:String->FlxAnimateFrames}):FlxBasic
 	{
@@ -20,22 +15,35 @@ class StageBGProps
 		var propSprite:FunkinSprite = new FunkinSprite();
 
 		var loadSparrow = function() {
-			propSprite.frames = methods?.getSparrowImg(propField.sparrow) ?? null;
+			propSprite.frames = methods.getSparrowImg(propField.sparrow);
 		}
 
 		var loadAtlas = function() {
-			propSprite.frames = methods?.getAtlasImg(propField.sparrow) ?? null;
+			propSprite.frames = methods.getAtlasImg(propField.atlas);
 		}
 
 		var loadImg = function() {
-			if (methods.getImg != null) propSprite.loadGraphic(methods.getImg(propField.img));
+			propSprite.loadGraphic(methods.getImg(propField.img));
 		}
 
 		if (propField.sparrow != null) loadSparrow();
 		if (propField.atlas != null) loadAtlas();
 		if (propField.img != null) loadImg();
 
-		if (propField.animations != null) ObjectManager.addObjectAnimationsToSprite(propSprite, propField.animations);
+		if (propField.animations != null) for (anim in propField.animations)
+		{
+			if (anim.type == PREFIX && anim.prefix != null)
+			{
+				loadSparrow();
+				propSprite.addPrefixAnim(anim.name, anim.prefix, anim?.fps ?? 24, anim?.looped ?? false);
+			}
+
+			if (anim.type == FRAME_LABEL && anim.frame_label != null)
+			{
+				loadAtlas();
+				propSprite.addFrameLabelAnim(anim.name, anim.frame_label, anim?.fps ?? 24, anim?.looped ?? false);
+			}
+		}
 
 		if (propSprite.graphic == null) return null;
 

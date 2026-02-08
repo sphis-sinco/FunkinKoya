@@ -56,14 +56,20 @@ class FreeplayState extends MenuState
 
 	function get_currentScore():Int
 	{
-		return Highscore.getScore(currentSongName.toLowerCase(), currentDifficulty);
+		if (Save.songScores.get() == null) return 0;
+		if (!Save.songScores.get().exists(currentSongChart)) return 0;
+
+		return Save.songScores.get().get(currentSongChart);
 	}
 
 	public var currentRank(get, never):String;
 
 	function get_currentRank():String
 	{
-		return Highscore.getRank(currentSongName.toLowerCase(), currentDifficulty);
+		if (Save.songRanks.get() == null) return null;
+		if (!Save.songRanks.get().exists(currentSongChart)) return null;
+
+		return Save.songRanks.get().get(currentSongChart);
 	}
 
 	public var currentDifficulty:Int = Difficulty.NORMAL;
@@ -242,24 +248,24 @@ class FreeplayState extends MenuState
 
 	public function initBordersAndArrows()
 	{
-		upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - FreeplayBorderSprite.INNER_PADDING), 160, sideBorderWidths, 0);
+		upBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths, 0);
 		add(upBorder);
-		upBorder.innerSprite.y -= FreeplayBorderSprite.INNER_PADDING / 2;
+		upBorder.innerSprite.y -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - FreeplayBorderSprite.INNER_PADDING), 160, sideBorderWidths,
+		downBorder = new FreeplayBorderSprite(FlxG.width - ((sideBorderWidths * 2) - Constants.FREEPLAY_BORDER_INNER_PADDING), 160, sideBorderWidths,
 			FlxG.height - 160);
 		add(downBorder);
-		downBorder.innerSprite.y += FreeplayBorderSprite.INNER_PADDING / 2;
+		downBorder.innerSprite.y += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		leftBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + FreeplayBorderSprite.INNER_PADDING), 0,
-			-FreeplayBorderSprite.INNER_PADDING / 2);
+		leftBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING), 0,
+			-Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(leftBorder);
-		leftBorder.innerSprite.x -= FreeplayBorderSprite.INNER_PADDING / 2;
+		leftBorder.innerSprite.x -= Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
-		rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + FreeplayBorderSprite.INNER_PADDING), FlxG.width - sideBorderWidths,
-			-FreeplayBorderSprite.INNER_PADDING / 2);
+		rightBorder = new FreeplayBorderSprite(sideBorderWidths, Std.int(FlxG.height + Constants.FREEPLAY_BORDER_INNER_PADDING),
+			FlxG.width - sideBorderWidths, -Constants.FREEPLAY_BORDER_INNER_PADDING / 2);
 		add(rightBorder);
-		rightBorder.innerSprite.x += FreeplayBorderSprite.INNER_PADDING / 2;
+		rightBorder.innerSprite.x += Constants.FREEPLAY_BORDER_INNER_PADDING / 2;
 
 		for (arrow in [arrow_LEFT, arrow_RIGHT])
 		{
@@ -279,8 +285,8 @@ class FreeplayState extends MenuState
 	var upBorder:FreeplayBorderSprite;
 	var rightBorder:FreeplayBorderSprite;
 
-	var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, ArrowUI.SKIN_DIFFICULTY_SELECT);
-	var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, ArrowUI.SKIN_DIFFICULTY_SELECT);
+	var arrow_LEFT:ArrowUI = new ArrowUI(LEFT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
+	var arrow_RIGHT:ArrowUI = new ArrowUI(RIGHT, Constants.UI_ARROW_SKIN_DIFFICULTY_SELECT);
 
 	var aL_x:Float = 0.0;
 	var aR_x:Float = 0.0;

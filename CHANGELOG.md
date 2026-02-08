@@ -1,28 +1,3 @@
-# [0.5.2] - 2/7/2026
-
-## Modding
-
-- MINIMUM SUPPORTED MOD API VERSION: `0.1` (cause of main library path stuff)
-- Added support for JSON CHARACTERS!
-
-## Technical
-
-- Added `main` library path
-	- Now the library has to be "" for just `assets/` to be used and not `assets/main`
-	- Now in `Project.xml` the assets are added via 2 lines (no extra shit required!)
-- Removed `FlxG.log.add`'s from `koya.backend.AssetTextList`
-- Removed `controls` save data
-- Removed shit from `koya.backend.songs.Song` that would've allowed a variable to use it as a type (but it never got used that way so we chill)
-- Renamed `koya.backend.songs.Section` to `koya.backend.songs.SwagSection`
-- `koya.backend.AssetTextList.textList` is made using `koya.backend.AssetTextList.text`
-- Removed `koya.backend.Constants` variables for FreeplayBorderSprite variables and variables for ArrowUI skins
-- Renamed `coolTextFile` to `splitTextFile` in `koya.backend.CoolUtil`
-- Highscore and PlayerSettings loading and initalization are now after upgrading the version
-- Added `getRank` to `koya.backend.Highscore`
-	- Used now in Freeplay along with `getScore`
-- `koya.backend.CrashHandler` has been updated to use `koya.backend.CoolUtil.alert`
-- Alot of code has been documented and tweaks have been made (mostly backend stuff)
-
 # [0.5.1] - 2/7/2026
 
 ## Visual

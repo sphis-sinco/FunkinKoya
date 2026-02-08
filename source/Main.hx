@@ -2,31 +2,20 @@ package;
 
 import koya.backend.CrashHandler;
 import koya.frontend.ui.Watermark;
+import lime.app.Application;
 import koya.backend.InitState;
 import flixel.FlxGame;
+import openfl.display.FPS;
 import openfl.display.Sprite;
 
 using StringTools;
 
 class Main extends Sprite
 {
-	/**
-		The target framerate
-	**/
 	public static var FPS:Int = 144;
 
-	/**
-		Watermark object.
-
-		Public static to allow editing from other classes.
-	**/
 	public static var WATERMARK:Watermark;
 
-	/**
-		Adds the FlxGame
-		Adds the watermark
-		and initalizes the crash handler
-	**/
 	public function new()
 	{
 		super();

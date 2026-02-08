@@ -1,12 +1,15 @@
 package koya.backend.play.stages;
 
-import koya.backend.play.ObjectData;
-
-/** Prop Layer **/
 enum abstract StagePropLayerType(String) from String to String
 {
 	var BACK = 'back';
 	var FRONT = 'front';
+}
+
+enum abstract StagePropAnimationType(String) from String to String
+{
+	var PREFIX = 'prefix';
+	var FRAME_LABEL = 'frame_label';
 }
 
 typedef StageProp =
@@ -15,7 +18,7 @@ typedef StageProp =
 
 	?sparrow:String,
 	?atlas:String,
-	?animations:Array<ObjectAnimationData>,
+	?animations:Array<StagePropAnimations>,
 
 	?alpha:Float,
 
@@ -27,4 +30,16 @@ typedef StageProp =
 
 	?layerType:StagePropLayerType,
 	?layer:Int,
+}
+
+typedef StagePropAnimations =
+{
+	type:StagePropAnimationType,
+	name:String,
+
+	?prefix:String,
+	?frame_label:String,
+
+	?looped:Bool,
+	?fps:Int,
 }

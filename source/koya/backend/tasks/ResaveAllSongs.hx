@@ -9,7 +9,6 @@ using StringTools;
 
 class ResaveAllSongs
 {
-	/** Perform Task **/
 	public static function run()
 	{
 		#if sys

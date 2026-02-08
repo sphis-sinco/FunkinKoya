@@ -30,7 +30,7 @@ class GFRegular extends Character
 		}
 	}
 
-	override function getFrames()
+	public function getFrames()
 	{
 		frames = AssetPaths.getAnimateAtlas('characters/girlfriend-regular', 'characters');
 	}

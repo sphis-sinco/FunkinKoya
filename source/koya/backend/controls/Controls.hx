@@ -323,6 +323,12 @@ class Controls extends FlxActionSet
 		setKeyboardScheme(scheme, false);
 	}
 
+	override function update()
+	{
+		super.update();
+	}
+
+	// inline
 	public function checkByName(name:Action):Bool
 	{
 		#if debug

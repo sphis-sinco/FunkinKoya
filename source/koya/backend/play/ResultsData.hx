@@ -4,38 +4,34 @@ using Math;
 
 class ResultsData
 {
-	/** Notes hit in the song **/
+	/**
+		HIT NOTES.
+		NOT ALL THE NOTES IN THE SONG.
+	**/
 	public var totalNotesHit:Int = 0;
 
-	/** Notes missed by not hitting notes that were there **/
+	/**
+		Missed by flying away
+	**/
 	public var notesMissed:Int = 0;
 
-	/** A rating and the amount of times it was received **/
 	public var noteRatingCounts:Map<String, Int>;
 
-	/** Reset all the variables **/
 	public function new()
 	{
 		reset();
 	}
 
-	/** Add a miss **/
 	public function earnMiss()
 	{
 		notesMissed++;
 	}
 
-	/**
-		Add a Rating if `noteRatingCounts` has it
-
-		@param rating The rating
-	**/
 	public function earnRating(rating:String)
 	{
 		if (noteRatingCounts.exists(rating)) noteRatingCounts.set(rating, noteRatingCounts.get(rating) + 1);
 	}
 
-	/** Reset all the variables **/
 	public function reset()
 	{
 		totalNotesHit = 0;
@@ -43,7 +39,6 @@ class ResultsData
 		noteRatingCounts = ['shit' => 0, 'bad' => 0, 'good' => 0, 'sick' => 0,];
 	}
 
-	/** Return a JSON of the results data **/
 	public function toString()
 	{
 		var data:Dynamic =
@@ -58,13 +53,11 @@ class ResultsData
 		return Std.string(data);
 	}
 
-	/** Return grade percentage **/
 	public function gradePercent():Float
 	{
 		return tallyCompletion(noteRatingCounts);
 	}
 
-	/** Return grade rank **/
 	public function grade():Rank
 	{
 		// Final Grade = ((Sick + Good) - (Miss)) / (Total Notes)
@@ -79,7 +72,6 @@ class ResultsData
 		return BAD;
 	}
 
-	/** Calculate grade percent **/
 	public function tallyCompletion(noteRatingCounts:Map<String, Int>):Float
 	{
 		if (noteRatingCounts == null) return 0;

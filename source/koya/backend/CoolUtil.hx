@@ -7,15 +7,7 @@ using StringTools;
 
 class CoolUtil
 {
-	/**
-		Splits a text file of path: `path`,
-		if it exists into an array split by new line characters,
-
-		otherwise it will just return a blank array
-
-		@param path text file path
-	**/
-	public static function splitTextFile(path:String):Array<String>
+	public static function coolTextFile(path:String):Array<String>
 	{
 		if (!KoyaAssets.exists(path))
 		{
@@ -48,12 +40,6 @@ class CoolUtil
 		return value < min ? min : value > max ? max : value;
 	}
 
-	/**
-		Display an alert
-
-		@param title alert title
-		@param msg alert message
-	**/
 	public static function alert(title:String, msg:String)
 		Application.current.window.alert(msg, title);
 }

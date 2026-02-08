@@ -10,9 +10,6 @@ import openfl.display.FPS;
 
 class Watermark extends FPS
 {
-	/**
-		Initalizes the style of the watermark
-	**/
 	override public function new(x:Float = 10, y:Float = 2)
 	{
 		super(x, y, 0xFFFFFF);
@@ -21,13 +18,6 @@ class Watermark extends FPS
 		width = defaultTextFormat.size * ((FlxG.width - (x * 2)) / defaultTextFormat.size);
 	}
 
-	/**
-		Updates the FPS
-		Requiring the text to be updated aswell
-
-		But also decides if
-		the FPS counter should be shown at all
-	**/
 	override function __enterFrame(deltaTime:Float):Void
 	{
 		currentTime += deltaTime;
