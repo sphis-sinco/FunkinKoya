@@ -849,8 +849,7 @@ class ChartingState extends MusicBeatState
 
 				if (curSelectedNote[0] == note.strumTime
 					&& ((curSelectedNote[2] == null && noteDataToCheck < 0)
-						|| (curSelectedNote[2] != null && curSelectedNote[1] == noteDataToCheck))
-					&& (curSelectedNote[3] == note.noteData))
+						|| (curSelectedNote[2] != null && curSelectedNote[1] == noteDataToCheck)))
 				{
 					colorSine += elapsed;
 					var colorVal:Float = 0.7 + Math.sin(Math.PI * colorSine) * 0.3;
@@ -878,9 +877,8 @@ class ChartingState extends MusicBeatState
 							var soundToPlay = 'hitsound';
 							var sectionPlayer:String = '';
 
-							if (check_mustHitSection.checked) sectionPlayer = note.noteID < 4 ? _song.player1 : _song.player2;
-							else
-								sectionPlayer = note.noteID < 4 ? _song.player2 : _song.player1;
+							if ((playSoundBf.checked && note.mustPress)) sectionPlayer == _song.player1;
+							if ((playSoundDad.checked && !note.mustPress)) sectionPlayer == _song.player2;
 
 							if (sectionPlayer.contains('gf')) soundToPlay = 'GF_${(note.noteID % 4) + 1}';
 
