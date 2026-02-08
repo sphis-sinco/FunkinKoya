@@ -73,7 +73,7 @@ class AssetPaths
 	{
 		if (library == null) library = 'main';
 
-		return getPath('$library/$path');
+		return getPath('${library.length > 0 ? '$library/' : ''}$path');
 	}
 
 	/** Get `.frag` file using `getPath` **/

@@ -8,6 +8,7 @@
 ## Technical
 
 - Added `main` library path
+	- Now the library has to be "" for just `assets/` to be used and not `assets/main`
 	- Now in `Project.xml` the assets are added via 2 lines (no extra shit required!)
 - Removed `FlxG.log.add`'s from `koya.backend.AssetTextList`
 - Removed `controls` save data
