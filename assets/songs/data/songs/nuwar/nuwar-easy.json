@@ -1,0 +1,27 @@
+{
+	"song": {
+		"authors": "Kawai Sprite (ft. MtH)",
+		"bpm": 200,
+		"difficulty": 0,
+		"generatedBy": "Funkin' Koya 0.6.0 | Chart Editor (koyta_8)",
+		"gfVersion": "gf",
+		"needsVoices": true,
+		"notes": [
+			{
+				"altAnim": false,
+				"bpm": 150,
+				"changeBPM": false,
+				"lengthInSteps": 16,
+				"mustHitSection": true,
+				"sectionEvents": [],
+				"sectionNotes": []
+			}
+		],
+		"player1": "bf",
+		"player2": "dad",
+		"song": "Nuwar",
+		"speed": 1.5,
+		"stage": "mainStage",
+		"version": 8
+	}
+}
