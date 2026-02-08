@@ -9,7 +9,7 @@ import koya.backend.songs.Song.ChartSwagSong;
 
 class Save
 {
-	public static var SAVE_VERSION:Null<Int> = 5;
+	public static var SAVE_VERSION:Null<Int> = 6;
 
 	public static var version:SaveField<Null<Int>>;
 
@@ -44,6 +44,9 @@ class Save
 	public static var preferences:SaveField<Preferences>;
 
 	public static var enabledMods:SaveField<Array<String>>;
+	
+	public static var hitsound_player:SaveField<Bool>;
+	public static var hitsound_opponent:SaveField<Bool>;
 
 	public static var keybinds:Array<SaveField<String>> = [];
 
@@ -118,6 +121,9 @@ class Save
 			});
 
 		enabledMods = new SaveField<Array<String>>('enabledMods', []);
+
+		hitsound_player = new SaveField<Bool>('hitsound_player', true);
+		hitsound_opponent = new SaveField<Bool>('hitsound_opponent', true);
 	}
 
 	public static function init()

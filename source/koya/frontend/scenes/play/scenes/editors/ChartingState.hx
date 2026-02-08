@@ -522,6 +522,9 @@ class ChartingState extends MusicBeatState
 	var stepperSusLength:FlxUINumericStepper;
 	var UI_note:FlxUIInputText;
 
+	var playSoundBf:FlxUICheckBox = null;
+	var playSoundDad:FlxUICheckBox = null;
+
 	function addNoteUI():Void
 	{
 		var tab_group_note = new FlxUI(null, Main_UI);
@@ -534,10 +537,22 @@ class ChartingState extends MusicBeatState
 		UI_note = new FlxUIInputText(stepperSusLength.x, stepperSusLength.y + stepperSusLength.height + 32, Std.int(Main_UI.width - 20), '', 8);
 		typingShit = UI_note;
 
+		playSoundBf = new FlxUICheckBox(UI_note.x, UI_note.y + 30, null, null, 'Play Hitsound for Player notes', 100, function() {
+			Save.hitsound_player.set(playSoundBf.checked);
+		});
+		playSoundBf.checked = Save.hitsound_player.get();
+
+		playSoundDad = new FlxUICheckBox(UI_note.x + 120, playSoundBf.y, null, null, 'Play Hitsound for Opponent notes', 100, function() {
+			Save.hitsound_opponent.set(playSoundDad.checked);
+		});
+		playSoundDad.checked = Save.hitsound_opponent.get();
+
 		tab_group_note.add(new FlxText(stepperSusLength.x, stepperSusLength.y - 16, 0, 'Note Sustain Length', 8));
 		tab_group_note.add(stepperSusLength);
 		tab_group_note.add(new FlxText(UI_note.x, UI_note.y - 16, 0, 'Note Event:', 8));
 		tab_group_note.add(UI_note);
+		tab_group_note.add(playSoundBf);
+		tab_group_note.add(playSoundDad);
 
 		Main_UI.addGroup(tab_group_note);
 	}
@@ -650,12 +665,15 @@ class ChartingState extends MusicBeatState
 		return daPos;
 	}
 
+	
+	var lastConductorPos:Float = 0;
 	override function update(elapsed:Float)
 	{
 		curStep = recalculateSteps();
 
 		if (FlxG.sound.music.time < 0) FlxG.sound.music.time = 0;
 
+		lastConductorPos = Conductor.songPosition;
 		Conductor.songPosition = FlxG.sound.music.time;
 
 		makeBPMText();
@@ -811,6 +829,71 @@ class ChartingState extends MusicBeatState
 		_song.bpm = tempBpm;
 
 		super.update(elapsed);
+
+		hitSoundCheck(elapsed);
+	}
+
+	var colorSine:Float = 0;
+	function hitSoundCheck(elapsed:Float)
+	{
+		var playedSound:Array<Bool> = [false, false, false, false]; // Prevents ouchy GF sex sounds
+		curRenderedNotes.forEachAlive(function(note:Note) {
+			note.alpha = 1;
+			if (curSelectedNote != null)
+			{
+				var noteDataToCheck:Int = note.noteID;
+				if (noteDataToCheck > -1 && note.mustPress != _song.notes[curSection].mustHitSection) noteDataToCheck += 4;
+
+				if (curSelectedNote[0] == note.strumTime
+					&& ((curSelectedNote[2] == null && noteDataToCheck < 0)
+						|| (curSelectedNote[2] != null && curSelectedNote[1] == noteDataToCheck)))
+				{
+					colorSine += elapsed;
+					var colorVal:Float = 0.7 + Math.sin(Math.PI * colorSine) * 0.3;
+					note.color = FlxColor.fromRGBFloat(colorVal, colorVal, colorVal,
+						0.999); // Alpha can't be 100% or the color won't be updated for some reason, guess i will die
+				}
+			}
+
+			if (note.strumTime <= Conductor.songPosition)
+			{
+				note.alpha = 0.4;
+				if (note.strumTime > lastConductorPos && FlxG.sound.music.playing && note.noteID > -1)
+				{
+					var data:Int = note.noteID % 4;
+					var noteDataToCheck:Int = note.noteID;
+					if (noteDataToCheck > -1 && note.mustPress != _song.notes[curSection].mustHitSection) noteDataToCheck += 4;
+					
+					// strumLineNotes.members[noteDataToCheck].playAnim('confirm', true);
+					// strumLineNotes.members[noteDataToCheck].resetAnim = (note.sustainLength / 1000) + 0.15;
+					
+					if (!playedSound[data])
+					{
+						if ((playSoundBf.checked && note.mustPress) || (playSoundDad.checked && !note.mustPress))
+						{
+							var soundToPlay = 'hitsound';
+							var sectionPlayer:String = '';
+
+							if (check_mustHitSection.checked)
+								sectionPlayer = note.noteID < 4 ? _song.player1 : _song.player2;
+							else
+								sectionPlayer = note.noteID < 4 ? _song.player2 : _song.player1;
+
+							if (sectionPlayer.contains('gf')) soundToPlay = 'GF_${note.noteID % 4}';
+
+							FlxG.sound.play(AssetPaths.sound(soundToPlay)).pan = note.noteID < 4 ? -0.3 : 0.3; // would be coolio
+							playedSound[data] = true;
+						}
+
+						data = note.noteID;
+						if (note.mustPress != _song.notes[curSection].mustHitSection)
+						{
+							data += 4;
+						}
+					}
+				}
+			}
+		});
 	}
 
 	function changeNoteSustain(value:Float):Void
