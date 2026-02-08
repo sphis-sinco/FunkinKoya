@@ -6,7 +6,7 @@ import haxe.Json;
 class ModCore
 {
 	/** Minimum supported mod API **/
-	public static var MOD_MIN_API_VERSION:Float = 0.0;
+	public static var MOD_MIN_API_VERSION:Float = 0.1;
 
 	/** Directory for mods to be looked for **/
 	public static final MOD_DIRECTORY:String = 'mods';

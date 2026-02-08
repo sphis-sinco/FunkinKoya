@@ -24,6 +24,7 @@ class AssetPaths
 	**/
 	public static function getPath(path:String, ?library:String):String
 	{
+		if (library == null) library = 'main';
 		if (library != null) return getLibraryPath(path, library);
 
 		#if MOD_SUPPORT

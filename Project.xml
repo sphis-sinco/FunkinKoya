@@ -55,23 +55,8 @@
 
 	<section label="assets/**">
 
-		<assets path="assets/main" rename="assets" exclude="*.ogg" if="web" />
-		<assets path="assets/main" rename="assets" exclude="*.mp3" unless="web" />
-
-		<assets path="assets/ui" exclude="*.ogg" if="web" />
-		<assets path="assets/ui" exclude="*.mp3" unless="web" />
-
-		<assets path="assets/extra" exclude="*.ogg" if="web" />
-		<assets path="assets/extra" exclude="*.mp3" unless="web" />
-
-		<assets path="assets/songs" exclude="*.ogg" if="web" />
-		<assets path="assets/songs" exclude="*.mp3" unless="web" />
-
-		<assets path="assets/characters" exclude="*.ogg" if="web" />
-		<assets path="assets/characters" exclude="*.mp3" unless="web" />
-
-		<assets path="assets/backgrounds" exclude="*.ogg" if="web" />
-		<assets path="assets/backgrounds" exclude="*.mp3" unless="web" />
+		<assets path="assets" exclude="*.ogg" if="web" />
+		<assets path="assets" exclude="*.mp3" unless="web" />
 
 	</section>
 

@@ -2,10 +2,13 @@
 
 ## Modding
 
+- MINIMUM SUPPORTED MOD API VERSION: `0.1` (cause of main library path stuff)
 - Added support for JSON CHARACTERS!
 
 ## Technical
 
+- Added `main` library path
+	- Now in `Project.xml` the assets are added via 2 lines (no extra shit required!)
 - Removed `FlxG.log.add`'s from `koya.backend.AssetTextList`
 - Removed `controls` save data
 - Removed shit from `koya.backend.songs.Song` that would've allowed a variable to use it as a type (but it never got used that way so we chill)
