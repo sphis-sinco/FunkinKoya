@@ -1,5 +1,8 @@
 package koya.frontend.scenes.menustates;
 
+import koya.backend.KoyaAssets;
+import haxe.Json;
+import koya.backend.songs.Week;
 import koya.backend.CoolUtil;
 import flixel.tweens.FlxTween;
 import koya.backend.AssetPaths;
@@ -20,6 +23,31 @@ class StoryModeState extends MenuState
 		super('storymode/', Horizontal);
 
 		this.itemList = SongList.weekList.textList;
+
+		for (week in itemList)
+		{
+			var weekJSON:Week = null;
+
+			try
+			{
+				weekJSON = Json.parse(KoyaAssets.getText(SongList.weekList.getEntryFilePath(week)));
+			}
+			catch (e)
+			{
+				weekJSON = null;
+				CoolUtil.alert('Error reading week JSON', 'Week JSON: ${SongList.weekList.getEntryFilePath(week)}\n\nError: ' + e.toString());
+			}
+
+			// Use my own logic to work with me hehehehe
+			if (weekJSON.hidden) weekJSON = null;
+
+			if (weekJSON == null)
+			{
+				itemList.remove(week);
+				continue;
+			}
+		}
+
 		this.itemIncOffset += 100;
 	}
 

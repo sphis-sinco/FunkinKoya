@@ -5,7 +5,7 @@ import haxe.Json;
 
 class ModCore
 {
-	public static var MOD_MIN_API_VERSION:Float = 0.0;
+	public static var MOD_MIN_API_VERSION:Float = 0.1;
 
 	public static final MOD_DIRECTORY:String = 'mods';
 	public static final MOD_METADATA_FILE:String = 'meta.json';
