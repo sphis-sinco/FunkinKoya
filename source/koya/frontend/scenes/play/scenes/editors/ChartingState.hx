@@ -1201,7 +1201,7 @@ class ChartingState extends MusicBeatState
 			try
 			{
 				#if ROOT_SAVE
-				path += '../../../../';
+				path = '../../../../' + path;
 				#end
 
 				sys.io.File.saveContent(path, data);
