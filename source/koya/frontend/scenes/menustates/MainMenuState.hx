@@ -1,5 +1,6 @@
 package koya.frontend.scenes.menustates;
 
+import koya.frontend.scenes.play.scenes.editors.ChartingState;
 import flixel.FlxG;
 import koya.frontend.scenes.freeplay.FreeplayState;
 import koya.frontend.ui.menustate.MenuState;
@@ -11,6 +12,13 @@ class MainMenuState extends MenuState
 		super('mainmenu/', Vertical);
 
 		itemList = ['story mode', 'freeplay', 'support', 'options', #if MOD_SUPPORT 'mods' #end];
+	}
+
+	override function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		if (FlxG.keys.justReleased.SEVEN) FlxG.switchState(() -> new ChartingState());
 	}
 
 	override function accept(item:String)
