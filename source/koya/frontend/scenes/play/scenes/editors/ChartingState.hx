@@ -1069,14 +1069,28 @@ class ChartingState extends MusicBeatState
 
 	function deleteNote(note:Note):Void
 	{
-		modifMade('Delete Note');
-
 		for (i in _song.notes[curSection].sectionNotes)
 		{
 			if (i[0] == note.strumTime && i[1] % 4 == note.noteID)
 			{
-				FlxG.log.add('FOUND EVIL NUMBER');
-				_song.notes[curSection].sectionNotes.remove(i);
+				var canErase = false;
+
+				var gridMid = gridBG.x + gridBG.width / 2;
+
+				if (FlxG.mouse.x < gridMid && i[1] < 4) canErase = true;
+				if (FlxG.mouse.x > gridMid && i[1] > 4) canErase = true;
+
+				// trace('FOUND NOTE TO DELETE');
+				// trace(FlxG.mouse.x);
+				// trace(gridMid);
+				// trace(i[1]);
+
+				if (canErase)
+				{
+					modifMade('Delete Note');
+					FlxG.log.add('FOUND EVIL NUMBER');
+					_song.notes[curSection].sectionNotes.remove(i);
+				}
 			}
 		}
 

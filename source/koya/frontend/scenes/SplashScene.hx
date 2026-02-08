@@ -51,6 +51,10 @@ class SplashScene extends FlxState
 		splash.screenCenter();
 		add(splash);
 		splash.playAnim('main');
+
+		#if SKIP_SPLASH
+		end();
+		#end
 	}
 
 	override function update(elapsed:Float)
@@ -62,12 +66,17 @@ class SplashScene extends FlxState
 		if (FlxG.keys.justReleased.ANY)
 		{
 			FlxG.sound.play(AssetPaths.sound('cancelMenu', 'ui'));
-			
-			FlxG.sound.music.onComplete();
-			FlxG.sound.music.stop();
 
-			splash.anim.pause();
-			splash.anim.frameIndex = splash.anim.curAnim.numFrames - 1;
+			end();
 		}
+	}
+
+	public function end()
+	{
+		FlxG.sound.music.onComplete();
+		FlxG.sound.music.stop();
+
+		splash.anim.pause();
+		splash.anim.frameIndex = splash.anim.curAnim.numFrames - 1;
 	}
 }
