@@ -190,6 +190,8 @@ class PlayState extends MusicBeatState
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
+		
+		PlayState.SONG_DIFFICULTY = SONG.difficulty;
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 
